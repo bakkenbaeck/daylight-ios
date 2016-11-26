@@ -1,0 +1,6 @@
+framework module Sunrise {
+  umbrella header "Sunrise.h"
+
+  export *
+  module * { export * }
+}
