@@ -3,7 +3,10 @@ import CoreLocation
 
 class MainController: UIViewController {
     lazy var locationTracker: LocationTracker = {
-        return LocationTracker()
+        let tracker = LocationTracker()
+        tracker.delegate = self
+
+        return tracker
     }()
 
     lazy var descriptionLabel: UILabel = {
@@ -28,6 +31,8 @@ class MainController: UIViewController {
         self.view.backgroundColor = .white
         self.view.addSubview(self.backgroundImageView)
         self.view.addSubview(self.descriptionLabel)
+
+        self.locationTracker.checkAuthorization()
     }
 
     override func viewWillLayoutSubviews() {
