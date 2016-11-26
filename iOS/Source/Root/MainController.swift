@@ -13,11 +13,18 @@ class MainController: UIViewController {
 
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Today, Oslo has \n4 minutes less sunlight than yesterday. Sorry."
-        label.numberOfLines = 4
+        label.text = "Loading..."
+        label.numberOfLines = 0
         label.font = UIFont.bold(size: 40)
+        label.textColor = .white
 
         return label
+    }()
+
+    lazy var backgroundImageView: UIImageView = {
+        let view = UIImageView(image: UIImage(named: "background")!)
+
+        return view
     }()
 
     init(apiClient: APIClient) {
@@ -34,6 +41,7 @@ class MainController: UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = .white
+        self.view.addSubview(self.backgroundImageView)
         self.view.addSubview(self.descriptionLabel)
 
         switch CLLocationManager.authorizationStatus() {
@@ -47,7 +55,9 @@ class MainController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
+
+        self.backgroundImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+
         let margin = CGFloat(30)
         self.descriptionLabel.frame = CGRect(x: margin, y: 0, width: self.view.frame.width - margin * 2, height: self.view.frame.height)
     }
@@ -58,6 +68,8 @@ extension MainController: CLLocationManagerDelegate {
         switch status {
         case .authorizedWhenInUse, .authorizedAlways:
             self.locationManager.startUpdatingLocation()
+        case .denied, .restricted:
+            self.descriptionLabel.text = "We need to know where you are, enable location access in your Settings."
         default: break
         }
     }
@@ -75,7 +87,8 @@ extension MainController: CLLocationManagerDelegate {
                 self.present(alertController, animated: true, completion: nil)
             } else if let placemarks = placemarks {
                 for placemark in placemarks {
-                    print(placemark.locality!)
+                    let city = placemark.locality!
+                    self.descriptionLabel.text = "Today, \(city) has \n4 minutes less sunlight than yesterday. Sorry."
                 }
             }
         }
