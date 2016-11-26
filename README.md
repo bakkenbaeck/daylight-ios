@@ -1,6 +1,6 @@
 # Sol
 
-A beautiful app that will let you know how much tanning time you have left throughout the day.
+A beautiful app that will let you know how much sun you have today.
 
 ## Running the project
 
