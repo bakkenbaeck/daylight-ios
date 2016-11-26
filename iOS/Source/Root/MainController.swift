@@ -89,7 +89,27 @@ extension MainController: CLLocationManagerDelegate {
             } else if let placemarks = placemarks {
                 for placemark in placemarks {
                     let city = placemark.locality!
-                    self.descriptionLabel.text = "Today, \(city) has \n4 minutes less sunlight than yesterday. Sorry."
+                    let location = placemark.location!
+
+                    let today = Calendar.autoupdatingCurrent.startOfDay(for: Date())
+                    let yesterday = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: today)!
+
+                    let todaySunriseSet = SunriseSet(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                    let yesterdaySunriseSet = SunriseSet(date: yesterday, timeZone: TimeZone.autoupdatingCurrent, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+
+                    let todaySecondsOfSun = todaySunriseSet.sunset.timeIntervalSince(today)
+                    let yesterdaySecondsOfSun = yesterdaySunriseSet.sunset.timeIntervalSince(yesterday)
+
+                    let interval = todaySecondsOfSun - yesterdaySecondsOfSun
+                    let minutes = interval / 60
+                    let formatter = NumberFormatter()
+                    formatter.maximumFractionDigits = 2
+                    let minutesString = formatter.string(from: NSNumber(value: abs(minutes)))!
+                    if minutes > 0 {
+                        self.descriptionLabel.text = "Today, \(city) has \n\(minutesString) minutes more sunlight than yesterday. Enjoy!"
+                    } else {
+                        self.descriptionLabel.text = "Today, \(city) has \n\(minutesString) minutes less sunlight than yesterday. Sorry."
+                    }
                 }
             }
         }
