@@ -5,9 +5,9 @@ class MainController: UIViewController {
 
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Today, Oslo has 4 minutes less sunlight than yesterday."
-        label.numberOfLines = 3
-        label.font = UIFont.bold(size: 30)
+        label.text = "Today, Oslo has \n4 minutes less sunlight than yesterday. Sorry."
+        label.numberOfLines = 4
+        label.font = UIFont.bold(size: 40)
 
         return label
     }()
@@ -32,7 +32,7 @@ class MainController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        let margin = CGFloat(10)
+        let margin = CGFloat(30)
         self.descriptionLabel.frame = CGRect(x: margin, y: 0, width: self.view.frame.width - margin * 2, height: self.view.frame.height)
     }
 }
