@@ -5,11 +5,11 @@ import Foundation
 //import DATASource
 //import CoreData
 
-class Fetcher {
+class APIClient {
 //    var data: DATAStack
 //    var networking: Networking
 //
-    init(baseURL: String, modelName: String) {
+    init() {
 //        self.data = DATAStack(modelName: modelName)
 //        self.networking = Networking(baseURL: baseURL)
     }

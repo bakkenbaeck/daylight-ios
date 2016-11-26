@@ -10,25 +10,22 @@
 		143F99F61D8C5B78005D1552 /* Theme+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F99F51D8C5B78005D1552 /* Theme+Color.swift */; };
 		14425E551C97078A00F0FAD1 /* Theme+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14425E4D1C97078A00F0FAD1 /* Theme+Font.swift */; };
 		14425E561C97078A00F0FAD1 /* Theme+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14425E4D1C97078A00F0FAD1 /* Theme+Font.swift */; };
-		14425E591C97078A00F0FAD1 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14425E501C97078A00F0FAD1 /* Fetcher.swift */; };
-		14425E5A1C97078A00F0FAD1 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14425E501C97078A00F0FAD1 /* Fetcher.swift */; };
-		144DD0921DB3B8400037C92E /* ItemsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144DD08D1DB3B8400037C92E /* ItemsController.swift */; };
+		14425E591C97078A00F0FAD1 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14425E501C97078A00F0FAD1 /* APIClient.swift */; };
+		14425E5A1C97078A00F0FAD1 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14425E501C97078A00F0FAD1 /* APIClient.swift */; };
 		144DD0941DB3B8400037C92E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144DD0911DB3B8400037C92E /* AppDelegate.swift */; };
-		1459F0DF1DBD20F000311892 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1459F0DE1DBD20F000311892 /* ItemCell.swift */; };
 		146E27A91BCD51F200959BBA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146E279F1BCD51F200959BBA /* LaunchScreen.xib */; };
 		146E27AA1BCD51F200959BBA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 146E27A11BCD51F200959BBA /* Images.xcassets */; };
 		1483128E1B92C11500266943 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1483128D1B92C11500266943 /* Tests.swift */; };
 		14CB87E61C96F94F007376A6 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14CB87E41C96F94F007376A6 /* DataModel.xcdatamodeld */; };
 		14CB87E71C96F94F007376A6 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14CB87E41C96F94F007376A6 /* DataModel.xcdatamodeld */; };
+		44163E551DE963380013D7EA /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44163E541DE963380013D7EA /* MainController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		143F99F51D8C5B78005D1552 /* Theme+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Theme+Color.swift"; sourceTree = "<group>"; };
 		14425E4D1C97078A00F0FAD1 /* Theme+Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Theme+Font.swift"; sourceTree = "<group>"; };
-		14425E501C97078A00F0FAD1 /* Fetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
-		144DD08D1DB3B8400037C92E /* ItemsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsController.swift; sourceTree = "<group>"; };
+		14425E501C97078A00F0FAD1 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		144DD0911DB3B8400037C92E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1459F0DE1DBD20F000311892 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		146E27891BCD51C800959BBA /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		146E27A01BCD51F200959BBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		146E27A11BCD51F200959BBA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -37,6 +34,7 @@
 		1483128C1B92C11500266943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1483128D1B92C11500266943 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		14CB87E51C96F94F007376A6 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		44163E541DE963380013D7EA /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,42 +77,18 @@
 		14425E4F1C97078A00F0FAD1 /* Fetchers */ = {
 			isa = PBXGroup;
 			children = (
-				14425E501C97078A00F0FAD1 /* Fetcher.swift */,
+				14425E501C97078A00F0FAD1 /* APIClient.swift */,
 			);
 			path = Fetchers;
-			sourceTree = "<group>";
-		};
-		144DD08B1DB3B8400037C92E /* Items */ = {
-			isa = PBXGroup;
-			children = (
-				1459F0DD1DBD20F000311892 /* Cells */,
-				144DD08C1DB3B8400037C92E /* Controllers */,
-			);
-			path = Items;
-			sourceTree = "<group>";
-		};
-		144DD08C1DB3B8400037C92E /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				144DD08D1DB3B8400037C92E /* ItemsController.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		144DD0901DB3B8400037C92E /* Root */ = {
 			isa = PBXGroup;
 			children = (
 				144DD0911DB3B8400037C92E /* AppDelegate.swift */,
+				44163E541DE963380013D7EA /* MainController.swift */,
 			);
 			path = Root;
-			sourceTree = "<group>";
-		};
-		1459F0DD1DBD20F000311892 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				1459F0DE1DBD20F000311892 /* ItemCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		146E278A1BCD51C800959BBA /* iOS */ = {
@@ -140,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				144DD0901DB3B8400037C92E /* Root */,
-				144DD08B1DB3B8400037C92E /* Items */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -294,7 +267,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\nTAGS=\"\\/\\/ TODO:|\\/\\/ FIXME:|\\/\\/ WARNING:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"\nfi\n";
-
 		};
 		14425E4B1C9702CA00F0FAD1 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -318,11 +290,10 @@
 			files = (
 				14425E551C97078A00F0FAD1 /* Theme+Font.swift in Sources */,
 				14CB87E61C96F94F007376A6 /* DataModel.xcdatamodeld in Sources */,
-				1459F0DF1DBD20F000311892 /* ItemCell.swift in Sources */,
 				143F99F61D8C5B78005D1552 /* Theme+Color.swift in Sources */,
-				144DD0921DB3B8400037C92E /* ItemsController.swift in Sources */,
 				144DD0941DB3B8400037C92E /* AppDelegate.swift in Sources */,
-				14425E591C97078A00F0FAD1 /* Fetcher.swift in Sources */,
+				44163E551DE963380013D7EA /* MainController.swift in Sources */,
+				14425E591C97078A00F0FAD1 /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +303,7 @@
 			files = (
 				1483128E1B92C11500266943 /* Tests.swift in Sources */,
 				14CB87E71C96F94F007376A6 /* DataModel.xcdatamodeld in Sources */,
-				14425E5A1C97078A00F0FAD1 /* Fetcher.swift in Sources */,
+				14425E5A1C97078A00F0FAD1 /* APIClient.swift in Sources */,
 				14425E561C97078A00F0FAD1 /* Theme+Font.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
