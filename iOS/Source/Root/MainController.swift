@@ -1,5 +1,6 @@
 import UIKit
 import CoreLocation
+import Sunrise
 
 class MainController: UIViewController {
     var apiClient: APIClient
