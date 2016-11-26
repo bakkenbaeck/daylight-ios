@@ -1,10 +1,7 @@
 import UIKit
 import CoreLocation
-import Sunrise
 
 class MainController: UIViewController {
-    var apiClient: APIClient
-
     lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.delegate = self
@@ -16,8 +13,8 @@ class MainController: UIViewController {
         let label = UILabel()
         label.text = "Loading..."
         label.numberOfLines = 0
-        label.font = UIFont.bold(size: 40)
-        label.textColor = .white
+        label.font = .bold(size: 40)
+        label.textColor = .messageColor
 
         return label
     }()
@@ -27,16 +24,6 @@ class MainController: UIViewController {
 
         return view
     }()
-
-    init(apiClient: APIClient) {
-        self.apiClient = apiClient
-
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,18 +76,7 @@ extension MainController: CLLocationManagerDelegate {
             } else if let placemarks = placemarks {
                 let placemark = placemarks.first!
                 let city = placemark.locality!
-                let location = placemark.location!
-
-                let today = Calendar.autoupdatingCurrent.startOfDay(for: Date())
-                let yesterday = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: today)!
-
-                let todaySunriseSet = SunriseSet(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                let yesterdaySunriseSet = SunriseSet(date: yesterday, timeZone: TimeZone.autoupdatingCurrent, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-
-                let todayDayLenght = todaySunriseSet.sunset.timeIntervalSince(todaySunriseSet.sunrise)
-                let yesterdayDayLenght = yesterdaySunriseSet.sunset.timeIntervalSince(yesterdaySunriseSet.sunrise)
-
-                let interval = todayDayLenght - yesterdayDayLenght
+                let interval = APIClient.dayLenghtDifference(for: placemark)
                 let minutes = interval / 60
                 let formatter = NumberFormatter()
                 formatter.maximumFractionDigits = 2
