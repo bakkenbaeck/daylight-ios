@@ -87,29 +87,28 @@ extension MainController: CLLocationManagerDelegate {
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
                 self.present(alertController, animated: true, completion: nil)
             } else if let placemarks = placemarks {
-                for placemark in placemarks {
-                    let city = placemark.locality!
-                    let location = placemark.location!
+                let placemark = placemarks.first!
+                let city = placemark.locality!
+                let location = placemark.location!
 
-                    let today = Calendar.autoupdatingCurrent.startOfDay(for: Date())
-                    let yesterday = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: today)!
+                let today = Calendar.autoupdatingCurrent.startOfDay(for: Date())
+                let yesterday = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: today)!
 
-                    let todaySunriseSet = SunriseSet(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                    let yesterdaySunriseSet = SunriseSet(date: yesterday, timeZone: TimeZone.autoupdatingCurrent, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                let todaySunriseSet = SunriseSet(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                let yesterdaySunriseSet = SunriseSet(date: yesterday, timeZone: TimeZone.autoupdatingCurrent, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
 
-                    let todaySecondsOfSun = todaySunriseSet.sunset.timeIntervalSince(today)
-                    let yesterdaySecondsOfSun = yesterdaySunriseSet.sunset.timeIntervalSince(yesterday)
+                let todayDayLenght = todaySunriseSet.sunset.timeIntervalSince(todaySunriseSet.sunrise)
+                let yesterdayDayLenght = yesterdaySunriseSet.sunset.timeIntervalSince(yesterdaySunriseSet.sunrise)
 
-                    let interval = todaySecondsOfSun - yesterdaySecondsOfSun
-                    let minutes = interval / 60
-                    let formatter = NumberFormatter()
-                    formatter.maximumFractionDigits = 2
-                    let minutesString = formatter.string(from: NSNumber(value: abs(minutes)))!
-                    if minutes > 0 {
-                        self.descriptionLabel.text = "Today, \(city) has \n\(minutesString) minutes more sunlight than yesterday. Enjoy!"
-                    } else {
-                        self.descriptionLabel.text = "Today, \(city) has \n\(minutesString) minutes less sunlight than yesterday. Sorry."
-                    }
+                let interval = todayDayLenght - yesterdayDayLenght
+                let minutes = interval / 60
+                let formatter = NumberFormatter()
+                formatter.maximumFractionDigits = 2
+                let minutesString = formatter.string(from: NSNumber(value: abs(minutes)))!
+                if minutes > 0 {
+                    self.descriptionLabel.text = "Today, \(city) has \n\(minutesString) minutes more sunlight than yesterday. Enjoy!"
+                } else {
+                    self.descriptionLabel.text = "Today, \(city) has \n\(minutesString) minutes less sunlight than yesterday. Sorry."
                 }
             }
         }
