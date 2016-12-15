@@ -18,6 +18,7 @@
 		1483128E1B92C11500266943 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1483128D1B92C11500266943 /* Tests.swift */; };
 		14F3560C1DE9C2010016AA17 /* Sunrise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F3560B1DE9C2010016AA17 /* Sunrise.framework */; };
 		14F3560D1DE9C2010016AA17 /* Sunrise.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14F3560B1DE9C2010016AA17 /* Sunrise.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E6D9D5031E02C9350007006D /* GT-America-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6D9D5021E02C9350007006D /* GT-America-Light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +50,7 @@
 		1483128C1B92C11500266943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1483128D1B92C11500266943 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		14F3560B1DE9C2010016AA17 /* Sunrise.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sunrise.framework; path = Carthage/Build/iOS/Sunrise.framework; sourceTree = "<group>"; };
+		E6D9D5021E02C9350007006D /* GT-America-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GT-America-Light.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				146E279F1BCD51F200959BBA /* LaunchScreen.xib */,
 				146E27A11BCD51F200959BBA /* Images.xcassets */,
 				146E27A21BCD51F200959BBA /* Info.plist */,
+				D197B1EC41B47C357D9C2EBE /* Fonts */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -144,6 +147,14 @@
 				14F3560B1DE9C2010016AA17 /* Sunrise.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D197B1EC41B47C357D9C2EBE /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E6D9D5021E02C9350007006D /* GT-America-Light.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +245,7 @@
 			files = (
 				146E27AA1BCD51F200959BBA /* Images.xcassets in Resources */,
 				146E27A91BCD51F200959BBA /* LaunchScreen.xib in Resources */,
+				E6D9D5031E02C9350007006D /* GT-America-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
