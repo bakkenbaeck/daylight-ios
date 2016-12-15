@@ -3,6 +3,16 @@ import CoreLocation
 
 class MainController: UIViewController {
 
+    enum SunPhase: Int {
+        case sunrise
+        case daylight
+        case sunset
+        case twilight
+        case night
+    }
+
+    var sunPhase = SunPhase.night { didSet { self.updateInterface(forSunPhase: self.sunPhase) }}
+
     var messageLabelHeightAnchor: NSLayoutConstraint?
 
     lazy var locationTracker: LocationTracker = {
@@ -31,7 +41,6 @@ class MainController: UIViewController {
 
     lazy var messageLabel: UILabel = {
         let label = UILabel()
-        label.text = "Loading..."
         label.numberOfLines = 0
         label.font = .light(size: 32)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -57,6 +66,7 @@ class MainController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.updateInterface(forSunPhase: .sunrise)
 
         self.addSubviewsAndConstraints()
         self.locationTracker.checkAuthorization()
@@ -91,6 +101,36 @@ class MainController: UIViewController {
         self.locationLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
     }
 
+    func updateInterface(forSunPhase sunPhase: SunPhase) {
+        var backgroundColor = UIColor.white
+        var textColor = UIColor.black
+
+        switch sunPhase {
+        case .sunrise:
+            backgroundColor = .sunrise
+            textColor = .sunriseText
+        case .daylight:
+            backgroundColor = .daylight
+            textColor = .daylightText
+        case .sunset:
+            backgroundColor = .sunset
+            textColor = .sunsetText
+        case .twilight:
+            backgroundColor = .twilight
+            textColor = .twilightText
+        case .night:
+            backgroundColor = .night
+            textColor = .nightText
+        }
+
+        UIView.animate(withDuration: 0.2) {
+            self.view.backgroundColor = backgroundColor
+
+            self.locationLabel.textColor = textColor.withAlphaComponent(0.6)
+            self.messageLabel.textColor = textColor.withAlphaComponent(0.6)
+        }
+    }
+
     func didClickInformation() {
         //TODO: Implement information functionality
     }
@@ -119,7 +159,9 @@ extension MainController: LocationTrackerDelegate {
         self.messageLabel.text = "Happy days! This day is \(minutesString) minutes longer than yesterday. Will you make it count?"
 
         self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
-        self.view.setNeedsDisplay()
+        self.view.setNeedsLayout()
+
+        self.sunPhase = .daylight
     }
 }
 
