@@ -34,11 +34,11 @@ class MainController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.addSubviewsAndContrains()
+        self.addSubviewsAndConstraints()
         self.locationTracker.checkAuthorization()
     }
 
-    func addSubviewsAndContrains() {
+    func addSubviewsAndConstraints() {
         self.view.addSubview(self.backgroundImageView)
         self.view.addSubview(self.descriptionLabel)
 
@@ -66,7 +66,7 @@ extension MainController: LocationTrackerDelegate {
 
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
         let city = placemark.locality!
-        let interval = APIClient.dayLenghtDifference(for: placemark)
+        let interval = APIClient.dayLengthDifference(for: placemark)
         let minutes = interval / 60
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 2
