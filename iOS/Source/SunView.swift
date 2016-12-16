@@ -8,7 +8,7 @@ class SunView: UIView {
     var sunLocation = (x: CGFloat(0.0), y: CGFloat(0.0)) {
         didSet{
             self.sunLeftAnchor = self.sun.leftAnchor.constraint(equalTo: self.leftAnchor, constant: self.sunLocation.x)
-            self.sunTopAnchor = self.sun.topAnchor.constraint(equalTo: self.topAnchor, constant: self.sunLocation.y)
+            self.sunTopAnchor = self.sun.topAnchor.constraint(equalTo: self.topAnchor, constant: self.sunLocation.y + 24.0)
             self.currentTimeBottomAnchor = self.currentTimeLabel.bottomAnchor.constraint(equalTo: self.sun.topAnchor, constant: -8)
             self.setNeedsLayout()
         }
@@ -83,23 +83,23 @@ class SunView: UIView {
         self.sunriseLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         self.sunriseLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         self.sunriseLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
-        self.sunriseLabel.widthAnchor.constraint(equalToConstant: 31).isActive = true
+        self.sunriseLabel.widthAnchor.constraint(equalToConstant: 35).isActive = true
 
         self.sunsetLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         self.sunsetLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         self.sunsetLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
-        self.sunsetLabel.widthAnchor.constraint(equalToConstant: 31).isActive = true
+        self.sunsetLabel.widthAnchor.constraint(equalToConstant: 35).isActive = true
 
         self.sun.widthAnchor.constraint(equalToConstant: SunView.sunSize).isActive = true
         self.sun.heightAnchor.constraint(equalToConstant: SunView.sunSize).isActive = true
         self.sunLeftAnchor = self.sun.leftAnchor.constraint(equalTo: self.leftAnchor, constant: self.sunLocation.x)
-        self.sunTopAnchor = self.sun.topAnchor.constraint(equalTo: self.topAnchor, constant: self.sunLocation.y)
+        self.sunTopAnchor = self.sun.topAnchor.constraint(equalTo: self.topAnchor, constant: self.sunLocation.y  + 24.0)
 
         self.sunLeftAnchor?.isActive = true
         self.sunTopAnchor?.isActive = true
 
         self.currentTimeLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
-        self.currentTimeLabel.widthAnchor.constraint(equalToConstant: 31).isActive = true
+        self.currentTimeLabel.widthAnchor.constraint(equalToConstant: 35).isActive = true
         self.currentTimeLabel.centerXAnchor.constraint(equalTo: self.sun.centerXAnchor).isActive = true
         self.currentTimeBottomAnchor = self.currentTimeLabel.bottomAnchor.constraint(equalTo: self.sun.topAnchor, constant: -8)
 
