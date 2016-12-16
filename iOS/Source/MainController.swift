@@ -67,10 +67,12 @@ class MainController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.updateInterface(forSunPhase: .sunrise)
 
         self.addSubviewsAndConstraints()
+        self.updateInterface(forSunPhase: .sunrise)
+
         self.locationTracker.checkAuthorization()
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.update), userInfo: nil, repeats: true);
     }
 
     func addSubviewsAndConstraints() {
@@ -100,6 +102,10 @@ class MainController: UIViewController {
         self.locationLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: insets.left).isActive = true
         self.locationLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
         self.locationLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
+    }
+
+    func update() {
+        self.updateInterface(forSunPhase: .daylight)
     }
 
     func updateInterface(forSunPhase sunPhase: SunPhase) {
@@ -139,7 +145,6 @@ class MainController: UIViewController {
             self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
             self.view.setNeedsLayout()
         }
-
     }
 
     func didClickInformation() {
@@ -159,8 +164,6 @@ extension MainController: LocationTrackerDelegate {
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
         self.setLocation(with: placemark)
         self.setMessage(for: placemark)
-
-        self.sunPhase = .daylight
     }
 
     func setLocation(with placemark: CLPlacemark) {
