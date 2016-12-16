@@ -34,7 +34,6 @@ class MainController: UIViewController {
     lazy var sunView: SunView = {
         let sunView = SunView()
         sunView.translatesAutoresizingMaskIntoConstraints = false
-        sunView.backgroundColor = .red
 
         return sunView
     }()
@@ -125,6 +124,7 @@ class MainController: UIViewController {
 
         UIView.animate(withDuration: 0.2) {
             self.view.backgroundColor = backgroundColor
+            self.sunView.updateInterface(withColor: textColor)
 
             self.locationLabel.textColor = textColor.withAlphaComponent(0.6)
             self.messageLabel.textColor = textColor.withAlphaComponent(0.6)
@@ -146,8 +146,6 @@ extension MainController: LocationTrackerDelegate {
     }
 
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
-        print("location tracker is called!")
-
         self.setLocation(with: placemark)
         self.setMessage(for: placemark)
 
@@ -172,6 +170,8 @@ extension MainController: LocationTrackerDelegate {
 
         self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
         self.view.setNeedsLayout()
+
+        self.sunView.update(for: placemark)
     }
 }
 
