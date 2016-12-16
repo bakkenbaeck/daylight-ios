@@ -181,8 +181,8 @@ extension MainController: LocationTrackerDelegate {
         formatter.maximumFractionDigits = 2
         let minutesString = formatter.string(from: NSNumber(value: abs(minutes)))!
 
-        self.message = "Happy days! This day is \(minutesString) minutes longer than yesterday. Will you make it count?"
-        self.colored = "\(minutesString) minutes"
+        self.message = NSString(format: "Make sure to soak up that vitamin D. %@ more minutes of daylight today!", minutesString) as String
+        self.colored = NSString(format: "%@ more minutes", minutesString) as String
 
         self.sunView.update(for: placemark)
     }
