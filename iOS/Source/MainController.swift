@@ -146,13 +146,25 @@ extension MainController: LocationTrackerDelegate {
     }
 
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
+        print("location tracker is called!")
+
+        self.setLocation(with: placemark)
+        self.setMessage(for: placemark)
+
+        self.sunPhase = .daylight
+    }
+
+    func setLocation(with placemark: CLPlacemark) {
         let city = placemark.locality!
         let country = placemark.country!
 
         self.locationLabel.text = "\(city), \(country)"
+    }
 
+    func setMessage(for placemark: CLPlacemark) {
         let interval = APIClient.dayLengthDifference(for: placemark)
         let minutes = interval / 60
+
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 2
         let minutesString = formatter.string(from: NSNumber(value: abs(minutes)))!
@@ -160,8 +172,6 @@ extension MainController: LocationTrackerDelegate {
 
         self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
         self.view.setNeedsLayout()
-
-        self.sunPhase = .daylight
     }
 }
 
