@@ -51,11 +51,11 @@ struct MessageGenerator {
         let defaults = UserDefaults.standard
 
         let dayKey = self.dateFormatter.string(from: day)
-        print(dayKey)
 
         if let message = UserDefaults.standard.string(forKey: dayKey), let colored = UserDefaults.standard.string(forKey: "\(dayKey)colored") {
             return (message, colored)
         } else {
+            //TODO: maybe clear out old user default values, we don't need them anymore!
             let message = self.generateMessage(forInterval: interval)
             defaults.set(message.0, forKey: dayKey)
             defaults.set(message.1, forKey: "\(dayKey)colored")
