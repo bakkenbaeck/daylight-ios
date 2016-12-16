@@ -83,7 +83,7 @@ class MainController: UIViewController {
         self.informationButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
         self.informationButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
 
-        self.sunView.heightAnchor.constraint(equalToConstant: 157).isActive = true
+        self.sunView.heightAnchor.constraint(equalToConstant: 133).isActive = true
         self.sunView.bottomAnchor.constraint(equalTo: self.messageLabel.topAnchor, constant: -10).isActive = true
         self.sunView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: insets.left).isActive = true
         self.sunView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
@@ -121,7 +121,7 @@ class MainController: UIViewController {
             textColor = .nightText
         }
 
-        UIView.animate(withDuration: 1.0) {
+        UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = backgroundColor
             self.sunView.updateInterface(withColor: textColor)
             self.informationButton.updateInterface(withColor: textColor)

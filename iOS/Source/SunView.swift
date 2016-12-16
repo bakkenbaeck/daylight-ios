@@ -8,7 +8,7 @@ class SunView: UIView {
     var sunLocation = (x: CGFloat(0.0), y: CGFloat(0.0)) {
         didSet{
             self.sunLeftAnchor = self.sun.leftAnchor.constraint(equalTo: self.leftAnchor, constant: self.sunLocation.x)
-            self.sunTopAnchor = self.sun.topAnchor.constraint(equalTo: self.topAnchor, constant: self.sunLocation.y + 24.0)
+            self.sunTopAnchor = self.sun.topAnchor.constraint(equalTo: self.topAnchor, constant: self.sunLocation.y)
             self.currentTimeBottomAnchor = self.currentTimeLabel.bottomAnchor.constraint(equalTo: self.sun.topAnchor, constant: -8)
             self.setNeedsLayout()
         }
@@ -30,6 +30,7 @@ class SunView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .light(size: 12)
+        label.textAlignment = .right
 
         return label
     }()
@@ -93,7 +94,7 @@ class SunView: UIView {
         self.sun.widthAnchor.constraint(equalToConstant: SunView.sunSize).isActive = true
         self.sun.heightAnchor.constraint(equalToConstant: SunView.sunSize).isActive = true
         self.sunLeftAnchor = self.sun.leftAnchor.constraint(equalTo: self.leftAnchor, constant: self.sunLocation.x)
-        self.sunTopAnchor = self.sun.topAnchor.constraint(equalTo: self.topAnchor, constant: self.sunLocation.y  + 24.0)
+        self.sunTopAnchor = self.sun.topAnchor.constraint(equalTo: self.topAnchor, constant: self.sunLocation.y)
 
         self.sunLeftAnchor?.isActive = true
         self.sunTopAnchor?.isActive = true
