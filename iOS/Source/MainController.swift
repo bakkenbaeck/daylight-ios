@@ -15,6 +15,9 @@ class MainController: UIViewController {
 
     var messageLabelHeightAnchor: NSLayoutConstraint?
 
+    var message = ""
+    var colored = ""
+
     lazy var locationTracker: LocationTracker = {
         let tracker = LocationTracker()
         tracker.delegate = self
@@ -121,6 +124,10 @@ class MainController: UIViewController {
             textColor = .nightText
         }
 
+        let range = (self.message as NSString).range(of: self.colored)
+        let attributedString = NSMutableAttributedString(string: self.message)
+        attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
+
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = backgroundColor
             self.sunView.updateInterface(withColor: textColor)
@@ -128,7 +135,11 @@ class MainController: UIViewController {
 
             self.locationLabel.textColor = textColor.withAlphaComponent(0.6)
             self.messageLabel.textColor = textColor.withAlphaComponent(0.6)
+            self.messageLabel.attributedText = attributedString
+            self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
+            self.view.setNeedsLayout()
         }
+
     }
 
     func didClickInformation() {
@@ -166,10 +177,9 @@ extension MainController: LocationTrackerDelegate {
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 2
         let minutesString = formatter.string(from: NSNumber(value: abs(minutes)))!
-        self.messageLabel.text = "Happy days! This day is \(minutesString) minutes longer than yesterday. Will you make it count?"
 
-        self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
-        self.view.setNeedsLayout()
+        self.message = "Happy days! This day is \(minutesString) minutes longer than yesterday. Will you make it count?"
+        self.colored = "\(minutesString) minutes"
 
         self.sunView.update(for: placemark)
     }
