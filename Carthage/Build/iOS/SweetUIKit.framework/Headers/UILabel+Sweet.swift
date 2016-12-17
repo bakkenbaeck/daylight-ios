@@ -14,11 +14,10 @@
 
         /**
          Calculates the height of the text.
-         - parameter width: The width of the Label.
-         - returns: The height of the text
+         - returns: The height of the text for the current width of the label
          */
-        public func height(forWidth width: CGFloat) -> CGFloat {
-            let size = self.sizeThatFits(CGSize(width: width, height: CGFloat.greatestFiniteMagnitude))
+        public func height() -> CGFloat {
+            let size = self.sizeThatFits(CGSize(width: self.bounds.width, height: CGFloat.greatestFiniteMagnitude))
 
             return size.height
         }
