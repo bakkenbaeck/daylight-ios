@@ -65,6 +65,10 @@ class MainController: UIViewController {
         return .default
     }
 
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
