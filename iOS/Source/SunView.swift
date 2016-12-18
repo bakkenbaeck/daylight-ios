@@ -107,12 +107,12 @@ class SunView: UIView {
         self.currentTimeBottomAnchor?.isActive = true
     }
 
-    func update(for placemark: CLPlacemark) {
+    func update(for location: Location) {
         self.currentTimeLabel.text = APIClient.timeFormatter.string(from: Date())
-        self.sunriseLabel.text = APIClient.sunriseTimeString(for: placemark)
-        self.sunsetLabel.text = APIClient.sunsetTimeString(for: placemark)
+        self.sunriseLabel.text = APIClient.sunriseTimeString(for: location.coordinate)
+        self.sunsetLabel.text = APIClient.sunsetTimeString(for: location.coordinate)
 
-        self.sunLocation = APIClient.sunLocation(for: placemark)
+        self.sunLocation = APIClient.sunLocation(for: location.coordinate)
     }
 
     func updateInterface(withColor color: UIColor) {
