@@ -2,12 +2,7 @@ import UIKit
 import CoreLocation
 
 class MainController: UIViewController {
-    var sunPhase = SunPhase.night { didSet { self.updateInterface(forSunPhase: self.sunPhase) }}
-
     var messageLabelHeightAnchor: NSLayoutConstraint?
-
-    var message = ""
-    var colored = ""
 
     lazy var locationTracker: LocationTracker = {
         let tracker = LocationTracker()
@@ -68,8 +63,10 @@ class MainController: UIViewController {
 
         self.locationTracker.checkAuthorization()
         self.updateLocation()
-        self.updateMessage()
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.update), userInfo: nil, repeats: true);
+        self.updateSunView()
+        self.updateInterface(forSunPhase: .daylight)
+
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.simulateSunPhaseChange), userInfo: nil, repeats: true);
     }
 
     func addSubviewsAndConstraints() {
@@ -101,11 +98,13 @@ class MainController: UIViewController {
         self.locationLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
     }
 
-    func update() {
-        self.updateInterface(forSunPhase: .daylight)
+    func simulateSunPhaseChange() {
+        self.updateInterface(forSunPhase: .twilight)
     }
 
     func updateInterface(forSunPhase sunPhase: SunPhase) {
+        guard let location = Location.current else { return }
+
         var backgroundColor = UIColor.white
         var textColor = UIColor.black
 
@@ -127,8 +126,21 @@ class MainController: UIViewController {
             textColor = .nightText
         }
 
-        let range = (self.message as NSString).range(of: self.colored)
-        let attributedString = NSMutableAttributedString(string: self.message)
+        let interval = APIClient.dayLengthDifference(for: location.coordinate)
+        let minutes = interval / 60
+
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 2
+        let minutesString = formatter.string(from: NSNumber(value: abs(minutes)))!
+
+        let messageGenerator = MessageGenerator()
+        let message = messageGenerator.message(forDay: Date(), withInterval: interval)
+
+        let formattedMessage = String(format: message.0, minutesString)
+        let formattedColored = String(format: message.1, minutesString)
+
+        let range = (formattedMessage as NSString).range(of: formattedColored)
+        let attributedString = NSMutableAttributedString(string: formattedMessage)
         attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
 
         UIView.animate(withDuration: 0.4) {
@@ -154,21 +166,8 @@ class MainController: UIViewController {
         }
     }
 
-    func updateMessage() {
+    func updateSunView() {
         if let location = Location.current {
-            let interval = APIClient.dayLengthDifference(for: location.coordinate)
-            let minutes = interval / 60
-
-            let formatter = NumberFormatter()
-            formatter.maximumFractionDigits = 2
-            let minutesString = formatter.string(from: NSNumber(value: abs(minutes)))!
-
-            let messageGenerator = MessageGenerator()
-            let message = messageGenerator.message(forDay: Date(), withInterval: interval)
-
-            self.message = String(format: message.0, minutesString)
-            self.colored = String(format: message.1, minutesString)
-            
             self.sunView.update(for: location)
         }
     }
@@ -186,7 +185,8 @@ extension MainController: LocationTrackerDelegate {
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
         Location.current = Location(placemark: placemark)
         self.updateLocation()
-        self.updateMessage()
+        self.updateSunView()
+        self.updateInterface(forSunPhase: .daylight)
     }
 }
 
