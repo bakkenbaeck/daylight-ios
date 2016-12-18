@@ -2,15 +2,6 @@ import UIKit
 import CoreLocation
 
 class MainController: UIViewController {
-
-    enum SunPhase: Int {
-        case sunrise
-        case daylight
-        case sunset
-        case twilight
-        case night
-    }
-
     var sunPhase = SunPhase.night { didSet { self.updateInterface(forSunPhase: self.sunPhase) }}
 
     var messageLabelHeightAnchor: NSLayoutConstraint?
@@ -76,6 +67,8 @@ class MainController: UIViewController {
         self.updateInterface(forSunPhase: .sunrise)
 
         self.locationTracker.checkAuthorization()
+        self.updateLocation()
+        self.updateMessage()
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.update), userInfo: nil, repeats: true);
     }
 
@@ -154,6 +147,31 @@ class MainController: UIViewController {
     func didClickInformation() {
         //TODO: Implement information functionality
     }
+
+    func updateLocation() {
+        if let location = Location.current {
+            self.locationLabel.text = "\(location.city), \(location.country)"
+        }
+    }
+
+    func updateMessage() {
+        if let location = Location.current {
+            let interval = APIClient.dayLengthDifference(for: location.coordinate)
+            let minutes = interval / 60
+
+            let formatter = NumberFormatter()
+            formatter.maximumFractionDigits = 2
+            let minutesString = formatter.string(from: NSNumber(value: abs(minutes)))!
+
+            let messageGenerator = MessageGenerator()
+            let message = messageGenerator.message(forDay: Date(), withInterval: interval)
+
+            self.message = String(format: message.0, minutesString)
+            self.colored = String(format: message.1, minutesString)
+            
+            self.sunView.update(for: location)
+        }
+    }
 }
 
 extension MainController: LocationTrackerDelegate {
@@ -166,32 +184,9 @@ extension MainController: LocationTrackerDelegate {
     }
 
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
-        self.setLocation(with: placemark)
-        self.setMessage(for: placemark)
-    }
-
-    func setLocation(with placemark: CLPlacemark) {
-        let city = placemark.locality!
-        let country = placemark.country!
-
-        self.locationLabel.text = "\(city), \(country)"
-    }
-
-    func setMessage(for placemark: CLPlacemark) {
-        let interval = APIClient.dayLengthDifference(for: placemark)
-        let minutes = interval / 60
-
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 2
-        let minutesString = formatter.string(from: NSNumber(value: abs(minutes)))!
-
-        let messageGenerator = MessageGenerator()
-        let message = messageGenerator.message(forDay: Date(), withInterval: interval)
-
-        self.message = String(format: message.0, minutesString)
-        self.colored = String(format: message.1, minutesString)
-
-        self.sunView.update(for: placemark)
+        Location.current = Location(placemark: placemark)
+        self.updateLocation()
+        self.updateMessage()
     }
 }
 
