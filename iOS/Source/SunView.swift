@@ -7,11 +7,6 @@ class SunView: UIView {
 
     var sunLocation = (x: CGFloat(0.0), y: CGFloat(0.0)) {
         didSet{
-            print(self.sunLocation.y)
-            self.sunLeftAnchor = self.sun.leftAnchor.constraint(equalTo: self.leftAnchor, constant: self.sunLocation.x)
-            self.sunTopAnchor = self.sun.topAnchor.constraint(equalTo: self.topAnchor, constant: self.sunLocation.y)
-            self.currentTimeBottomAnchor = self.currentTimeLabel.bottomAnchor.constraint(equalTo: self.sun.topAnchor, constant: -8)
-
             self.setNeedsLayout()
         }
     }
@@ -22,7 +17,6 @@ class SunView: UIView {
 
     lazy var sunriseLabel: UILabel = {
        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .light(size: 12)
 
         return label
@@ -30,7 +24,6 @@ class SunView: UIView {
 
     lazy var sunsetLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .light(size: 12)
         label.textAlignment = .right
 
@@ -39,7 +32,9 @@ class SunView: UIView {
 
     lazy var currentTimeLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+
+
         label.font = .light(size: 12)
 
         return label
@@ -48,14 +43,13 @@ class SunView: UIView {
     lazy var sun: UIView = {
         let view = UIView()
         view.layer.cornerRadius = sunSize * 0.5
-        view.translatesAutoresizingMaskIntoConstraints = false
 
         return view
     }()
 
     lazy var sunMask: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
+
         view.clipsToBounds = true
 
         return view
@@ -63,7 +57,6 @@ class SunView: UIView {
 
     lazy var horizon: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
 
         return view
     }()
@@ -79,6 +72,17 @@ class SunView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func layoutSubviews(){
+        super.layoutSubviews()
+
+        self.sunriseLabel.frame = CGRect(x: 0, y: 108, width: 33, height: 16)
+        self.sunsetLabel.frame = CGRect(x: self.bounds.width - 33, y: 108, width: 33, height: 16)
+        self.sun.frame = CGRect(x: self.sunLocation.x, y: self.sunLocation.y, width: SunView.sunSize, height: SunView.sunSize)
+        self.sunMask.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: 108)
+        self.horizon.frame = CGRect(x: 0, y: 108, width: self.bounds.width, height: 1)
+        self.currentTimeLabel.frame = CGRect(x: self.sunLocation.x - 10, y: self.sunLocation.y - 24, width: 33, height: 16)
+    }
+
     func addSubviewsAndConstraints() {
         self.addSubview(self.horizon)
         self.addSubview(self.sunriseLabel)
@@ -86,41 +90,6 @@ class SunView: UIView {
         self.addSubview(self.sunMask)
         self.sunMask.addSubview(self.sun)
         self.addSubview(self.currentTimeLabel)
-
-        self.horizon.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        self.horizon.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        self.horizon.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -24).isActive = true
-        self.horizon.heightAnchor.constraint(equalToConstant: 1).isActive = true
-
-        self.sunriseLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        self.sunriseLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        self.sunriseLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
-        self.sunriseLabel.widthAnchor.constraint(equalToConstant: 35).isActive = true
-
-        self.sunsetLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        self.sunsetLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        self.sunsetLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
-        self.sunsetLabel.widthAnchor.constraint(equalToConstant: 35).isActive = true
-
-        self.sunMask.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        self.sunMask.heightAnchor.constraint(equalToConstant: 108).isActive = true
-        self.sunMask.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        self.sunMask.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-
-        self.sun.widthAnchor.constraint(equalToConstant: SunView.sunSize).isActive = true
-        self.sun.heightAnchor.constraint(equalToConstant: SunView.sunSize).isActive = true
-        self.sunLeftAnchor = self.sun.leftAnchor.constraint(equalTo: self.leftAnchor, constant: self.sunLocation.x)
-        self.sunTopAnchor = self.sun.topAnchor.constraint(equalTo: self.topAnchor, constant: self.sunLocation.y)
-
-        self.sunLeftAnchor?.isActive = true
-        self.sunTopAnchor?.isActive = true
-
-        self.currentTimeLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
-        self.currentTimeLabel.widthAnchor.constraint(equalToConstant: 35).isActive = true
-        self.currentTimeLabel.centerXAnchor.constraint(equalTo: self.sun.centerXAnchor).isActive = true
-        self.currentTimeBottomAnchor = self.currentTimeLabel.bottomAnchor.constraint(equalTo: self.sun.topAnchor, constant: -8)
-
-        self.currentTimeBottomAnchor?.isActive = true
     }
 
     func update(for location: Location) {
