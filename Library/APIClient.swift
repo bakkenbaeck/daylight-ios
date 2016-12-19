@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 import CoreLocation
-import Sunrise
+import Suntimes
 
 class APIClient {
     static var timeFormatter: DateFormatter = {
@@ -15,11 +15,11 @@ class APIClient {
         let today = Calendar.autoupdatingCurrent.startOfDay(for: Date())
         let yesterday = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: today)!
 
-        let todaySunriseSet = SunriseSet(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: coordinate.latitude, longitude: coordinate.longitude)
-        let yesterdaySunriseSet = SunriseSet(date: yesterday, timeZone: TimeZone.autoupdatingCurrent, latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let todaySuntimes = Suntimes(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let yesterdaySuntimes = Suntimes(date: yesterday, timeZone: TimeZone.autoupdatingCurrent, latitude: coordinate.latitude, longitude: coordinate.longitude)
 
-        let todayDayLength = todaySunriseSet.sunset.timeIntervalSince(todaySunriseSet.sunrise)
-        let yesterdayDayLength = yesterdaySunriseSet.sunset.timeIntervalSince(yesterdaySunriseSet.sunrise)
+        let todayDayLength = todaySuntimes.sunset.timeIntervalSince(todaySuntimes.sunrise)
+        let yesterdayDayLength = yesterdaySuntimes.sunset.timeIntervalSince(yesterdaySuntimes.sunrise)
 
         let interval = todayDayLength - yesterdayDayLength
 
@@ -29,8 +29,8 @@ class APIClient {
     static func sunriseTimeString(for coordinate: CLLocationCoordinate2D) -> String {
         let today = Calendar.autoupdatingCurrent.startOfDay(for: Date())
 
-        let todaySunriseSet = SunriseSet(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: coordinate.latitude, longitude: coordinate.longitude)
-        let sunrise = todaySunriseSet.sunrise
+        let todaySuntimes = Suntimes(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let sunrise = todaySuntimes.sunrise
 
         return self.timeFormatter.string(from: sunrise)
     }
@@ -38,8 +38,8 @@ class APIClient {
     static func sunsetTimeString(for coordinate: CLLocationCoordinate2D) -> String {
         let today = Calendar.autoupdatingCurrent.startOfDay(for: Date())
 
-        let todaySunriseSet = SunriseSet(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: coordinate.latitude, longitude: coordinate.longitude)
-        let sunset = todaySunriseSet.sunset
+        let todaySuntimes = Suntimes(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let sunset = todaySuntimes.sunset
 
         return self.timeFormatter.string(from: sunset)
     }
