@@ -25,9 +25,15 @@ enum SunPhase {
         } else if date.isBetween(sunrise.civilTwilightStart, and: sunrise.sunrise) {
             return .twilight
         } else if date.isBetween(sunrise.sunrise, and: sunrise.sunset) {
-            return .daylight
-        } else {
+            return .sunrise
+        } else if date.isBetween(sunrise.sunset, and: sunrise.civilTwilightEnd) {
+            return .sunset
+        } else if date.isBetween(sunrise.civilTwilightEnd, and: sunrise.nauticalTwilightEnd) {
             return .twilight
+        } else if date.isBetween(sunrise.nauticalTwilightEnd, and: sunrise.astronomicalTwilightEnd) {
+            return .twilight
+        } else {
+            return .night
         }
     }
 }
