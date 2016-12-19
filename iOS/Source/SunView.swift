@@ -124,14 +124,16 @@ class SunView: UIView {
     func location(for percentageInDay: CGFloat) -> (CGFloat, CGFloat) {
         let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
         //TODO: Check these numbers and make them work right
-        let x = ((self.bounds.width - SunView.sunSize) / 2) + cos(position) * ((self.bounds.width - SunView.sunSize) / 2)
-        let y = 100 - (abs(sin(position) * 100))
-        print("x = \(x), y = \(y)")
+        let x = (50 + cos(position) * 50)
+        let y = (abs(sin(position) * 100))
 
-        return (x,y)
+        let absoluteX =  ((self.bounds.width - SunView.sunSize) / 100) * x
+        let absoluteY  = self.sunMask.frame.height - ((self.sunMask.frame.height / 100) * y)
+
+        return (absoluteX, absoluteY)
     }
 
-    func updateInterface(withBackGroundColor backgroundColor: UIColor, andTextColor textColor: UIColor) {
+    func updateInterface(withBackgroundColor backgroundColor: UIColor, andTextColor textColor: UIColor) {
         self.sunriseLabel.textColor = textColor
         self.sunsetLabel.textColor = textColor
         self.currentTimeLabel.textColor = textColor
