@@ -195,7 +195,7 @@ extension MainController: LocationTrackerDelegate {
 
 extension MainController: SunPhaseSchedulerDelegate {
     func sunPhaseScheduler(_ sunPhaseScheduler: SunPhaseScheduler, didUpdateWith backgroundColor: UIColor, and textColor: UIColor) {
-        self.percentageInDay = Location.current?.dayLengthProgress ?? 0
+        self.percentageInDay = Location.current?.daylightLengthProgress ?? 0
         self.backgroundColor = backgroundColor
         self.textColor = textColor
         self.updateInterface()

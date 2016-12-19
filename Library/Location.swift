@@ -56,21 +56,9 @@ struct Location {
         return SunPhase.get(for: Date(), in: .autoupdatingCurrent, at: self.coordinate)
     }
 
-    var dayLengthProgress: Double {
-        return self.calculateProgress(date: Date(), timeZone: .autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
-    }
+    var daylightLengthProgress: Double {
+        let sunriseSet = SunriseSet(date: Date(), timeZone: .autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
 
-    func calculateProgress(date: Date, timeZone: TimeZone, latitude: Double, longitude: Double) -> Double {
-        let sunriseSet = SunriseSet(date: date, timeZone: timeZone, latitude: latitude, longitude: longitude)
-
-        let timeSinceSunrise = date.timeIntervalSince(sunriseSet.sunrise)
-        if date.isBetween(sunriseSet.sunrise, and: sunriseSet.sunset) {
-            let totalDaylightDuration = sunriseSet.sunset.timeIntervalSince(sunriseSet.sunrise)
-            return timeSinceSunrise / totalDaylightDuration
-        } else if timeSinceSunrise > 0 {
-            return 1
-        } else {
-            return 0
-        }
+        return sunriseSet.daylightLengthProgress
     }
 }

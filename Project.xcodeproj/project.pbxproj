@@ -15,6 +15,9 @@
 		143D3B261DE9D3F3003F77B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B241DE9D3F3003F77B9 /* AppDelegate.swift */; };
 		143D3B271DE9D3F3003F77B9 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B251DE9D3F3003F77B9 /* MainController.swift */; };
 		143D3B291DE9D434003F77B9 /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B281DE9D434003F77B9 /* LocationTracker.swift */; };
+		144D8CE91E089CD80036FD4B /* SunriseSet+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144D8CE81E089CD80036FD4B /* SunriseSet+Helpers.swift */; };
+		144D8CEB1E089D6C0036FD4B /* SunriseSet+HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144D8CEA1E089D6C0036FD4B /* SunriseSet+HelperTests.swift */; };
+		144D8CEC1E089F120036FD4B /* SunriseSet+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144D8CE81E089CD80036FD4B /* SunriseSet+Helpers.swift */; };
 		146E27A91BCD51F200959BBA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146E279F1BCD51F200959BBA /* LaunchScreen.xib */; };
 		146E27AA1BCD51F200959BBA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 146E27A11BCD51F200959BBA /* Images.xcassets */; };
 		1483128E1B92C11500266943 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1483128D1B92C11500266943 /* Tests.swift */; };
@@ -94,6 +97,8 @@
 		143D3B241DE9D3F3003F77B9 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		143D3B251DE9D3F3003F77B9 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		143D3B281DE9D434003F77B9 /* LocationTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
+		144D8CE81E089CD80036FD4B /* SunriseSet+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SunriseSet+Helpers.swift"; sourceTree = "<group>"; };
+		144D8CEA1E089D6C0036FD4B /* SunriseSet+HelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SunriseSet+HelperTests.swift"; sourceTree = "<group>"; };
 		146E27891BCD51C800959BBA /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		146E27A01BCD51F200959BBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		146E27A11BCD51F200959BBA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -160,6 +165,7 @@
 				D197BFA8D6283613096635E6 /* SunPhaseScheduler.swift */,
 				44227E8E1E067A1E002B911B /* Location.swift */,
 				1405CA341E08640700AAF52D /* SunPhase.swift */,
+				144D8CE81E089CD80036FD4B /* SunriseSet+Helpers.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -231,6 +237,7 @@
 			children = (
 				1483128D1B92C11500266943 /* Tests.swift */,
 				14E6F3C91E08735200F9C3F6 /* SunPhaseTests.swift */,
+				144D8CEA1E089D6C0036FD4B /* SunriseSet+HelperTests.swift */,
 				1483128C1B92C11500266943 /* Info.plist */,
 			);
 			path = Tests;
@@ -443,6 +450,7 @@
 				14F5FFEA1E0809270021D231 /* suncalc.swift in Sources */,
 				143D3B271DE9D3F3003F77B9 /* MainController.swift in Sources */,
 				44227E8F1E067A1E002B911B /* Location.swift in Sources */,
+				144D8CE91E089CD80036FD4B /* SunriseSet+Helpers.swift in Sources */,
 				143D3B231DE9D3E0003F77B9 /* Theme+Font.swift in Sources */,
 				1405CA351E08640700AAF52D /* SunPhase.swift in Sources */,
 				14F5FFF01E0809270021D231 /* TimeUtils.swift in Sources */,
@@ -471,6 +479,7 @@
 			files = (
 				14E6F3D51E0873DF00F9C3F6 /* SunUtils.swift in Sources */,
 				14E6F3D61E0873DF00F9C3F6 /* TimeUtils.swift in Sources */,
+				144D8CEC1E089F120036FD4B /* SunriseSet+Helpers.swift in Sources */,
 				1405CA361E08640700AAF52D /* SunPhase.swift in Sources */,
 				14E6F3CC1E0873DB00F9C3F6 /* EquatorialCoordinates.swift in Sources */,
 				14E6F3CB1E0873D400F9C3F6 /* suncalc.swift in Sources */,
@@ -481,6 +490,7 @@
 				14E6F3CA1E08735200F9C3F6 /* SunPhaseTests.swift in Sources */,
 				14E6F3D41E0873DF00F9C3F6 /* PositionUtils.swift in Sources */,
 				14E6F3CF1E0873DB00F9C3F6 /* MoonPosition.swift in Sources */,
+				144D8CEB1E089D6C0036FD4B /* SunriseSet+HelperTests.swift in Sources */,
 				44227E901E067A1E002B911B /* Location.swift in Sources */,
 				14E6F3D31E0873DF00F9C3F6 /* MoonUtils.swift in Sources */,
 				D197B1ACD3FD8E3106217F49 /* MessageGenerator.swift in Sources */,
