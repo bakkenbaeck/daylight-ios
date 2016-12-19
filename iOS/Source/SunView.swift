@@ -7,6 +7,17 @@ class SunView: UIView {
 
     var percentageInDay = CGFloat(0.0)
 
+    var nightState = false {
+        didSet {
+            if self.nightState {
+                self.moon.isHidden = false
+                self.sunLocation = (x: (self.frame.width - SunView.sunSize)/2, y: 0)
+            } else {
+                self.moon.isHidden = true
+            }
+        }
+    }
+
     var sunLocation = (x: CGFloat(0.0), y: CGFloat(0.0)) {
         didSet{
             self.setNeedsLayout()
@@ -111,11 +122,11 @@ class SunView: UIView {
     }
 
     func location(for percentageInDay: CGFloat) -> (CGFloat, CGFloat) {
-        guard percentageInDay < 1 else { return (0,0)}
-
         let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
-        let x = 100 + cos(position) * 100
+        //TODO: Check these numbers and make them work right
+        let x = ((self.bounds.width - SunView.sunSize) / 2) + cos(position) * ((self.bounds.width - SunView.sunSize) / 2)
         let y = 100 - (abs(sin(position) * 100))
+        print("x = \(x), y = \(y)")
 
         return (x,y)
     }
@@ -126,11 +137,15 @@ class SunView: UIView {
         self.currentTimeLabel.textColor = textColor
         self.horizon.backgroundColor = textColor
         self.sun.backgroundColor = textColor
-
         self.moon.backgroundColor = backgroundColor
 
-
-        self.percentageInDay = self.percentageInDay + 0.01
-        self.sunLocation = self.location(for: self.percentageInDay)
+        //TODO: get real percentage in day from Location managare
+        self.percentageInDay = self.percentageInDay + 0.05
+        if self.percentageInDay >= 0 && self.percentageInDay <= 1 {
+            self.sunLocation = self.location(for: self.percentageInDay)
+            self.nightState = false
+        } else {
+            self.nightState = true
+        }
     }
 }
