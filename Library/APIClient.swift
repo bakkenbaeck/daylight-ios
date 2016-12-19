@@ -72,6 +72,9 @@ class APIClient {
 
         //TODO: Implement real calculation
         return(0, 0)
+    }
 
+    static func getSunPhase() -> SunPhase {
+        return SunPhase(rawValue: Int(arc4random_uniform(5))) ?? .sunrise
     }
 }

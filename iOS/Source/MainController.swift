@@ -2,18 +2,8 @@ import UIKit
 import CoreLocation
 
 class MainController: UIViewController {
-
-    enum SunPhase: Int {
-        case sunrise
-        case daylight
-        case sunset
-        case twilight
-        case night
-    }
-
-    var sunPhase = SunPhase.night { didSet { self.updateInterface(forSunPhase: self.sunPhase) }}
-
     var messageLabelHeightAnchor: NSLayoutConstraint?
+    var sunPhaseManager: SunPhaseManager?
 
     var message = ""
     var colored = ""
@@ -56,8 +46,6 @@ class MainController: UIViewController {
         label.font = .light(size: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
 
-        label.textColor = .white
-
         return label
     }()
 
@@ -73,10 +61,13 @@ class MainController: UIViewController {
         super.viewDidLoad()
 
         self.addSubviewsAndConstraints()
-        self.updateInterface(forSunPhase: .sunrise)
 
         self.locationTracker.checkAuthorization()
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.update), userInfo: nil, repeats: true);
+        self.sunPhaseManager = SunPhaseManager() {
+            backgroundColor, textColor in
+            self.updateInterface(backgroundColor: backgroundColor, textColor: textColor)
+        }
+
     }
 
     func addSubviewsAndConstraints() {
@@ -108,31 +99,7 @@ class MainController: UIViewController {
         self.locationLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
     }
 
-    func update() {
-        self.updateInterface(forSunPhase: .daylight)
-    }
-
-    func updateInterface(forSunPhase sunPhase: SunPhase) {
-        var backgroundColor = UIColor.white
-        var textColor = UIColor.black
-
-        switch sunPhase {
-        case .sunrise:
-            backgroundColor = .sunrise
-            textColor = .sunriseText
-        case .daylight:
-            backgroundColor = .daylight
-            textColor = .daylightText
-        case .sunset:
-            backgroundColor = .sunset
-            textColor = .sunsetText
-        case .twilight:
-            backgroundColor = .twilight
-            textColor = .twilightText
-        case .night:
-            backgroundColor = .night
-            textColor = .nightText
-        }
+    func updateInterface(backgroundColor: UIColor, textColor: UIColor) {
 
         let range = (self.message as NSString).range(of: self.colored)
         let attributedString = NSMutableAttributedString(string: self.message)
@@ -152,7 +119,9 @@ class MainController: UIViewController {
     }
 
     func didClickInformation() {
-        //TODO: Implement information functionality
+
+        let informationController = InformationController()
+        self.present(informationController, animated: true)
     }
 }
 
