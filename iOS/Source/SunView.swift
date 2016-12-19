@@ -3,22 +3,20 @@ import CoreLocation
 
 class SunView: UIView {
 
-    static let sunSize = CGFloat(16.0)
-
-    var percentageInDay = CGFloat(-0.2)
+    static let sunSize = Double(16.0)
 
     var nightState = false {
         didSet {
             if self.nightState {
                 self.moon.isHidden = false
-                self.sunLocation = (x: (self.frame.width - SunView.sunSize)/2, y: 0)
+                self.sunLocation = (x: Double((self.frame.width - CGFloat(SunView.sunSize)) / CGFloat(2)), y: Double(CGFloat(0)))
             } else {
                 self.moon.isHidden = true
             }
         }
     }
 
-    var sunLocation = (x: CGFloat(0.0), y: CGFloat(0.0)) {
+    var sunLocation = (x: Double(0.0), y: Double(0.0)) {
         didSet{
             self.setNeedsLayout()
         }
@@ -55,7 +53,7 @@ class SunView: UIView {
 
     lazy var sun: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = sunSize * 0.5
+        view.layer.cornerRadius = CGFloat(sunSize * 0.5)
 
         return view
     }()
@@ -121,19 +119,19 @@ class SunView: UIView {
         self.sunsetLabel.text = APIClient.sunsetTimeString(for: location.coordinate)
     }
 
-    func location(for percentageInDay: CGFloat) -> (CGFloat, CGFloat) {
-        let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
+    func location(for percentageInDay: Double) -> (Double, Double) {
+        let position = Double.pi + (percentageInDay * Double.pi)
         //TODO: Check these numbers and make them work right
-        let x = (50 + cos(position) * 50)
-        let y = (abs(sin(position) * 100))
+        let x = (50.0 + cos(position) * 50.0)
+        let y = (abs(sin(position) * 100.0))
 
-        let absoluteX =  ((self.bounds.width - SunView.sunSize) / 100) * x
-        let absoluteY  = self.sunMask.frame.height - ((self.sunMask.frame.height / 100) * y)
+        let absoluteX =  ((self.bounds.width - CGFloat(SunView.sunSize)) / 100) * CGFloat(x)
+        let absoluteY  = Double(self.sunMask.frame.height) - ((Double(self.sunMask.frame.height) / 100.0) * y)
 
-        return (absoluteX, absoluteY)
+        return (Double(absoluteX), Double(absoluteY))
     }
 
-    func updateInterface(withBackgroundColor backgroundColor: UIColor, andTextColor textColor: UIColor) {
+    func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double) {
         self.sunriseLabel.textColor = textColor
         self.sunsetLabel.textColor = textColor
         self.currentTimeLabel.textColor = textColor
@@ -141,13 +139,7 @@ class SunView: UIView {
         self.sun.backgroundColor = textColor
         self.moon.backgroundColor = backgroundColor
 
-        //TODO: get real percentage in day from Location managare
-        self.percentageInDay = self.percentageInDay + 0.03
-        if self.percentageInDay >= 0 && self.percentageInDay <= 1 {
-            self.sunLocation = self.location(for: self.percentageInDay)
-            self.nightState = false
-        } else {
-            self.nightState = true
-        }
+        self.sunLocation = self.location(for: percentageInDay)
+        self.nightState = percentageInDay < 0 && percentageInDay > 1
     }
 }
