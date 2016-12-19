@@ -50,4 +50,8 @@ struct Location {
             }
         }
     }
+
+    var sunPhase: SunPhase {
+        return SunPhase.get(for: Date(), in: self.coordinate)
+    }
 }
