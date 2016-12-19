@@ -1,44 +1,112 @@
 import Foundation
 
 struct MessageGenerator {
-    let message1 = "Today is %@ minutes longer than yesterday. Happy days!"
-    let colored1 = "%@ minutes"
-    let message2 = "The sun is out for %@ more minutes today. Enjoy!"
-    let colored2 = "%@ more minutes"
-    let message3 = "%@ extra minutes of sunshine today. Make them count!"
-    let colored3 = "%@ extra minutes"
-    let message4 = "Make sure to soak up that vitamin D. %@ more minutes of daylight today!"
-    let colored4 = "%@ more minutes"
-    let message5 = "Smile! Today has %@ more minutes of daylight than yesterday!"
-    let colored5 = "%@ more minutes"
-    let message6 = "%@ more minutes of daylight today. Just let it sink in…"
-    let colored6 = "%@ more minutes"
-    let message7 = "Today is %@ minutes longer. It’s getting better and better!"
-    let colored7 = "%@ minutes"
-    let message8 = "Bring out your shorts, because today has %@ more minutes of sunlight."
-    let colored8 = "%@ more minutes"
-    let message9 = "Have a great day and enjoy those %@ extra minutes of daylight."
-    let colored9 = "%@ extra minutes"
-    let message10 = "After darkness comes daylight. %@ more minutes to be precise!"
-    let colored10 = "%@ more minutes"
+    let informationMessage = "Daylight is an experiment inspired by the dark and long winters of the north and made by Bakken & Bæck"
+    let coloredInformation = "Bakken & Bæck"
 
-    func longerDayMessage() -> (String, String) {
+    let longerDayMessage1 = "Today is %@ minutes longer than yesterday. Happy days!"
+    let longerDayColored1 = "%@ minutes"
+    let longerDayMessage2 = "The sun is out for %@ more minutes today. Enjoy!"
+    let longerDayColored2 = "%@ more minutes"
+    let longerDayMessage3 = "%@ extra minutes of sunshine today. Make them count!"
+    let longerDayColored3 = "%@ extra minutes"
+    let longerDayMessage4 = "Make sure to soak up that vitamin D. %@ more minutes of daylight today!"
+    let longerDayColored4 = "%@ more minutes"
+    let longerDayMessage5 = "Smile! Today has %@ more minutes of daylight than yesterday!"
+    let longerDayColored5 = "%@ more minutes"
+    let longerDayMessage6 = "%@ more minutes of daylight today. Just let it sink in…"
+    let longerDayColored6 = "%@ more minutes"
+    let longerDayMessage7 = "Today is %@ minutes longer. It’s getting better and better!"
+    let longerDayColored7 = "%@ minutes"
+    let longerDayMessage8 = "Bring out your shorts, because today has %@ more minutes of sunlight."
+    let longerDayColored8 = "%@ more minutes"
+    let longerDayMessage9 = "Have a great day and enjoy those %@ extra minutes of daylight."
+    let longerDayColored9 = "%@ extra minutes"
+    let longerDayMessage10 = "After darkness comes daylight. %@ more minutes to be precise!"
+    let longerDayColored10 = "%@ more minutes"
+
+    func longerDayMessage() -> (text: String, colored: String) {
         let number = arc4random_uniform(10)
         switch number {
-            case 0: return (self.message1, self.colored1)
-            case 1: return (self.message2, self.colored2)
-            case 2: return (self.message3, self.colored3)
-            case 3: return (self.message4, self.colored4)
-            case 4: return (self.message5, self.colored5)
-            case 5: return (self.message6, self.colored6)
-            case 6: return (self.message7, self.colored7)
-            case 7: return (self.message8, self.colored8)
-            case 8: return (self.message9, self.colored9)
-            case 9: return (self.message10, self.colored10)
+            case 0: return (self.longerDayMessage1, self.longerDayColored1)
+            case 1: return (self.longerDayMessage2, self.longerDayColored2)
+            case 2: return (self.longerDayMessage3, self.longerDayColored3)
+            case 3: return (self.longerDayMessage4, self.longerDayColored4)
+            case 4: return (self.longerDayMessage5, self.longerDayColored5)
+            case 5: return (self.longerDayMessage6, self.longerDayColored6)
+            case 6: return (self.longerDayMessage7, self.longerDayColored7)
+            case 7: return (self.longerDayMessage8, self.longerDayColored8)
+            case 8: return (self.longerDayMessage9, self.longerDayColored9)
+            case 9: return (self.longerDayMessage10, self.longerDayColored10)
             default: return ("","")
         }
-
     }
+
+    let noChangeMessage1 = "Little less than a minute of extra sunlight today. It’s getting better!"
+    let noChangeColored1 = "a minute"
+    let noChangeMessage2 = "We’ve reached the tipping point: we’ll have more sunlight every day now!"
+    let noChangeColored2 = "more sunlight"
+    let noChangeMessage3 = "About a minute of extra light. You’ll start noticing the difference soon!"
+    let noChangeColored3 = "About a minute"
+    let noChangeMessage4 = "There’s about a minute of extra light at the end of this tunnel."
+    let noChangeColored4 = "about a minute"
+    let noChangeMessage5 = "We’ll have about a minute of extra light today. It’s upwards from here."
+    let noChangeColored5 = "about a minute"
+
+    // TODO: extract number to make it more testable
+    func noChangeMessage() -> (text: String, colored: String) {
+        let number = arc4random_uniform(5)
+        switch number {
+        case 0: return (self.noChangeMessage1, self.noChangeColored1)
+        case 1: return (self.noChangeMessage2, self.noChangeColored2)
+        case 2: return (self.noChangeMessage3, self.noChangeColored3)
+        case 3: return (self.noChangeMessage4, self.noChangeColored4)
+        case 4: return (self.noChangeMessage5, self.noChangeColored5)
+        default: return ("","")
+        }
+    }
+
+    let shorterMessage1 = "The sun will be out %@ minutes less today. Keep your head up!"
+    let shorterColored1 = "%@ minutes less"
+    let shorterMessage2 = "%@ minutes less sunlight today, unfortunately. It’ll get better!"
+    let shorterColored2 = "%@ minutes less"
+    let shorterMessage3 = "Sadly, the day will be %@ minutes shorter. Make the most out of it!"
+    let shorterColored3 = "%@ minutes shorter"
+
+    func shorterMessage() -> (text: String, colored: String) {
+        let number = arc4random_uniform(3)
+        switch number {
+        case 0: return (self.shorterMessage1, self.shorterColored1)
+        case 1: return (self.shorterMessage2, self.shorterColored2)
+        case 2: return (self.shorterMessage3, self.shorterColored3)
+        default: return ("","")
+        }
+    }
+
+
+    let nightMessage1 = "Get a good night’s sleep: tomorrow there’ll be %@ more minutes of sunlight."
+    let nightColored1 = "%@ more minutes"
+    let nightMessage2 = "Lights out. Enjoy %@ more minutes of sunlight tomorrow!"
+    let nightColored2 = "%@ more minutes"
+    let nightMessage3 = "Bring out those pyjamas. %@ more minutes of light await tomorrow."
+    let nightColored3 = "%@ more minutes"
+    let nightMessage4 = "The sun has set for today. Embrace those %@ minutes of extra daylight tomorrow."
+    let nightColored4 = "%@ minutes"
+    let nightMessage5 = "The sun has set. Soak up the extra vitamin D tomorrow!"
+    let nightColored5 = ""
+
+    func nightMessage() -> (text: String, colored: String) {
+        let number = arc4random_uniform(5)
+        switch number {
+        case 0: return (self.nightMessage1, self.nightColored1)
+        case 1: return (self.nightMessage2, self.nightColored2)
+        case 2: return (self.nightMessage3, self.nightColored3)
+        case 3: return (self.nightMessage4, self.nightColored4)
+        case 4: return (self.nightMessage5, self.nightColored5)
+        default: return ("","")
+        }
+    }
+
 
     var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -47,7 +115,7 @@ struct MessageGenerator {
         return formatter
     }()
 
-    func message(forDay day: Date, withInterval interval: Double) -> (String, String) {
+    func message(forDay day: Date, withInterval interval: Double) -> (text: String, colored: String) {
         let defaults = UserDefaults.standard
 
         let dayKey = self.dateFormatter.string(from: day)
@@ -55,16 +123,24 @@ struct MessageGenerator {
         if let message = UserDefaults.standard.string(forKey: dayKey), let colored = UserDefaults.standard.string(forKey: "\(dayKey)colored") {
             return (message, colored)
         } else {
-            //TODO: maybe clear out old user default values, we don't need them anymore!
+            if let appDomain = Bundle.main.bundleIdentifier {
+                UserDefaults.standard.removePersistentDomain(forName: appDomain)
+            }
+
             let message = self.generateMessage(forInterval: interval)
-            defaults.set(message.0, forKey: dayKey)
-            defaults.set(message.1, forKey: "\(dayKey)colored")
-            return (message.0, message.1)
+            defaults.set(message.text, forKey: dayKey)
+            defaults.set(message.colored, forKey: "\(dayKey)colored")
+            return (message.text, message.colored)
         }
     }
 
-    func generateMessage(forInterval interval: Double) -> (String, String) {
-        //TODO: Add the messages that need to be displayed for other time intervals
-        return longerDayMessage()
+    func generateMessage(forInterval interval: Double) -> (text: String, colored: String) {
+        if interval > 1 {
+            return longerDayMessage()
+        } else if interval >= 0 {
+            return noChangeMessage()
+        } else {
+            return shorterMessage()
+        }
     }
 }
