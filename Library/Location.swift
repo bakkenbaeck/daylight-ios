@@ -1,6 +1,6 @@
 import Foundation
 import CoreLocation
-import Sunrise
+import Suntimes
 
 struct Location {
     let coordinate: CLLocationCoordinate2D
@@ -53,11 +53,13 @@ struct Location {
     }
 
     var sunPhase: SunPhase {
-        return SunPhase.get(for: Date(), in: .autoupdatingCurrent, at: self.coordinate)
+        let sunriseSet = Suntimes(date: Date(), timeZone: .autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
+
+        return sunriseSet.sunPhase
     }
 
     var daylightLengthProgress: Double {
-        let sunriseSet = SunriseSet(date: Date(), timeZone: .autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
+        let sunriseSet = Suntimes(date: Date(), timeZone: .autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
 
         return sunriseSet.daylightLengthProgress
     }
