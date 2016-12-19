@@ -2,11 +2,11 @@ import Foundation
 import CoreLocation
 
 enum SunPhase {
-    case sunrise // found
-    case daylight // golden hour?
-    case sunset // found
-    case twilight // blue hour?
-    case night // found
+    case sunrise
+    case daylight
+    case sunset
+    case twilight
+    case night
 
     // TODO: Move inside SunCalc, and add unit tests
     static func get(for date: Date, in coordinate: CLLocationCoordinate2D) -> SunPhase {
@@ -17,10 +17,12 @@ enum SunPhase {
             return .daylight
         } else if date.isBetween(sunCalc.sunsetStart, and: sunCalc.sunset) {
             return .sunset
-        } else if date.isBetween(sunCalc.blueHour, and: sunCalc.blueHourEnd) {
+        } else if date.isBetween(sunCalc.dusk, and: sunCalc.nauticalDusk) {
             return .twilight
-        } else {
+        } else if date.isBetween(sunCalc.night, and: sunCalc.nightEnd) {
             return .night
+        } else {
+            return .twilight
         }
     }
 }
