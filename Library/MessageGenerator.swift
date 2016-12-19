@@ -119,7 +119,7 @@ struct MessageGenerator {
         if let message = UserDefaults.standard.string(forKey: dayKey), let colored = UserDefaults.standard.string(forKey: "\(dayKey)colored") {
             return (message, colored)
         } else {
-            if let appDomain = Bundle.main.bundleIdentifier! {
+            if let appDomain = Bundle.main.bundleIdentifier {
                 UserDefaults.standard.removePersistentDomain(forName: appDomain)
             }
 
