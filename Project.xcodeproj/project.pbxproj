@@ -197,14 +197,22 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		147A139B1B92B9E300E52F9C = {
+		147080D51E089116008BD320 /* Testing Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				14E6F3D91E0879A000F9C3F6 /* Sunrise.framework */,
+			);
+			name = "Testing Frameworks";
+			sourceTree = "<group>";
+		};
+		147A139B1B92B9E300E52F9C = {
+			isa = PBXGroup;
+			children = (
 				141A6FD31BDE2DAB00CB6E82 /* Library */,
 				146E278A1BCD51C800959BBA /* iOS */,
 				1483128A1B92C11500266943 /* Tests */,
 				147A13A51B92B9E300E52F9C /* Products */,
+				147080D51E089116008BD320 /* Testing Frameworks */,
 				14F3560F1DE9C21B0016AA17 /* Frameworks */,
 			);
 			sourceTree = "<group>";

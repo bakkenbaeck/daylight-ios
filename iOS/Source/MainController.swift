@@ -13,6 +13,7 @@ class MainController: UIViewController {
 
     var message = ""
     var colored = ""
+    var percentageInDay = Double(0)
 
     var backgroundColor = UIColor.white
     var textColor = UIColor.black
@@ -116,7 +117,7 @@ class MainController: UIViewController {
 
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = self.backgroundColor
-            self.sunView.updateInterface(withBackgroundColor: self.backgroundColor, andTextColor: self.textColor)
+            self.sunView.updateInterface(withBackgroundColor: self.backgroundColor, textColor: self.textColor, andPercentageInDay: self.percentageInDay)
 
             self.informationButton.updateInterface(withBackgroundColor: self.backgroundColor, andTextColor: self.textColor)
 
@@ -194,6 +195,7 @@ extension MainController: LocationTrackerDelegate {
 
 extension MainController: SunPhaseSchedulerDelegate {
     func sunPhaseScheduler(_ sunPhaseScheduler: SunPhaseScheduler, didUpdateWith backgroundColor: UIColor, and textColor: UIColor) {
+        self.percentageInDay = Location.current?.dayLenghtProgress ?? 0
         self.backgroundColor = backgroundColor
         self.textColor = textColor
         self.updateInterface()
