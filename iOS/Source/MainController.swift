@@ -66,6 +66,7 @@ class MainController: UIViewController {
         self.addSubviewsAndConstraints()
 
         self.locationTracker.checkAuthorization()
+
         self.sunPhaseManager = SunPhaseManager() {
             backgroundColor, textColor in
             self.backgroundColor = backgroundColor
@@ -73,6 +74,8 @@ class MainController: UIViewController {
             self.updateInterface()
         }
 
+        self.updateLocation()
+        self.updateSunView()
     }
 
     func addSubviewsAndConstraints() {
@@ -127,6 +130,18 @@ class MainController: UIViewController {
         informationController.modalTransitionStyle = .crossDissolve
         self.present(informationController, animated: true)
     }
+
+    func updateLocation() {
+        if let location = Location.current {
+            self.locationLabel.text = "\(location.city), \(location.country)"
+        }
+    }
+
+    func updateSunView() {
+        if let location = Location.current {
+            self.sunView.update(for: location)
+        }
+    }
 }
 
 extension MainController: LocationTrackerDelegate {
@@ -152,7 +167,8 @@ extension MainController: LocationTrackerDelegate {
     }
 
     func setMessage(for placemark: CLPlacemark) {
-        let interval = APIClient.dayLengthDifference(for: placemark)
+        guard let location = Location(placemark: placemark) else { return }
+        let interval = APIClient.dayLengthDifference(for: location.coordinate)
         let minutes = interval / 60
 
         let formatter = NumberFormatter()
@@ -165,7 +181,11 @@ extension MainController: LocationTrackerDelegate {
         self.message = String(format: message.0, minutesString)
         self.colored = String(format: message.1, minutesString)
 
-        self.sunView.update(for: placemark)
+        self.sunView.update(for: location)
+        Location.current = Location(placemark: placemark)
+        self.updateLocation()
+        self.updateSunView()
+        self.updateInterface()
     }
 }
 

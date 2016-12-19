@@ -16,8 +16,12 @@
 		146E27A91BCD51F200959BBA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146E279F1BCD51F200959BBA /* LaunchScreen.xib */; };
 		146E27AA1BCD51F200959BBA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 146E27A11BCD51F200959BBA /* Images.xcassets */; };
 		1483128E1B92C11500266943 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1483128D1B92C11500266943 /* Tests.swift */; };
+		148FBB6A1E07EDBE009ED9F3 /* SweetUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148FBB691E07EDBE009ED9F3 /* SweetUIKit.framework */; };
+		148FBB6B1E07EDBE009ED9F3 /* SweetUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 148FBB691E07EDBE009ED9F3 /* SweetUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14F3560C1DE9C2010016AA17 /* Sunrise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F3560B1DE9C2010016AA17 /* Sunrise.framework */; };
 		14F3560D1DE9C2010016AA17 /* Sunrise.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14F3560B1DE9C2010016AA17 /* Sunrise.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		44227E8F1E067A1E002B911B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
+		44227E901E067A1E002B911B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
 		D197B1ACD3FD8E3106217F49 /* MessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */; };
 		D197B6CB04F50A1E71C59C6B /* SunPhaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BFA8D6283613096635E6 /* SunPhaseManager.swift */; };
 		D197B839071D61E4EBC05475 /* SunPhaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BFA8D6283613096635E6 /* SunPhaseManager.swift */; };
@@ -35,6 +39,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				148FBB6B1E07EDBE009ED9F3 /* SweetUIKit.framework in Embed Frameworks */,
 				14F3560D1DE9C2010016AA17 /* Sunrise.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -56,7 +61,9 @@
 		148312891B92C11500266943 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1483128C1B92C11500266943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1483128D1B92C11500266943 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		148FBB691E07EDBE009ED9F3 /* SweetUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SweetUIKit.framework; path = Carthage/Build/iOS/SweetUIKit.framework; sourceTree = "<group>"; };
 		14F3560B1DE9C2010016AA17 /* Sunrise.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sunrise.framework; path = Carthage/Build/iOS/Sunrise.framework; sourceTree = "<group>"; };
+		44227E8E1E067A1E002B911B /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageGenerator.swift; sourceTree = "<group>"; };
 		D197BFA8D6283613096635E6 /* SunPhaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunPhaseManager.swift; sourceTree = "<group>"; };
 		E6D9D5021E02C9350007006D /* GT-America-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GT-America-Light.ttf"; sourceTree = "<group>"; };
@@ -70,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				148FBB6A1E07EDBE009ED9F3 /* SweetUIKit.framework in Frameworks */,
 				14F3560C1DE9C2010016AA17 /* Sunrise.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,6 +101,7 @@
 				143D3B281DE9D434003F77B9 /* LocationTracker.swift */,
 				D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */,
 				D197BFA8D6283613096635E6 /* SunPhaseManager.swift */,
+				44227E8E1E067A1E002B911B /* Location.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -161,6 +170,7 @@
 		14F3560F1DE9C21B0016AA17 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				148FBB691E07EDBE009ED9F3 /* SweetUIKit.framework */,
 				14F3560B1DE9C2010016AA17 /* Sunrise.framework */,
 			);
 			name = Frameworks;
@@ -297,6 +307,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Sunrise.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SweetUIKit.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -314,6 +325,7 @@
 			files = (
 				143D3B261DE9D3F3003F77B9 /* AppDelegate.swift in Sources */,
 				143D3B271DE9D3F3003F77B9 /* MainController.swift in Sources */,
+				44227E8F1E067A1E002B911B /* Location.swift in Sources */,
 				143D3B231DE9D3E0003F77B9 /* Theme+Font.swift in Sources */,
 				143D3B221DE9D3E0003F77B9 /* Theme+Color.swift in Sources */,
 				E6E337AE1E044AD600787E88 /* InformationController.swift in Sources */,
@@ -331,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1483128E1B92C11500266943 /* Tests.swift in Sources */,
+				44227E901E067A1E002B911B /* Location.swift in Sources */,
 				D197B1ACD3FD8E3106217F49 /* MessageGenerator.swift in Sources */,
 				D197B839071D61E4EBC05475 /* SunPhaseManager.swift in Sources */,
 			);
