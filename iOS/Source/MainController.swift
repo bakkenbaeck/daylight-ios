@@ -181,8 +181,8 @@ extension MainController: LocationTrackerDelegate {
         let messageGenerator = MessageGenerator()
         let message = messageGenerator.message(forDay: Date(), withInterval: interval)
 
-        self.message = String(format: message.0, minutesString)
-        self.colored = String(format: message.1, minutesString)
+        self.message = String(format: message.text, minutesString)
+        self.colored = String(format: message.colored, minutesString)
 
         self.sunView.update(for: location)
         Location.current = Location(placemark: placemark)
