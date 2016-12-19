@@ -63,6 +63,6 @@ class APIClient {
 
 
         //TODO: Implement real calculation
-        return(0, 100)
+        return(0, 30)
     }
 }
