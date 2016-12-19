@@ -5,6 +5,8 @@ class SunView: UIView {
 
     static let sunSize = CGFloat(16.0)
 
+    var percentageInDay = CGFloat(0.0)
+
     var sunLocation = (x: CGFloat(0.0), y: CGFloat(0.0)) {
         didSet{
             self.setNeedsLayout()
@@ -47,6 +49,13 @@ class SunView: UIView {
         return view
     }()
 
+    lazy var moon: UIView = {
+        let view = UIView()
+        view.isHidden = true
+
+        return view
+    }()
+
     lazy var sunMask: UIView = {
         let view = UIView()
 
@@ -82,6 +91,7 @@ class SunView: UIView {
         self.sunMask.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: 108)
         self.horizon.frame = CGRect(x: 0, y: 108, width: self.bounds.width, height: 1)
         self.currentTimeLabel.frame = CGRect(x: self.sunLocation.x - 10, y: self.sunLocation.y - 24, width: 33, height: 16)
+        self.moon.frame = CGRect(x: self.sunLocation.x + (SunView.sunSize / 2), y: self.sunLocation.y, width: SunView.sunSize / 2, height: SunView.sunSize)
     }
 
     func addSubviewsAndConstraints() {
@@ -90,6 +100,7 @@ class SunView: UIView {
         self.addSubview(self.sunsetLabel)
         self.addSubview(self.sunMask)
         self.sunMask.addSubview(self.sun)
+        self.sunMask.addSubview(self.moon)
         self.addSubview(self.currentTimeLabel)
     }
 
@@ -97,15 +108,29 @@ class SunView: UIView {
         self.currentTimeLabel.text = APIClient.timeFormatter.string(from: Date())
         self.sunriseLabel.text = APIClient.sunriseTimeString(for: location.coordinate)
         self.sunsetLabel.text = APIClient.sunsetTimeString(for: location.coordinate)
-
-        self.sunLocation = APIClient.sunLocation(for: location.coordinate)
     }
 
-    func updateInterface(withColor color: UIColor) {
-        self.sunriseLabel.textColor = color
-        self.sunsetLabel.textColor = color
-        self.currentTimeLabel.textColor = color
-        self.horizon.backgroundColor = color
-        self.sun.backgroundColor = color
+    func location(for percentageInDay: CGFloat) -> (CGFloat, CGFloat) {
+        guard percentageInDay < 1 else { return (0,0)}
+
+        let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
+        let x = 100 + cos(position) * 100
+        let y = 100 - (abs(sin(position) * 100))
+
+        return (x,y)
+    }
+
+    func updateInterface(withBackGroundColor backgroundColor: UIColor, andTextColor textColor: UIColor) {
+        self.sunriseLabel.textColor = textColor
+        self.sunsetLabel.textColor = textColor
+        self.currentTimeLabel.textColor = textColor
+        self.horizon.backgroundColor = textColor
+        self.sun.backgroundColor = textColor
+
+        self.moon.backgroundColor = backgroundColor
+
+
+        self.percentageInDay = self.percentageInDay + 0.01
+        self.sunLocation = self.location(for: self.percentageInDay)
     }
 }

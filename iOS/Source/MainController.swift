@@ -116,7 +116,8 @@ class MainController: UIViewController {
 
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = self.backgroundColor
-            self.sunView.updateInterface(withColor: self.textColor)
+            self.sunView.updateInterface(withBackGroundColor: self.backgroundColor, andTextColor: self.textColor)
+
             self.informationButton.updateInterface(withBackGroundColor: self.backgroundColor, andTextColor: self.textColor)
 
             self.locationLabel.textColor = self.textColor.withAlphaComponent(0.6)
