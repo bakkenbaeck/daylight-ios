@@ -22,7 +22,7 @@ struct MessageGenerator {
     let longerDayMessage10 = "After darkness comes daylight. %@ more minutes to be precise!"
     let longerDayColored10 = "%@ more minutes"
 
-    func longerDayMessage() -> (String, String) {
+    func longerDayMessage() -> (text: String, colored: String) {
         let number = arc4random_uniform(10)
         switch number {
             case 0: return (self.longerDayMessage1, self.longerDayColored1)
@@ -50,7 +50,7 @@ struct MessageGenerator {
     let noChangeMessage5 = "We’ll have about a minute of extra light today. It’s upwards from here."
     let noChangeColored5 = "about a minute"
 
-    func noChangeMessage() -> (String, String) {
+    func noChangeMessage() -> (text: String, colored: String) {
         let number = arc4random_uniform(5)
         switch number {
         case 0: return (self.noChangeMessage1, self.noChangeColored1)
@@ -69,7 +69,7 @@ struct MessageGenerator {
     let shorterMessage3 = "Sadly, the day will be %@ minutes shorter. Make the most out of it!"
     let shorterColored3 = "%@ minutes shorter"
 
-    func shorterMessage() -> (String, String) {
+    func shorterMessage() -> (text: String, colored: String) {
         let number = arc4random_uniform(3)
         switch number {
         case 0: return (self.shorterMessage1, self.shorterColored1)
@@ -91,7 +91,7 @@ struct MessageGenerator {
     let nightMessage5 = "The sun has set. Soak up the extra vitamin D tomorrow!"
     let nightColored5 = ""
 
-    func nightMessage() -> (String, String) {
+    func nightMessage() -> (text: String, colored: String) {
         let number = arc4random_uniform(5)
         switch number {
         case 0: return (self.nightMessage1, self.nightColored1)
@@ -111,7 +111,7 @@ struct MessageGenerator {
         return formatter
     }()
 
-    func message(forDay day: Date, withInterval interval: Double) -> (String, String) {
+    func message(forDay day: Date, withInterval interval: Double) -> (text: String, colored: String) {
         let defaults = UserDefaults.standard
 
         let dayKey = self.dateFormatter.string(from: day)
@@ -119,17 +119,18 @@ struct MessageGenerator {
         if let message = UserDefaults.standard.string(forKey: dayKey), let colored = UserDefaults.standard.string(forKey: "\(dayKey)colored") {
             return (message, colored)
         } else {
-            let appDomain = Bundle.main.bundleIdentifier!
-            UserDefaults.standard.removePersistentDomain(forName: appDomain)
+            if let appDomain = Bundle.main.bundleIdentifier! {
+                UserDefaults.standard.removePersistentDomain(forName: appDomain)
+            }
 
             let message = self.generateMessage(forInterval: interval)
-            defaults.set(message.0, forKey: dayKey)
-            defaults.set(message.1, forKey: "\(dayKey)colored")
-            return (message.0, message.1)
+            defaults.set(message.text, forKey: dayKey)
+            defaults.set(message.colored, forKey: "\(dayKey)colored")
+            return (message.text, message.colored)
         }
     }
 
-    func generateMessage(forInterval interval: Double) -> (String, String) {
+    func generateMessage(forInterval interval: Double) -> (text: String, colored: String) {
         if interval > 1 {
             return longerDayMessage()
         } else if interval >= 0 {
