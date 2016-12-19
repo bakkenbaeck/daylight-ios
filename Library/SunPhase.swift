@@ -8,6 +8,7 @@ enum SunPhase {
     case sunset
     case twilight
     case night
+    case none
 
     // TODO: Move inside SunCalc, and add unit tests
     static func get(for date: Date, in timeZone: TimeZone, at coordinate: CLLocationCoordinate2D) -> SunPhase {
