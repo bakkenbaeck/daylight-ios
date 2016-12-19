@@ -53,6 +53,7 @@ struct MessageGenerator {
     let noChangeMessage5 = "We’ll have about a minute of extra light today. It’s upwards from here."
     let noChangeColored5 = "about a minute"
 
+    // TODO: extract number to make it more testable
     func noChangeMessage() -> (text: String, colored: String) {
         let number = arc4random_uniform(5)
         switch number {
