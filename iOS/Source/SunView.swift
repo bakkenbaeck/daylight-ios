@@ -5,7 +5,7 @@ class SunView: UIView {
 
     static let sunSize = CGFloat(16.0)
 
-    var percentageInDay = CGFloat(0.0)
+    var percentageInDay = CGFloat(-0.2)
 
     var nightState = false {
         didSet {
@@ -142,7 +142,7 @@ class SunView: UIView {
         self.moon.backgroundColor = backgroundColor
 
         //TODO: get real percentage in day from Location managare
-        self.percentageInDay = self.percentageInDay + 0.05
+        self.percentageInDay = self.percentageInDay + 0.03
         if self.percentageInDay >= 0 && self.percentageInDay <= 1 {
             self.sunLocation = self.location(for: self.percentageInDay)
             self.nightState = false

@@ -115,7 +115,7 @@ class InformationController: UIViewController {
 
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = backgroundColor
-            self.closeButton.updateInterface(withBackGroundColor: backgroundColor, andTextColor: textColor)
+            self.closeButton.updateInterface(withBackgroundColor: backgroundColor, andTextColor: textColor)
 
             self.notificationButton.setAttributedTitle(turnNotificationsOnString, for: .normal)
             self.notificationButton.setAttributedTitle(turnNotificationsOffString, for: .selected)
