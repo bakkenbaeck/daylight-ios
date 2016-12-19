@@ -7,9 +7,11 @@ class SunView: UIView {
 
     var sunLocation = (x: CGFloat(0.0), y: CGFloat(0.0)) {
         didSet{
+            print(self.sunLocation.y)
             self.sunLeftAnchor = self.sun.leftAnchor.constraint(equalTo: self.leftAnchor, constant: self.sunLocation.x)
             self.sunTopAnchor = self.sun.topAnchor.constraint(equalTo: self.topAnchor, constant: self.sunLocation.y)
             self.currentTimeBottomAnchor = self.currentTimeLabel.bottomAnchor.constraint(equalTo: self.sun.topAnchor, constant: -8)
+
             self.setNeedsLayout()
         }
     }
@@ -51,6 +53,14 @@ class SunView: UIView {
         return view
     }()
 
+    lazy var sunMask: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+
+        return view
+    }()
+
     lazy var horizon: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -73,7 +83,8 @@ class SunView: UIView {
         self.addSubview(self.horizon)
         self.addSubview(self.sunriseLabel)
         self.addSubview(self.sunsetLabel)
-        self.addSubview(self.sun)
+        self.addSubview(self.sunMask)
+        self.sunMask.addSubview(self.sun)
         self.addSubview(self.currentTimeLabel)
 
         self.horizon.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
@@ -90,6 +101,11 @@ class SunView: UIView {
         self.sunsetLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         self.sunsetLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
         self.sunsetLabel.widthAnchor.constraint(equalToConstant: 35).isActive = true
+
+        self.sunMask.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        self.sunMask.heightAnchor.constraint(equalToConstant: 108).isActive = true
+        self.sunMask.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        self.sunMask.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
 
         self.sun.widthAnchor.constraint(equalToConstant: SunView.sunSize).isActive = true
         self.sun.heightAnchor.constraint(equalToConstant: SunView.sunSize).isActive = true
