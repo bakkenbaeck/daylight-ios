@@ -20,6 +20,21 @@
 		1483128E1B92C11500266943 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1483128D1B92C11500266943 /* Tests.swift */; };
 		148FBB6A1E07EDBE009ED9F3 /* SweetUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148FBB691E07EDBE009ED9F3 /* SweetUIKit.framework */; };
 		148FBB6B1E07EDBE009ED9F3 /* SweetUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 148FBB691E07EDBE009ED9F3 /* SweetUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14E6F3CA1E08735200F9C3F6 /* SunPhaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6F3C91E08735200F9C3F6 /* SunPhaseTests.swift */; };
+		14E6F3CB1E0873D400F9C3F6 /* suncalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5FFDD1E0809270021D231 /* suncalc.swift */; };
+		14E6F3CC1E0873DB00F9C3F6 /* EquatorialCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5FFD81E0809270021D231 /* EquatorialCoordinates.swift */; };
+		14E6F3CD1E0873DB00F9C3F6 /* GeocentricCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5FFD91E0809270021D231 /* GeocentricCoordinates.swift */; };
+		14E6F3CE1E0873DB00F9C3F6 /* MoonIllumination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5FFDA1E0809270021D231 /* MoonIllumination.swift */; };
+		14E6F3CF1E0873DB00F9C3F6 /* MoonPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5FFDB1E0809270021D231 /* MoonPosition.swift */; };
+		14E6F3D01E0873DB00F9C3F6 /* SunPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5FFDC1E0809270021D231 /* SunPosition.swift */; };
+		14E6F3D11E0873DF00F9C3F6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5FFDF1E0809270021D231 /* Constants.swift */; };
+		14E6F3D21E0873DF00F9C3F6 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5FFE01E0809270021D231 /* DateUtils.swift */; };
+		14E6F3D31E0873DF00F9C3F6 /* MoonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5FFE11E0809270021D231 /* MoonUtils.swift */; };
+		14E6F3D41E0873DF00F9C3F6 /* PositionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5FFE21E0809270021D231 /* PositionUtils.swift */; };
+		14E6F3D51E0873DF00F9C3F6 /* SunUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5FFE31E0809270021D231 /* SunUtils.swift */; };
+		14E6F3D61E0873DF00F9C3F6 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5FFE41E0809270021D231 /* TimeUtils.swift */; };
+		14E6F3D71E08796A00F9C3F6 /* Sunrise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F3560B1DE9C2010016AA17 /* Sunrise.framework */; };
+		14E6F3DA1E0879A000F9C3F6 /* Sunrise.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14E6F3D91E0879A000F9C3F6 /* Sunrise.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14F3560C1DE9C2010016AA17 /* Sunrise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F3560B1DE9C2010016AA17 /* Sunrise.framework */; };
 		14F3560D1DE9C2010016AA17 /* Sunrise.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14F3560B1DE9C2010016AA17 /* Sunrise.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14F5FFE51E0809270021D231 /* EquatorialCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5FFD81E0809270021D231 /* EquatorialCoordinates.swift */; };
@@ -47,6 +62,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		14E6F3D81E08798E00F9C3F6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				14E6F3DA1E0879A000F9C3F6 /* Sunrise.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14F3560E1DE9C2020016AA17 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -77,6 +102,8 @@
 		1483128C1B92C11500266943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1483128D1B92C11500266943 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		148FBB691E07EDBE009ED9F3 /* SweetUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SweetUIKit.framework; path = Carthage/Build/iOS/SweetUIKit.framework; sourceTree = "<group>"; };
+		14E6F3C91E08735200F9C3F6 /* SunPhaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunPhaseTests.swift; sourceTree = "<group>"; };
+		14E6F3D91E0879A000F9C3F6 /* Sunrise.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sunrise.framework; path = Carthage/Build/iOS/Sunrise.framework; sourceTree = "<group>"; };
 		14F3560B1DE9C2010016AA17 /* Sunrise.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sunrise.framework; path = Carthage/Build/iOS/Sunrise.framework; sourceTree = "<group>"; };
 		14F5FFD81E0809270021D231 /* EquatorialCoordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquatorialCoordinates.swift; sourceTree = "<group>"; };
 		14F5FFD91E0809270021D231 /* GeocentricCoordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeocentricCoordinates.swift; sourceTree = "<group>"; };
@@ -114,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E6F3D71E08796A00F9C3F6 /* Sunrise.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +200,7 @@
 		147A139B1B92B9E300E52F9C = {
 			isa = PBXGroup;
 			children = (
+				14E6F3D91E0879A000F9C3F6 /* Sunrise.framework */,
 				141A6FD31BDE2DAB00CB6E82 /* Library */,
 				146E278A1BCD51C800959BBA /* iOS */,
 				1483128A1B92C11500266943 /* Tests */,
@@ -193,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				1483128D1B92C11500266943 /* Tests.swift */,
+				14E6F3C91E08735200F9C3F6 /* SunPhaseTests.swift */,
 				1483128C1B92C11500266943 /* Info.plist */,
 			);
 			path = Tests;
@@ -288,6 +318,7 @@
 				148312851B92C11500266943 /* Sources */,
 				148312861B92C11500266943 /* Frameworks */,
 				148312871B92C11500266943 /* Resources */,
+				14E6F3D81E08798E00F9C3F6 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -430,10 +461,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E6F3D51E0873DF00F9C3F6 /* SunUtils.swift in Sources */,
+				14E6F3D61E0873DF00F9C3F6 /* TimeUtils.swift in Sources */,
 				1405CA361E08640700AAF52D /* SunPhase.swift in Sources */,
+				14E6F3CC1E0873DB00F9C3F6 /* EquatorialCoordinates.swift in Sources */,
+				14E6F3CB1E0873D400F9C3F6 /* suncalc.swift in Sources */,
+				14E6F3D21E0873DF00F9C3F6 /* DateUtils.swift in Sources */,
 				1483128E1B92C11500266943 /* Tests.swift in Sources */,
+				14E6F3CE1E0873DB00F9C3F6 /* MoonIllumination.swift in Sources */,
+				14E6F3CD1E0873DB00F9C3F6 /* GeocentricCoordinates.swift in Sources */,
+				14E6F3CA1E08735200F9C3F6 /* SunPhaseTests.swift in Sources */,
+				14E6F3D41E0873DF00F9C3F6 /* PositionUtils.swift in Sources */,
+				14E6F3CF1E0873DB00F9C3F6 /* MoonPosition.swift in Sources */,
 				44227E901E067A1E002B911B /* Location.swift in Sources */,
+				14E6F3D31E0873DF00F9C3F6 /* MoonUtils.swift in Sources */,
 				D197B1ACD3FD8E3106217F49 /* MessageGenerator.swift in Sources */,
+				14E6F3D01E0873DB00F9C3F6 /* SunPosition.swift in Sources */,
+				14E6F3D11E0873DF00F9C3F6 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +628,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -604,6 +649,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
