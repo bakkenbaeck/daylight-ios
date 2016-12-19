@@ -7,6 +7,7 @@ enum SunPhase {
     case sunset
     case twilight
     case night
+    case none
 
     // TODO: Move inside SunCalc, and add unit tests
     static func get(for date: Date, in coordinate: CLLocationCoordinate2D) -> SunPhase {
@@ -22,7 +23,7 @@ enum SunPhase {
         } else if date.isBetween(sunCalc.night, and: sunCalc.nightEnd) {
             return .night
         } else {
-            return .twilight
+            return .none
         }
     }
 }

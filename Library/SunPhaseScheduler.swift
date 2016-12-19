@@ -1,38 +1,28 @@
 import Foundation
 import UIKit
 
-enum SunPhase: Int {
-    case sunrise
-    case daylight
-    case sunset
-    case twilight
-    case night
-    case none
+protocol SunPhaseSchedulerDelegate: class {
+    func sunPhaseScheduler(_ sunPhaseScheduler: SunPhaseScheduler, didUpdateWith backgroundColor: UIColor, and textColor: UIColor)
 }
 
-class SunPhaseManager: NSObject {
-    var completionHandler: ((UIColor, UIColor)->Void)
+protocol SunPhaseSchedulerDataSource: class {
+    func sunPhase(for sunPhaseScheduler: SunPhaseScheduler) -> SunPhase
+}
 
-    var sunPhase: SunPhase = .none {
-        didSet {
-            if self.sunPhase != oldValue {
-                self.getNewColors()
-            }
-        }
-    }
+class SunPhaseScheduler: NSObject {
+    weak var dataSource: SunPhaseSchedulerDataSource?
+    weak var delegate: SunPhaseSchedulerDelegate?
 
-    init(completionHandler: @escaping ((UIColor, UIColor)->Void)) {
-        self.completionHandler = completionHandler
+    override init() {
         super.init()
+
         self.update()
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.update), userInfo: nil, repeats: true);
     }
 
     func update() {
-        self.sunPhase = APIClient.getSunPhase()
-    }
+        let sunPhase = self.dataSource?.sunPhase(for: self) ?? .none
 
-    func getNewColors() {
         var backgroundColor = UIColor.white
         var textColor = UIColor.black
 
@@ -57,7 +47,7 @@ class SunPhaseManager: NSObject {
             textColor = .black
         }
 
-        self.completionHandler(backgroundColor, textColor)
+        self.delegate?.sunPhaseScheduler(self, didUpdateWith: backgroundColor, and: textColor)
     }
 }
 

@@ -4,7 +4,12 @@ import SweetUIKit
 
 class MainController: UIViewController {
     var messageLabelHeightAnchor: NSLayoutConstraint?
-    var sunPhaseManager: SunPhaseManager?
+
+    lazy var sunPhaseScheduler: SunPhaseScheduler = {
+        let scheduler = SunPhaseScheduler()
+
+        return scheduler
+    }()
 
     var message = ""
     var colored = ""
@@ -68,15 +73,11 @@ class MainController: UIViewController {
 
         self.locationTracker.checkAuthorization()
 
-        self.sunPhaseManager = SunPhaseManager() {
-            backgroundColor, textColor in
-            self.backgroundColor = backgroundColor
-            self.textColor = textColor
-            self.updateInterface()
-        }
-
         self.updateLocation()
         self.updateSunView()
+
+        self.sunPhaseScheduler.delegate = self
+        self.sunPhaseScheduler.dataSource = self
     }
 
     func addSubviewsAndConstraints() {
@@ -187,5 +188,21 @@ extension MainController: LocationTrackerDelegate {
         self.updateLocation()
         self.updateSunView()
         self.updateInterface()
+    }
+}
+
+extension MainController: SunPhaseSchedulerDelegate {
+    func sunPhaseScheduler(_ sunPhaseScheduler: SunPhaseScheduler, didUpdateWith backgroundColor: UIColor, and textColor: UIColor) {
+        self.backgroundColor = backgroundColor
+        self.textColor = textColor
+        self.updateInterface()
+    }
+}
+
+extension MainController: SunPhaseSchedulerDataSource {
+    func sunPhase(for sunPhaseScheduler: SunPhaseScheduler) -> SunPhase {
+        let current = Location.current
+
+        return current?.sunPhase ?? .none
     }
 }
