@@ -56,7 +56,7 @@ struct Location {
         return SunPhase.get(for: Date(), in: .autoupdatingCurrent, at: self.coordinate)
     }
 
-    var dayLenghtProgress: Double {
+    var dayLengthProgress: Double {
         return self.calculateProgress(date: Date(), timeZone: .autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
     }
 
