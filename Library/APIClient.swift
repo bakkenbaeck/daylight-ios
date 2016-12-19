@@ -43,26 +43,4 @@ class APIClient {
 
         return self.timeFormatter.string(from: sunset)
     }
-
-    static func sunLocation(for coordinate: CLLocationCoordinate2D) -> (CGFloat, CGFloat) {
-        let today = Calendar.autoupdatingCurrent.startOfDay(for: Date())
-        let todaySunriseSet = SunriseSet(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: coordinate.latitude, longitude: coordinate.longitude)
-        let todayDayLength = todaySunriseSet.sunset.timeIntervalSince(todaySunriseSet.sunrise)
-
-        let sunrise = todaySunriseSet.sunrise
-        let sunset = todaySunriseSet.sunset
-
-        let timeIntervalTillSunrise = sunrise.timeIntervalSince(Date())
-        let timIntervalSinceSunrise = Date().timeIntervalSince(sunrise)
-        let timeIntervalTillSunset = sunset.timeIntervalSince(Date())
-        let timIntervalSinceSunset = Date().timeIntervalSince(sunset)
-
-        let stillNight = timeIntervalTillSunrise > 0
-        let dayTime = timIntervalSinceSunrise > 0 && timeIntervalTillSunset > 0
-        let alreadyNight = timIntervalSinceSunset > 0
-
-
-        //TODO: Implement real calculation
-        return(0, 30)
-    }
 }
