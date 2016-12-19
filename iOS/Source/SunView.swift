@@ -75,6 +75,7 @@ class SunView: UIView {
     override func layoutSubviews(){
         super.layoutSubviews()
 
+        // TODO: check if the view layout is also possible using constraints
         self.sunriseLabel.frame = CGRect(x: 0, y: 108, width: 33, height: 16)
         self.sunsetLabel.frame = CGRect(x: self.bounds.width - 33, y: 108, width: 33, height: 16)
         self.sun.frame = CGRect(x: self.sunLocation.x, y: self.sunLocation.y, width: SunView.sunSize, height: SunView.sunSize)
