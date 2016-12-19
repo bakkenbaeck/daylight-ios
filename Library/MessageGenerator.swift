@@ -1,6 +1,9 @@
 import Foundation
 
 struct MessageGenerator {
+    let informationMessage = "Daylight is an experiment inspired by the dark and long winters of the north and made by Bakken & Bæck"
+    let coloredInformation = "Bakken & Bæck"
+
     let longerDayMessage1 = "Today is %@ minutes longer than yesterday. Happy days!"
     let longerDayColored1 = "%@ minutes"
     let longerDayMessage2 = "The sun is out for %@ more minutes today. Enjoy!"

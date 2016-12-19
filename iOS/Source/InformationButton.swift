@@ -15,7 +15,6 @@ class InformationButton: UIButton {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .light(size: 12)
-        label.text = NSLocalizedString("Sol", comment: "")
 
         return label
     }()
@@ -23,6 +22,7 @@ class InformationButton: UIButton {
     override init(frame: CGRect){
         super.init(frame: frame)
 
+        nameLabel.text = NSLocalizedString("Daylight", comment: "")
         self.addSubviewsAndConstraints()
     }
 
@@ -45,8 +45,8 @@ class InformationButton: UIButton {
         self.nameLabel.heightAnchor.constraint(equalToConstant: 16)
     }
 
-    func updateInterface(withColor color: UIColor) {
-        self.sun.backgroundColor = color.withAlphaComponent(0.6)
-        self.nameLabel.textColor = color.withAlphaComponent(0.6)
+    func updateInterface(withBackGroundColor backgroundColor: UIColor, andTextColor textColor: UIColor) {
+        self.sun.backgroundColor = textColor.withAlphaComponent(0.6)
+        self.nameLabel.textColor = textColor.withAlphaComponent(0.6)
     }
 }
