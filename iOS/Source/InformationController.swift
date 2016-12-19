@@ -2,7 +2,12 @@ import UIKit
 
 class InformationController: UIViewController {
     var messageLabelHeightAnchor: NSLayoutConstraint?
-    var sunPhaseManager: SunPhaseManager?
+
+    lazy var sunPhaseScheduler: SunPhaseScheduler = {
+        let scheduler = SunPhaseScheduler()
+
+        return scheduler
+    }()
 
     var notifications = false
 
@@ -49,11 +54,8 @@ class InformationController: UIViewController {
         super.viewDidLoad()
 
         self.addSubviewsAndConstraints()
-
-        self.sunPhaseManager = SunPhaseManager() {
-            backgroundColor, textColor in
-            self.updateInterface(backgroundColor: backgroundColor, textColor: textColor)
-        }
+        self.sunPhaseScheduler.delegate = self
+        self.sunPhaseScheduler.dataSource = self
     }
 
     func addSubviewsAndConstraints() {
@@ -131,5 +133,19 @@ class InformationController: UIViewController {
 
     func didClickClose() {
         self.dismiss(animated: true)
+    }
+}
+
+extension InformationController: SunPhaseSchedulerDelegate {
+    func sunPhaseScheduler(_ sunPhaseScheduler: SunPhaseScheduler, didUpdateWith backgroundColor: UIColor, and textColor: UIColor) {
+        self.updateInterface(backgroundColor: backgroundColor, textColor: textColor)
+    }
+}
+
+extension InformationController: SunPhaseSchedulerDataSource {
+    func sunPhase(for sunPhaseScheduler: SunPhaseScheduler) -> SunPhase {
+        let current = Location.current
+
+        return current?.sunPhase ?? .none
     }
 }
