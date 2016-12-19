@@ -8,6 +8,7 @@ enum SunPhase {
     case twilight // blue hour?
     case night // found
 
+    // TODO: Move inside SunCalc, and add unit tests
     static func get(for date: Date, in coordinate: CLLocationCoordinate2D) -> SunPhase {
         let sunCalc = SunCalc(date: date, latitude: coordinate.latitude, longitude: coordinate.longitude)
         if date.isBetween(sunCalc.sunrise, and: sunCalc.sunriseEnd) {
