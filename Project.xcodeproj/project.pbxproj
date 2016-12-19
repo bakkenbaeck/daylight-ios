@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1405CA351E08640700AAF52D /* SunPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1405CA341E08640700AAF52D /* SunPhase.swift */; };
+		1405CA361E08640700AAF52D /* SunPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1405CA341E08640700AAF52D /* SunPhase.swift */; };
 		143D3B211DE9D3E0003F77B9 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1E1DE9D3E0003F77B9 /* APIClient.swift */; };
 		143D3B221DE9D3E0003F77B9 /* Theme+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1F1DE9D3E0003F77B9 /* Theme+Color.swift */; };
 		143D3B231DE9D3E0003F77B9 /* Theme+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B201DE9D3E0003F77B9 /* Theme+Font.swift */; };
@@ -35,7 +37,7 @@
 		44227E8F1E067A1E002B911B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
 		44227E901E067A1E002B911B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
 		D197B1ACD3FD8E3106217F49 /* MessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */; };
-		D197B6CB04F50A1E71C59C6B /* SunPhaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BFA8D6283613096635E6 /* SunPhaseManager.swift */; };
+		D197B6CB04F50A1E71C59C6B /* SunPhaseScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BFA8D6283613096635E6 /* SunPhaseScheduler.swift */; };
 		D197BB6AA1F1FB8F3E2ADA6B /* MessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */; };
 		E6D9D5031E02C9350007006D /* GT-America-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6D9D5021E02C9350007006D /* GT-America-Light.ttf */; };
 		E6D9D5051E02CDE70007006D /* SunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D9D5041E02CDE70007006D /* SunView.swift */; };
@@ -60,6 +62,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1405CA341E08640700AAF52D /* SunPhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunPhase.swift; sourceTree = "<group>"; };
 		143D3B1E1DE9D3E0003F77B9 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		143D3B1F1DE9D3E0003F77B9 /* Theme+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Theme+Color.swift"; sourceTree = "<group>"; };
 		143D3B201DE9D3E0003F77B9 /* Theme+Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Theme+Font.swift"; sourceTree = "<group>"; };
@@ -89,7 +92,7 @@
 		14F5FFE41E0809270021D231 /* TimeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
 		44227E8E1E067A1E002B911B /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageGenerator.swift; sourceTree = "<group>"; };
-		D197BFA8D6283613096635E6 /* SunPhaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunPhaseManager.swift; sourceTree = "<group>"; };
+		D197BFA8D6283613096635E6 /* SunPhaseScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunPhaseScheduler.swift; sourceTree = "<group>"; };
 		E6D9D5021E02C9350007006D /* GT-America-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GT-America-Light.ttf"; sourceTree = "<group>"; };
 		E6D9D5041E02CDE70007006D /* SunView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunView.swift; sourceTree = "<group>"; };
 		E6D9D5061E02D7970007006D /* InformationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationButton.swift; sourceTree = "<group>"; };
@@ -126,8 +129,9 @@
 				143D3B201DE9D3E0003F77B9 /* Theme+Font.swift */,
 				143D3B281DE9D434003F77B9 /* LocationTracker.swift */,
 				D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */,
-				D197BFA8D6283613096635E6 /* SunPhaseManager.swift */,
+				D197BFA8D6283613096635E6 /* SunPhaseScheduler.swift */,
 				44227E8E1E067A1E002B911B /* Location.swift */,
+				1405CA341E08640700AAF52D /* SunPhase.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -401,10 +405,10 @@
 				143D3B271DE9D3F3003F77B9 /* MainController.swift in Sources */,
 				44227E8F1E067A1E002B911B /* Location.swift in Sources */,
 				143D3B231DE9D3E0003F77B9 /* Theme+Font.swift in Sources */,
+				1405CA351E08640700AAF52D /* SunPhase.swift in Sources */,
 				14F5FFF01E0809270021D231 /* TimeUtils.swift in Sources */,
 				14F5FFE71E0809270021D231 /* MoonIllumination.swift in Sources */,
 				14F5FFED1E0809270021D231 /* MoonUtils.swift in Sources */,
-				44227E921E067A75002B911B /* SunPhase.swift in Sources */,
 				14F5FFE91E0809270021D231 /* SunPosition.swift in Sources */,
 				14F5FFE81E0809270021D231 /* MoonPosition.swift in Sources */,
 				143D3B221DE9D3E0003F77B9 /* Theme+Color.swift in Sources */,
@@ -418,7 +422,7 @@
 				D197BB6AA1F1FB8F3E2ADA6B /* MessageGenerator.swift in Sources */,
 				14F5FFEB1E0809270021D231 /* Constants.swift in Sources */,
 				14F5FFEE1E0809270021D231 /* PositionUtils.swift in Sources */,
-				D197B6CB04F50A1E71C59C6B /* SunPhaseManager.swift in Sources */,
+				D197B6CB04F50A1E71C59C6B /* SunPhaseScheduler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1405CA361E08640700AAF52D /* SunPhase.swift in Sources */,
 				1483128E1B92C11500266943 /* Tests.swift in Sources */,
 				44227E901E067A1E002B911B /* Location.swift in Sources */,
 				D197B1ACD3FD8E3106217F49 /* MessageGenerator.swift in Sources */,
