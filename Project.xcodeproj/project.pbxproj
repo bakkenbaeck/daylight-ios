@@ -30,6 +30,7 @@
 		E6D9D5051E02CDE70007006D /* SunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D9D5041E02CDE70007006D /* SunView.swift */; };
 		E6D9D5071E02D7970007006D /* InformationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D9D5061E02D7970007006D /* InformationButton.swift */; };
 		E6E337AE1E044AD600787E88 /* InformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E337AD1E044AD600787E88 /* InformationController.swift */; };
+		E6F604701E08106000A6461A /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F6046F1E08106000A6461A /* CloseButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -70,6 +71,7 @@
 		E6D9D5041E02CDE70007006D /* SunView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunView.swift; sourceTree = "<group>"; };
 		E6D9D5061E02D7970007006D /* InformationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationButton.swift; sourceTree = "<group>"; };
 		E6E337AD1E044AD600787E88 /* InformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationController.swift; sourceTree = "<group>"; };
+		E6F6046F1E08106000A6461A /* CloseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 				E6E337AD1E044AD600787E88 /* InformationController.swift */,
 				E6D9D5041E02CDE70007006D /* SunView.swift */,
 				E6D9D5061E02D7970007006D /* InformationButton.swift */,
+				E6F6046F1E08106000A6461A /* CloseButton.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				143D3B231DE9D3E0003F77B9 /* Theme+Font.swift in Sources */,
 				143D3B221DE9D3E0003F77B9 /* Theme+Color.swift in Sources */,
 				E6E337AE1E044AD600787E88 /* InformationController.swift in Sources */,
+				E6F604701E08106000A6461A /* CloseButton.swift in Sources */,
 				E6D9D5071E02D7970007006D /* InformationButton.swift in Sources */,
 				143D3B211DE9D3E0003F77B9 /* APIClient.swift in Sources */,
 				E6D9D5051E02CDE70007006D /* SunView.swift in Sources */,
