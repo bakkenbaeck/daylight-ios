@@ -7,14 +7,15 @@ enum SunPhase: Int {
     case sunset
     case twilight
     case night
+    case none
 }
 
 class SunPhaseManager: NSObject {
     var completionHandler: ((UIColor, UIColor)->Void)
 
-    var sunPhase: SunPhase = .sunrise  {
-        willSet {
-            if self.sunPhase != newValue {
+    var sunPhase: SunPhase = .none {
+        didSet {
+            if self.sunPhase != oldValue {
                 self.getNewColors()
             }
         }
@@ -23,6 +24,7 @@ class SunPhaseManager: NSObject {
     init(completionHandler: @escaping ((UIColor, UIColor)->Void)) {
         self.completionHandler = completionHandler
         super.init()
+        self.update()
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.update), userInfo: nil, repeats: true);
     }
 
@@ -50,6 +52,9 @@ class SunPhaseManager: NSObject {
         case .night:
             backgroundColor = .night
             textColor = .nightText
+        default:
+            backgroundColor = .white
+            textColor = .black
         }
 
         self.completionHandler(backgroundColor, textColor)

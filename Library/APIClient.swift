@@ -75,6 +75,7 @@ class APIClient {
     }
 
     static func getSunPhase() -> SunPhase {
-        return SunPhase(rawValue: Int(arc4random_uniform(5))) ?? .sunrise
+        return .sunrise
+//        return SunPhase(rawValue: Int(arc4random_uniform(5))) ?? .sunrise
     }
 }

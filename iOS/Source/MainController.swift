@@ -8,6 +8,9 @@ class MainController: UIViewController {
     var message = ""
     var colored = ""
 
+    var backgroundColor = UIColor.white
+    var textColor = UIColor.black
+
     lazy var locationTracker: LocationTracker = {
         let tracker = LocationTracker()
         tracker.delegate = self
@@ -65,7 +68,9 @@ class MainController: UIViewController {
         self.locationTracker.checkAuthorization()
         self.sunPhaseManager = SunPhaseManager() {
             backgroundColor, textColor in
-            self.updateInterface(backgroundColor: backgroundColor, textColor: textColor)
+            self.backgroundColor = backgroundColor
+            self.textColor = textColor
+            self.updateInterface()
         }
 
     }
@@ -99,19 +104,18 @@ class MainController: UIViewController {
         self.locationLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
     }
 
-    func updateInterface(backgroundColor: UIColor, textColor: UIColor) {
-
+    func updateInterface() {
         let range = (self.message as NSString).range(of: self.colored)
         let attributedString = NSMutableAttributedString(string: self.message)
-        attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
+        attributedString.addAttribute(NSForegroundColorAttributeName, value: self.textColor, range: range)
 
         UIView.animate(withDuration: 0.4) {
-            self.view.backgroundColor = backgroundColor
-            self.sunView.updateInterface(withColor: textColor)
-            self.informationButton.updateInterface(withColor: textColor)
+            self.view.backgroundColor = self.backgroundColor
+            self.sunView.updateInterface(withColor: self.textColor)
+            self.informationButton.updateInterface(withColor: self.textColor)
 
-            self.locationLabel.textColor = textColor.withAlphaComponent(0.6)
-            self.messageLabel.textColor = textColor.withAlphaComponent(0.6)
+            self.locationLabel.textColor = self.textColor.withAlphaComponent(0.6)
+            self.messageLabel.textColor = self.textColor.withAlphaComponent(0.6)
             self.messageLabel.attributedText = attributedString
             self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
             self.view.setNeedsLayout()
@@ -119,8 +123,8 @@ class MainController: UIViewController {
     }
 
     func didClickInformation() {
-
         let informationController = InformationController()
+        informationController.modalTransitionStyle = .crossDissolve
         self.present(informationController, animated: true)
     }
 }
@@ -137,6 +141,7 @@ extension MainController: LocationTrackerDelegate {
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
         self.setLocation(with: placemark)
         self.setMessage(for: placemark)
+        self.updateInterface()
     }
 
     func setLocation(with placemark: CLPlacemark) {
