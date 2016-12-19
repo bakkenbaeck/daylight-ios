@@ -1,5 +1,6 @@
 import Foundation
 import CoreLocation
+import Sunrise
 
 enum SunPhase {
     case sunrise
@@ -7,23 +8,26 @@ enum SunPhase {
     case sunset
     case twilight
     case night
-    case none
 
     // TODO: Move inside SunCalc, and add unit tests
-    static func get(for date: Date, in coordinate: CLLocationCoordinate2D) -> SunPhase {
-        let sunCalc = SunCalc(date: date, latitude: coordinate.latitude, longitude: coordinate.longitude)
-        if date.isBetween(sunCalc.sunrise, and: sunCalc.sunriseEnd) {
-            return .sunrise
-        } else if date.isBetween(sunCalc.goldenHour, and: sunCalc.goldenHourEnd) {
-            return .daylight
-        } else if date.isBetween(sunCalc.sunsetStart, and: sunCalc.sunset) {
-            return .sunset
-        } else if date.isBetween(sunCalc.dusk, and: sunCalc.nauticalDusk) {
-            return .twilight
-        } else if date.isBetween(sunCalc.night, and: sunCalc.nightEnd) {
+    static func get(for date: Date, in timeZone: TimeZone, at coordinate: CLLocationCoordinate2D) -> SunPhase {
+        let sunrise = SunriseSet(date: date, timeZone: timeZone, latitude: coordinate.latitude, longitude: coordinate.longitude)
+        var calendar = Calendar.current
+        calendar.timeZone = timeZone
+        let startOfTheDay = calendar.startOfDay(for: date)
+
+        if date.isBetween(startOfTheDay, and: sunrise.astronomicalTwilightStart) {
             return .night
+        } else if date.isBetween(sunrise.astronomicalTwilightStart, and: sunrise.nauticalTwilightStart) {
+            return .twilight
+        } else if date.isBetween(sunrise.nauticalTwilightStart, and: sunrise.civilTwilightStart) {
+            return .twilight
+        } else if date.isBetween(sunrise.civilTwilightStart, and: sunrise.sunrise) {
+            return .twilight
+        } else if date.isBetween(sunrise.sunrise, and: sunrise.sunset) {
+            return .daylight
         } else {
-            return .none
+            return .twilight
         }
     }
 }
