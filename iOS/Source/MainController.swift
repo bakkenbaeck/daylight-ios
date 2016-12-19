@@ -1,5 +1,6 @@
 import UIKit
 import CoreLocation
+import SweetUIKit
 
 class MainController: UIViewController {
     var messageLabelHeightAnchor: NSLayoutConstraint?
@@ -186,14 +187,5 @@ extension MainController: LocationTrackerDelegate {
         self.updateLocation()
         self.updateSunView()
         self.updateInterface()
-    }
-}
-
-extension UILabel {
-
-    public func height() -> CGFloat {
-        let size = self.sizeThatFits(CGSize(width: self.bounds.width, height: CGFloat.greatestFiniteMagnitude))
-
-        return size.height
     }
 }
