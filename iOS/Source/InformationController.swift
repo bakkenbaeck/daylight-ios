@@ -37,6 +37,7 @@ class InformationController: UIViewController {
         button.contentEdgeInsets = UIEdgeInsetsMake(28, 0, 0, 0)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didClickNotifications), for: .touchUpInside)
+        button.isHidden = true
 
         return button
     }()
