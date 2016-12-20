@@ -5,6 +5,13 @@ import SweetUIKit
 class MainController: UIViewController {
     var messageLabelHeightAnchor: NSLayoutConstraint?
 
+    lazy var informationController: InformationController = {
+        let informationController = InformationController()
+        informationController.modalTransitionStyle = .crossDissolve
+
+        return informationController
+    }()
+
     lazy var sunPhaseScheduler: SunPhaseScheduler = {
         let scheduler = SunPhaseScheduler()
 
@@ -130,9 +137,7 @@ class MainController: UIViewController {
     }
 
     func didClickInformation() {
-        let informationController = InformationController()
-        informationController.modalTransitionStyle = .crossDissolve
-        self.present(informationController, animated: true)
+        self.present(self.informationController, animated: true)
     }
 
     func updateLocation() {
