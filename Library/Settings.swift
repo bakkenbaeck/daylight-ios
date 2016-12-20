@@ -7,15 +7,13 @@ struct Settings {
         }
 
         get {
-            let local = UserDefaults.standard.bool(forKey: "isNotificationsEnabled")
-            if local == false {
+            let userRequestedNotification = UserDefaults.standard.bool(forKey: "isNotificationsEnabled")
+            if userRequestedNotification == false {
                 return false
             } else {
-                if let grantedSettings = UIApplication.shared.currentUserNotificationSettings, grantedSettings.types.contains([.alert]) {
-                    return true
-                } else {
-                    return false
-                }
+                let isAllowedToSendNotifications = UIApplication.shared.currentUserNotificationSettings?.types.contains([.alert]) ?? false
+
+                return isAllowedToSendNotifications
             }
         }
     }
