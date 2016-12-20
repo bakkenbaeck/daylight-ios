@@ -12,6 +12,12 @@ class MainController: UIViewController {
         return informationController
     }()
 
+    lazy var notifier: Notifier = {
+        let notifier = Notifier()
+
+        return notifier
+    }()
+
     lazy var sunPhaseScheduler: SunPhaseScheduler = {
         let scheduler = SunPhaseScheduler()
 
@@ -83,6 +89,8 @@ class MainController: UIViewController {
 
         self.updateLocation()
         self.updateSunView()
+
+        self.notifier.scheduleNotifications()
 
         self.sunPhaseScheduler.delegate = self
         self.sunPhaseScheduler.dataSource = self
@@ -178,13 +186,9 @@ extension MainController: LocationTrackerDelegate {
     func setMessage(for placemark: CLPlacemark) {
         guard let location = Location(placemark: placemark) else { return }
         let interval = location.dayLengthDifference
-        let minutes = interval / 60
-
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 2
-        let minutesString = formatter.string(from: NSNumber(value: abs(minutes)))!
 
         let messageGenerator = MessageGenerator()
+        let minutesString = messageGenerator.minuteString(for: interval)
         let message = messageGenerator.message(forDay: Date(), withInterval: interval)
 
         self.message = String(format: message.text, minutesString)

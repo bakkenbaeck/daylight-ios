@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 class Notifier: NSObject {
 
@@ -9,29 +10,28 @@ class Notifier: NSObject {
         return formatter
     }()
 
-    override init() {
-        //it gets inited every time you start the app ✌🏻
-        super.init()
-
-        //first check the user defaults if the notifications are allowed or not!
-        // if they are setup new notifcations
-    }
-
     func scheduleNotifications() {
-        //check what notifications are already sheduled at the moment
-        // get a list of dates for when a new notification has to be sheduled
-
-        //list of dates from now till next year
-        let datesOfComingYear = Date().dayAfter()
-
-        //filter list of dates that already have a notification
-
-        //shedulenotificationfordate
+        let datesOfComingYear = Date().datesOfComingYear()
+        for date in datesOfComingYear {
+            self.scheduleNotification(forDate: date)
+        }
     }
 
-    func scheduleNotification(forDate date: NSDate) {
-        // get sunrise time and longer day length interval for that date
-        // shedule the notification with that info
+    func scheduleNotification(forDate date: Date) {
+        guard let location = Location.current else { return }
+
+        let notificationID = self.dateFormatter.string(from: date)
+        let sunriseDate = location.sunriseForDate(date)
+
+        let interval = location.dayLengthDifferenceOnDate(date)
+
+        let messageGenerator = MessageGenerator()
+        let minutesString = messageGenerator.minuteString(for: interval)
+
+        let message = messageGenerator.messageForNotification(withInterval: interval)
+        let formattedMessage = String(format: message, minutesString)
+
+        UILocalNotification.create(notificationID, fireDate: sunriseDate, message: formattedMessage)
     }
 
     func deleteAllNotifications() {

@@ -108,4 +108,24 @@ struct Location {
 
         return interval
     }
+
+    func dayLengthDifferenceOnDate(_ date: Date) -> TimeInterval {
+        let dayBefore = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: date)!
+
+        let daySunTimes = Suntimes(date: date, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
+        let dayBeforeSunTimes = Suntimes(date: dayBefore, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
+
+        let dayLength = daySunTimes.sunset.timeIntervalSince(daySunTimes.sunrise)
+        let dayBeforeDayLength = dayBeforeSunTimes.sunset.timeIntervalSince(dayBeforeSunTimes.sunrise)
+
+        let interval = dayLength - dayBeforeDayLength
+
+        return interval
+    }
+
+    func sunriseForDate(_ date: Date) -> Date {
+        let daySunTimes = Suntimes(date: date, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
+
+        return daySunTimes.sunrise
+    }
 }
