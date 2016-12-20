@@ -1,2 +1,2 @@
 github "bakkenbaeck/Suntimes"
-github "UseSweet/SweetUIKit" "master"
+github "UseSweet/SweetUIKit" ~> 1.0

@@ -283,9 +283,39 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 + (NSString * _Nonnull)idKey;
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull fireDateKey;)
 + (NSString * _Nonnull)fireDateKey;
-+ (void)create:(NSString * _Nonnull)id fireDate:(NSDate * _Nonnull)fireDate soundName:(NSString * _Nullable)soundName message:(NSString * _Nonnull)message actionTitle:(NSString * _Nullable)actionTitle;
+/**
+  Schedules a local notification.
+  \param id The id used to represent a local notification in your app.
+
+  \param date The date when the notification will trigger
+
+  \param soundName The name of the sound to be used when the notification is received.
+
+  \param message The message that the app will use for your local notification.
+
+  \param actionTitle The title of the action to be displayed by your notification, it’s optional, though, since Apple provides a good default for this.
+
+*/
++ (void)schedule:(NSString * _Nonnull)id at:(NSDate * _Nonnull)date soundName:(NSString * _Nullable)soundName message:(NSString * _Nonnull)message actionTitle:(NSString * _Nullable)actionTitle;
+/**
+  Finds a local notification for certain id.
+  \param id The id used to store the notification.
+
+
+  returns:
+  A local notification that matches the provided id.
+*/
 + (UILocalNotification * _Nullable)find:(NSString * _Nonnull)id;
-+ (void)delete:(NSString * _Nonnull)id;
+/**
+  Cancels a local notification.
+  \param id The id used to store the notification.
+
+*/
++ (void)cancel:(NSString * _Nonnull)id;
+/**
+  Cancels all the local notifications for the current app.
+*/
++ (void)cancelAll;
 @end
 
 
