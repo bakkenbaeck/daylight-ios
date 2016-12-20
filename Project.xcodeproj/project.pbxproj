@@ -21,6 +21,8 @@
 		144D8CE91E089CD80036FD4B /* SunriseSet+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144D8CE81E089CD80036FD4B /* SunriseSet+Helpers.swift */; };
 		144D8CEB1E089D6C0036FD4B /* SunriseSet+HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144D8CEA1E089D6C0036FD4B /* SunriseSet+HelperTests.swift */; };
 		144D8CEC1E089F120036FD4B /* SunriseSet+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144D8CE81E089CD80036FD4B /* SunriseSet+Helpers.swift */; };
+		146AE9AD1E08B050003EE788 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146AE9AC1E08B050003EE788 /* Date+Helpers.swift */; };
+		146AE9AE1E08B050003EE788 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146AE9AC1E08B050003EE788 /* Date+Helpers.swift */; };
 		146E27A91BCD51F200959BBA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146E279F1BCD51F200959BBA /* LaunchScreen.xib */; };
 		146E27AA1BCD51F200959BBA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 146E27A11BCD51F200959BBA /* Images.xcassets */; };
 		1483128E1B92C11500266943 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1483128D1B92C11500266943 /* Tests.swift */; };
@@ -99,6 +101,7 @@
 		143D3B281DE9D434003F77B9 /* LocationTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
 		144D8CE81E089CD80036FD4B /* SunriseSet+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SunriseSet+Helpers.swift"; sourceTree = "<group>"; };
 		144D8CEA1E089D6C0036FD4B /* SunriseSet+HelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SunriseSet+HelperTests.swift"; sourceTree = "<group>"; };
+		146AE9AC1E08B050003EE788 /* Date+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
 		146E27891BCD51C800959BBA /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		146E27A01BCD51F200959BBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		146E27A11BCD51F200959BBA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -171,6 +174,7 @@
 				44227E8E1E067A1E002B911B /* Location.swift */,
 				1405CA341E08640700AAF52D /* SunPhase.swift */,
 				144D8CE81E089CD80036FD4B /* SunriseSet+Helpers.swift */,
+				146AE9AC1E08B050003EE788 /* Date+Helpers.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -450,6 +454,7 @@
 				144D8CE91E089CD80036FD4B /* SunriseSet+Helpers.swift in Sources */,
 				143D3B231DE9D3E0003F77B9 /* Theme+Font.swift in Sources */,
 				1405CA351E08640700AAF52D /* SunPhase.swift in Sources */,
+				146AE9AD1E08B050003EE788 /* Date+Helpers.swift in Sources */,
 				14F5FFF01E0809270021D231 /* TimeUtils.swift in Sources */,
 				14F5FFE71E0809270021D231 /* MoonIllumination.swift in Sources */,
 				14F5FFED1E0809270021D231 /* MoonUtils.swift in Sources */,
@@ -482,6 +487,7 @@
 				14E6F3D21E0873DF00F9C3F6 /* DateUtils.swift in Sources */,
 				1483128E1B92C11500266943 /* Tests.swift in Sources */,
 				14E6F3CE1E0873DB00F9C3F6 /* MoonIllumination.swift in Sources */,
+				146AE9AE1E08B050003EE788 /* Date+Helpers.swift in Sources */,
 				14E6F3CD1E0873DB00F9C3F6 /* GeocentricCoordinates.swift in Sources */,
 				14E6F3CA1E08735200F9C3F6 /* SunPhaseTests.swift in Sources */,
 				14E6F3D41E0873DF00F9C3F6 /* PositionUtils.swift in Sources */,
