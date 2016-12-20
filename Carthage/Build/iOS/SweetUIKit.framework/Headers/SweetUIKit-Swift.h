@@ -117,6 +117,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #if defined(__has_feature) && __has_feature(modules)
 @import UIKit;
 @import CoreGraphics;
+@import Foundation;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -254,6 +255,17 @@ SWIFT_CLASS("_TtC10SweetUIKit20SweetTableController")
 
 */
 - (void)setSpacedOutText:(NSString * _Nonnull)text lineSpacing:(CGFloat)lineSpacing;
+@end
+
+
+@interface UILocalNotification (SWIFT_EXTENSION(SweetUIKit))
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull idKey;)
++ (NSString * _Nonnull)idKey;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull fireDateKey;)
++ (NSString * _Nonnull)fireDateKey;
++ (void)create:(NSString * _Nonnull)id fireDate:(NSDate * _Nonnull)fireDate soundName:(NSString * _Nullable)soundName message:(NSString * _Nonnull)message actionTitle:(NSString * _Nullable)actionTitle;
++ (UILocalNotification * _Nullable)find:(NSString * _Nonnull)id;
++ (void)delete:(NSString * _Nonnull)id;
 @end
 
 
