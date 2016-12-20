@@ -16,7 +16,6 @@ class SunPhaseScheduler: NSObject {
     override init() {
         super.init()
 
-        self.update()
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.update), userInfo: nil, repeats: true);
     }
 
