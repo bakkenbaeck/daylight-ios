@@ -149,7 +149,7 @@ class SunView: UIView {
         self.sun.backgroundColor = textColor
         self.moon.backgroundColor = backgroundColor
 
-        self.sunLocation = self.location(for: CGFloat(percentageInDay))
+        self.sunViewLocation = self.location(for: CGFloat(percentageInDay))
         self.isNight = isNight
     }
 }

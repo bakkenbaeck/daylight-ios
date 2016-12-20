@@ -121,7 +121,7 @@ class MainController: UIViewController {
         let range = (self.message as NSString).range(of: self.colored)
         let attributedString = NSMutableAttributedString(string: self.message)
         attributedString.addAttribute(NSForegroundColorAttributeName, value: self.textColor, range: range)
-        let isNight = (Location.current?.sunPhase ?? .night) == .night
+        let isNight = Location.current?.isNight ?? false
 
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = self.backgroundColor
