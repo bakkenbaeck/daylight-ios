@@ -5,7 +5,6 @@ class InformationController: UIViewController {
 
     lazy var sunPhaseScheduler: SunPhaseScheduler = {
         let scheduler = SunPhaseScheduler()
-
         return scheduler
     }()
 
@@ -56,6 +55,7 @@ class InformationController: UIViewController {
         self.addSubviewsAndConstraints()
         self.sunPhaseScheduler.delegate = self
         self.sunPhaseScheduler.dataSource = self
+        self.sunPhaseScheduler.update()
     }
 
     func addSubviewsAndConstraints() {

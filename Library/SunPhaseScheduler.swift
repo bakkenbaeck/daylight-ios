@@ -16,12 +16,12 @@ class SunPhaseScheduler: NSObject {
     override init() {
         super.init()
 
-        self.update()
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.update), userInfo: nil, repeats: true);
     }
 
     func update() {
         let sunPhase = self.dataSource?.sunPhase(for: self) ?? .none
+        print(sunPhase)
 
         var backgroundColor = UIColor.white
         var textColor = UIColor.black
