@@ -198,6 +198,7 @@ extension MainController: SunPhaseSchedulerDelegate {
         self.percentageInDay = Location.current?.daylightLengthProgress ?? 0
         self.backgroundColor = backgroundColor
         self.textColor = textColor
+        self.updateSunView()
         self.updateInterface()
     }
 }
