@@ -122,8 +122,8 @@ class MainController: UIViewController {
         let minutesString = messageGenerator.minuteString(for: interval)
         let generatedMessage = messageGenerator.message(forDay: Date(), withInterval: interval)
 
-        let message = String(format: generatedMessage.text, minutesString)
-        let colored = String(format: generatedMessage.colored, minutesString)
+        let message = String(format: generatedMessage.content, minutesString)
+        let colored = String(format: generatedMessage.coloredPart, minutesString)
 
         let range = (message as NSString).range(of: colored)
         let attributedString = NSMutableAttributedString(string: message)
