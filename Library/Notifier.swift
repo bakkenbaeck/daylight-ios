@@ -36,6 +36,6 @@ class Notifier: NSObject {
     }
 
     func deleteAllNotifications() {
-        // when you turn off notifications in the information controller, it should call this method.
+        UILocalNotification.cancelAll()
     }
 }
