@@ -2,15 +2,6 @@ import UIKit
 import XCTest
 
 class Tests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
     func testLongerDayMessage() {
         let messageGenerator = MessageGenerator()
         let date = Date()
