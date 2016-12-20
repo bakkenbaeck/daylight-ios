@@ -42,7 +42,6 @@ class Suntimes_HelperTests: XCTestCase {
         dateComponents.second = 15
         date = calendar.date(from: dateComponents)!
         suntimes = Suntimes(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
-        //XCTAssertEqualWithAccuracy(suntimes.daylightLengthProgress, 1, accuracy: 0.05)
-        XCTAssertEqual(suntimes.daylightLengthProgress, 1)
+        XCTAssertEqualWithAccuracy(suntimes.daylightLengthProgress, 1, accuracy: 0.05)
     }
 }
