@@ -15,7 +15,7 @@ class InformationButton: UIButton {
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .light(size: 12)
+        label.font = Theme.light(size: 12)
 
         return label
     }()

@@ -26,7 +26,7 @@ class InformationController: UIViewController {
     lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .light(size: 32)
+        label.font = Theme.light(size: 32)
         label.translatesAutoresizingMaskIntoConstraints = false
 
         label.textColor = .white
@@ -36,7 +36,7 @@ class InformationController: UIViewController {
 
     lazy var notificationButton: UIButton = {
         let button = UIButton()
-        button.titleLabel?.font = .light(size: 16)
+        button.titleLabel?.font = Theme.light(size: 16)
         button.contentHorizontalAlignment = .left
         button.contentEdgeInsets = UIEdgeInsetsMake(28, 0, 0, 0)
         button.translatesAutoresizingMaskIntoConstraints = false
