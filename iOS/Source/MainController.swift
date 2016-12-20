@@ -96,9 +96,9 @@ class MainController: UIViewController {
 
         let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
 
-        self.informationButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: insets.top).isActive = true
-        self.informationButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: insets.left).isActive = true
-        self.informationButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        self.informationButton.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        self.informationButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        self.informationButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
         self.informationButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
 
         self.sunView.heightAnchor.constraint(equalToConstant: 133).isActive = true

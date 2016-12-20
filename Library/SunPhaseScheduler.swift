@@ -21,7 +21,6 @@ class SunPhaseScheduler: NSObject {
 
     func update() {
         let sunPhase = self.dataSource?.sunPhase(for: self) ?? .none
-        print(sunPhase)
 
         var backgroundColor = UIColor.white
         var textColor = UIColor.black
