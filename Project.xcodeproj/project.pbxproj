@@ -57,7 +57,9 @@
 		44227E901E067A1E002B911B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
 		D197B1ACD3FD8E3106217F49 /* MessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */; };
 		D197B6CB04F50A1E71C59C6B /* SunPhaseScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BFA8D6283613096635E6 /* SunPhaseScheduler.swift */; };
+		D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBC3EDBF4CA099642BCE /* Notifier.swift */; };
 		D197BB6AA1F1FB8F3E2ADA6B /* MessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */; };
+		D197BCBC5D2C49BA6C103A37 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBC3EDBF4CA099642BCE /* Notifier.swift */; };
 		E6D9D5031E02C9350007006D /* GT-America-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6D9D5021E02C9350007006D /* GT-America-Light.ttf */; };
 		E6D9D5051E02CDE70007006D /* SunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D9D5041E02CDE70007006D /* SunView.swift */; };
 		E6D9D5071E02D7970007006D /* InformationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D9D5061E02D7970007006D /* InformationButton.swift */; };
@@ -125,6 +127,7 @@
 		14F5FFE41E0809270021D231 /* TimeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
 		44227E8E1E067A1E002B911B /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageGenerator.swift; sourceTree = "<group>"; };
+		D197BBC3EDBF4CA099642BCE /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		D197BFA8D6283613096635E6 /* SunPhaseScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunPhaseScheduler.swift; sourceTree = "<group>"; };
 		E6D9D5021E02C9350007006D /* GT-America-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GT-America-Light.ttf"; sourceTree = "<group>"; };
 		E6D9D5041E02CDE70007006D /* SunView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunView.swift; sourceTree = "<group>"; };
@@ -175,6 +178,7 @@
 				1405CA341E08640700AAF52D /* SunPhase.swift */,
 				144D8CE81E089CD80036FD4B /* SunriseSet+Helpers.swift */,
 				146AE9AC1E08B050003EE788 /* Date+Helpers.swift */,
+				D197BBC3EDBF4CA099642BCE /* Notifier.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -471,6 +475,7 @@
 				14F5FFEB1E0809270021D231 /* Constants.swift in Sources */,
 				14F5FFEE1E0809270021D231 /* PositionUtils.swift in Sources */,
 				D197B6CB04F50A1E71C59C6B /* SunPhaseScheduler.swift in Sources */,
+				D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +503,7 @@
 				D197B1ACD3FD8E3106217F49 /* MessageGenerator.swift in Sources */,
 				14E6F3D01E0873DB00F9C3F6 /* SunPosition.swift in Sources */,
 				14E6F3D11E0873DF00F9C3F6 /* Constants.swift in Sources */,
+				D197BCBC5D2C49BA6C103A37 /* Notifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
