@@ -5,6 +5,13 @@ import SweetUIKit
 class MainController: UIViewController {
     var messageLabelHeightAnchor: NSLayoutConstraint?
 
+    lazy var informationController: InformationController = {
+        let informationController = InformationController()
+        informationController.modalTransitionStyle = .crossDissolve
+
+        return informationController
+    }()
+
     lazy var sunPhaseScheduler: SunPhaseScheduler = {
         let scheduler = SunPhaseScheduler()
 
@@ -43,7 +50,7 @@ class MainController: UIViewController {
     lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .light(size: 32)
+        label.font = Theme.light(size: 32)
         label.translatesAutoresizingMaskIntoConstraints = false
 
         label.textColor = .white
@@ -53,7 +60,7 @@ class MainController: UIViewController {
 
     lazy var locationLabel: UILabel = {
         let label = UILabel()
-        label.font = .light(size: 16)
+        label.font = Theme.light(size: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -89,9 +96,9 @@ class MainController: UIViewController {
 
         let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
 
-        self.informationButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: insets.top).isActive = true
-        self.informationButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: insets.left).isActive = true
-        self.informationButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        self.informationButton.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        self.informationButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        self.informationButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
         self.informationButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
 
         self.sunView.heightAnchor.constraint(equalToConstant: 133).isActive = true
@@ -131,9 +138,7 @@ class MainController: UIViewController {
     }
 
     func didClickInformation() {
-        let informationController = InformationController()
-        informationController.modalTransitionStyle = .crossDissolve
-        self.present(informationController, animated: true)
+        self.present(self.informationController, animated: true)
     }
 
     func updateLocation() {

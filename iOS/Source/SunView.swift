@@ -1,22 +1,26 @@
 import UIKit
 import CoreLocation
 
-class SunView: UIView {
+struct SunViewLocation {
+    let x: CGFloat
+    let y: CGFloat
+}
 
-    static let sunSize = Double(16.0)
+class SunView: UIView {
+    static let sunSize = CGFloat(16.0)
 
     var isNight = false {
         didSet {
             if self.isNight {
                 self.moon.isHidden = false
-                self.sunLocation = (x: Double((self.frame.width - CGFloat(SunView.sunSize)) / CGFloat(2)), y: Double(CGFloat(0)))
+                self.sunViewLocation = SunViewLocation(x: (self.frame.width - SunView.sunSize) / 2.0, y: 0.0)
             } else {
                 self.moon.isHidden = true
             }
         }
     }
 
-    var sunLocation = (x: Double(0.0), y: Double(0.0)) {
+    var sunViewLocation = SunViewLocation(x: 0, y: 0) {
         didSet{
             self.setNeedsLayout()
         }
@@ -28,14 +32,14 @@ class SunView: UIView {
 
     lazy var sunriseLabel: UILabel = {
        let label = UILabel()
-        label.font = .light(size: 12)
+        label.font = Theme.light(size: 12)
 
         return label
     }()
 
     lazy var sunsetLabel: UILabel = {
         let label = UILabel()
-        label.font = .light(size: 12)
+        label.font = Theme.light(size: 12)
         label.textAlignment = .right
 
         return label
@@ -46,7 +50,7 @@ class SunView: UIView {
         label.textAlignment = .center
 
 
-        label.font = .light(size: 12)
+        label.font = Theme.light(size: 12)
 
         return label
     }()
@@ -102,11 +106,11 @@ class SunView: UIView {
         // TODO: check if the view layout is also possible using constraints
         self.sunriseLabel.frame = CGRect(x: 0, y: 108, width: 33, height: 16)
         self.sunsetLabel.frame = CGRect(x: self.bounds.width - 33, y: 108, width: 33, height: 16)
-        self.sun.frame = CGRect(x: self.sunLocation.x, y: self.sunLocation.y, width: SunView.sunSize, height: SunView.sunSize)
+        self.sun.frame = CGRect(x: self.sunViewLocation.x, y: self.sunViewLocation.y, width: SunView.sunSize, height: SunView.sunSize)
         self.sunMask.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: 108)
         self.horizon.frame = CGRect(x: 0, y: 108, width: self.bounds.width, height: 1)
-        self.currentTimeLabel.frame = CGRect(x: self.sunLocation.x - 10, y: self.sunLocation.y - 24, width: 33, height: 16)
-        self.moon.frame = CGRect(x: self.sunLocation.x + (SunView.sunSize / 2), y: self.sunLocation.y, width: SunView.sunSize / 2, height: SunView.sunSize)
+        self.currentTimeLabel.frame = CGRect(x: self.sunViewLocation.x - 10, y: self.sunViewLocation.y - 24, width: 33, height: 16)
+        self.moon.frame = CGRect(x: self.sunViewLocation.x + (SunView.sunSize / 2), y: self.sunViewLocation.y, width: SunView.sunSize / 2, height: SunView.sunSize)
     }
 
     func addSubviewsAndConstraints() {
@@ -125,16 +129,16 @@ class SunView: UIView {
         self.sunsetLabel.text = location.sunsetTimeString
     }
 
-    func location(for percentageInDay: Double) -> (Double, Double) {
-        let position = Double.pi + (percentageInDay * Double.pi)
+    func location(for percentageInDay: CGFloat) -> SunViewLocation {
+        let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
         //TODO: Check these numbers and make them work right
-        let x = (50.0 + cos(position) * 50.0)
-        let y = (abs(sin(position) * 100.0))
+        let x = 50.0 + cos(position) * 50.0
+        let y = abs(sin(position) * 100.0)
 
-        let absoluteX =  ((self.bounds.width - CGFloat(SunView.sunSize)) / 100) * CGFloat(x)
-        let absoluteY  = Double(self.sunMask.frame.height) - ((Double(self.sunMask.frame.height) / 100.0) * y)
+        let absoluteX =  ((self.bounds.width - SunView.sunSize) / 100) * x
+        let absoluteY  = self.sunMask.frame.height - (self.sunMask.frame.height / 100.0) * y
 
-        return (Double(absoluteX), Double(absoluteY))
+        return SunViewLocation(x: absoluteX, y: absoluteY)
     }
 
     func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, isNight: Bool) {
@@ -145,7 +149,7 @@ class SunView: UIView {
         self.sun.backgroundColor = textColor
         self.moon.backgroundColor = backgroundColor
 
-        self.sunLocation = self.location(for: percentageInDay)
+        self.sunLocation = self.location(for: CGFloat(percentageInDay))
         self.isNight = isNight
     }
 }

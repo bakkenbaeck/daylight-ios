@@ -5,7 +5,6 @@ class InformationController: UIViewController {
 
     lazy var sunPhaseScheduler: SunPhaseScheduler = {
         let scheduler = SunPhaseScheduler()
-
         return scheduler
     }()
 
@@ -22,7 +21,7 @@ class InformationController: UIViewController {
     lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .light(size: 32)
+        label.font = Theme.light(size: 32)
         label.translatesAutoresizingMaskIntoConstraints = false
 
         label.textColor = .white
@@ -32,7 +31,7 @@ class InformationController: UIViewController {
 
     lazy var notificationButton: UIButton = {
         let button = UIButton()
-        button.titleLabel?.font = .light(size: 16)
+        button.titleLabel?.font = Theme.light(size: 16)
         button.contentHorizontalAlignment = .left
         button.contentEdgeInsets = UIEdgeInsetsMake(28, 0, 0, 0)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -57,6 +56,7 @@ class InformationController: UIViewController {
         self.addSubviewsAndConstraints()
         self.sunPhaseScheduler.delegate = self
         self.sunPhaseScheduler.dataSource = self
+        self.sunPhaseScheduler.update()
     }
 
     func addSubviewsAndConstraints() {
@@ -66,9 +66,9 @@ class InformationController: UIViewController {
 
         let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
 
-        self.closeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: insets.top).isActive = true
-        self.closeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: insets.left).isActive = true
-        self.closeButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        self.closeButton.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        self.closeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        self.closeButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
         self.closeButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
 
         self.messageLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: (2 * -insets.bottom)).isActive = true

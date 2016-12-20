@@ -7,6 +7,7 @@ class InformationButton: UIButton {
         let view = UIView()
         view.layer.cornerRadius = sunSize * 0.5
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = false
 
         return view
     }()
@@ -14,7 +15,7 @@ class InformationButton: UIButton {
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .light(size: 12)
+        label.font = Theme.light(size: 12)
 
         return label
     }()
@@ -34,13 +35,13 @@ class InformationButton: UIButton {
         self.addSubview(self.sun)
         self.addSubview(self.nameLabel)
 
-        self.sun.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        self.sun.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        self.sun.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 40).isActive = true
+        self.sun.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
         self.sun.widthAnchor.constraint(equalToConstant: InformationButton.sunSize).isActive = true
         self.sun.heightAnchor.constraint(equalToConstant: InformationButton.sunSize).isActive = true
 
         self.nameLabel.leftAnchor.constraint(equalTo: self.sun.rightAnchor, constant: 8).isActive = true
-        self.nameLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        self.nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
         self.nameLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -40).isActive = true
         self.nameLabel.heightAnchor.constraint(equalToConstant: 16)
     }

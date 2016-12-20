@@ -60,15 +60,15 @@ struct Location {
     }
 
     var sunPhase: SunPhase {
-        let sunriseSet = Suntimes(date: Date(), timeZone: .autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
+        let suntimes = Suntimes(date: Date(), timeZone: .autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
 
-        return sunriseSet.sunPhase
+        return suntimes.sunPhase
     }
 
     var daylightLengthProgress: Double {
-        let sunriseSet = Suntimes(date: Date(), timeZone: .autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
+        let suntimes = Suntimes(date: Date(), timeZone: .autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
 
-        return sunriseSet.daylightLengthProgress
+        return suntimes.daylightLengthProgress
     }
 
     var sunsetTimeString: String {
