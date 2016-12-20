@@ -12,4 +12,18 @@ extension Date {
 
         return true
     }
+
+    func dayAfter() -> Date {
+        return Calendar.current.date(byAdding: .day, value: 1, to: self)!
+    }
+
+    func datesOfComingYear() -> [Date] {
+       var dayArray = [self]
+
+       for i in 0..<365 {
+           dayArray.append(dayArray[i].dayAfter())
+       }
+
+       return dayArray
+    }
 }
