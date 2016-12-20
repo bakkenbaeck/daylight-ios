@@ -3,6 +3,13 @@ import CoreLocation
 import Suntimes
 
 struct Location {
+    lazy var timeFormatter: DateFormatter = {
+        let shortTimeFormatter = DateFormatter()
+        shortTimeFormatter.dateFormat = "hh:mm"
+
+        return shortTimeFormatter
+    }()
+
     let coordinate: CLLocationCoordinate2D
     let city: String
     let country: String
@@ -62,5 +69,43 @@ struct Location {
         let sunriseSet = Suntimes(date: Date(), timeZone: .autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
 
         return sunriseSet.daylightLengthProgress
+    }
+
+    var sunsetTimeString: String {
+        let today = Calendar.autoupdatingCurrent.startOfDay(for: Date())
+
+        let todaySuntimes = Suntimes(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
+        let sunset = todaySuntimes.sunset
+
+        let shortTimeFormatter = DateFormatter()
+        shortTimeFormatter.dateFormat = "hh:mm"
+
+        return shortTimeFormatter.string(from: sunset)
+    }
+
+    var sunriseTimeString: String {
+        let today = Calendar.autoupdatingCurrent.startOfDay(for: Date())
+
+        let todaySuntimes = Suntimes(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let sunrise = todaySuntimes.sunrise
+        let shortTimeFormatter = DateFormatter()
+        shortTimeFormatter.dateFormat = "hh:mm"
+
+        return shortTimeFormatter.string(from: sunrise)
+    }
+
+    var dayLengthDifference: TimeInterval {
+        let today = Calendar.autoupdatingCurrent.startOfDay(for: Date())
+        let yesterday = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: today)!
+
+        let todaySuntimes = Suntimes(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let yesterdaySuntimes = Suntimes(date: yesterday, timeZone: TimeZone.autoupdatingCurrent, latitude: coordinate.latitude, longitude: coordinate.longitude)
+
+        let todayDayLength = todaySuntimes.sunset.timeIntervalSince(todaySuntimes.sunrise)
+        let yesterdayDayLength = yesterdaySuntimes.sunset.timeIntervalSince(yesterdaySuntimes.sunrise)
+
+        let interval = todayDayLength - yesterdayDayLength
+
+        return interval
     }
 }

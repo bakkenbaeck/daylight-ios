@@ -13,7 +13,6 @@
 		1418DB861E08A8A80041C201 /* Suntimes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1418DB841E08A8A80041C201 /* Suntimes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1418DB871E08A8B40041C201 /* Suntimes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1418DB841E08A8A80041C201 /* Suntimes.framework */; };
 		1418DB891E08A8BF0041C201 /* Suntimes.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1418DB881E08A8BF0041C201 /* Suntimes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		143D3B211DE9D3E0003F77B9 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1E1DE9D3E0003F77B9 /* APIClient.swift */; };
 		143D3B221DE9D3E0003F77B9 /* Theme+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1F1DE9D3E0003F77B9 /* Theme+Color.swift */; };
 		143D3B231DE9D3E0003F77B9 /* Theme+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B201DE9D3E0003F77B9 /* Theme+Font.swift */; };
 		143D3B261DE9D3F3003F77B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B241DE9D3F3003F77B9 /* AppDelegate.swift */; };
@@ -93,7 +92,6 @@
 		1405CA341E08640700AAF52D /* SunPhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunPhase.swift; sourceTree = "<group>"; };
 		1418DB841E08A8A80041C201 /* Suntimes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Suntimes.framework; path = Carthage/Build/iOS/Suntimes.framework; sourceTree = "<group>"; };
 		1418DB881E08A8BF0041C201 /* Suntimes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Suntimes.framework; path = Carthage/Build/iOS/Suntimes.framework; sourceTree = "<group>"; };
-		143D3B1E1DE9D3E0003F77B9 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		143D3B1F1DE9D3E0003F77B9 /* Theme+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Theme+Color.swift"; sourceTree = "<group>"; };
 		143D3B201DE9D3E0003F77B9 /* Theme+Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Theme+Font.swift"; sourceTree = "<group>"; };
 		143D3B241DE9D3F3003F77B9 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -165,7 +163,6 @@
 			isa = PBXGroup;
 			children = (
 				14F5FFD51E0809270021D231 /* Vendor */,
-				143D3B1E1DE9D3E0003F77B9 /* APIClient.swift */,
 				143D3B1F1DE9D3E0003F77B9 /* Theme+Color.swift */,
 				143D3B201DE9D3E0003F77B9 /* Theme+Font.swift */,
 				143D3B281DE9D434003F77B9 /* LocationTracker.swift */,
@@ -463,7 +460,6 @@
 				E6F604701E08106000A6461A /* CloseButton.swift in Sources */,
 				E6D9D5071E02D7970007006D /* InformationButton.swift in Sources */,
 				14F5FFE61E0809270021D231 /* GeocentricCoordinates.swift in Sources */,
-				143D3B211DE9D3E0003F77B9 /* APIClient.swift in Sources */,
 				E6D9D5051E02CDE70007006D /* SunView.swift in Sources */,
 				143D3B291DE9D434003F77B9 /* LocationTracker.swift in Sources */,
 				D197BB6AA1F1FB8F3E2ADA6B /* MessageGenerator.swift in Sources */,

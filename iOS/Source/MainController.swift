@@ -172,7 +172,7 @@ extension MainController: LocationTrackerDelegate {
 
     func setMessage(for placemark: CLPlacemark) {
         guard let location = Location(placemark: placemark) else { return }
-        let interval = APIClient.dayLengthDifference(for: location.coordinate)
+        let interval = location.dayLengthDifference
         let minutes = interval / 60
 
         let formatter = NumberFormatter()

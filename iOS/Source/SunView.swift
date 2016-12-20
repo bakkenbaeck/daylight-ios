@@ -79,6 +79,12 @@ class SunView: UIView {
         return view
     }()
 
+    lazy var timeFormatter: DateFormatter = {
+        let shortTimeFormatter = DateFormatter()
+        shortTimeFormatter.dateFormat = "hh:mm"
+
+        return shortTimeFormatter
+    }()
 
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -114,9 +120,9 @@ class SunView: UIView {
     }
 
     func update(for location: Location) {
-        self.currentTimeLabel.text = APIClient.timeFormatter.string(from: Date())
-        self.sunriseLabel.text = APIClient.sunriseTimeString(for: location.coordinate)
-        self.sunsetLabel.text = APIClient.sunsetTimeString(for: location.coordinate)
+        self.currentTimeLabel.text = self.timeFormatter.string(from: Date())
+        self.sunriseLabel.text = location.sunriseTimeString
+        self.sunsetLabel.text = location.sunsetTimeString
     }
 
     func location(for percentageInDay: Double) -> (Double, Double) {
