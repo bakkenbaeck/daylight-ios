@@ -1,0 +1,6 @@
+framework module Suntimes {
+  umbrella header "Suntimes.h"
+
+  export *
+  module * { export * }
+}
