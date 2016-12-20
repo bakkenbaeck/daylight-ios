@@ -1,10 +1,5 @@
 import Foundation
 
-struct Message {
-    let content: String
-    let coloredPart: String
-}
-
 struct MessageGenerator {
     let informationMessage = Message(content: "Daylight is an experiment inspired by the dark and long winters of the north. Made by Bakken & Bæck.", coloredPart: "Bakken & Bæck")
 
