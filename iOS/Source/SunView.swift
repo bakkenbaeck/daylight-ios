@@ -32,14 +32,14 @@ class SunView: UIView {
 
     lazy var sunriseLabel: UILabel = {
        let label = UILabel()
-        label.font = .light(size: 12)
+        label.font = Theme.light(size: 12)
 
         return label
     }()
 
     lazy var sunsetLabel: UILabel = {
         let label = UILabel()
-        label.font = .light(size: 12)
+        label.font = Theme.light(size: 12)
         label.textAlignment = .right
 
         return label
@@ -50,7 +50,7 @@ class SunView: UIView {
         label.textAlignment = .center
 
 
-        label.font = .light(size: 12)
+        label.font = Theme.light(size: 12)
 
         return label
     }()

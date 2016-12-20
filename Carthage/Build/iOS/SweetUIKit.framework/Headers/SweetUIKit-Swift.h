@@ -221,7 +221,27 @@ SWIFT_CLASS("_TtC10SweetUIKit20SweetTableController")
 - (void)register:(SWIFT_METATYPE(UICollectionReusableView) _Nonnull)supplementaryViewClass ofKind:(NSString * _Nonnull)kind;
 @end
 
-@class UIColor;
+
+@interface UIColor (SWIFT_EXTENSION(SweetUIKit))
+/**
+  Base initializer, it creates an instance of \code
+  UIColor
+  \endcode using an HEX string.
+  \param hex The base HEX string to create the color.
+
+*/
+- (nonnull instancetype)initWithHex:(NSString * _Nonnull)hex;
+/**
+  Compares if two colors are equal.
+  \param color A UIColor to compare.
+
+
+  returns:
+  A boolean, true if same (or very similar) and false otherwise.
+*/
+- (BOOL)isEqualTo:(UIColor * _Nonnull)color;
+@end
+
 
 @interface UIImage (SWIFT_EXTENSION(SweetUIKit))
 /**

@@ -13,8 +13,7 @@
 		1418DB861E08A8A80041C201 /* Suntimes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1418DB841E08A8A80041C201 /* Suntimes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1418DB871E08A8B40041C201 /* Suntimes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1418DB841E08A8A80041C201 /* Suntimes.framework */; };
 		1418DB891E08A8BF0041C201 /* Suntimes.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1418DB881E08A8BF0041C201 /* Suntimes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		143D3B221DE9D3E0003F77B9 /* Theme+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1F1DE9D3E0003F77B9 /* Theme+Color.swift */; };
-		143D3B231DE9D3E0003F77B9 /* Theme+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B201DE9D3E0003F77B9 /* Theme+Font.swift */; };
+		143D3B221DE9D3E0003F77B9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1F1DE9D3E0003F77B9 /* Theme.swift */; };
 		143D3B261DE9D3F3003F77B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B241DE9D3F3003F77B9 /* AppDelegate.swift */; };
 		143D3B271DE9D3F3003F77B9 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B251DE9D3F3003F77B9 /* MainController.swift */; };
 		143D3B291DE9D434003F77B9 /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B281DE9D434003F77B9 /* LocationTracker.swift */; };
@@ -70,8 +69,7 @@
 		1405CA341E08640700AAF52D /* SunPhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunPhase.swift; sourceTree = "<group>"; };
 		1418DB841E08A8A80041C201 /* Suntimes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Suntimes.framework; path = Carthage/Build/iOS/Suntimes.framework; sourceTree = "<group>"; };
 		1418DB881E08A8BF0041C201 /* Suntimes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Suntimes.framework; path = Carthage/Build/iOS/Suntimes.framework; sourceTree = "<group>"; };
-		143D3B1F1DE9D3E0003F77B9 /* Theme+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Theme+Color.swift"; sourceTree = "<group>"; };
-		143D3B201DE9D3E0003F77B9 /* Theme+Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Theme+Font.swift"; sourceTree = "<group>"; };
+		143D3B1F1DE9D3E0003F77B9 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		143D3B241DE9D3F3003F77B9 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		143D3B251DE9D3F3003F77B9 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		143D3B281DE9D434003F77B9 /* LocationTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
@@ -129,8 +127,7 @@
 		141A6FD31BDE2DAB00CB6E82 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				143D3B1F1DE9D3E0003F77B9 /* Theme+Color.swift */,
-				143D3B201DE9D3E0003F77B9 /* Theme+Font.swift */,
+				143D3B1F1DE9D3E0003F77B9 /* Theme.swift */,
 				143D3B281DE9D434003F77B9 /* LocationTracker.swift */,
 				D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */,
 				D197BFA8D6283613096635E6 /* SunPhaseScheduler.swift */,
@@ -368,10 +365,9 @@
 				143D3B271DE9D3F3003F77B9 /* MainController.swift in Sources */,
 				44227E8F1E067A1E002B911B /* Location.swift in Sources */,
 				144D8CE91E089CD80036FD4B /* SunriseSet+Helpers.swift in Sources */,
-				143D3B231DE9D3E0003F77B9 /* Theme+Font.swift in Sources */,
 				1405CA351E08640700AAF52D /* SunPhase.swift in Sources */,
 				146AE9AD1E08B050003EE788 /* Date+Helpers.swift in Sources */,
-				143D3B221DE9D3E0003F77B9 /* Theme+Color.swift in Sources */,
+				143D3B221DE9D3E0003F77B9 /* Theme.swift in Sources */,
 				E6E337AE1E044AD600787E88 /* InformationController.swift in Sources */,
 				E6F604701E08106000A6461A /* CloseButton.swift in Sources */,
 				E6D9D5071E02D7970007006D /* InformationButton.swift in Sources */,

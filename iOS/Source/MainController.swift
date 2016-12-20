@@ -50,7 +50,7 @@ class MainController: UIViewController {
     lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .light(size: 32)
+        label.font = Theme.light(size: 32)
         label.translatesAutoresizingMaskIntoConstraints = false
 
         label.textColor = .white
@@ -60,7 +60,7 @@ class MainController: UIViewController {
 
     lazy var locationLabel: UILabel = {
         let label = UILabel()
-        label.font = .light(size: 16)
+        label.font = Theme.light(size: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label

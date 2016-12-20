@@ -27,20 +27,20 @@ class SunPhaseScheduler: NSObject {
 
         switch sunPhase {
         case .sunrise:
-            backgroundColor = .sunrise
-            textColor = .sunriseText
+            backgroundColor = Theme.sunriseBackground
+            textColor = Theme.sunriseText
         case .daylight:
-            backgroundColor = .daylight
-            textColor = .daylightText
+            backgroundColor = Theme.daylightBackground
+            textColor = Theme.daylightText
         case .sunset:
-            backgroundColor = .sunset
-            textColor = .sunsetText
+            backgroundColor = Theme.sunsetBackground
+            textColor = Theme.sunsetText
         case .twilight:
-            backgroundColor = .twilight
-            textColor = .twilightText
+            backgroundColor = Theme.twilightBackground
+            textColor = Theme.twilightText
         case .night:
-            backgroundColor = .night
-            textColor = .nightText
+            backgroundColor = Theme.nightBackground
+            textColor = Theme.nightText
         default:
             backgroundColor = .white
             textColor = .black
