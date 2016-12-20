@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import SweetUIKit
 
 class Notifier: NSObject {
 
@@ -31,7 +32,7 @@ class Notifier: NSObject {
         let message = messageGenerator.messageForNotification(withInterval: interval)
         let formattedMessage = String(format: message, minutesString)
 
-        UILocalNotification.create(notificationID, fireDate: sunriseDate, message: formattedMessage)
+        UILocalNotification.schedule(notificationID, at: sunriseDate, message: formattedMessage)
     }
 
     func deleteAllNotifications() {
