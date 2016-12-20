@@ -9,8 +9,8 @@ class MessageGeneratorTests: XCTestCase {
         let message = messageGenerator.message(forDay: date, withInterval: 2)
         let message2 = messageGenerator.message(forDay: date, withInterval: 2)
 
-        XCTAssertEqual(message.text, message2.text)
-        XCTAssertEqual(message.colored, message2.colored)
+        XCTAssertEqual(message.content, message2.content)
+        XCTAssertEqual(message.coloredPart, message2.coloredPart)
     }
 
     func testNoChangeMessage() {
@@ -18,7 +18,7 @@ class MessageGeneratorTests: XCTestCase {
         let date = Date()
 
         let message = messageGenerator.message(forDay: date, withInterval: 0.5)
-        let formattedString = String(format: message.text, 0)
+        let formattedString = String(format: message.content, 0)
 
         XCTAssert(formattedString.characters.count > 0)
     }
@@ -28,7 +28,7 @@ class MessageGeneratorTests: XCTestCase {
         let date = Date()
 
         let message = messageGenerator.message(forDay: date, withInterval: -1)
-        let formattedString = String(format: message.text, 0)
+        let formattedString = String(format: message.content, 0)
 
         XCTAssert(formattedString.characters.count > 0)
     }
@@ -37,7 +37,7 @@ class MessageGeneratorTests: XCTestCase {
         let messageGenerator = MessageGenerator()
 
         let message = messageGenerator.nightMessage()
-        let formattedString = String(format: message.text, 0)
+        let formattedString = String(format: message.content, 0)
 
         XCTAssert(formattedString.characters.count > 0)
     }
