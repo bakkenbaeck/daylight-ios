@@ -121,10 +121,11 @@ class MainController: UIViewController {
         let range = (self.message as NSString).range(of: self.colored)
         let attributedString = NSMutableAttributedString(string: self.message)
         attributedString.addAttribute(NSForegroundColorAttributeName, value: self.textColor, range: range)
+        let isNight = Location.current?.isNight ?? false
 
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = self.backgroundColor
-            self.sunView.updateInterface(withBackgroundColor: self.backgroundColor, textColor: self.textColor, andPercentageInDay: self.percentageInDay)
+            self.sunView.updateInterface(withBackgroundColor: self.backgroundColor, textColor: self.textColor, andPercentageInDay: self.percentageInDay, isNight: isNight)
 
             self.informationButton.updateInterface(withBackgroundColor: self.backgroundColor, andTextColor: self.textColor)
 

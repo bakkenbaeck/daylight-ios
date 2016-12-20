@@ -59,6 +59,10 @@ struct Location {
         }
     }
 
+    var isNight: Bool {
+        return self.sunPhase == .night
+    }
+
     var sunPhase: SunPhase {
         let suntimes = Suntimes(date: Date(), timeZone: .autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
 
