@@ -16,7 +16,7 @@ class SunPhaseScheduler: NSObject {
     override init() {
         super.init()
 
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.update), userInfo: nil, repeats: true);
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
     }
 
     func update() {
@@ -49,4 +49,3 @@ class SunPhaseScheduler: NSObject {
         self.delegate?.sunPhaseScheduler(self, didUpdateWith: backgroundColor, and: textColor)
     }
 }
-

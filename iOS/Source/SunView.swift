@@ -21,7 +21,7 @@ class SunView: UIView {
     }
 
     var sunViewLocation = SunViewLocation(x: 0, y: 0) {
-        didSet{
+        didSet {
             self.setNeedsLayout()
         }
     }
@@ -31,7 +31,7 @@ class SunView: UIView {
     var currentTimeBottomAnchor: NSLayoutConstraint?
 
     lazy var sunriseLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = Theme.light(size: 12)
 
         return label
@@ -48,7 +48,6 @@ class SunView: UIView {
     lazy var currentTimeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-
 
         label.font = Theme.light(size: 12)
 
@@ -90,17 +89,17 @@ class SunView: UIView {
         return shortTimeFormatter
     }()
 
-    override init(frame: CGRect){
+    override init(frame: CGRect) {
         super.init(frame: frame)
 
         self.addSubviewsAndConstraints()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func layoutSubviews(){
+    override func layoutSubviews() {
         super.layoutSubviews()
 
         // TODO: check if the view layout is also possible using constraints
@@ -131,12 +130,12 @@ class SunView: UIView {
 
     func location(for percentageInDay: CGFloat) -> SunViewLocation {
         let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
-        //TODO: Check these numbers and make them work right
+        // TODO: Check these numbers and make them work right
         let x = 50.0 + cos(position) * 50.0
         let y = abs(sin(position) * 100.0)
 
-        let absoluteX =  ((self.bounds.width - SunView.sunSize) / 100) * x
-        let absoluteY  = self.sunMask.frame.height - (self.sunMask.frame.height / 100.0) * y
+        let absoluteX = ((self.bounds.width - SunView.sunSize) / 100) * x
+        let absoluteY = self.sunMask.frame.height - (self.sunMask.frame.height / 100.0) * y
 
         return SunViewLocation(x: absoluteX, y: absoluteY)
     }

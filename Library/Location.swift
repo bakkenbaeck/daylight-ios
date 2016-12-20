@@ -50,7 +50,7 @@ struct Location {
             let city = UserDefaults.standard.object(forKey: "city") as? String
             let country = UserDefaults.standard.object(forKey: "country") as? String
 
-            if let latitude = latitude, let longitude  = longitude, let city = city, let country = country {
+            if let latitude = latitude, let longitude = longitude, let city = city, let country = country {
                 let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                 return Location(coordinate: coordinate, city: city, country: country)
             } else {

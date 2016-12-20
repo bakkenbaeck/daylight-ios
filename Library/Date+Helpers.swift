@@ -18,12 +18,12 @@ extension Date {
     }
 
     func datesOfComingYear() -> [Date] {
-       var dayArray = [self]
+        var dayArray = [self]
 
-       for i in 0..<365 {
-           dayArray.append(dayArray[i].dayAfter())
-       }
+        for i in 0 ..< 365 {
+            dayArray.append(dayArray[i].dayAfter())
+        }
 
-       return dayArray
+        return dayArray
     }
 }

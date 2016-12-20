@@ -6,7 +6,7 @@ class CloseButton: InformationButton {
         return view
     }()
 
-    override init(frame: CGRect){
+    override init(frame: CGRect) {
         super.init(frame: frame)
 
         nameLabel.text = NSLocalizedString("Close", comment: "")
@@ -18,9 +18,9 @@ class CloseButton: InformationButton {
     }
 
     override func addSubviewsAndConstraints() {
-       super.addSubviewsAndConstraints()
+        super.addSubviewsAndConstraints()
 
-       self.addSubview(self.maskForHalfMoonView)
+        self.addSubview(self.maskForHalfMoonView)
 
         self.maskForHalfMoonView.widthAnchor.constraint(equalToConstant: InformationButton.sunSize / 2).isActive = true
         self.maskForHalfMoonView.heightAnchor.constraint(equalToConstant: InformationButton.sunSize).isActive = true

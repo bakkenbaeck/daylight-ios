@@ -54,6 +54,5 @@ class MessageGeneratorTests: XCTestCase {
 
         XCTAssertEqual(date, firstDay)
         XCTAssertEqual(dayInAYear, lastDay)
-
     }
 }

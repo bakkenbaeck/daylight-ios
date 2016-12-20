@@ -11,7 +11,6 @@ class InformationController: UIViewController {
     var notifications = false {
         didSet {
             self.notificationButton.isSelected = !self.notifications
-
         }
     }
 
@@ -46,8 +45,7 @@ class InformationController: UIViewController {
         return button
     }()
 
-
-    override var preferredStatusBarStyle : UIStatusBarStyle {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
 

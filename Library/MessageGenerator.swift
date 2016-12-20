@@ -28,17 +28,17 @@ struct MessageGenerator {
     func longerDayMessage() -> (text: String, colored: String) {
         let number = arc4random_uniform(10)
         switch number {
-            case 0: return (self.longerDayMessage1, self.longerDayColored1)
-            case 1: return (self.longerDayMessage2, self.longerDayColored2)
-            case 2: return (self.longerDayMessage3, self.longerDayColored3)
-            case 3: return (self.longerDayMessage4, self.longerDayColored4)
-            case 4: return (self.longerDayMessage5, self.longerDayColored5)
-            case 5: return (self.longerDayMessage6, self.longerDayColored6)
-            case 6: return (self.longerDayMessage7, self.longerDayColored7)
-            case 7: return (self.longerDayMessage8, self.longerDayColored8)
-            case 8: return (self.longerDayMessage9, self.longerDayColored9)
-            case 9: return (self.longerDayMessage10, self.longerDayColored10)
-            default: return ("","")
+        case 0: return (self.longerDayMessage1, self.longerDayColored1)
+        case 1: return (self.longerDayMessage2, self.longerDayColored2)
+        case 2: return (self.longerDayMessage3, self.longerDayColored3)
+        case 3: return (self.longerDayMessage4, self.longerDayColored4)
+        case 4: return (self.longerDayMessage5, self.longerDayColored5)
+        case 5: return (self.longerDayMessage6, self.longerDayColored6)
+        case 6: return (self.longerDayMessage7, self.longerDayColored7)
+        case 7: return (self.longerDayMessage8, self.longerDayColored8)
+        case 8: return (self.longerDayMessage9, self.longerDayColored9)
+        case 9: return (self.longerDayMessage10, self.longerDayColored10)
+        default: return ("", "")
         }
     }
 
@@ -62,7 +62,7 @@ struct MessageGenerator {
         case 2: return (self.noChangeMessage3, self.noChangeColored3)
         case 3: return (self.noChangeMessage4, self.noChangeColored4)
         case 4: return (self.noChangeMessage5, self.noChangeColored5)
-        default: return ("","")
+        default: return ("", "")
         }
     }
 
@@ -79,10 +79,9 @@ struct MessageGenerator {
         case 0: return (self.shorterMessage1, self.shorterColored1)
         case 1: return (self.shorterMessage2, self.shorterColored2)
         case 2: return (self.shorterMessage3, self.shorterColored3)
-        default: return ("","")
+        default: return ("", "")
         }
     }
-
 
     let nightMessage1 = "Get a good night’s sleep: tomorrow there’ll be %@ more minutes of sunlight."
     let nightColored1 = "%@ more minutes"
@@ -103,7 +102,7 @@ struct MessageGenerator {
         case 2: return (self.nightMessage3, self.nightColored3)
         case 3: return (self.nightMessage4, self.nightColored4)
         case 4: return (self.nightMessage5, self.nightColored5)
-        default: return ("","")
+        default: return ("", "")
         }
     }
 
