@@ -1,7 +1,7 @@
 import UIKit
 import XCTest
 
-class Tests: XCTestCase {
+class MessageGeneratorTests: XCTestCase {
     func testLongerDayMessage() {
         let messageGenerator = MessageGenerator()
         let date = Date()
