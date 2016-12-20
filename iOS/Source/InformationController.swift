@@ -8,7 +8,12 @@ class InformationController: UIViewController {
         return scheduler
     }()
 
-    var notifications = false
+    var notifications = false {
+        didSet {
+            self.notificationButton.isSelected = !self.notifications
+
+        }
+    }
 
     lazy var closeButton: CloseButton = {
         let button = CloseButton()
@@ -129,7 +134,6 @@ class InformationController: UIViewController {
 
     func didClickNotifications() {
         self.notifications = !self.notifications
-        self.notificationButton.isSelected = !self.notificationButton.isSelected
     }
 
     func didClickClose() {

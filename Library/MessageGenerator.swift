@@ -107,7 +107,6 @@ struct MessageGenerator {
         }
     }
 
-
     var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.long
@@ -134,7 +133,13 @@ struct MessageGenerator {
         }
     }
 
-    func generateMessage(forInterval interval: Double) -> (text: String, colored: String) {
+    func messageForNotification(withInterval interval: Double) -> String {
+        let message = self.generateMessage(forInterval: interval)
+
+        return message.text
+    }
+
+    private func generateMessage(forInterval interval: Double) -> (text: String, colored: String) {
         if interval > 1 {
             return longerDayMessage()
         } else if interval >= 0 {
@@ -142,5 +147,15 @@ struct MessageGenerator {
         } else {
             return shorterMessage()
         }
+    }
+
+    func minuteString(for interval: Double) -> String {
+        let minutes = interval / 60
+
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 2
+        let minutesString = formatter.string(from: NSNumber(value: abs(minutes)))!
+
+        return minutesString
     }
 }

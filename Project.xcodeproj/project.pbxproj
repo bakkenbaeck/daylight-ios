@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1405CA351E08640700AAF52D /* SunPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1405CA341E08640700AAF52D /* SunPhase.swift */; };
-		1405CA361E08640700AAF52D /* SunPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1405CA341E08640700AAF52D /* SunPhase.swift */; };
 		1418DB851E08A8A80041C201 /* Suntimes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1418DB841E08A8A80041C201 /* Suntimes.framework */; };
 		1418DB861E08A8A80041C201 /* Suntimes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1418DB841E08A8A80041C201 /* Suntimes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1418DB871E08A8B40041C201 /* Suntimes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1418DB841E08A8A80041C201 /* Suntimes.framework */; };
@@ -18,20 +17,21 @@
 		143D3B271DE9D3F3003F77B9 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B251DE9D3F3003F77B9 /* MainController.swift */; };
 		143D3B291DE9D434003F77B9 /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B281DE9D434003F77B9 /* LocationTracker.swift */; };
 		144D8CE91E089CD80036FD4B /* SunriseSet+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144D8CE81E089CD80036FD4B /* SunriseSet+Helpers.swift */; };
-		144D8CEB1E089D6C0036FD4B /* SunriseSet+HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144D8CEA1E089D6C0036FD4B /* SunriseSet+HelperTests.swift */; };
-		144D8CEC1E089F120036FD4B /* SunriseSet+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144D8CE81E089CD80036FD4B /* SunriseSet+Helpers.swift */; };
+		144F3C151E09D908009A45D2 /* MessageGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1483128D1B92C11500266943 /* MessageGeneratorTests.swift */; };
+		144F3C161E09D908009A45D2 /* SunPhaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6F3C91E08735200F9C3F6 /* SunPhaseTests.swift */; };
+		144F3C171E09D908009A45D2 /* SunriseSet+HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144D8CEA1E089D6C0036FD4B /* SunriseSet+HelperTests.swift */; };
+		144F3C181E09D90F009A45D2 /* MessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */; };
+		144F3C191E09D919009A45D2 /* SunriseSet+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144D8CE81E089CD80036FD4B /* SunriseSet+Helpers.swift */; };
+		144F3C1A1E09D921009A45D2 /* SunPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1405CA341E08640700AAF52D /* SunPhase.swift */; };
+		144F3C1B1E09D928009A45D2 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146AE9AC1E08B050003EE788 /* Date+Helpers.swift */; };
 		146AE9AD1E08B050003EE788 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146AE9AC1E08B050003EE788 /* Date+Helpers.swift */; };
-		146AE9AE1E08B050003EE788 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146AE9AC1E08B050003EE788 /* Date+Helpers.swift */; };
 		146E27A91BCD51F200959BBA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146E279F1BCD51F200959BBA /* LaunchScreen.xib */; };
 		146E27AA1BCD51F200959BBA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 146E27A11BCD51F200959BBA /* Images.xcassets */; };
-		1483128E1B92C11500266943 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1483128D1B92C11500266943 /* Tests.swift */; };
 		148FBB6A1E07EDBE009ED9F3 /* SweetUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148FBB691E07EDBE009ED9F3 /* SweetUIKit.framework */; };
 		148FBB6B1E07EDBE009ED9F3 /* SweetUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 148FBB691E07EDBE009ED9F3 /* SweetUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		14E6F3CA1E08735200F9C3F6 /* SunPhaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6F3C91E08735200F9C3F6 /* SunPhaseTests.swift */; };
 		44227E8F1E067A1E002B911B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
-		44227E901E067A1E002B911B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
-		D197B1ACD3FD8E3106217F49 /* MessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */; };
 		D197B6CB04F50A1E71C59C6B /* SunPhaseScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BFA8D6283613096635E6 /* SunPhaseScheduler.swift */; };
+		D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBC3EDBF4CA099642BCE /* Notifier.swift */; };
 		D197BB6AA1F1FB8F3E2ADA6B /* MessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */; };
 		E6D9D5031E02C9350007006D /* GT-America-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6D9D5021E02C9350007006D /* GT-America-Light.ttf */; };
 		E6D9D5051E02CDE70007006D /* SunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D9D5041E02CDE70007006D /* SunView.swift */; };
@@ -82,11 +82,12 @@
 		146E27A21BCD51F200959BBA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		148312891B92C11500266943 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1483128C1B92C11500266943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1483128D1B92C11500266943 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		1483128D1B92C11500266943 /* MessageGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGeneratorTests.swift; sourceTree = "<group>"; };
 		148FBB691E07EDBE009ED9F3 /* SweetUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SweetUIKit.framework; path = Carthage/Build/iOS/SweetUIKit.framework; sourceTree = "<group>"; };
 		14E6F3C91E08735200F9C3F6 /* SunPhaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunPhaseTests.swift; sourceTree = "<group>"; };
 		44227E8E1E067A1E002B911B /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageGenerator.swift; sourceTree = "<group>"; };
+		D197BBC3EDBF4CA099642BCE /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		D197BFA8D6283613096635E6 /* SunPhaseScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunPhaseScheduler.swift; sourceTree = "<group>"; };
 		E6D9D5021E02C9350007006D /* GT-America-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GT-America-Light.ttf"; sourceTree = "<group>"; };
 		E6D9D5041E02CDE70007006D /* SunView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunView.swift; sourceTree = "<group>"; };
@@ -135,6 +136,7 @@
 				1405CA341E08640700AAF52D /* SunPhase.swift */,
 				144D8CE81E089CD80036FD4B /* SunriseSet+Helpers.swift */,
 				146AE9AC1E08B050003EE788 /* Date+Helpers.swift */,
+				D197BBC3EDBF4CA099642BCE /* Notifier.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -196,7 +198,7 @@
 		1483128A1B92C11500266943 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				1483128D1B92C11500266943 /* Tests.swift */,
+				1483128D1B92C11500266943 /* MessageGeneratorTests.swift */,
 				14E6F3C91E08735200F9C3F6 /* SunPhaseTests.swift */,
 				144D8CEA1E089D6C0036FD4B /* SunriseSet+HelperTests.swift */,
 				1483128C1B92C11500266943 /* Info.plist */,
@@ -375,6 +377,7 @@
 				143D3B291DE9D434003F77B9 /* LocationTracker.swift in Sources */,
 				D197BB6AA1F1FB8F3E2ADA6B /* MessageGenerator.swift in Sources */,
 				D197B6CB04F50A1E71C59C6B /* SunPhaseScheduler.swift in Sources */,
+				D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,14 +385,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				144D8CEC1E089F120036FD4B /* SunriseSet+Helpers.swift in Sources */,
-				1405CA361E08640700AAF52D /* SunPhase.swift in Sources */,
-				1483128E1B92C11500266943 /* Tests.swift in Sources */,
-				146AE9AE1E08B050003EE788 /* Date+Helpers.swift in Sources */,
-				14E6F3CA1E08735200F9C3F6 /* SunPhaseTests.swift in Sources */,
-				144D8CEB1E089D6C0036FD4B /* SunriseSet+HelperTests.swift in Sources */,
-				44227E901E067A1E002B911B /* Location.swift in Sources */,
-				D197B1ACD3FD8E3106217F49 /* MessageGenerator.swift in Sources */,
+				144F3C1B1E09D928009A45D2 /* Date+Helpers.swift in Sources */,
+				144F3C1A1E09D921009A45D2 /* SunPhase.swift in Sources */,
+				144F3C191E09D919009A45D2 /* SunriseSet+Helpers.swift in Sources */,
+				144F3C181E09D90F009A45D2 /* MessageGenerator.swift in Sources */,
+				144F3C151E09D908009A45D2 /* MessageGeneratorTests.swift in Sources */,
+				144F3C161E09D908009A45D2 /* SunPhaseTests.swift in Sources */,
+				144F3C171E09D908009A45D2 /* SunriseSet+HelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
