@@ -5,9 +5,9 @@ class SunView: UIView {
 
     static let sunSize = Double(16.0)
 
-    var nightState = false {
+    var isNight = false {
         didSet {
-            if self.nightState {
+            if self.isNight {
                 self.moon.isHidden = false
                 self.sunLocation = (x: Double((self.frame.width - CGFloat(SunView.sunSize)) / CGFloat(2)), y: Double(CGFloat(0)))
             } else {
@@ -137,7 +137,7 @@ class SunView: UIView {
         return (Double(absoluteX), Double(absoluteY))
     }
 
-    func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double) {
+    func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, isNight: Bool) {
         self.sunriseLabel.textColor = textColor
         self.sunsetLabel.textColor = textColor
         self.currentTimeLabel.textColor = textColor
@@ -146,6 +146,6 @@ class SunView: UIView {
         self.moon.backgroundColor = backgroundColor
 
         self.sunLocation = self.location(for: percentageInDay)
-        self.nightState = percentageInDay < 0 && percentageInDay > 1
+        self.isNight = isNight
     }
 }
