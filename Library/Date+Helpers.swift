@@ -20,7 +20,7 @@ extension Date {
     func datesOfComingYear() -> [Date] {
         var dayArray = [self]
 
-        for i in 0 ..< 2 {
+        for i in 0 ..< 10 {
             dayArray.append(dayArray[i].dayAfter())
         }
 

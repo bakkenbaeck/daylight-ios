@@ -13,12 +13,6 @@ class MainController: UIViewController {
         return informationController
     }()
 
-    lazy var notifier: Notifier = {
-        let notifier = Notifier()
-
-        return notifier
-    }()
-
     lazy var locationTracker: LocationTracker = {
         let tracker = LocationTracker()
         tracker.delegate = self
@@ -28,7 +22,7 @@ class MainController: UIViewController {
 
     lazy var informationButton: InformationButton = {
         let button = InformationButton()
-        button.addTarget(self, action: #selector(didClickInformation), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didSelectInformation), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -72,13 +66,16 @@ class MainController: UIViewController {
         super.viewDidLoad()
 
         self.addSubviewsAndConstraints()
-
         self.locationTracker.checkAuthorization()
-
         self.updateLocation()
-
         self.updateInterface()
+
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateInterface), userInfo: nil, repeats: true)
+
+        Notifier.cancelAllNotifications()
+        if Settings.isNotificationsEnabled {
+            Notifier.scheduleNotifications()
+        }
     }
 
     func addSubviewsAndConstraints() {
@@ -146,7 +143,7 @@ class MainController: UIViewController {
         }
     }
 
-    func didClickInformation() {
+    func didSelectInformation() {
         self.present(self.informationController, animated: true)
     }
 
@@ -199,9 +196,9 @@ extension MainController: LocationTrackerDelegate {
 extension MainController: InformationControllerDelegate {
     func informationController(_ informationController: InformationController, didToggleNotifications isNotificationsEnabled: Bool) {
         if isNotificationsEnabled {
-            self.notifier.scheduleNotifications()
+            Notifier.scheduleNotifications()
         } else {
-            self.notifier.cancelAllNotifications()
+            Notifier.cancelAllNotifications()
         }
     }
 }

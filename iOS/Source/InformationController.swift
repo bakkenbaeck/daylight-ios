@@ -9,11 +9,9 @@ class InformationController: UIViewController {
 
     var messageLabelHeightAnchor: NSLayoutConstraint?
 
-    var isNotificationsEnabled = false
-
     lazy var closeButton: CloseButton = {
         let button = CloseButton()
-        button.addTarget(self, action: #selector(didClickClose), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didSelectClose), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -36,7 +34,7 @@ class InformationController: UIViewController {
         button.contentHorizontalAlignment = .left
         button.contentEdgeInsets = UIEdgeInsetsMake(28, 0, 0, 0)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(didClickNotifications), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didSelectNotifications), for: .touchUpInside)
 
         return button
     }()
@@ -120,7 +118,7 @@ class InformationController: UIViewController {
             self.view.backgroundColor = backgroundColor
             self.closeButton.updateInterface(withBackgroundColor: backgroundColor, andTextColor: textColor)
 
-            if self.isNotificationsEnabled {
+            if Settings.isNotificationsEnabled {
                 self.notificationButton.setAttributedTitle(turnNotificationsOffString, for: .normal)
             } else {
                 self.notificationButton.setAttributedTitle(turnNotificationsOnString, for: .normal)
@@ -133,16 +131,13 @@ class InformationController: UIViewController {
         }
     }
 
-    func didClickNotifications() {
-        self.isNotificationsEnabled = !self.isNotificationsEnabled
-
-        let settings = UIUserNotificationSettings(types: [.sound, .alert], categories: nil)
-        UIApplication.shared.registerUserNotificationSettings(settings)
-
-        self.delegate?.informationController(self, didToggleNotifications: self.isNotificationsEnabled)
+    func didSelectNotifications() {
+        Settings.isNotificationsEnabled = !Settings.isNotificationsEnabled
+        Settings.registerForNotifications()
+        self.delegate?.informationController(self, didToggleNotifications: Settings.isNotificationsEnabled)
     }
 
-    func didClickClose() {
+    func didSelectClose() {
         self.dismiss(animated: true)
     }
 }
