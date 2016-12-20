@@ -8,6 +8,7 @@ class MainController: UIViewController {
     lazy var informationController: InformationController = {
         let informationController = InformationController()
         informationController.modalTransitionStyle = .crossDissolve
+        informationController.delegate = self
 
         return informationController
     }()
@@ -17,19 +18,6 @@ class MainController: UIViewController {
 
         return notifier
     }()
-
-    lazy var sunPhaseScheduler: SunPhaseScheduler = {
-        let scheduler = SunPhaseScheduler()
-
-        return scheduler
-    }()
-
-    var message = ""
-    var colored = ""
-    var percentageInDay = Double(0)
-
-    var backgroundColor = UIColor.white
-    var textColor = UIColor.black
 
     lazy var locationTracker: LocationTracker = {
         let tracker = LocationTracker()
@@ -88,12 +76,9 @@ class MainController: UIViewController {
         self.locationTracker.checkAuthorization()
 
         self.updateLocation()
-        self.updateSunView()
 
-        self.notifier.scheduleNotifications()
-
-        self.sunPhaseScheduler.delegate = self
-        self.sunPhaseScheduler.dataSource = self
+        self.updateInterface()
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateInterface), userInfo: nil, repeats: true)
     }
 
     func addSubviewsAndConstraints() {
@@ -126,19 +111,35 @@ class MainController: UIViewController {
     }
 
     func updateInterface() {
-        let range = (self.message as NSString).range(of: self.colored)
-        let attributedString = NSMutableAttributedString(string: self.message)
-        attributedString.addAttribute(NSForegroundColorAttributeName, value: self.textColor, range: range)
-        let isNight = Location.current?.isNight ?? false
+        guard let location = Location.current else { return }
+
+        let percentageInDay = location.daylightLengthProgress
+
+        let sunPhase = location.sunPhase
+        let (backgroundColor, textColor) = Theme.colors(for: sunPhase)
+        self.updateSunView()
+
+        let interval = location.dayLengthDifference
+
+        let messageGenerator = MessageGenerator()
+        let minutesString = messageGenerator.minuteString(for: interval)
+        let generatedMessage = messageGenerator.message(forDay: Date(), withInterval: interval)
+
+        let message = String(format: generatedMessage.text, minutesString)
+        let colored = String(format: generatedMessage.colored, minutesString)
+
+        let range = (message as NSString).range(of: colored)
+        let attributedString = NSMutableAttributedString(string: message)
+        attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
 
         UIView.animate(withDuration: 0.4) {
-            self.view.backgroundColor = self.backgroundColor
-            self.sunView.updateInterface(withBackgroundColor: self.backgroundColor, textColor: self.textColor, andPercentageInDay: self.percentageInDay, isNight: isNight)
+            self.view.backgroundColor = backgroundColor
+            self.sunView.updateInterface(withBackgroundColor: backgroundColor, textColor: textColor, andPercentageInDay: percentageInDay, isNight: location.isNight)
 
-            self.informationButton.updateInterface(withBackgroundColor: self.backgroundColor, andTextColor: self.textColor)
+            self.informationButton.updateInterface(withBackgroundColor: backgroundColor, andTextColor: textColor)
 
-            self.locationLabel.textColor = self.textColor.withAlphaComponent(0.6)
-            self.messageLabel.textColor = self.textColor.withAlphaComponent(0.6)
+            self.locationLabel.textColor = textColor.withAlphaComponent(0.6)
+            self.messageLabel.textColor = textColor.withAlphaComponent(0.6)
             self.messageLabel.attributedText = attributedString
             self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
             self.view.setNeedsLayout()
@@ -186,14 +187,6 @@ extension MainController: LocationTrackerDelegate {
 
     func setMessage(for placemark: CLPlacemark) {
         guard let location = Location(placemark: placemark) else { return }
-        let interval = location.dayLengthDifference
-
-        let messageGenerator = MessageGenerator()
-        let minutesString = messageGenerator.minuteString(for: interval)
-        let message = messageGenerator.message(forDay: Date(), withInterval: interval)
-
-        self.message = String(format: message.text, minutesString)
-        self.colored = String(format: message.colored, minutesString)
 
         self.sunView.update(for: location)
         Location.current = Location(placemark: placemark)
@@ -203,20 +196,12 @@ extension MainController: LocationTrackerDelegate {
     }
 }
 
-extension MainController: SunPhaseSchedulerDelegate {
-    func sunPhaseScheduler(_ sunPhaseScheduler: SunPhaseScheduler, didUpdateWith backgroundColor: UIColor, and textColor: UIColor) {
-        self.percentageInDay = Location.current?.daylightLengthProgress ?? 0
-        self.backgroundColor = backgroundColor
-        self.textColor = textColor
-        self.updateSunView()
-        self.updateInterface()
-    }
-}
-
-extension MainController: SunPhaseSchedulerDataSource {
-    func sunPhase(for sunPhaseScheduler: SunPhaseScheduler) -> SunPhase {
-        let current = Location.current
-
-        return current?.sunPhase ?? .none
+extension MainController: InformationControllerDelegate {
+    func informationController(_ informationController: InformationController, didToggleNotifications isNotificationsEnabled: Bool) {
+        if isNotificationsEnabled {
+            self.notifier.scheduleNotifications()
+        } else {
+            self.notifier.cancelAllNotifications()
+        }
     }
 }

@@ -4,7 +4,7 @@ import SweetUIKit
 
 class Notifier: NSObject {
 
-    var dateFormatter: DateFormatter = {
+    private var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.long
 
@@ -18,7 +18,7 @@ class Notifier: NSObject {
         }
     }
 
-    func scheduleNotification(forDate date: Date) {
+    private func scheduleNotification(forDate date: Date) {
         guard let location = Location.current else { return }
 
         let notificationID = self.dateFormatter.string(from: date)
@@ -35,7 +35,7 @@ class Notifier: NSObject {
         UILocalNotification.schedule(notificationID, at: sunriseDate, message: formattedMessage)
     }
 
-    func deleteAllNotifications() {
+    func cancelAllNotifications() {
         UILocalNotification.cancelAll()
     }
 }

@@ -1,18 +1,15 @@
 import UIKit
 
+protocol InformationControllerDelegate: class {
+    func informationController(_ informationController: InformationController, didToggleNotifications isNotificationsEnabled: Bool)
+}
+
 class InformationController: UIViewController {
+    weak var delegate: InformationControllerDelegate?
+
     var messageLabelHeightAnchor: NSLayoutConstraint?
 
-    lazy var sunPhaseScheduler: SunPhaseScheduler = {
-        let scheduler = SunPhaseScheduler()
-        return scheduler
-    }()
-
-    var notifications = false {
-        didSet {
-            self.notificationButton.isSelected = !self.notifications
-        }
-    }
+    var isNotificationsEnabled = false
 
     lazy var closeButton: CloseButton = {
         let button = CloseButton()
@@ -40,7 +37,6 @@ class InformationController: UIViewController {
         button.contentEdgeInsets = UIEdgeInsetsMake(28, 0, 0, 0)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didClickNotifications), for: .touchUpInside)
-        button.isHidden = true
 
         return button
     }()
@@ -57,9 +53,9 @@ class InformationController: UIViewController {
         super.viewDidLoad()
 
         self.addSubviewsAndConstraints()
-        self.sunPhaseScheduler.delegate = self
-        self.sunPhaseScheduler.dataSource = self
-        self.sunPhaseScheduler.update()
+
+        self.updateInterface()
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateInterface), userInfo: nil, repeats: true)
     }
 
     func addSubviewsAndConstraints() {
@@ -85,7 +81,10 @@ class InformationController: UIViewController {
         self.notificationButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
     }
 
-    func updateInterface(backgroundColor: UIColor, textColor: UIColor) {
+    func updateInterface() {
+        let sunPhase = Location.current?.sunPhase ?? .none
+        let (backgroundColor, textColor) = Theme.colors(for: sunPhase)
+
         var messageString: NSAttributedString {
             let message = MessageGenerator().informationMessage
             let colored = MessageGenerator().coloredInformation
@@ -121,8 +120,12 @@ class InformationController: UIViewController {
             self.view.backgroundColor = backgroundColor
             self.closeButton.updateInterface(withBackgroundColor: backgroundColor, andTextColor: textColor)
 
-            self.notificationButton.setAttributedTitle(turnNotificationsOnString, for: .normal)
-            self.notificationButton.setAttributedTitle(turnNotificationsOffString, for: .selected)
+            if self.isNotificationsEnabled {
+                self.notificationButton.setAttributedTitle(turnNotificationsOffString, for: .normal)
+            } else {
+                self.notificationButton.setAttributedTitle(turnNotificationsOnString, for: .normal)
+            }
+
             self.messageLabel.textColor = textColor.withAlphaComponent(0.6)
             self.messageLabel.attributedText = messageString
             self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
@@ -131,24 +134,15 @@ class InformationController: UIViewController {
     }
 
     func didClickNotifications() {
-        self.notifications = !self.notifications
+        self.isNotificationsEnabled = !self.isNotificationsEnabled
+
+        let settings = UIUserNotificationSettings(types: [.sound, .alert], categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(settings)
+
+        self.delegate?.informationController(self, didToggleNotifications: self.isNotificationsEnabled)
     }
 
     func didClickClose() {
         self.dismiss(animated: true)
-    }
-}
-
-extension InformationController: SunPhaseSchedulerDelegate {
-    func sunPhaseScheduler(_ sunPhaseScheduler: SunPhaseScheduler, didUpdateWith backgroundColor: UIColor, and textColor: UIColor) {
-        self.updateInterface(backgroundColor: backgroundColor, textColor: textColor)
-    }
-}
-
-extension InformationController: SunPhaseSchedulerDataSource {
-    func sunPhase(for sunPhaseScheduler: SunPhaseScheduler) -> SunPhase {
-        let current = Location.current
-
-        return current?.sunPhase ?? .none
     }
 }
