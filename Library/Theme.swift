@@ -38,7 +38,7 @@ struct Theme {
     }
 
     static var nightText: UIColor {
-        return .white
+        return UIColor(hex: "#90CFEF")
     }
 
     static func light(size: CGFloat) -> UIFont {
