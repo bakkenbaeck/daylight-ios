@@ -39,3 +39,6 @@ Carthage/Build/watchOS
 
 # Appcode
 .idea/
+
+# Fonts
+iOS/Resources/Fonts
