@@ -11,7 +11,7 @@ class InformationController: UIViewController {
 
     lazy var webButton: UIButton = {
         let button = UIButton(withAutoLayout: true)
-        button.addTarget(self, action: #selector(didClickWebButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didSelectLinkButton), for: .touchUpInside)
 
         return button
     }()
@@ -153,7 +153,7 @@ class InformationController: UIViewController {
         self.dismiss(animated: true)
     }
 
-    func didClickWebButton() {
+    func didSelectLinkButton() {
         UIApplication.shared.openURL(URL(string: "https://bakkenbaeck.com")!)
     }
 }
