@@ -3,7 +3,7 @@ import Foundation
 struct MessageGenerator {
     let informationMessage = Message(content: "Daylight is an experiment inspired by the dark and long winters of the north. Made by Bakken & Bæck.", coloredPart: "Bakken & Bæck")
 
-    var longerDayMessages: [Message] {
+    var longerMoreThanAMinuteMessages: [Message] {
         var messages = [Message]()
 
         messages.append(Message(content: "Today is %@ minutes longer than yesterday. Happy days!", coloredPart: "%@ minutes"))
@@ -20,13 +20,13 @@ struct MessageGenerator {
         return messages
     }
 
-    func longerDayMessage() -> Message {
-        let index = Int(arc4random_uniform(UInt32(self.longerDayMessages.count)))
+    func longerMoreThanAMinuteMessage() -> Message {
+        let index = Int(arc4random_uniform(UInt32(self.longerMoreThanAMinuteMessages.count)))
 
-        return self.longerDayMessages[index]
+        return self.longerMoreThanAMinuteMessages[index]
     }
 
-    var noChangeMessages: [Message] {
+    var longerLessThanAMinuteMessages: [Message] {
         var messages = [Message]()
 
         messages.append(Message(content: "Little less than a minute of extra sunlight today. It’s getting better!", coloredPart: "a minute"))
@@ -38,13 +38,13 @@ struct MessageGenerator {
         return messages
     }
 
-    func noChangeMessage() -> Message {
-        let index = Int(arc4random_uniform(UInt32(self.noChangeMessages.count)))
+    func longerLessThanAMinuteMessage() -> Message {
+        let index = Int(arc4random_uniform(UInt32(self.longerLessThanAMinuteMessages.count)))
 
-        return self.noChangeMessages[index]
+        return self.longerLessThanAMinuteMessages[index]
     }
 
-    var shorterMessages: [Message] {
+    var shorterMoreThanAMinuteMessages: [Message] {
         var messages = [Message]()
 
         messages.append(Message(content: "The sun will be out %@ minutes less today. Keep your head up!", coloredPart: "%@ minutes less"))
@@ -54,13 +54,13 @@ struct MessageGenerator {
         return messages
     }
 
-    func shorterMessage() -> Message {
-        let index = Int(arc4random_uniform(UInt32(self.shorterMessages.count)))
+    func shorterMoreThanAMinuteMessage() -> Message {
+        let index = Int(arc4random_uniform(UInt32(self.shorterMoreThanAMinuteMessages.count)))
 
-        return self.shorterMessages[index]
+        return self.shorterMoreThanAMinuteMessages[index]
     }
 
-    var nightMessages: [Message] {
+    var longerTomorrowMoreThanAMinuteMessages: [Message] {
         var messages = [Message]()
 
         messages.append(Message(content: "Get a good night’s sleep: tomorrow there’ll be %@ more minutes of sunlight.", coloredPart: "%@ more minutes"))
@@ -72,10 +72,10 @@ struct MessageGenerator {
         return messages
     }
 
-    func nightMessage() -> Message {
-        let index = Int(arc4random_uniform(UInt32(self.nightMessages.count)))
+    func longerTomorrowMoreThanAMinuteMessage() -> Message {
+        let index = Int(arc4random_uniform(UInt32(self.longerTomorrowMoreThanAMinuteMessages.count)))
 
-        return self.nightMessages[index]
+        return self.longerTomorrowMoreThanAMinuteMessages[index]
     }
 
     var dateFormatter: DateFormatter = {
@@ -113,11 +113,11 @@ struct MessageGenerator {
 
     private func generateMessage(forInterval interval: Double) -> Message {
         if interval > 1 {
-            return longerDayMessage()
+            return longerMoreThanAMinuteMessage()
         } else if interval >= 0 {
-            return noChangeMessage()
+            return longerLessThanAMinuteMessage()
         } else {
-            return shorterMessage()
+            return shorterMoreThanAMinuteMessage()
         }
     }
 

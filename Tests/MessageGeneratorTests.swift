@@ -36,7 +36,7 @@ class MessageGeneratorTests: XCTestCase {
     func testNightMessage() {
         let messageGenerator = MessageGenerator()
 
-        let message = messageGenerator.nightMessage()
+        let message = messageGenerator.longerTomorrowMoreThanAMinuteMessage()
         let formattedString = String(format: message.content, 0)
 
         XCTAssert(formattedString.characters.count > 0)
