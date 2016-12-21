@@ -1,8 +1,4 @@
-import Foundation
-import CoreLocation
-import Suntimes
-
-enum SunPhase: Int {
+enum SunPhase {
     case sunrise
     case daylight
     case sunset
