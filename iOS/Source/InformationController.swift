@@ -85,10 +85,9 @@ class InformationController: UIViewController {
 
         var messageString: NSAttributedString {
             let message = MessageGenerator().informationMessage
-            let colored = MessageGenerator().coloredInformation
 
-            let range = (message as NSString).range(of: colored)
-            let attributedString = NSMutableAttributedString(string: message)
+            let range = (message.content as NSString).range(of: message.coloredPart)
+            let attributedString = NSMutableAttributedString(string: message.content)
             attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
 
             return attributedString

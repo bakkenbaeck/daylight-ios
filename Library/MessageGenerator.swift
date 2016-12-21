@@ -1,109 +1,145 @@
 import Foundation
 
 struct MessageGenerator {
-    let informationMessage = "Daylight is an experiment inspired by the dark and long winters of the north. Made by Bakken & Bæck."
-    let coloredInformation = "Bakken & Bæck"
+    let informationMessage = Message(content: "Daylight is an experiment inspired by the dark and long winters of the north. Made by Bakken & Bæck.", coloredPart: "Bakken & Bæck")
 
-    let longerDayMessage1 = "Today is %@ minutes longer than yesterday. Happy days!"
-    let longerDayColored1 = "%@ minutes"
-    let longerDayMessage2 = "The sun is out for %@ more minutes today. Enjoy!"
-    let longerDayColored2 = "%@ more minutes"
-    let longerDayMessage3 = "%@ extra minutes of sunshine today. Make them count!"
-    let longerDayColored3 = "%@ extra minutes"
-    let longerDayMessage4 = "Make sure to soak up that vitamin D. %@ more minutes of daylight today!"
-    let longerDayColored4 = "%@ more minutes"
-    let longerDayMessage5 = "Smile! Today has %@ more minutes of daylight than yesterday!"
-    let longerDayColored5 = "%@ more minutes"
-    let longerDayMessage6 = "%@ more minutes of daylight today. Just let it sink in…"
-    let longerDayColored6 = "%@ more minutes"
-    let longerDayMessage7 = "Today is %@ minutes longer. It’s getting better and better!"
-    let longerDayColored7 = "%@ minutes"
-    let longerDayMessage8 = "Bring out your shorts, because today has %@ more minutes of sunlight."
-    let longerDayColored8 = "%@ more minutes"
-    let longerDayMessage9 = "Have a great day and enjoy those %@ extra minutes of daylight."
-    let longerDayColored9 = "%@ extra minutes"
-    let longerDayMessage10 = "After darkness comes daylight. %@ more minutes to be precise!"
-    let longerDayColored10 = "%@ more minutes"
+    var longerMoreThanAMinuteMessages: [Message] {
+        var messages = [Message]()
 
-    func longerDayMessage() -> (text: String, colored: String) {
-        let number = arc4random_uniform(10)
-        switch number {
-        case 0: return (self.longerDayMessage1, self.longerDayColored1)
-        case 1: return (self.longerDayMessage2, self.longerDayColored2)
-        case 2: return (self.longerDayMessage3, self.longerDayColored3)
-        case 3: return (self.longerDayMessage4, self.longerDayColored4)
-        case 4: return (self.longerDayMessage5, self.longerDayColored5)
-        case 5: return (self.longerDayMessage6, self.longerDayColored6)
-        case 6: return (self.longerDayMessage7, self.longerDayColored7)
-        case 7: return (self.longerDayMessage8, self.longerDayColored8)
-        case 8: return (self.longerDayMessage9, self.longerDayColored9)
-        case 9: return (self.longerDayMessage10, self.longerDayColored10)
-        default: return ("", "")
-        }
+        messages.append(Message(content: "Today is %@ minutes longer than yesterday. Happy days!", coloredPart: "%@ minutes"))
+        messages.append(Message(content: "The sun is out for %@ more minutes today. Enjoy!", coloredPart: "%@ more minutes"))
+        messages.append(Message(content: "%@ extra minutes of sunshine today. Make them count!", coloredPart: "%@ extra minutes"))
+        messages.append(Message(content: "Make sure to soak up that vitamin D. %@ more minutes of daylight today!", coloredPart: "%@ more minutes"))
+        messages.append(Message(content: "Smile! Today has %@ more minutes of daylight than yesterday!", coloredPart: "%@ more minutes"))
+        messages.append(Message(content: "%@ more minutes of daylight today. Just let it sink in…", coloredPart: "%@ more minutes"))
+        messages.append(Message(content: "Today is %@ minutes longer. It’s getting better and better!", coloredPart: "%@ minutes"))
+        messages.append(Message(content: "Bring out your shorts, because today has %@ more minutes of sunlight.", coloredPart: "%@ more minutes"))
+        messages.append(Message(content: "Have a great day and enjoy those %@ extra minutes of daylight.", coloredPart: "%@ extra minutes"))
+        messages.append(Message(content: "After darkness comes daylight. %@ more minutes to be precise!", coloredPart: "%@ more minutes"))
+
+        return messages
     }
 
-    let noChangeMessage1 = "Little less than a minute of extra sunlight today. It’s getting better!"
-    let noChangeColored1 = "a minute"
-    let noChangeMessage2 = "We’ve reached the tipping point: we’ll have more sunlight every day now!"
-    let noChangeColored2 = "more sunlight"
-    let noChangeMessage3 = "About a minute of extra light. You’ll start noticing the difference soon!"
-    let noChangeColored3 = "About a minute"
-    let noChangeMessage4 = "There’s about a minute of extra light at the end of this tunnel."
-    let noChangeColored4 = "about a minute"
-    let noChangeMessage5 = "We’ll have about a minute of extra light today. It’s upwards from here."
-    let noChangeColored5 = "about a minute"
+    func longerMoreThanAMinuteMessage() -> Message {
+        let index = Int(arc4random_uniform(UInt32(self.longerMoreThanAMinuteMessages.count)))
 
-    // TODO: extract number to make it more testable
-    func noChangeMessage() -> (text: String, colored: String) {
-        let number = arc4random_uniform(5)
-        switch number {
-        case 0: return (self.noChangeMessage1, self.noChangeColored1)
-        case 1: return (self.noChangeMessage2, self.noChangeColored2)
-        case 2: return (self.noChangeMessage3, self.noChangeColored3)
-        case 3: return (self.noChangeMessage4, self.noChangeColored4)
-        case 4: return (self.noChangeMessage5, self.noChangeColored5)
-        default: return ("", "")
-        }
+        return self.longerMoreThanAMinuteMessages[index]
     }
 
-    let shorterMessage1 = "The sun will be out %@ minutes less today. Keep your head up!"
-    let shorterColored1 = "%@ minutes less"
-    let shorterMessage2 = "%@ minutes less sunlight today, unfortunately. It’ll get better!"
-    let shorterColored2 = "%@ minutes less"
-    let shorterMessage3 = "Sadly, the day will be %@ minutes shorter. Make the most out of it!"
-    let shorterColored3 = "%@ minutes shorter"
+    var longerLessThanAMinuteMessages: [Message] {
+        var messages = [Message]()
 
-    func shorterMessage() -> (text: String, colored: String) {
-        let number = arc4random_uniform(3)
-        switch number {
-        case 0: return (self.shorterMessage1, self.shorterColored1)
-        case 1: return (self.shorterMessage2, self.shorterColored2)
-        case 2: return (self.shorterMessage3, self.shorterColored3)
-        default: return ("", "")
-        }
+        messages.append(Message(content: "Little less than a minute of extra sunlight today. It’s getting better!", coloredPart: "a minute"))
+        messages.append(Message(content: "We’ve reached the tipping point: we’ll have more sunlight every day now!", coloredPart: "more sunlight"))
+        messages.append(Message(content: "About a minute of extra light. You’ll start noticing the difference soon!", coloredPart: "About a minute"))
+        messages.append(Message(content: "There’s about a minute of extra light at the end of this tunnel.", coloredPart: "about a minute"))
+        messages.append(Message(content: "We’ll have about a minute of extra light today. It’s upwards from here.", coloredPart: "about a minute"))
+
+        return messages
     }
 
-    let nightMessage1 = "Get a good night’s sleep: tomorrow there’ll be %@ more minutes of sunlight."
-    let nightColored1 = "%@ more minutes"
-    let nightMessage2 = "Lights out. Enjoy %@ more minutes of sunlight tomorrow!"
-    let nightColored2 = "%@ more minutes"
-    let nightMessage3 = "Bring out those pyjamas. %@ more minutes of light await tomorrow."
-    let nightColored3 = "%@ more minutes"
-    let nightMessage4 = "The sun has set for today. Embrace those %@ minutes of extra daylight tomorrow."
-    let nightColored4 = "%@ minutes"
-    let nightMessage5 = "The sun has set. Soak up the extra vitamin D tomorrow!"
-    let nightColored5 = ""
+    func longerLessThanAMinuteMessage() -> Message {
+        let index = Int(arc4random_uniform(UInt32(self.longerLessThanAMinuteMessages.count)))
 
-    func nightMessage() -> (text: String, colored: String) {
-        let number = arc4random_uniform(5)
-        switch number {
-        case 0: return (self.nightMessage1, self.nightColored1)
-        case 1: return (self.nightMessage2, self.nightColored2)
-        case 2: return (self.nightMessage3, self.nightColored3)
-        case 3: return (self.nightMessage4, self.nightColored4)
-        case 4: return (self.nightMessage5, self.nightColored5)
-        default: return ("", "")
-        }
+        return self.longerLessThanAMinuteMessages[index]
+    }
+
+    var shorterMoreThanAMinuteMessages: [Message] {
+        var messages = [Message]()
+
+        messages.append(Message(content: "The sun will be out %@ minutes less today. Keep your head up!", coloredPart: "%@ minutes less"))
+        messages.append(Message(content: "%@ minutes less sunlight today, unfortunately. It’ll get better!", coloredPart: "%@ minutes less"))
+        messages.append(Message(content: "Sadly, the day will be %@ minutes shorter. Make the most out of it!", coloredPart: "%@ minutes shorter"))
+
+        return messages
+    }
+
+    func shorterMoreThanAMinuteMessage() -> Message {
+        let index = Int(arc4random_uniform(UInt32(self.shorterMoreThanAMinuteMessages.count)))
+
+        return self.shorterMoreThanAMinuteMessages[index]
+    }
+
+    var longerTomorrowLessThanAMinuteMessages: [Message] {
+        var messages = [Message]()
+
+        messages.append(Message(content: "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.", coloredPart: ""))
+        messages.append(Message(content: "Bring out those pyjamas. More daylight awaits tomorrow!", coloredPart: ""))
+        messages.append(Message(content: "The sun has set. Soak up the extra vitamin D tomorrow!", coloredPart: ""))
+
+        return messages
+    }
+
+    func longerTomorrowLessThanAMinuteMessage() -> Message {
+        let index = Int(arc4random_uniform(UInt32(self.longerTomorrowLessThanAMinuteMessages.count)))
+
+        return self.longerTomorrowLessThanAMinuteMessages[index]
+    }
+
+    var longerTomorrowMoreThanAMinuteMessages: [Message] {
+        var messages = [Message]()
+
+        messages.append(Message(content: "Get a good night’s sleep: tomorrow there’ll be %@ more minutes of sunlight.", coloredPart: "%@ more minutes"))
+        messages.append(Message(content: "Lights out. Enjoy %@ more minutes of sunlight tomorrow!", coloredPart: "%@ more minutes"))
+        messages.append(Message(content: "Bring out those pyjamas. %@ more minutes of light await tomorrow.", coloredPart: "%@ more minutes"))
+        messages.append(Message(content: "The sun has set for today. Embrace those %@ minutes of extra daylight tomorrow.", coloredPart: "%@ minutes"))
+        messages.append(Message(content: "The sun has set. Soak up the extra vitamin D tomorrow!", coloredPart: ""))
+
+        return messages
+    }
+
+    func longerTomorrowMoreThanAMinuteMessage() -> Message {
+        let index = Int(arc4random_uniform(UInt32(self.longerTomorrowMoreThanAMinuteMessages.count)))
+
+        return self.longerTomorrowMoreThanAMinuteMessages[index]
+    }
+
+    var shorterLessThanAMinuteMessages: [Message] {
+        var messages = [Message]()
+
+        messages.append(Message(content: "Unfortunately, the day is a little bit shorter today. Make the most out of it!", coloredPart: ""))
+        messages.append(Message(content: "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!", coloredPart: ""))
+        messages.append(Message(content: "Today is shorter than yesterday. But fear not, brighter times ahead!", coloredPart: ""))
+
+        return messages
+    }
+
+    func shorterLessThanAMinuteMessage() -> Message {
+        let index = Int(arc4random_uniform(UInt32(self.shorterLessThanAMinuteMessages.count)))
+
+        return self.shorterLessThanAMinuteMessages[index]
+    }
+
+    var shorterTomorrowMoreThanAMinuteMessages: [Message] {
+        var messages = [Message]()
+
+        messages.append(Message(content: "Unfortunately, tomorrow will be %@ minutes shorter than today. Make the most out of it!", coloredPart: "%@ minutes"))
+        messages.append(Message(content: "Sadly, tomorrow will be %@ minutes shorter than today. Enjoy it while it lasts!", coloredPart: "%@ minutes"))
+        messages.append(Message(content: "Tomorrow will be %@ minutes shorter than today. But fear not, brighter times ahead!", coloredPart: "%@ minutes"))
+
+        return messages
+    }
+
+    func shorterTomorrowMoreThanAMinuteMessage() -> Message {
+        let index = Int(arc4random_uniform(UInt32(self.shorterTomorrowMoreThanAMinuteMessages.count)))
+
+        return self.shorterTomorrowMoreThanAMinuteMessages[index]
+    }
+
+    var shorterTomorrowLessThanAMinuteMessages: [Message] {
+        var messages = [Message]()
+
+        messages.append(Message(content: "Unfortunately, tomorrow will be a little bit shorter than today. Make the most out of it!", coloredPart: ""))
+        messages.append(Message(content: "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!", coloredPart: ""))
+        messages.append(Message(content: "Tomorrow will be shorter than today. But fear not, brighter times ahead!", coloredPart: ""))
+
+        return messages
+    }
+
+    func shorterTomorrowLessThanAMinuteMessage() -> Message {
+        let index = Int(arc4random_uniform(UInt32(self.shorterTomorrowLessThanAMinuteMessages.count)))
+
+        return self.shorterTomorrowLessThanAMinuteMessages[index]
     }
 
     var dateFormatter: DateFormatter = {
@@ -113,38 +149,51 @@ struct MessageGenerator {
         return formatter
     }()
 
-    func message(forDay day: Date, withInterval interval: Double) -> (text: String, colored: String) {
+    func message(forDay day: Date, isNight: Bool, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
         let defaults = UserDefaults.standard
 
         let dayKey = self.dateFormatter.string(from: day)
 
         if let message = UserDefaults.standard.string(forKey: dayKey), let colored = UserDefaults.standard.string(forKey: "\(dayKey)colored") {
-            return (message, colored)
+            return Message(content: message, coloredPart: colored)
         } else {
             if let appDomain = Bundle.main.bundleIdentifier {
                 UserDefaults.standard.removePersistentDomain(forName: appDomain)
             }
 
-            let message = self.generateMessage(forInterval: interval)
-            defaults.set(message.text, forKey: dayKey)
-            defaults.set(message.colored, forKey: "\(dayKey)colored")
-            return (message.text, message.colored)
+            let message = self.generateMessage(isNight: isNight, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+            defaults.set(message.content, forKey: dayKey)
+            defaults.set(message.coloredPart, forKey: "\(dayKey)colored")
+
+            return message
         }
     }
 
-    func messageForNotification(withInterval interval: Double) -> String {
-        let message = self.generateMessage(forInterval: interval)
+    func messageForNotification(isNight: Bool, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> String {
+        let message = self.generateMessage(isNight: isNight, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
 
-        return message.text
+        return message.content
     }
 
-    private func generateMessage(forInterval interval: Double) -> (text: String, colored: String) {
-        if interval > 1 {
-            return longerDayMessage()
-        } else if interval >= 0 {
-            return noChangeMessage()
-        } else {
-            return shorterMessage()
+    private func generateMessage(isNight: Bool, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
+        let messageKind = Message.kind(isNight: isNight, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+        switch messageKind {
+        case .longerMoreThanAMinute:
+            return longerMoreThanAMinuteMessage()
+        case .longerLessThanAMinute:
+            return longerLessThanAMinuteMessage()
+        case .shorterMoreThanAMinute:
+            return shorterMoreThanAMinuteMessage()
+        case .shorterLessThanAMinute:
+            return self.shorterLessThanAMinuteMessage()
+        case .longerTomorrowMoreThanAMinute:
+            return self.longerTomorrowMoreThanAMinuteMessage()
+        case .longerTomorrowLessThanAMinute:
+            return self.longerTomorrowLessThanAMinuteMessage()
+        case .shorterTomorrowMoreThanAMinute:
+            return self.shorterTomorrowMoreThanAMinuteMessage()
+        case .shorterTomorrowLessThanAMinute:
+            return self.shorterTomorrowLessThanAMinuteMessage()
         }
     }
 
