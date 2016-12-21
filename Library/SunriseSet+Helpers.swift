@@ -19,7 +19,7 @@ extension Suntimes {
         let startOfTheDay = calendar.startOfDay(for: self.date)
 
         if self.date.isBetween(startOfTheDay, and: self.astronomicalTwilightStart) {
-            return .night
+            return .twilight
         } else if date.isBetween(self.astronomicalTwilightStart, and: self.nauticalTwilightStart) {
             return .twilight
         } else if date.isBetween(self.nauticalTwilightStart, and: self.civilTwilightStart) {
