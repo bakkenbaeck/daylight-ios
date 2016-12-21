@@ -33,6 +33,7 @@
 		148FBB6A1E07EDBE009ED9F3 /* SweetUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148FBB691E07EDBE009ED9F3 /* SweetUIKit.framework */; };
 		148FBB6B1E07EDBE009ED9F3 /* SweetUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 148FBB691E07EDBE009ED9F3 /* SweetUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14A3E1781E09E6BF002F0D6C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A3E1771E09E6BF002F0D6C /* Settings.swift */; };
+		14C866D51E0B314A0018FFD2 /* Oslo.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 14C866D41E0B314A0018FFD2 /* Oslo.gpx */; };
 		44227E8F1E067A1E002B911B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
 		D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBC3EDBF4CA099642BCE /* Notifier.swift */; };
 		D197BB6AA1F1FB8F3E2ADA6B /* MessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */; };
@@ -89,6 +90,7 @@
 		1483128D1B92C11500266943 /* MessageGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGeneratorTests.swift; sourceTree = "<group>"; };
 		148FBB691E07EDBE009ED9F3 /* SweetUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SweetUIKit.framework; path = Carthage/Build/iOS/SweetUIKit.framework; sourceTree = "<group>"; };
 		14A3E1771E09E6BF002F0D6C /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		14C866D41E0B314A0018FFD2 /* Oslo.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Oslo.gpx; sourceTree = "<group>"; };
 		14E6F3C91E08735200F9C3F6 /* SunPhaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunPhaseTests.swift; sourceTree = "<group>"; };
 		44227E8E1E067A1E002B911B /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageGenerator.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 		146E279E1BCD51F200959BBA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				14C866D41E0B314A0018FFD2 /* Oslo.gpx */,
 				146E279F1BCD51F200959BBA /* LaunchScreen.xib */,
 				146E27A11BCD51F200959BBA /* Images.xcassets */,
 				146E27A21BCD51F200959BBA /* Info.plist */,
@@ -309,6 +312,7 @@
 			files = (
 				146E27AA1BCD51F200959BBA /* Images.xcassets in Resources */,
 				146E27A91BCD51F200959BBA /* LaunchScreen.xib in Resources */,
+				14C866D51E0B314A0018FFD2 /* Oslo.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
