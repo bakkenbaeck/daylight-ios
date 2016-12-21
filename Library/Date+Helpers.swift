@@ -17,10 +17,10 @@ extension Date {
         return Calendar.current.date(byAdding: .day, value: 1, to: self)!
     }
 
-    func datesOfComingYear() -> [Date] {
+    func futureDates() -> [Date] {
         var dayArray = [self]
 
-        for i in 0 ..< 365 {
+        for i in 0 ..< 30 {
             dayArray.append(dayArray[i].dayAfter())
         }
 
