@@ -102,13 +102,15 @@ class SunView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        let labelWidth = CGFloat(35.0)
+
         // TODO: check if the view layout is also possible using constraints
-        self.sunriseLabel.frame = CGRect(x: 0, y: 108, width: 33, height: 16)
-        self.sunsetLabel.frame = CGRect(x: self.bounds.width - 33, y: 108, width: 33, height: 16)
+        self.sunriseLabel.frame = CGRect(x: 0, y: 108, width: labelWidth, height: 16)
+        self.sunsetLabel.frame = CGRect(x: self.bounds.width - labelWidth, y: 108, width: labelWidth, height: 16)
         self.sun.frame = CGRect(x: self.sunViewLocation.x, y: self.sunViewLocation.y, width: SunView.sunSize, height: SunView.sunSize)
         self.sunMask.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: 108)
         self.horizon.frame = CGRect(x: 0, y: 108, width: self.bounds.width, height: 1)
-        self.currentTimeLabel.frame = CGRect(x: self.sunViewLocation.x - 10, y: self.sunViewLocation.y - 24, width: 33, height: 16)
+        self.currentTimeLabel.frame = CGRect(x: self.sunViewLocation.x - 10, y: self.sunViewLocation.y - 24, width: labelWidth, height: 16)
         self.moon.frame = CGRect(x: self.sunViewLocation.x + (SunView.sunSize / 2), y: self.sunViewLocation.y, width: SunView.sunSize / 2, height: SunView.sunSize)
     }
 

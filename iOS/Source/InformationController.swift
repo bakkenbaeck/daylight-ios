@@ -9,6 +9,13 @@ class InformationController: UIViewController {
 
     var messageLabelHeightAnchor: NSLayoutConstraint?
 
+    lazy var webButton: UIButton = {
+        let button = UIButton(withAutoLayout: true)
+        button.addTarget(self, action: #selector(didSelectLinkButton), for: .touchUpInside)
+
+        return button
+    }()
+
     lazy var closeButton: CloseButton = {
         let button = CloseButton()
         button.addTarget(self, action: #selector(didSelectClose), for: .touchUpInside)
@@ -60,6 +67,7 @@ class InformationController: UIViewController {
         self.view.addSubview(self.closeButton)
         self.view.addSubview(self.messageLabel)
         self.view.addSubview(self.notificationButton)
+        self.view.addSubview(self.webButton)
 
         let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
 
@@ -77,6 +85,11 @@ class InformationController: UIViewController {
         self.notificationButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: insets.left).isActive = true
         self.notificationButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
         self.notificationButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
+
+        self.webButton.bottomAnchor.constraint(equalTo: self.messageLabel.bottomAnchor).isActive = true
+        self.webButton.leftAnchor.constraint(equalTo: self.messageLabel.leftAnchor).isActive = true
+        self.webButton.rightAnchor.constraint(equalTo: self.messageLabel.rightAnchor).isActive = true
+        self.webButton.heightAnchor.constraint(equalToConstant: 44)
     }
 
     func updateInterface() {
@@ -138,5 +151,9 @@ class InformationController: UIViewController {
 
     func didSelectClose() {
         self.dismiss(animated: true)
+    }
+
+    func didSelectLinkButton() {
+        UIApplication.shared.openURL(URL(string: "https://bakkenbaeck.com")!)
     }
 }
