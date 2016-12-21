@@ -60,6 +60,22 @@ struct MessageGenerator {
         return self.shorterMoreThanAMinuteMessages[index]
     }
 
+    var longerTomorrowLessThanAMinuteMessages: [Message] {
+        var messages = [Message]()
+
+        messages.append(Message(content: "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.", coloredPart: ""))
+        messages.append(Message(content: "Bring out those pyjamas. More daylight awaits tomorrow!", coloredPart: ""))
+        messages.append(Message(content: "The sun has set. Soak up the extra vitamin D tomorrow!", coloredPart: ""))
+
+        return messages
+    }
+
+    func longerTomorrowLessThanAMinuteMessage() -> Message {
+        let index = Int(arc4random_uniform(UInt32(self.longerTomorrowLessThanAMinuteMessages.count)))
+
+        return self.longerTomorrowLessThanAMinuteMessages[index]
+    }
+
     var longerTomorrowMoreThanAMinuteMessages: [Message] {
         var messages = [Message]()
 
@@ -76,6 +92,54 @@ struct MessageGenerator {
         let index = Int(arc4random_uniform(UInt32(self.longerTomorrowMoreThanAMinuteMessages.count)))
 
         return self.longerTomorrowMoreThanAMinuteMessages[index]
+    }
+
+    var shorterLessThanAMinuteMessages: [Message] {
+        var messages = [Message]()
+
+        messages.append(Message(content: "Unfortunately, the day is a little bit shorter today. Make the most out of it!", coloredPart: ""))
+        messages.append(Message(content: "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!", coloredPart: ""))
+        messages.append(Message(content: "Today is shorter than yesterday. But fear not, brighter times ahead!", coloredPart: ""))
+
+        return messages
+    }
+
+    func shorterLessThanAMinuteMessage() -> Message {
+        let index = Int(arc4random_uniform(UInt32(self.shorterLessThanAMinuteMessages.count)))
+
+        return self.shorterLessThanAMinuteMessages[index]
+    }
+
+    var shorterTomorrowMoreThanAMinuteMessages: [Message] {
+        var messages = [Message]()
+
+        messages.append(Message(content: "Unfortunately, tomorrow will be %@ minutes shorter than today. Make the most out of it!", coloredPart: "%@ minutes"))
+        messages.append(Message(content: "Sadly, tomorrow will be %@ minutes shorter than today. Enjoy it while it lasts!", coloredPart: "%@ minutes"))
+        messages.append(Message(content: "Tomorrow will be %@ minutes shorter than today. But fear not, brighter times ahead!", coloredPart: "%@ minutes"))
+
+        return messages
+    }
+
+    func shorterTomorrowMoreThanAMinuteMessage() -> Message {
+        let index = Int(arc4random_uniform(UInt32(self.shorterTomorrowMoreThanAMinuteMessages.count)))
+
+        return self.shorterTomorrowMoreThanAMinuteMessages[index]
+    }
+
+    var shorterTomorrowLessThanAMinuteMessages: [Message] {
+        var messages = [Message]()
+
+        messages.append(Message(content: "Unfortunately, tomorrow will be a little bit shorter than today. Make the most out of it!", coloredPart: ""))
+        messages.append(Message(content: "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!", coloredPart: ""))
+        messages.append(Message(content: "Tomorrow will be shorter than today. But fear not, brighter times ahead!", coloredPart: ""))
+
+        return messages
+    }
+
+    func shorterTomorrowLessThanAMinuteMessage() -> Message {
+        let index = Int(arc4random_uniform(UInt32(self.shorterTomorrowLessThanAMinuteMessages.count)))
+
+        return self.shorterTomorrowLessThanAMinuteMessages[index]
     }
 
     var dateFormatter: DateFormatter = {
@@ -121,15 +185,15 @@ struct MessageGenerator {
         case .shorterMoreThanAMinute:
             return shorterMoreThanAMinuteMessage()
         case .shorterLessThanAMinute:
-            return Message(content: "", coloredPart: "")
+            return self.shorterLessThanAMinuteMessage()
         case .longerTomorrowMoreThanAMinute:
-            return Message(content: "", coloredPart: "")
+            return self.longerTomorrowMoreThanAMinuteMessage()
         case .longerTomorrowLessThanAMinute:
-            return Message(content: "", coloredPart: "")
+            return self.longerTomorrowLessThanAMinuteMessage()
         case .shorterTomorrowMoreThanAMinute:
-            return Message(content: "", coloredPart: "")
+            return self.shorterTomorrowMoreThanAMinuteMessage()
         case .shorterTomorrowLessThanAMinute:
-            return Message(content: "", coloredPart: "")
+            return self.shorterTomorrowLessThanAMinuteMessage()
         }
     }
 
