@@ -16,26 +16,26 @@ struct Message {
     let content: String
     let coloredPart: String
 
-    static func kind(isNight: Bool, yesterdayDayLenght: Double, todayDayLenght: Double, tomorrowDayLenght: Double) -> Kind {
+    static func kind(isNight: Bool, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Kind {
         if isNight {
-            let tomorrowIsLonger = tomorrowDayLenght - todayDayLenght > 0
+            let tomorrowIsLonger = tomorrowDaylightLength - todayDaylightLength > 0
             if tomorrowIsLonger {
-                let longerTomorrowMoreThanAMinute = tomorrowDayLenght - todayDayLenght > 60
+                let longerTomorrowMoreThanAMinute = tomorrowDaylightLength - todayDaylightLength > 60
 
                 return longerTomorrowMoreThanAMinute ? .longerTomorrowMoreThanAMinute : .longerTomorrowLessThanAMinute
             } else {
-                let shorterTomorrowMoreThanAMinute = todayDayLenght - tomorrowDayLenght > 60
+                let shorterTomorrowMoreThanAMinute = todayDaylightLength - tomorrowDaylightLength > 60
 
                 return shorterTomorrowMoreThanAMinute ? .shorterTomorrowMoreThanAMinute : .shorterTomorrowLessThanAMinute
             }
         } else {
-            let todayIsLonger = todayDayLenght - yesterdayDayLenght > 0
+            let todayIsLonger = todayDaylightLength - yesterdayDaylightLength > 0
             if todayIsLonger {
-                let longerMoreThanAMinute = todayDayLenght - yesterdayDayLenght > 60
+                let longerMoreThanAMinute = todayDaylightLength - yesterdayDaylightLength > 60
 
                 return longerMoreThanAMinute ? .longerMoreThanAMinute : .longerLessThanAMinute
             } else {
-                let shorterMoreThanAMinute = yesterdayDayLenght - todayDayLenght > 60
+                let shorterMoreThanAMinute = yesterdayDaylightLength - todayDaylightLength > 60
 
                 return shorterMoreThanAMinute ? .shorterMoreThanAMinute : .shorterLessThanAMinute
             }

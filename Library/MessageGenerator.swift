@@ -85,7 +85,7 @@ struct MessageGenerator {
         return formatter
     }()
 
-    func message(forDay day: Date, withInterval interval: Double) -> Message {
+    func message(forDay day: Date, isNight: Bool, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
         let defaults = UserDefaults.standard
 
         let dayKey = self.dateFormatter.string(from: day)
@@ -97,7 +97,7 @@ struct MessageGenerator {
                 UserDefaults.standard.removePersistentDomain(forName: appDomain)
             }
 
-            let message = self.generateMessage(forInterval: interval)
+            let message = self.generateMessage(isNight: isNight, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
             defaults.set(message.content, forKey: dayKey)
             defaults.set(message.coloredPart, forKey: "\(dayKey)colored")
 
@@ -105,19 +105,31 @@ struct MessageGenerator {
         }
     }
 
-    func messageForNotification(withInterval interval: Double) -> String {
-        let message = self.generateMessage(forInterval: interval)
+    func messageForNotification(isNight: Bool, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> String {
+        let message = self.generateMessage(isNight: isNight, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
 
         return message.content
     }
 
-    private func generateMessage(forInterval interval: Double) -> Message {
-        if interval > 1 {
+    private func generateMessage(isNight: Bool, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
+        let messageKind = Message.kind(isNight: isNight, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+        switch messageKind {
+        case .longerMoreThanAMinute:
             return longerMoreThanAMinuteMessage()
-        } else if interval >= 0 {
+        case .longerLessThanAMinute:
             return longerLessThanAMinuteMessage()
-        } else {
+        case .shorterMoreThanAMinute:
             return shorterMoreThanAMinuteMessage()
+        case .shorterLessThanAMinute:
+            return Message(content: "", coloredPart: "")
+        case .longerTomorrowMoreThanAMinute:
+            return Message(content: "", coloredPart: "")
+        case .longerTomorrowLessThanAMinute:
+            return Message(content: "", coloredPart: "")
+        case .shorterTomorrowMoreThanAMinute:
+            return Message(content: "", coloredPart: "")
+        case .shorterTomorrowLessThanAMinute:
+            return Message(content: "", coloredPart: "")
         }
     }
 

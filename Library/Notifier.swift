@@ -3,14 +3,14 @@ import UIKit
 import SweetUIKit
 
 struct Notifier {
-    static func scheduleNotifications() {
+    static func scheduleNotifications(for location: Location) {
         let datesOfComingYear = Date().datesOfComingYear()
         for date in datesOfComingYear {
-            self.scheduleNotification(forDate: date)
+            self.scheduleNotification(for: location, at: date)
         }
     }
 
-    static private func scheduleNotification(forDate date: Date) {
+    static private func scheduleNotification(for location: Location, at date: Date) {
         guard let location = Location.current else { return }
 
         let dateFormatter = DateFormatter()
@@ -24,7 +24,7 @@ struct Notifier {
         let messageGenerator = MessageGenerator()
         let minutesString = messageGenerator.minuteString(for: interval)
 
-        let message = messageGenerator.messageForNotification(withInterval: interval)
+        let message = messageGenerator.messageForNotification(isNight: location.isNight, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
         let formattedMessage = String(format: message, minutesString)
 
         UILocalNotification.schedule(notificationID, at: sunriseDate, message: formattedMessage)

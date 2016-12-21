@@ -74,7 +74,9 @@ class MainController: UIViewController {
 
         Notifier.cancelAllNotifications()
         if Settings.isNotificationsEnabled {
-            Notifier.scheduleNotifications()
+            if let location = Location.current {
+                Notifier.scheduleNotifications(for: location)
+            }
         }
     }
 
@@ -120,7 +122,7 @@ class MainController: UIViewController {
 
         let messageGenerator = MessageGenerator()
         let minutesString = messageGenerator.minuteString(for: interval)
-        let generatedMessage = messageGenerator.message(forDay: Date(), withInterval: interval)
+        let generatedMessage = messageGenerator.message(forDay: Date(), isNight: location.isNight, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
 
         let message = String(format: generatedMessage.content, minutesString)
         let colored = String(format: generatedMessage.coloredPart, minutesString)
@@ -196,7 +198,9 @@ extension MainController: LocationTrackerDelegate {
 extension MainController: InformationControllerDelegate {
     func informationController(_ informationController: InformationController, didToggleNotifications isNotificationsEnabled: Bool) {
         if isNotificationsEnabled {
-            Notifier.scheduleNotifications()
+            if let location = Location.current {
+                Notifier.scheduleNotifications(for: location)
+            }
         } else {
             Notifier.cancelAllNotifications()
         }
