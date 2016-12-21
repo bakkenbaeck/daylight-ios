@@ -16,7 +16,7 @@ extension Suntimes {
     var sunPhase: SunPhase {
         var calendar = Calendar.current
         calendar.timeZone = self.timeZone
-        let startOfTheDay = calendar.startOfDay(for: date)
+        let startOfTheDay = calendar.startOfDay(for: self.date)
 
         if self.date.isBetween(startOfTheDay, and: self.astronomicalTwilightStart) {
             return .night
