@@ -2,7 +2,7 @@ import Foundation
 import CoreLocation
 import Suntimes
 
-enum SunPhase {
+enum SunPhase: Int {
     case sunrise
     case daylight
     case sunset

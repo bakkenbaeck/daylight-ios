@@ -116,7 +116,6 @@ class MainController: UIViewController {
 
         let sunPhase = location.sunPhase
         let (backgroundColor, textColor) = Theme.colors(for: sunPhase)
-        self.updateSunView()
 
         let interval = location.dayLengthDifference
 
@@ -133,7 +132,8 @@ class MainController: UIViewController {
 
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = backgroundColor
-            self.sunView.updateInterface(withBackgroundColor: backgroundColor, textColor: textColor, andPercentageInDay: percentageInDay, isNight: location.isNight)
+            self.sunView.updateInterface(withBackgroundColor: backgroundColor, textColor: textColor, andPercentageInDay: percentageInDay, sunPhase: sunPhase)
+            self.updateSunView()
 
             self.informationButton.updateInterface(withBackgroundColor: backgroundColor, andTextColor: textColor)
 

@@ -9,13 +9,18 @@ struct SunViewLocation {
 class SunView: UIView {
     static let sunSize = CGFloat(16.0)
 
-    var isNight = false {
+    var sunPhase = SunPhase.none {
         didSet {
-            if self.isNight {
-                self.moon.isHidden = false
-                self.sunViewLocation = SunViewLocation(x: (self.frame.width - SunView.sunSize) / 2.0, y: 0.0)
-            } else {
-                self.moon.isHidden = true
+            self.moon.isHidden = true
+            self.currentTimeLabel.isHidden = false
+            switch self.sunPhase {
+                case .night:
+                    self.moon.isHidden = false
+                    self.sunViewLocation = SunViewLocation(x: (self.frame.width - SunView.sunSize) / 2.0, y: 0.0)
+                case .twilight:
+                    self.currentTimeLabel.isHidden = true
+                default:
+                    break
             }
         }
     }
@@ -132,7 +137,6 @@ class SunView: UIView {
 
     func location(for percentageInDay: CGFloat) -> SunViewLocation {
         let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
-        // TODO: Check these numbers and make them work right
         let x = 50.0 + cos(position) * 50.0
         let y = abs(sin(position) * 100.0)
 
@@ -142,7 +146,7 @@ class SunView: UIView {
         return SunViewLocation(x: absoluteX, y: absoluteY)
     }
 
-    func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, isNight: Bool) {
+    func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, sunPhase: SunPhase) {
         self.sunriseLabel.textColor = textColor
         self.sunsetLabel.textColor = textColor
         self.currentTimeLabel.textColor = textColor
@@ -151,6 +155,6 @@ class SunView: UIView {
         self.moon.backgroundColor = backgroundColor
 
         self.sunViewLocation = self.location(for: CGFloat(percentageInDay))
-        self.isNight = isNight
+        self.sunPhase = sunPhase
     }
 }
