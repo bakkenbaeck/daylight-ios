@@ -5,7 +5,7 @@ import Suntimes
 struct Location {
     lazy var timeFormatter: DateFormatter = {
         let shortTimeFormatter = DateFormatter()
-        shortTimeFormatter.dateFormat = "hh:mm"
+        shortTimeFormatter.dateFormat = "HH:MM"
 
         return shortTimeFormatter
     }()
@@ -82,7 +82,7 @@ struct Location {
         let sunset = todaySuntimes.sunset
 
         let shortTimeFormatter = DateFormatter()
-        shortTimeFormatter.dateFormat = "hh:mm"
+        shortTimeFormatter.dateFormat = "HH:MM"
 
         return shortTimeFormatter.string(from: sunset)
     }
@@ -93,7 +93,7 @@ struct Location {
         let todaySuntimes = Suntimes(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
         let sunrise = todaySuntimes.sunrise
         let shortTimeFormatter = DateFormatter()
-        shortTimeFormatter.dateFormat = "hh:mm"
+        shortTimeFormatter.dateFormat = "HH:MM"
 
         return shortTimeFormatter.string(from: sunrise)
     }
