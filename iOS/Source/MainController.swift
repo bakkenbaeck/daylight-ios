@@ -105,7 +105,7 @@ class MainController: UIViewController {
 
         self.locationLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -insets.top).isActive = true
         self.locationLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: insets.left).isActive = true
-        self.locationLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        self.locationLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         self.locationLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
     }
 
