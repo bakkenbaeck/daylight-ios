@@ -198,11 +198,7 @@ struct MessageGenerator {
     }
 
     func minuteString(for interval: Double) -> String {
-        let minutes = interval / 60
-
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 2
-        let minutesString = formatter.string(from: NSNumber(value: abs(minutes)))!
+        let minutesString = String(describing: Int(round(interval / 60)))
 
         return minutesString
     }
