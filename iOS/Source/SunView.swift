@@ -89,7 +89,7 @@ class SunView: UIView {
 
     lazy var timeFormatter: DateFormatter = {
         let shortTimeFormatter = DateFormatter()
-        shortTimeFormatter.dateFormat = "HH:MM"
+        shortTimeFormatter.dateFormat = "HH:mm"
 
         return shortTimeFormatter
     }()

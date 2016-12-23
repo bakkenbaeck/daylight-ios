@@ -4,7 +4,7 @@ import CoreLocation
 struct Location {
     lazy var timeFormatter: DateFormatter = {
         let shortTimeFormatter = DateFormatter()
-        shortTimeFormatter.dateFormat = "HH:MM"
+        shortTimeFormatter.dateFormat = "HH:mm"
 
         return shortTimeFormatter
     }()
@@ -81,7 +81,7 @@ struct Location {
         let sunset = todaySuntimes.sunset
 
         let shortTimeFormatter = DateFormatter()
-        shortTimeFormatter.dateFormat = "HH:MM"
+        shortTimeFormatter.dateFormat = "HH:mm"
 
         return shortTimeFormatter.string(from: sunset)
     }
@@ -92,7 +92,7 @@ struct Location {
         let todaySuntimes = SunCalc(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
         let sunrise = todaySuntimes.sunrise
         let shortTimeFormatter = DateFormatter()
-        shortTimeFormatter.dateFormat = "HH:MM"
+        shortTimeFormatter.dateFormat = "HH:mm"
 
         return shortTimeFormatter.string(from: sunrise)
     }
