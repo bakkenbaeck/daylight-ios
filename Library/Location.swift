@@ -59,7 +59,7 @@ struct Location {
     }
 
     var isNight: Bool {
-        return self.sunPhase == .night
+        return self.sunPhase == .nightEnd
     }
 
     var sunPhase: SunPhase {

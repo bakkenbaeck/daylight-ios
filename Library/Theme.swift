@@ -53,21 +53,18 @@ struct Theme {
         case .sunrise:
             backgroundColor = Theme.sunriseBackground
             textColor = Theme.sunriseText
-        case .daylight:
+        case .solarNoon:
             backgroundColor = Theme.daylightBackground
             textColor = Theme.daylightText
         case .sunset:
             backgroundColor = Theme.sunsetBackground
             textColor = Theme.sunsetText
-        case .twilight:
+        case .dusk, .dawn:
             backgroundColor = Theme.twilightBackground
             textColor = Theme.twilightText
-        case .night:
+        case .nightEnd, .nightStart:
             backgroundColor = Theme.nightBackground
             textColor = Theme.nightText
-        default:
-            backgroundColor = .white
-            textColor = .black
         }
 
         return (backgroundColor, textColor)

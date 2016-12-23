@@ -2,15 +2,19 @@ import JavaScriptCore
 import Foundation
 
 enum SunPhase {
+    case nightStart
+    case dawn
     case sunrise
-    case daylight
+    case solarNoon
     case sunset
-    case twilight
-    case night
-    case none
+    case dusk
+    case nightEnd
 }
 
 struct SunCalc {
+    private(set) var date: Date
+    private(set) var timeZone: TimeZone
+
     private(set) var dawn: Date
     private(set) var dusk: Date
     private(set) var goldenHour: Date
@@ -26,52 +30,35 @@ struct SunCalc {
     private(set) var sunset: Date
     private(set) var sunsetStart: Date
 
-    init(date: Date, timeZone: TimeZone, latitude: Double, longitude: Double) {
-        let path = Bundle.main.path(forResource: "suncalc", ofType: "js")!
+    init(date: Date, timeZone: TimeZone, latitude: Double, longitude: Double, bundle: Bundle = Bundle.main) {
+        self.date = date
+        self.timeZone = timeZone
+
+        let path = bundle.path(forResource: "suncalc", ofType: "js")!
         let contents = try! String(contentsOfFile: path)
         let context = JSContext()!
         context.evaluateScript(contents)
 
         let function = context.objectForKeyedSubscript("getTimes")!
-        let times = function.call(withArguments: [date, latitude, longitude])!.toObjectOf(NSDictionary.self)!
-/*
-            {
-                dawn = "2013-03-05 04:02:17 +0000";
-                dusk = "2013-03-05 16:19:36 +0000";
-                goldenHour = "2013-03-05 15:02:52 +0000";
-                goldenHourEnd = "2013-03-05 05:19:01 +0000";
-                nadir = "2013-03-04 22:10:57 +0000";
-                nauticalDawn = "2013-03-05 03:24:31 +0000";
-                nauticalDusk = "2013-03-05 16:57:22 +0000";
-                night = "2013-03-05 17:35:36 +0000";
-                nightEnd = "2013-03-05 02:46:17 +0000";
-                solarNoon = "2013-03-05 10:10:57 +0000";
-                sunrise = "2013-03-05 04:34:56 +0000";
-                sunriseEnd = "2013-03-05 04:38:19 +0000";
-                sunset = "2013-03-05 15:46:57 +0000";
-                sunsetStart = "2013-03-05 15:43:34 +0000";
-        }
-*/
+        let times = function.call(withArguments: [date, latitude, longitude])!.toObjectOf(NSDictionary.self)! as! [String: Any]
 
-        self.dawn = Date()
-        self.dusk = Date()
-        self.goldenHour = Date()
-        self.goldenHourEnd = Date()
-        self.nadir = Date()
-        self.nauticalDawn = Date()
-        self.nauticalDusk = Date()
-        self.night = Date()
-        self.nightEnd = Date()
-        self.solarNoon = Date()
-        self.sunrise = Date()
-        self.sunriseEnd = Date()
-        self.sunset = Date()
-        self.sunsetStart = Date()
+        self.dawn = times["dawn"] as? Date ?? Date()
+        self.dusk = times["dusk"] as? Date ?? Date()
+        self.goldenHour = times["goldenHour"] as? Date ?? Date()
+        self.goldenHourEnd = times["goldenHourEnd"] as? Date ?? Date()
+        self.nadir = times["nadir"] as? Date ?? Date()
+        self.nauticalDawn = times["nauticalDawn"] as? Date ?? Date()
+        self.nauticalDusk = times["nauticalDusk"] as? Date ?? Date()
+        self.night = times["night"] as? Date ?? Date()
+        self.nightEnd = times["nightEnd"] as? Date ?? Date()
+        self.solarNoon = times["solarNoon"] as? Date ?? Date()
+        self.sunrise = times["sunrise"] as? Date ?? Date()
+        self.sunriseEnd = times["sunriseEnd"] as? Date ?? Date()
+        self.sunset = times["sunset"] as? Date ?? Date()
+        self.sunsetStart = times["sunsetStart"] as? Date ?? Date()
     }
 
     var daylightLengthProgress: Double {
-        return 0
-        /*
         let timeSinceSunrise = self.date.timeIntervalSince(self.sunrise)
         if self.date.isBetween(self.sunrise, and: self.sunset) {
             let totalDaylightDuration = self.sunset.timeIntervalSince(self.sunrise)
@@ -81,34 +68,27 @@ struct SunCalc {
         } else {
             return 0
         }
-        */
     }
 
     var sunPhase: SunPhase {
-        return .sunrise
-        /*
         var calendar = Calendar.current
         calendar.timeZone = self.timeZone
         let startOfTheDay = calendar.startOfDay(for: self.date)
 
-        if self.date.isBetween(startOfTheDay, and: self.astronomicalTwilightStart) {
-            return .twilight
-        } else if date.isBetween(self.astronomicalTwilightStart, and: self.nauticalTwilightStart) {
-            return .twilight
-        } else if date.isBetween(self.nauticalTwilightStart, and: self.civilTwilightStart) {
-            return .twilight
-        } else if date.isBetween(self.civilTwilightStart, and: self.sunrise) {
-            return .twilight
-        } else if date.isBetween(self.sunrise, and: self.sunset) {
+        if self.date.isBetween(startOfTheDay, and: self.dawn) {
+            return .nightStart
+        } else if date.isBetween(self.dawn, and: self.sunrise) {
+            return .dawn
+        } else if date.isBetween(self.sunrise, and: self.solarNoon) {
             return .sunrise
-        } else if date.isBetween(self.sunset, and: self.civilTwilightEnd) {
+        } else if date.isBetween(self.solarNoon, and: self.sunset) {
+            return .solarNoon
+        } else if date.isBetween(self.sunset, and: self.dusk) {
             return .sunset
-        } else if date.isBetween(self.civilTwilightEnd, and: self.nauticalTwilightEnd) {
-            return .twilight
-        } else if date.isBetween(self.nauticalTwilightEnd, and: self.astronomicalTwilightEnd) {
-            return .twilight
+        } else if date.isBetween(self.dusk, and: self.night) {
+            return .dusk
         } else {
-            return .night
-        }*/
+            return .nightEnd
+        }
     }
 }
