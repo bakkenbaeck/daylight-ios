@@ -1,7 +1,6 @@
 import UIKit
 import XCTest
 import CoreLocation
-import Suntimes
 
 class SunPhaseTests: XCTestCase {
     func testSunPhase() {
@@ -20,61 +19,61 @@ class SunPhaseTests: XCTestCase {
         dateComponents.hour = 0
         dateComponents.minute = 0
         var date = calendar.date(from: dateComponents)!
-        var suntimes = Suntimes(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
-        XCTAssertEqual(suntimes.sunPhase, .twilight)
+        var sunCalc = SunCalc(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
+        XCTAssertEqual(sunCalc.sunPhase, .twilight)
 
         dateComponents.hour = 5
         dateComponents.minute = 35
         date = calendar.date(from: dateComponents)!
-        suntimes = Suntimes(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
-        XCTAssertEqual(suntimes.sunPhase, .twilight)
+        sunCalc = SunCalc(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
+        XCTAssertEqual(sunCalc.sunPhase, .twilight)
 
         dateComponents.hour = 6
         dateComponents.minute = 26
         date = calendar.date(from: dateComponents)!
-        suntimes = Suntimes(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
-        XCTAssertEqual(suntimes.sunPhase, .twilight)
+        sunCalc = SunCalc(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
+        XCTAssertEqual(sunCalc.sunPhase, .twilight)
 
         dateComponents.hour = 7
         dateComponents.minute = 22
         date = calendar.date(from: dateComponents)!
-        suntimes = Suntimes(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
-        XCTAssertEqual(suntimes.sunPhase, .twilight)
+        sunCalc = SunCalc(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
+        XCTAssertEqual(sunCalc.sunPhase, .twilight)
 
         dateComponents.hour = 8
         dateComponents.minute = 19
         date = calendar.date(from: dateComponents)!
-        suntimes = Suntimes(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
-        XCTAssertEqual(suntimes.sunPhase, .sunrise)
+        sunCalc = SunCalc(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
+        XCTAssertEqual(sunCalc.sunPhase, .sunrise)
 
         dateComponents.hour = 14
         dateComponents.minute = 24
         date = calendar.date(from: dateComponents)!
-        suntimes = Suntimes(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
-        XCTAssertEqual(suntimes.sunPhase, .sunset)
+        sunCalc = SunCalc(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
+        XCTAssertEqual(sunCalc.sunPhase, .sunset)
 
         dateComponents.hour = 15
         dateComponents.minute = 20
         date = calendar.date(from: dateComponents)!
-        suntimes = Suntimes(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
-        XCTAssertEqual(suntimes.sunPhase, .twilight)
+        sunCalc = SunCalc(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
+        XCTAssertEqual(sunCalc.sunPhase, .twilight)
 
         dateComponents.hour = 16
         dateComponents.minute = 16
         date = calendar.date(from: dateComponents)!
-        suntimes = Suntimes(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
-        XCTAssertEqual(suntimes.sunPhase, .twilight)
+        sunCalc = SunCalc(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
+        XCTAssertEqual(sunCalc.sunPhase, .twilight)
 
         dateComponents.hour = 17
         dateComponents.minute = 07
         date = calendar.date(from: dateComponents)!
-        suntimes = Suntimes(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
-        XCTAssertEqual(suntimes.sunPhase, .night)
+        sunCalc = SunCalc(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
+        XCTAssertEqual(sunCalc.sunPhase, .night)
 
         dateComponents.hour = 23
         dateComponents.minute = 59
         date = calendar.date(from: dateComponents)!
-        suntimes = Suntimes(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
-        XCTAssertEqual(suntimes.sunPhase, .night)
+        sunCalc = SunCalc(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
+        XCTAssertEqual(sunCalc.sunPhase, .night)
     }
 }
