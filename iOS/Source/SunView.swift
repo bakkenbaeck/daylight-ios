@@ -9,15 +9,15 @@ struct SunViewLocation {
 class SunView: UIView {
     static let sunSize = CGFloat(16.0)
 
-    var sunPhase = SunPhase.none {
+    var sunPhase = SunPhase.nightStart {
         didSet {
             self.moon.isHidden = true
             self.currentTimeLabel.isHidden = false
             switch self.sunPhase {
-                case .night:
+                case .nightEnd:
                     self.moon.isHidden = false
                     self.sunViewLocation = SunViewLocation(x: (self.frame.width - SunView.sunSize) / 2.0, y: 0.0)
-                case .twilight:
+                case .dawn:
                     self.currentTimeLabel.isHidden = true
                 default:
                     break
@@ -89,7 +89,7 @@ class SunView: UIView {
 
     lazy var timeFormatter: DateFormatter = {
         let shortTimeFormatter = DateFormatter()
-        shortTimeFormatter.dateFormat = "HH:MM"
+        shortTimeFormatter.dateFormat = "HH:mm"
 
         return shortTimeFormatter
     }()

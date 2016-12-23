@@ -1,11 +1,12 @@
 import UIKit
 import XCTest
-import Suntimes
 import CoreLocation
 
 class Suntimes_HelperTests: XCTestCase {
     func testDaylightLengthProgress() {
-        let osloCoordinate = CLLocationCoordinate2D(latitude: 59.917, longitude: 10.75)
+        let bundle = Bundle(for: SunPhaseTests.self)
+
+        let coordinate = CLLocationCoordinate2D(latitude: 59.917, longitude: 10.75)
 
         let timeZone = TimeZone(identifier: "UTC")!
         var calendar = Calendar.current
@@ -20,28 +21,28 @@ class Suntimes_HelperTests: XCTestCase {
         dateComponents.hour = 0
         dateComponents.minute = 0
         var date = calendar.date(from: dateComponents)!
-        var suntimes = Suntimes(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
-        XCTAssertEqual(suntimes.daylightLengthProgress, 0)
+        var sunCalc = SunCalc(date: date, timeZone: timeZone, latitude: coordinate.latitude, longitude: coordinate.longitude, bundle: bundle)
+        XCTAssertEqual(sunCalc.daylightLengthProgress, 0)
 
         dateComponents.hour = 8
         dateComponents.minute = 18
         dateComponents.second = 04
         date = calendar.date(from: dateComponents)!
-        suntimes = Suntimes(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
-        XCTAssertEqual(suntimes.daylightLengthProgress, 0)
+        sunCalc = SunCalc(date: date, timeZone: timeZone, latitude: coordinate.latitude, longitude: coordinate.longitude, bundle: bundle)
+        XCTAssertEqual(sunCalc.daylightLengthProgress, 0)
 
         dateComponents.hour = 11
         dateComponents.minute = 11
         dateComponents.second = 45
         date = calendar.date(from: dateComponents)!
-        suntimes = Suntimes(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
-        XCTAssertEqualWithAccuracy(suntimes.daylightLengthProgress, 0.5, accuracy: 0.05)
+        sunCalc = SunCalc(date: date, timeZone: timeZone, latitude: coordinate.latitude, longitude: coordinate.longitude, bundle: bundle)
+        XCTAssertEqualWithAccuracy(sunCalc.daylightLengthProgress, 0.5, accuracy: 0.05)
 
         dateComponents.hour = 14
         dateComponents.minute = 23
         dateComponents.second = 15
         date = calendar.date(from: dateComponents)!
-        suntimes = Suntimes(date: date, timeZone: timeZone, latitude: osloCoordinate.latitude, longitude: osloCoordinate.longitude)
-        XCTAssertEqualWithAccuracy(suntimes.daylightLengthProgress, 1, accuracy: 0.05)
+        sunCalc = SunCalc(date: date, timeZone: timeZone, latitude: coordinate.latitude, longitude: coordinate.longitude, bundle: bundle)
+        XCTAssertEqualWithAccuracy(sunCalc.daylightLengthProgress, 1, accuracy: 0.05)
     }
 }
