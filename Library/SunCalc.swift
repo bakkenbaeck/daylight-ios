@@ -8,7 +8,7 @@ enum SunPhase {
     case solarNoon
     case sunset
     case dusk
-    case nightEnd
+    case night
 }
 
 struct SunCalc {
@@ -93,7 +93,7 @@ struct SunCalc {
         } else if date.isBetween(self.dusk, and: self.night) {
             return .dusk
         } else {
-            return .nightEnd
+            return .night
         }
     }
 }

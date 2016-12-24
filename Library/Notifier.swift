@@ -24,7 +24,7 @@ struct Notifier {
         let messageGenerator = MessageGenerator()
         let minutesString = messageGenerator.minuteString(for: interval)
 
-        let message = messageGenerator.messageForNotification(isNight: location.isNight, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
+        let message = messageGenerator.messageForNotification(sunPhase: location.sunPhase, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
         let formattedMessage = String(format: message, minutesString)
 
         UILocalNotification.schedule(notificationID, at: sunriseDate, message: formattedMessage)

@@ -149,7 +149,7 @@ struct MessageGenerator {
         return formatter
     }()
 
-    func message(forDay day: Date, isNight: Bool, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
+    func message(forDay day: Date, sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
         let defaults = UserDefaults.standard
 
         let dayKey = self.dateFormatter.string(from: day)
@@ -161,7 +161,7 @@ struct MessageGenerator {
                 UserDefaults.standard.removePersistentDomain(forName: appDomain)
             }
 
-            let message = self.generateMessage(isNight: isNight, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+            let message = self.generateMessage(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
             defaults.set(message.content, forKey: dayKey)
             defaults.set(message.coloredPart, forKey: "\(dayKey)colored")
 
@@ -169,14 +169,14 @@ struct MessageGenerator {
         }
     }
 
-    func messageForNotification(isNight: Bool, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> String {
-        let message = self.generateMessage(isNight: isNight, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+    func messageForNotification(sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> String {
+        let message = self.generateMessage(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
 
         return message.content
     }
 
-    private func generateMessage(isNight: Bool, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
-        let messageKind = Message.kind(isNight: isNight, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+    private func generateMessage(sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
+        let messageKind = Message.kind(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
         switch messageKind {
         case .longerMoreThanAMinute:
             return longerMoreThanAMinuteMessage()
