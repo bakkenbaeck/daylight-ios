@@ -121,7 +121,7 @@ class MainController: UIViewController {
 
         let messageGenerator = MessageGenerator()
         let minutesString = messageGenerator.minuteString(for: interval)
-        let generatedMessage = messageGenerator.message(forDay: Date(), isNight: location.isNight, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
+        let generatedMessage = messageGenerator.message(forDay: Date(), sunPhase: location.sunPhase, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
 
         let message = String(format: generatedMessage.content, minutesString)
         let colored = String(format: generatedMessage.coloredPart, minutesString)
