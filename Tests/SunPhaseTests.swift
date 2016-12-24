@@ -22,7 +22,7 @@ class SunPhaseTests: XCTestCase {
         dateComponents.minute = 0
         var date = calendar.date(from: dateComponents)!
         var sunCalc = SunCalc(date: date, timeZone: timeZone, latitude: coordinate.latitude, longitude: coordinate.longitude, bundle: bundle)
-        XCTAssertEqual(sunCalc.sunPhase, .nightStart)
+        XCTAssertEqual(sunCalc.sunPhase, .predawn)
 
         dateComponents.hour = 4
         dateComponents.minute = 2

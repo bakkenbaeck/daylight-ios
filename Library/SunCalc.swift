@@ -2,7 +2,7 @@ import JavaScriptCore
 import Foundation
 
 enum SunPhase {
-    case nightStart
+    case predawn
     case dawn
     case sunrise
     case solarNoon
@@ -81,7 +81,7 @@ struct SunCalc {
         let startOfTheDay = calendar.startOfDay(for: self.date)
 
         if self.date.isBetween(startOfTheDay, and: self.dawn) {
-            return .nightStart
+            return .predawn
         } else if date.isBetween(self.dawn, and: self.sunrise) {
             return .dawn
         } else if date.isBetween(self.sunrise, and: self.solarNoon) {

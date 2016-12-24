@@ -9,7 +9,7 @@ struct SunViewLocation {
 class SunView: UIView {
     static let sunSize = CGFloat(16.0)
 
-    var sunPhase = SunPhase.nightStart {
+    var sunPhase = SunPhase.predawn {
         didSet {
             self.moon.isHidden = true
             self.currentTimeLabel.isHidden = false
