@@ -39,7 +39,7 @@ class SunCalcTests: XCTestCase {
         dateComponents.minute = 46
         dateComponents.second = 17
         let expectedNightEnd = calendar.date(from: dateComponents)!
-        XCTAssertEqualWithAccuracy(sunCalc.nightEnd.timeIntervalSince1970, expectedNightEnd.timeIntervalSince1970, accuracy: 0.99)
+        XCTAssertEqualWithAccuracy(sunCalc.night.timeIntervalSince1970, expectedNightEnd.timeIntervalSince1970, accuracy: 0.99)
 
         dateComponents.hour = 3
         dateComponents.minute = 24

@@ -64,6 +64,6 @@ class SunPhaseTests: XCTestCase {
         dateComponents.second = 37
         date = calendar.date(from: dateComponents)!
         sunCalc = SunCalc(date: date, timeZone: timeZone, latitude: coordinate.latitude, longitude: coordinate.longitude, bundle: bundle)
-        XCTAssertEqual(sunCalc.sunPhase, .nightEnd)
+        XCTAssertEqual(sunCalc.sunPhase, .night)
     }
 }

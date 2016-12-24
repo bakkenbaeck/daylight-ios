@@ -62,7 +62,7 @@ struct Theme {
         case .dusk, .dawn:
             backgroundColor = Theme.twilightBackground
             textColor = Theme.twilightText
-        case .nightEnd, .nightStart:
+        case .night, .nightStart:
             backgroundColor = Theme.nightBackground
             textColor = Theme.nightText
         }

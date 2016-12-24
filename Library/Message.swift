@@ -17,7 +17,7 @@ struct Message {
     let coloredPart: String
 
     static func kind(sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Kind {
-        if sunPhase == .nightEnd {
+        if sunPhase == .night {
             let tomorrowIsLonger = tomorrowDaylightLength - todayDaylightLength > 0
             if tomorrowIsLonger {
                 let longerTomorrowMoreThanAMinute = tomorrowDaylightLength - todayDaylightLength > 60

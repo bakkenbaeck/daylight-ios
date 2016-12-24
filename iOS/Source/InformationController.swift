@@ -93,7 +93,7 @@ class InformationController: UIViewController {
     }
 
     func updateInterface() {
-        let sunPhase = Location.current?.sunPhase ?? .nightEnd
+        let sunPhase = Location.current?.sunPhase ?? .night
         let (backgroundColor, textColor) = Theme.colors(for: sunPhase)
 
         var messageString: NSAttributedString {
