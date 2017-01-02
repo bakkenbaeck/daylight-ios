@@ -10,7 +10,7 @@ struct Notifier {
         }
     }
 
-    static private func scheduleNotification(for location: Location, at date: Date) {
+    private static func scheduleNotification(for location: Location, at date: Date) {
         guard let location = Location.current else { return }
 
         let dateFormatter = DateFormatter()

@@ -52,7 +52,7 @@ extension LocationTracker: CLLocationManagerDelegate {
             }
         }
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         self.delegate?.locationTracker(self, didFailWith: error)
     }

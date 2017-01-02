@@ -112,5 +112,5 @@ class SunCalcTests: XCTestCase {
         dateComponents.second = 22
         let expectedNauticalDusk = calendar.date(from: dateComponents)!
         XCTAssertEqualWithAccuracy(sunCalc.nauticalDusk.timeIntervalSince1970, expectedNauticalDusk.timeIntervalSince1970, accuracy: 0.99)
-  }
+    }
 }
