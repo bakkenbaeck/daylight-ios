@@ -2,33 +2,25 @@ import Foundation
 import CoreLocation
 
 struct Location {
-    lazy var timeFormatter: DateFormatter = {
-        let shortTimeFormatter = DateFormatter()
-        shortTimeFormatter.dateFormat = "HH:mm"
-
-        return shortTimeFormatter
-    }()
-
+    
     let coordinate: CLLocationCoordinate2D
     let city: String
     let country: String
-
+    
     init?(placemark: CLPlacemark) {
         guard let coordinate = placemark.location?.coordinate else { return nil }
         guard let locality = placemark.locality else { return nil }
         guard let country = placemark.country else { return nil }
-
-        self.coordinate = coordinate
-        self.city = locality
-        self.country = country
+        
+        self.init(coordinate: coordinate, city: locality, country: country)
     }
-
+    
     init(coordinate: CLLocationCoordinate2D, city: String, country: String) {
         self.coordinate = coordinate
         self.city = city
         self.country = country
     }
-
+    
     static var current: Location? {
         set {
             if let location = newValue {
@@ -42,13 +34,13 @@ struct Location {
                 UserDefaults.standard.removeObject(forKey: "country")
             }
         }
-
+        
         get {
             let latitude = UserDefaults.standard.object(forKey: "latitude") as? Double
             let longitude = UserDefaults.standard.object(forKey: "longitude") as? Double
             let city = UserDefaults.standard.object(forKey: "city") as? String
             let country = UserDefaults.standard.object(forKey: "country") as? String
-
+            
             if let latitude = latitude, let longitude = longitude, let city = city, let country = country {
                 let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                 return Location(coordinate: coordinate, city: city, country: country)
@@ -57,97 +49,81 @@ struct Location {
             }
         }
     }
-
+    
     var sunPhase: SunPhase {
-        let sunCalc = SunCalc(date: Date(), timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
-
-        return sunCalc.sunPhase
+        return todaySuntimes.sunPhase
     }
-
+    
     var daylightLengthProgress: Double {
-        let sunCalc = SunCalc(date: Date(), timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
-
-        return sunCalc.daylightLengthProgress
+        return todaySuntimes.daylightLengthProgress
     }
-
+    
     var sunsetTimeString: String {
-        let today = Calendar.autoupdatingCurrent.startOfDay(for: Date())
-
-        let todaySuntimes = SunCalc(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
-        let sunset = todaySuntimes.sunset
-
-        let shortTimeFormatter = DateFormatter()
-        shortTimeFormatter.dateFormat = "HH:mm"
-
-        return shortTimeFormatter.string(from: sunset)
+        return timeFormatter.string(from: todaySuntimes.sunset)
     }
-
+    
     var sunriseTimeString: String {
-        let today = Calendar.autoupdatingCurrent.startOfDay(for: Date())
-
-        let todaySuntimes = SunCalc(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
-        let sunrise = todaySuntimes.sunrise
-        let shortTimeFormatter = DateFormatter()
-        shortTimeFormatter.dateFormat = "HH:mm"
-
-        return shortTimeFormatter.string(from: sunrise)
+        return timeFormatter.string(from: todaySuntimes.sunrise)
     }
-
+    
     var dayLengthDifference: Double {
-        let today = Calendar.autoupdatingCurrent.startOfDay(for: Date())
-        let yesterday = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: today)!
-
-        let todaySuntimes = SunCalc(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
-        let yesterdaySuntimes = SunCalc(date: yesterday, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
-
-        let todayDayLength = todaySuntimes.sunset.timeIntervalSince(todaySuntimes.sunrise)
-        let yesterdayDayLength = yesterdaySuntimes.sunset.timeIntervalSince(yesterdaySuntimes.sunrise)
-
-        let interval = todayDayLength - yesterdayDayLength
-
-        return interval
+        return dayLengthDifferenceOnDate(today)
     }
-
+    
     func dayLengthDifferenceOnDate(_ date: Date) -> Double {
         let dayBefore = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: date)!
-
-        let daySunTimes = SunCalc(date: date, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
-        let dayBeforeSunTimes = SunCalc(date: dayBefore, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
-
+        
+        let daySunTimes = suntimes(forDate: date)
+        let dayBeforeSunTimes = suntimes(forDate: dayBefore)
+        
         let dayLength = daySunTimes.sunset.timeIntervalSince(daySunTimes.sunrise)
         let dayBeforeDayLength = dayBeforeSunTimes.sunset.timeIntervalSince(dayBeforeSunTimes.sunrise)
-
-        let interval = dayLength - dayBeforeDayLength
-
-        return interval
+        
+        return dayLength - dayBeforeDayLength
     }
-
+    
     func sunriseForDate(_ date: Date) -> Date {
-        let daySunTimes = SunCalc(date: date, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
-
-        return daySunTimes.sunrise
+        return suntimes(forDate: date).sunrise
     }
-
+    
     var yesterdayDaylightLength: Double {
-        let today = Calendar.autoupdatingCurrent.startOfDay(for: Date())
-        let yesterday = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: today)!
-        let yesterdaySuntimes = SunCalc(date: yesterday, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
-
+        let yesterdaySuntimes = suntimes(forDate: yesterday)
         return yesterdaySuntimes.sunset.timeIntervalSince(yesterdaySuntimes.sunrise)
     }
-
+    
     var todayDaylightLength: Double {
-        let today = Calendar.autoupdatingCurrent.startOfDay(for: Date())
-        let todaySuntimes = SunCalc(date: today, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
-
         return todaySuntimes.sunset.timeIntervalSince(todaySuntimes.sunrise)
     }
-
+    
     var tomorrowDaylightLength: Double {
-        let today = Calendar.autoupdatingCurrent.startOfDay(for: Date())
-        let tomorrow = Calendar.autoupdatingCurrent.date(byAdding: .day, value: 1, to: today)!
-        let tomorrowSuntimes = SunCalc(date: tomorrow, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
-
+        let tomorrowSuntimes = suntimes(forDate: tomorrow)
         return tomorrowSuntimes.sunset.timeIntervalSince(tomorrowSuntimes.sunrise)
     }
+    
+    var today: Date {
+        return Calendar.autoupdatingCurrent.startOfDay(for: Date())
+    }
+    
+    var tomorrow: Date {
+        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: 1, to: today)!
+    }
+    
+    var yesterday: Date {
+        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: today)!
+    }
+    
+    func suntimes(forDate date: Date) -> SunCalc {
+        return SunCalc(date: date, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
+    }
+    
+    var todaySuntimes: SunCalc {
+        return suntimes(forDate: today)
+    }
+    
+    var timeFormatter: DateFormatter = {
+        let shortTimeFormatter = DateFormatter()
+        shortTimeFormatter.dateFormat = "HH:mm"
+        
+        return shortTimeFormatter
+    }()
 }
