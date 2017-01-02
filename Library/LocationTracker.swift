@@ -1,7 +1,7 @@
 import CoreLocation
 
 protocol LocationTrackerDelegate: class {
-    func locationTracker(_ locationTracker: LocationTracker, didFailWith error: NSError)
+    func locationTracker(_ locationTracker: LocationTracker, didFailWith error: Error)
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark)
 }
 
@@ -45,7 +45,7 @@ extension LocationTracker: CLLocationManagerDelegate {
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(locations.first!) { placemarks, error in
             if let error = error {
-                self.delegate?.locationTracker(self, didFailWith: error as NSError)
+                self.delegate?.locationTracker(self, didFailWith: error)
             } else if let placemarks = placemarks {
                 let placemark = placemarks.first!
                 self.delegate?.locationTracker(self, didFindLocation: placemark)
