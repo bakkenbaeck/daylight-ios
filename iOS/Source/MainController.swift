@@ -163,7 +163,7 @@ class MainController: UIViewController {
 }
 
 extension MainController: LocationTrackerDelegate {
-    func locationTracker(_ locationTracker: LocationTracker, didFailWith error: NSError) {
+    func locationTracker(_ locationTracker: LocationTracker, didFailWith error: Error) {
         self.messageLabel.text = "We need to know where you are, enable location access in your Settings."
 
         let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
