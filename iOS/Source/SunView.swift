@@ -109,7 +109,6 @@ class SunView: UIView {
 
         let labelWidth = CGFloat(35.0)
 
-        // TODO: check if the view layout is also possible using constraints
         self.sunriseLabel.frame = CGRect(x: 0, y: 108, width: labelWidth, height: 16)
         self.sunsetLabel.frame = CGRect(x: self.bounds.width - labelWidth, y: 108, width: labelWidth, height: 16)
         self.sun.frame = CGRect(x: self.sunViewLocation.x, y: self.sunViewLocation.y, width: SunView.sunSize, height: SunView.sunSize)
