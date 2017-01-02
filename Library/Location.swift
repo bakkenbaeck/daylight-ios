@@ -100,27 +100,27 @@ struct Location {
         return tomorrowSuntimes.sunset.timeIntervalSince(tomorrowSuntimes.sunrise)
     }
 
-    var today: Date {
+    private var today: Date {
         return Calendar.autoupdatingCurrent.startOfDay(for: Date())
     }
 
-    var tomorrow: Date {
+    private var tomorrow: Date {
         return Calendar.autoupdatingCurrent.date(byAdding: .day, value: 1, to: today)!
     }
 
-    var yesterday: Date {
+    private var yesterday: Date {
         return Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: today)!
     }
 
-    func suntimes(forDate date: Date) -> SunCalc {
+    private func suntimes(forDate date: Date) -> SunCalc {
         return SunCalc(date: date, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
     }
 
-    var todaySuntimes: SunCalc {
+    private var todaySuntimes: SunCalc {
         return suntimes(forDate: today)
     }
 
-    var timeFormatter: DateFormatter = {
+    private var timeFormatter: DateFormatter = {
         let shortTimeFormatter = DateFormatter()
         shortTimeFormatter.dateFormat = "HH:mm"
 
