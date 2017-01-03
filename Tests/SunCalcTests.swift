@@ -2,6 +2,23 @@ import XCTest
 import CoreLocation
 
 class SunCalcTests: XCTestCase {
+
+    /*
+    sunCalc.nadir         2013-03-04 22:10:57 +0000
+    sunCalc.nightEnd      2013-03-05 02:46:17 +0000
+    sunCalc.nauticalDawn  2013-03-05 03:24:31 +0000
+    sunCalc.dawn          2013-03-05 04:02:17 +0000
+    sunCalc.sunrise       2013-03-05 04:34:56 +0000
+    sunCalc.sunriseEnd    2013-03-05 04:38:19 +0000
+    sunCalc.goldenHourEnd 2013-03-05 05:19:01 +0000
+    sunCalc.solarNoon     2013-03-05 10:10:57 +0000
+    sunCalc.goldenHour    2013-03-05 15:02:52 +0000
+    sunCalc.sunsetStart   2013-03-05 15:43:34 +0000
+    sunCalc.sunset        2013-03-05 15:46:57 +0000
+    sunCalc.dusk          2013-03-05 16:19:36 +0000
+    sunCalc.nauticalDusk  2013-03-05 16:57:22 +0000
+    sunCalc.night         2013-03-05 17:35:36 +0000
+    */
     func testAPI() {
         let bundle = Bundle(for: SunCalcTests.self)
 
@@ -39,7 +56,8 @@ class SunCalcTests: XCTestCase {
         dateComponents.minute = 46
         dateComponents.second = 17
         let expectedNightEnd = calendar.date(from: dateComponents)!
-        XCTAssertEqualWithAccuracy(sunCalc.night.timeIntervalSince1970, expectedNightEnd.timeIntervalSince1970, accuracy: 0.99)
+
+        XCTAssertEqualWithAccuracy(sunCalc.nightEnd.timeIntervalSince1970, expectedNightEnd.timeIntervalSince1970, accuracy: 0.99)
 
         dateComponents.hour = 3
         dateComponents.minute = 24
