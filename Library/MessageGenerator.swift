@@ -8,15 +8,15 @@ struct MessageGenerator {
 
         let dayKey = self.dateFormatter.string(from: day)
 
-        if let message = UserDefaults.standard.string(forKey: dayKey) {
-            return Message(format: message)
+        if let format = UserDefaults.standard.string(forKey: dayKey) {
+            return Message(format: format)
         } else {
             if let appDomain = Bundle.main.bundleIdentifier {
                 UserDefaults.standard.removePersistentDomain(forName: appDomain)
             }
 
             let message = self.generateMessage(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
-            defaults.set(message.content, forKey: dayKey)
+            defaults.set(message.format, forKey: dayKey)
 
             return message
         }
