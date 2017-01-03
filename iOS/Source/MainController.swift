@@ -163,9 +163,12 @@ extension MainController: LocationTrackerDelegate {
     func locationTracker(_ locationTracker: LocationTracker, didFailWith error: Error) {
         self.messageLabel.text = "We need to know where you are, enable location access in your Settings."
 
-        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
+        let isUnexpectedError = (error as NSError).code != 0
+        if isUnexpectedError {
+            let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
 
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
