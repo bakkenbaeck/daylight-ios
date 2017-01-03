@@ -75,7 +75,7 @@ class MainController: UIViewController {
         super.viewDidLoad()
 
         self.addSubviewsAndConstraints()
-        self.locationTracker.checkAuthorization()
+        self.locationTracker.locateIfPossible()
         self.updateLocation()
         self.updateInterface()
 
@@ -125,36 +125,50 @@ class MainController: UIViewController {
     }
 
     func updateInterface() {
-        guard let location = Location.current else { return }
+        if let location = Location.current {
+            self.shareButton.isHidden = false
+            self.informationButton.isHidden = false
+            self.sunView.isHidden = false
+            self.locationLabel.isHidden = false
 
-        let percentageInDay = location.daylightLengthProgress
+            let percentageInDay = location.daylightLengthProgress
 
-        let sunPhase = location.sunPhase
-        let (backgroundColor, textColor) = Theme.colors(for: sunPhase)
+            let sunPhase = location.sunPhase
+            let (backgroundColor, textColor) = Theme.colors(for: sunPhase)
 
-        let interval = location.dayLengthDifference
+            let interval = location.dayLengthDifference
 
-        let messageGenerator = MessageGenerator()
-        let minutesString = interval.minuteString()
-        let generatedMessage = messageGenerator.message(forDay: Date(), sunPhase: location.sunPhase, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
+            let messageGenerator = MessageGenerator()
+            let minutesString = interval.minuteString()
+            let generatedMessage = messageGenerator.message(forDay: Date(), sunPhase: location.sunPhase, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
 
-        let formattedMessage = String(format: generatedMessage.format, minutesString)
-        let message = Message(format: formattedMessage)
-        let attributedString = message.attributedString(withTextColor: textColor)
+            let formattedMessage = String(format: generatedMessage.format, minutesString)
+            let message = Message(format: formattedMessage)
+            let attributedString = message.attributedString(withTextColor: textColor)
 
-        UIView.animate(withDuration: 0.4) {
-            self.view.backgroundColor = backgroundColor
-            self.sunView.updateInterface(withBackgroundColor: backgroundColor, textColor: textColor, andPercentageInDay: percentageInDay, sunPhase: sunPhase)
-            self.updateSunView()
+            UIView.animate(withDuration: 0.4) {
+                self.view.backgroundColor = backgroundColor
+                self.sunView.updateInterface(withBackgroundColor: backgroundColor, textColor: textColor, andPercentageInDay: percentageInDay, sunPhase: sunPhase)
+                self.updateSunView()
 
-            self.informationButton.updateInterface(withBackgroundColor: backgroundColor, andTextColor: textColor)
+                self.informationButton.updateInterface(withBackgroundColor: backgroundColor, andTextColor: textColor)
 
-            self.shareButton.setTitleColor(textColor, for: .normal)
-            self.locationLabel.textColor = textColor.withAlphaComponent(0.6)
-            self.messageLabel.textColor = textColor.withAlphaComponent(0.6)
-            self.messageLabel.attributedText = attributedString
-            self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
-            self.view.setNeedsLayout()
+                self.shareButton.setTitleColor(textColor, for: .normal)
+                self.locationLabel.textColor = textColor.withAlphaComponent(0.6)
+                self.messageLabel.textColor = textColor.withAlphaComponent(0.6)
+                self.messageLabel.attributedText = attributedString
+                self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
+                self.view.setNeedsLayout()
+            }
+        } else {
+            self.messageLabel.text = "We need to know where you are, enable location access in your Settings."
+            self.messageLabel.textColor = UIColor.white
+            self.view.backgroundColor = UIColor.black
+
+            self.shareButton.isHidden = true
+            self.informationButton.isHidden = true
+            self.sunView.isHidden = true
+            self.locationLabel.isHidden = true
         }
     }
 
