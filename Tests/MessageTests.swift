@@ -13,33 +13,41 @@ class MessageTests: XCTestCase {
         XCTAssertEqual(Message.Kind.shorterTomorrowLessThanAMinute, Message.Kind(sunPhase: .night, yesterdayDaylightLength: 0, todayDaylightLength: 60, tomorrowDaylightLength: 0))
     }
 
-    func testNoAttributesColoredMessage() {
-        let content = "Hello mom."
-        let coloredPart = "mom"
+    func testContent() {
+        var message = Message(format: "Hello **mom**.")
+        XCTAssertEqual(message.content, "Hello mom.")
 
-        let message = Message(format: "Hello **mom**.")
-        XCTAssertEqual(message.content, content)
-        XCTAssertEqual(message.coloredPart, coloredPart)
-
-        let range = (content as NSString).range(of: coloredPart)
-        let attributedString = NSMutableAttributedString(string: content)
-        attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: range)
-
-        XCTAssertEqual(message.attributedString(withTextColor: UIColor.red), attributedString)
+        message = Message(format: "**%@ minutes** more.")
+        XCTAssertEqual(message.content, "%@ minutes more.")
     }
 
-    func testWithAttributesColoredMessage() {
-        let content = "%@ minutes more."
-        let coloredPart = "%@ minutes"
+    func testColoredPart() {
+        var message = Message(format: "Hello **mom**.")
+        XCTAssertEqual(message.coloredPart, "mom")
 
-        let message = Message(format: "**%@ minutes** more.")
-        XCTAssertEqual(message.content, content)
-        XCTAssertEqual(message.coloredPart, coloredPart)
+        message = Message(format: "**%@ minutes** more.")
+        XCTAssertEqual(message.coloredPart, "%@ minutes")
+    }
 
-        let range = (content as NSString).range(of: coloredPart)
-        let attributedString = NSMutableAttributedString(string: content)
+    func testAttributedString() {
+        var format = "Hello **mom**."
+        var content = "Hello mom."
+        var coloredPart = "mom"
+
+        var message = Message(format: format)
+        var range = (content as NSString).range(of: coloredPart)
+        var attributedString = NSMutableAttributedString(string: content)
         attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: range)
+        XCTAssertEqual(message.attributedString(withTextColor: UIColor.red), attributedString)
 
+        format = "**%@ minutes** more."
+        content = "%@ minutes more."
+        coloredPart = "%@ minutes"
+
+        message = Message(format: format)
+        range = (content as NSString).range(of: coloredPart)
+        attributedString = NSMutableAttributedString(string: content)
+        attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: range)
         XCTAssertEqual(message.attributedString(withTextColor: UIColor.red), attributedString)
     }
 }
