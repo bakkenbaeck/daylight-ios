@@ -1,5 +1,5 @@
 struct Message {
-    enum Kind {
+    enum Kind: Int {
         case longerMoreThanAMinute
         case longerLessThanAMinute
 
@@ -11,34 +11,38 @@ struct Message {
 
         case shorterTomorrowMoreThanAMinute
         case shorterTomorrowLessThanAMinute
+
+        init(sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) {
+            var kindRawValue = 0
+
+            if sunPhase == .night {
+                let tomorrowIsLonger = tomorrowDaylightLength - todayDaylightLength > 0
+                if tomorrowIsLonger {
+                    let longerTomorrowMoreThanAMinute = tomorrowDaylightLength - todayDaylightLength > 60
+
+                    kindRawValue =  longerTomorrowMoreThanAMinute ? Message.Kind.longerTomorrowMoreThanAMinute.rawValue : Message.Kind.longerTomorrowLessThanAMinute.rawValue
+                } else {
+                    let shorterTomorrowMoreThanAMinute = todayDaylightLength - tomorrowDaylightLength > 60
+
+                    kindRawValue = shorterTomorrowMoreThanAMinute ? Message.Kind.shorterTomorrowMoreThanAMinute.rawValue : Message.Kind.shorterTomorrowLessThanAMinute.rawValue
+                }
+            } else {
+                let todayIsLonger = todayDaylightLength - yesterdayDaylightLength > 0
+                if todayIsLonger {
+                    let longerMoreThanAMinute = todayDaylightLength - yesterdayDaylightLength > 60
+
+                    kindRawValue = longerMoreThanAMinute ? Message.Kind.longerMoreThanAMinute.rawValue : Message.Kind.longerLessThanAMinute.rawValue
+                } else {
+                    let shorterMoreThanAMinute = yesterdayDaylightLength - todayDaylightLength > 60
+
+                    kindRawValue = shorterMoreThanAMinute ? Message.Kind.shorterMoreThanAMinute.rawValue : Message.Kind.shorterLessThanAMinute.rawValue
+                }
+            }
+
+            self.init(rawValue: kindRawValue)!
+        }
     }
 
     let content: String
     let coloredPart: String
-
-    static func kind(sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Kind {
-        if sunPhase == .night {
-            let tomorrowIsLonger = tomorrowDaylightLength - todayDaylightLength > 0
-            if tomorrowIsLonger {
-                let longerTomorrowMoreThanAMinute = tomorrowDaylightLength - todayDaylightLength > 60
-
-                return longerTomorrowMoreThanAMinute ? .longerTomorrowMoreThanAMinute : .longerTomorrowLessThanAMinute
-            } else {
-                let shorterTomorrowMoreThanAMinute = todayDaylightLength - tomorrowDaylightLength > 60
-
-                return shorterTomorrowMoreThanAMinute ? .shorterTomorrowMoreThanAMinute : .shorterTomorrowLessThanAMinute
-            }
-        } else {
-            let todayIsLonger = todayDaylightLength - yesterdayDaylightLength > 0
-            if todayIsLonger {
-                let longerMoreThanAMinute = todayDaylightLength - yesterdayDaylightLength > 60
-
-                return longerMoreThanAMinute ? .longerMoreThanAMinute : .longerLessThanAMinute
-            } else {
-                let shorterMoreThanAMinute = yesterdayDaylightLength - todayDaylightLength > 60
-
-                return shorterMoreThanAMinute ? .shorterMoreThanAMinute : .shorterLessThanAMinute
-            }
-        }
-    }
 }

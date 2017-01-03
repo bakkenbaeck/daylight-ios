@@ -176,7 +176,7 @@ struct MessageGenerator {
     }()
 
     private func generateMessage(sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
-        let messageKind = Message.kind(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+        let messageKind = Message.Kind(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
         switch messageKind {
         case .longerMoreThanAMinute:
             return longerMoreThanAMinuteMessage()
