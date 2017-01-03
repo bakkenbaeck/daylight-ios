@@ -149,21 +149,24 @@ struct MessageGenerator {
         return formatter
     }()
 
+    func cachingKey(forDay day: Date, andSunPhase sunPhase: SunPhase) -> String {
+        let dayKey = self.dateFormatter.string(from: day) + sunPhase.rawValue
+
+        return dayKey
+    }
+
     func message(forDay day: Date, sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
         let defaults = UserDefaults.standard
 
-        let dayKey = self.dateFormatter.string(from: day)
+        let cachingKey = self.cachingKey(forDay: day, andSunPhase: sunPhase)
+        let coloredPartCachingKey = "\(cachingKey)colored"
 
-        if let message = UserDefaults.standard.string(forKey: dayKey), let colored = UserDefaults.standard.string(forKey: "\(dayKey)colored") {
+        if let message = UserDefaults.standard.string(forKey: cachingKey), let colored = UserDefaults.standard.string(forKey: coloredPartCachingKey) {
             return Message(content: message, coloredPart: colored)
         } else {
-            if let appDomain = Bundle.main.bundleIdentifier {
-                UserDefaults.standard.removePersistentDomain(forName: appDomain)
-            }
-
             let message = self.generateMessage(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
-            defaults.set(message.content, forKey: dayKey)
-            defaults.set(message.coloredPart, forKey: "\(dayKey)colored")
+            defaults.set(message.content, forKey: cachingKey)
+            defaults.set(message.coloredPart, forKey: coloredPartCachingKey)
 
             return message
         }
