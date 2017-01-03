@@ -16,7 +16,6 @@ class MainController: UIViewController {
     lazy var locationTracker: LocationTracker = {
         let tracker = LocationTracker()
         tracker.delegate = self
-
         return tracker
     }()
 
@@ -24,6 +23,12 @@ class MainController: UIViewController {
         let button = InformationButton()
         button.addTarget(self, action: #selector(didSelectInformation), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+
+        return button
+    }()
+
+    lazy var shareButton: UIButton = {
+        let button = UIButton(type: .custom)        
 
         return button
     }()
