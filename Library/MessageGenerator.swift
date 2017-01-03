@@ -11,6 +11,10 @@ struct MessageGenerator {
         if let format = UserDefaults.standard.string(forKey: cachingKey) {
             return Message(format: format)
         } else {
+            if let appDomain = Bundle.main.bundleIdentifier {
+                UserDefaults.standard.removePersistentDomain(forName: appDomain)
+            }
+
             let message = self.generateMessage(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
             defaults.set(message.format, forKey: cachingKey)
 
