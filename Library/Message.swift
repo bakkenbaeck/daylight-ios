@@ -56,19 +56,14 @@ struct Message {
     }
 
     var coloredPart: String {
-        do {
-            let regex = try NSRegularExpression(pattern: "\\*\\*([^\"]*)\\*\\*")
-            let nsString = self.format as NSString
-            let results = regex.matches(in: self.format, range: NSRange(location: 0, length: nsString.length))
-            if let firstResultRange = results.first?.range {
-                let foundPart = nsString.substring(with: firstResultRange)
+        let regex = try! NSRegularExpression(pattern: "\\*\\*([^\"]*)\\*\\*")
+        let nsString = self.format as NSString
+        let results = regex.matches(in: self.format, range: NSRange(location: 0, length: nsString.length))
+        if let firstResultRange = results.first?.range {
+            let foundPart = nsString.substring(with: firstResultRange)
 
-                return foundPart.replacingOccurrences(of: "**", with: "")
-            } else {
-                return ""
-            }
-        } catch let error {
-            print("invalid regex: \(error.localizedDescription)")
+            return foundPart.replacingOccurrences(of: "**", with: "")
+        } else {
             return ""
         }
     }
