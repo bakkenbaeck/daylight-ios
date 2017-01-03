@@ -6,9 +6,9 @@ struct MessageGenerator {
     func message(forDay day: Date, sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
         let defaults = UserDefaults.standard
 
-        let dayKey = self.dateFormatter.string(from: day)
+        let cachingKey = self.cachingKey(forDay: day, andSunPhase: sunPhase)
 
-        if let format = UserDefaults.standard.string(forKey: dayKey) {
+        if let format = UserDefaults.standard.string(forKey: cachingKey) {
             return Message(format: format)
         } else {
             if let appDomain = Bundle.main.bundleIdentifier {
@@ -16,7 +16,7 @@ struct MessageGenerator {
             }
 
             let message = self.generateMessage(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
-            defaults.set(message.format, forKey: dayKey)
+            defaults.set(message.format, forKey: cachingKey)
 
             return message
         }
@@ -26,6 +26,12 @@ struct MessageGenerator {
         let message = self.generateMessage(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
         
         return message.content
+    }
+
+    private func cachingKey(forDay day: Date, andSunPhase sunPhase: SunPhase) -> String {
+        let dayKey = self.dateFormatter.string(from: day) + sunPhase.rawValue
+
+        return dayKey
     }
 
     private var longerMoreThanAMinuteMessages: [Message] {

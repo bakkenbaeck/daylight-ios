@@ -1,7 +1,7 @@
 import JavaScriptCore
 import Foundation
 
-enum SunPhase {
+enum SunPhase: String {
     case predawn
     case dawn
     case sunrise
