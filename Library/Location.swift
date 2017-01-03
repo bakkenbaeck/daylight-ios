@@ -51,30 +51,30 @@ struct Location {
     }
 
     var sunPhase: SunPhase {
-        return todaySuntimes.sunPhase
+        return self.nowSuntimes.sunPhase
     }
 
     var daylightLengthProgress: Double {
-        return todaySuntimes.daylightLengthProgress
+        return self.nowSuntimes.daylightLengthProgress
     }
 
     var sunsetTimeString: String {
-        return timeFormatter.string(from: todaySuntimes.sunset)
+        return self.timeFormatter.string(from: self.nowSuntimes.sunset)
     }
 
     var sunriseTimeString: String {
-        return timeFormatter.string(from: todaySuntimes.sunrise)
+        return self.timeFormatter.string(from: self.nowSuntimes.sunrise)
     }
 
     var dayLengthDifference: Double {
-        return dayLengthDifferenceOnDate(today)
+        return self.dayLengthDifferenceOnDate(self.today)
     }
 
     func dayLengthDifferenceOnDate(_ date: Date) -> Double {
         let dayBefore = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: date)!
 
-        let daySunTimes = suntimes(forDate: date)
-        let dayBeforeSunTimes = suntimes(forDate: dayBefore)
+        let daySunTimes = self.suntimes(forDate: date)
+        let dayBeforeSunTimes = self.suntimes(forDate: dayBefore)
 
         let dayLength = daySunTimes.sunset.timeIntervalSince(daySunTimes.sunrise)
         let dayBeforeDayLength = dayBeforeSunTimes.sunset.timeIntervalSince(dayBeforeSunTimes.sunrise)
@@ -83,20 +83,20 @@ struct Location {
     }
 
     func sunriseForDate(_ date: Date) -> Date {
-        return suntimes(forDate: date).sunrise
+        return self.suntimes(forDate: date).sunrise
     }
 
     var yesterdayDaylightLength: Double {
-        let yesterdaySuntimes = suntimes(forDate: yesterday)
+        let yesterdaySuntimes = self.suntimes(forDate: self.yesterday)
         return yesterdaySuntimes.sunset.timeIntervalSince(yesterdaySuntimes.sunrise)
     }
 
     var todayDaylightLength: Double {
-        return todaySuntimes.sunset.timeIntervalSince(todaySuntimes.sunrise)
+        return self.nowSuntimes.sunset.timeIntervalSince(nowSuntimes.sunrise)
     }
 
     var tomorrowDaylightLength: Double {
-        let tomorrowSuntimes = suntimes(forDate: tomorrow)
+        let tomorrowSuntimes = self.suntimes(forDate: self.tomorrow)
         return tomorrowSuntimes.sunset.timeIntervalSince(tomorrowSuntimes.sunrise)
     }
 
@@ -105,19 +105,19 @@ struct Location {
     }
 
     private var tomorrow: Date {
-        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: 1, to: today)!
+        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: 1, to: self.today)!
     }
 
     private var yesterday: Date {
-        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: today)!
+        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: self.today)!
     }
 
     private func suntimes(forDate date: Date) -> SunCalc {
         return SunCalc(date: date, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
     }
 
-    private var todaySuntimes: SunCalc {
-        return suntimes(forDate: today)
+    private var nowSuntimes: SunCalc {
+        return self.suntimes(forDate: Date())
     }
 
     private var timeFormatter: DateFormatter = {
