@@ -99,11 +99,7 @@ class InformationController: UIViewController {
         var messageString: NSAttributedString {
             let message = MessageGenerator().informationMessage
 
-            let range = (message.content as NSString).range(of: message.coloredPart)
-            let attributedString = NSMutableAttributedString(string: message.content)
-            attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
-
-            return attributedString
+            return message.attributedString(withTextColor: textColor)
         }
 
         var turnNotificationsOffString: NSAttributedString {

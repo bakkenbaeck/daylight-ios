@@ -123,12 +123,9 @@ class MainController: UIViewController {
         let minutesString = interval.minuteString()
         let generatedMessage = messageGenerator.message(forDay: Date(), sunPhase: location.sunPhase, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
 
-        let message = String(format: generatedMessage.content, minutesString)
-        let colored = String(format: generatedMessage.coloredPart, minutesString)
-
-        let range = (message as NSString).range(of: colored)
-        let attributedString = NSMutableAttributedString(string: message)
-        attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
+        let formattedMessage = String(format: generatedMessage.format, minutesString)
+        let message = Message(format: formattedMessage)
+        let attributedString = message.attributedString(withTextColor: textColor)
 
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = backgroundColor
@@ -166,9 +163,12 @@ extension MainController: LocationTrackerDelegate {
     func locationTracker(_ locationTracker: LocationTracker, didFailWith error: Error) {
         self.messageLabel.text = "We need to know where you are, enable location access in your Settings."
 
-        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
+        let isUnexpectedError = (error as NSError).code != 0
+        if isUnexpectedError {
+            let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
 
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
