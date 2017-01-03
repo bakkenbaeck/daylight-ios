@@ -42,6 +42,7 @@ class InformationController: UIViewController {
         button.contentEdgeInsets = UIEdgeInsetsMake(28, 0, 0, 0)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didSelectNotifications), for: .touchUpInside)
+        button.setAttributedTitle(NSAttributedString(string: ""), for: .disabled)
 
         return button
     }()
@@ -140,9 +141,12 @@ class InformationController: UIViewController {
     }
 
     func didSelectNotifications() {
+        self.notificationButton.isEnabled = false
         Settings.isNotificationsEnabled = !Settings.isNotificationsEnabled
         Settings.registerForNotifications()
         self.delegate?.informationController(self, didToggleNotifications: Settings.isNotificationsEnabled)
+        self.notificationButton.isEnabled = true
+        self.updateInterface()
     }
 
     func didSelectClose() {
