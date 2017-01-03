@@ -29,6 +29,10 @@ class MainController: UIViewController {
 
     lazy var shareButton: UIButton = {
         let button = UIButton(type: .custom)        
+        button.setTitle("Share", for: .normal)
+        button.titleLabel?.font = Theme.light(size: 16)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(share), for: .touchUpInside)
 
         return button
     }()
@@ -90,6 +94,7 @@ class MainController: UIViewController {
         self.view.addSubview(self.sunView)
         self.view.addSubview(self.messageLabel)
         self.view.addSubview(self.locationLabel)
+        self.view.addSubview(self.shareButton)
 
         let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
 
@@ -97,6 +102,11 @@ class MainController: UIViewController {
         self.informationButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.informationButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
         self.informationButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
+
+        self.shareButton.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        self.shareButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        self.shareButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        self.shareButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
 
         self.sunView.heightAnchor.constraint(equalToConstant: 133).isActive = true
         self.sunView.bottomAnchor.constraint(equalTo: self.messageLabel.topAnchor, constant: -10).isActive = true
@@ -139,6 +149,7 @@ class MainController: UIViewController {
 
             self.informationButton.updateInterface(withBackgroundColor: backgroundColor, andTextColor: textColor)
 
+            self.shareButton.setTitleColor(textColor, for: .normal)
             self.locationLabel.textColor = textColor.withAlphaComponent(0.6)
             self.messageLabel.textColor = textColor.withAlphaComponent(0.6)
             self.messageLabel.attributedText = attributedString
@@ -162,6 +173,20 @@ class MainController: UIViewController {
             self.sunView.update(for: location)
         }
     }
+
+    func share() {
+        self.shareButton.isHidden = true
+        self.informationButton.isHidden = true
+
+        let screenshot = UIScreen.screenshot()
+
+        self.shareButton.isHidden = false
+        self.informationButton.isHidden = false
+
+        let activityController = UIActivityViewController(activityItems: [screenshot], applicationActivities: nil)
+        activityController.excludedActivityTypes = [UIActivityType.airDrop]
+        self.present(activityController, animated: true, completion: nil)
+    }
 }
 
 extension MainController: LocationTrackerDelegate {
@@ -177,23 +202,8 @@ extension MainController: LocationTrackerDelegate {
     }
 
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
-        self.setLocation(with: placemark)
-        self.setMessage(for: placemark)
-        self.updateInterface()
-    }
-
-    func setLocation(with placemark: CLPlacemark) {
-        let city = placemark.locality!
-        let country = placemark.country!
-
-        self.locationLabel.text = "\(city), \(country)"
-    }
-
-    func setMessage(for placemark: CLPlacemark) {
-        guard let location = Location(placemark: placemark) else { return }
-
-        self.sunView.update(for: location)
         Location.current = Location(placemark: placemark)
+
         self.updateLocation()
         self.updateSunView()
         self.updateInterface()

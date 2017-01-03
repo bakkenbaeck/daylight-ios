@@ -11,9 +11,14 @@ extension UIScreen {
             imageSize = CGSize(width: UIScreen.main.bounds.size.height, height: UIScreen.main.bounds.size.width)
         }
 
-        UIGraphicsBeginImageContextWithOptions(imageSize, false, 0)
+        var canvasSize = imageSize
+        canvasSize.height = 450
+
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, 0)
         for window in UIApplication.shared.windows {
-            window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+            var bounds = window.bounds
+            bounds.origin.y = -(bounds.height - canvasSize.height)
+            window.drawHierarchy(in: bounds, afterScreenUpdates: true)
         }
 
         let image = UIGraphicsGetImageFromCurrentImageContext()
