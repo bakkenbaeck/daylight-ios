@@ -120,7 +120,7 @@ class MainController: UIViewController {
         let interval = location.dayLengthDifference
 
         let messageGenerator = MessageGenerator()
-        let minutesString = messageGenerator.minuteString(for: interval)
+        let minutesString = interval.minuteString()
         let generatedMessage = messageGenerator.message(forDay: Date(), sunPhase: location.sunPhase, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
 
         let message = String(format: generatedMessage.content, minutesString)
