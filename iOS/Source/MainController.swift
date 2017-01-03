@@ -3,6 +3,8 @@ import CoreLocation
 import SweetUIKit
 
 class MainController: UIViewController {
+    let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
+
     var messageLabelHeightAnchor: NSLayoutConstraint?
 
     lazy var informationController: InformationController = {
@@ -96,32 +98,30 @@ class MainController: UIViewController {
         self.view.addSubview(self.locationLabel)
         self.view.addSubview(self.shareButton)
 
-        let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
-
         self.informationButton.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         self.informationButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.informationButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        self.informationButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
-
-        self.shareButton.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        self.shareButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        self.shareButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        self.shareButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
+        self.informationButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -self.insets.right).isActive = true
 
         self.sunView.heightAnchor.constraint(equalToConstant: 133).isActive = true
         self.sunView.bottomAnchor.constraint(equalTo: self.messageLabel.topAnchor, constant: -10).isActive = true
-        self.sunView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: insets.left).isActive = true
-        self.sunView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
+        self.sunView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: self.insets.left).isActive = true
+        self.sunView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -self.insets.right).isActive = true
 
-        self.messageLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: (2 * -insets.bottom)).isActive = true
-        self.messageLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: insets.left).isActive = true
-        self.messageLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
+        self.messageLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: (2 * -self.insets.bottom)).isActive = true
+        self.messageLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: self.insets.left).isActive = true
+        self.messageLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -self.insets.right).isActive = true
         self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
 
-        self.locationLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -insets.top).isActive = true
-        self.locationLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: insets.left).isActive = true
+        self.locationLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -self.insets.top).isActive = true
+        self.locationLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: self.insets.left).isActive = true
         self.locationLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        self.locationLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
+
+        let size = CGFloat(50.0)
+        self.shareButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -size / 2).isActive = true
+        self.shareButton.widthAnchor.constraint(equalToConstant: size).isActive = true
+        self.shareButton.heightAnchor.constraint(equalToConstant: size).isActive = true
+        self.shareButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -self.insets.right).isActive = true
     }
 
     func updateInterface() {
@@ -179,6 +179,11 @@ class MainController: UIViewController {
     func updateLocation() {
         if let location = Location.current {
             self.locationLabel.text = "\(location.city), \(location.country)"
+            let maxWidth = self.view.frame.width - self.insets.right - self.insets.left - self.shareButton.frame.width
+            let labelWidth = self.locationLabel.width()
+            let width = labelWidth > maxWidth ? maxWidth : labelWidth
+            self.locationLabel.widthAnchor.constraint(equalToConstant: width).isActive = true
+            self.updateViewConstraints()
         }
     }
 
