@@ -46,8 +46,8 @@ struct Theme {
     }
 
     static func colors(for sunPhase: SunPhase) -> (backgroundColor: UIColor, textColor: UIColor) {
-        var backgroundColor = UIColor.white
-        var textColor = UIColor.black
+        let backgroundColor: UIColor
+        let textColor: UIColor
 
         switch sunPhase {
         case .sunrise:

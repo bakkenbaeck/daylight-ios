@@ -16,7 +16,6 @@ class MainController: UIViewController {
     lazy var locationTracker: LocationTracker = {
         let tracker = LocationTracker()
         tracker.delegate = self
-
         return tracker
     }()
 
@@ -24,6 +23,16 @@ class MainController: UIViewController {
         let button = InformationButton()
         button.addTarget(self, action: #selector(didSelectInformation), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+
+        return button
+    }()
+
+    lazy var shareButton: UIButton = {
+        let button = UIButton(type: .custom)        
+        button.setTitle("Share", for: .normal)
+        button.titleLabel?.font = Theme.light(size: 16)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(share), for: .touchUpInside)
 
         return button
     }()
@@ -66,7 +75,7 @@ class MainController: UIViewController {
         super.viewDidLoad()
 
         self.addSubviewsAndConstraints()
-        self.locationTracker.checkAuthorization()
+        self.locationTracker.locateIfPossible()
         self.updateLocation()
         self.updateInterface()
 
@@ -85,6 +94,7 @@ class MainController: UIViewController {
         self.view.addSubview(self.sunView)
         self.view.addSubview(self.messageLabel)
         self.view.addSubview(self.locationLabel)
+        self.view.addSubview(self.shareButton)
 
         let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
 
@@ -92,6 +102,11 @@ class MainController: UIViewController {
         self.informationButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.informationButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
         self.informationButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
+
+        self.shareButton.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        self.shareButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        self.shareButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        self.shareButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
 
         self.sunView.heightAnchor.constraint(equalToConstant: 133).isActive = true
         self.sunView.bottomAnchor.constraint(equalTo: self.messageLabel.topAnchor, constant: -10).isActive = true
@@ -110,35 +125,50 @@ class MainController: UIViewController {
     }
 
     func updateInterface() {
-        guard let location = Location.current else { return }
+        if let location = Location.current {
+            self.shareButton.isHidden = false
+            self.informationButton.isHidden = false
+            self.sunView.isHidden = false
+            self.locationLabel.isHidden = false
 
-        let percentageInDay = location.daylightLengthProgress
+            let percentageInDay = location.daylightLengthProgress
 
-        let sunPhase = location.sunPhase
-        let (backgroundColor, textColor) = Theme.colors(for: sunPhase)
+            let sunPhase = location.sunPhase
+            let (backgroundColor, textColor) = Theme.colors(for: sunPhase)
 
-        let interval = location.dayLengthDifference
+            let interval = location.dayLengthDifference
 
-        let messageGenerator = MessageGenerator()
-        let minutesString = interval.minuteString()
-        let generatedMessage = messageGenerator.message(forDay: Date(), sunPhase: location.sunPhase, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
+            let messageGenerator = MessageGenerator()
+            let minutesString = interval.minuteString()
+            let generatedMessage = messageGenerator.message(forDay: Date(), sunPhase: location.sunPhase, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
 
-        let formattedMessage = String(format: generatedMessage.format, minutesString)
-        let message = Message(format: formattedMessage)
-        let attributedString = message.attributedString(withTextColor: textColor)
+            let formattedMessage = String(format: generatedMessage.format, minutesString)
+            let message = Message(format: formattedMessage)
+            let attributedString = message.attributedString(withTextColor: textColor)
 
-        UIView.animate(withDuration: 0.4) {
-            self.view.backgroundColor = backgroundColor
-            self.sunView.updateInterface(withBackgroundColor: backgroundColor, textColor: textColor, andPercentageInDay: percentageInDay, sunPhase: sunPhase)
-            self.updateSunView()
+            UIView.animate(withDuration: 0.4) {
+                self.view.backgroundColor = backgroundColor
+                self.sunView.updateInterface(withBackgroundColor: backgroundColor, textColor: textColor, andPercentageInDay: percentageInDay, sunPhase: sunPhase)
+                self.updateSunView()
 
-            self.informationButton.updateInterface(withBackgroundColor: backgroundColor, andTextColor: textColor)
+                self.informationButton.updateInterface(withBackgroundColor: backgroundColor, andTextColor: textColor)
 
-            self.locationLabel.textColor = textColor.withAlphaComponent(0.6)
-            self.messageLabel.textColor = textColor.withAlphaComponent(0.6)
-            self.messageLabel.attributedText = attributedString
-            self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
-            self.view.setNeedsLayout()
+                self.shareButton.setTitleColor(textColor, for: .normal)
+                self.locationLabel.textColor = textColor.withAlphaComponent(0.6)
+                self.messageLabel.textColor = textColor.withAlphaComponent(0.6)
+                self.messageLabel.attributedText = attributedString
+                self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
+                self.view.setNeedsLayout()
+            }
+        } else {
+            self.messageLabel.text = "We need to know where you are, enable location access in your Settings."
+            self.messageLabel.textColor = UIColor.white
+            self.view.backgroundColor = UIColor.black
+
+            self.shareButton.isHidden = true
+            self.informationButton.isHidden = true
+            self.sunView.isHidden = true
+            self.locationLabel.isHidden = true
         }
     }
 
@@ -157,6 +187,20 @@ class MainController: UIViewController {
             self.sunView.update(for: location)
         }
     }
+
+    func share() {
+        self.shareButton.isHidden = true
+        self.informationButton.isHidden = true
+
+        let screenshot = UIScreen.screenshot()
+
+        self.shareButton.isHidden = false
+        self.informationButton.isHidden = false
+
+        let activityController = UIActivityViewController(activityItems: [screenshot], applicationActivities: nil)
+        activityController.excludedActivityTypes = [UIActivityType.airDrop]
+        self.present(activityController, animated: true, completion: nil)
+    }
 }
 
 extension MainController: LocationTrackerDelegate {
@@ -172,23 +216,8 @@ extension MainController: LocationTrackerDelegate {
     }
 
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
-        self.setLocation(with: placemark)
-        self.setMessage(for: placemark)
-        self.updateInterface()
-    }
-
-    func setLocation(with placemark: CLPlacemark) {
-        let city = placemark.locality!
-        let country = placemark.country!
-
-        self.locationLabel.text = "\(city), \(country)"
-    }
-
-    func setMessage(for placemark: CLPlacemark) {
-        guard let location = Location(placemark: placemark) else { return }
-
-        self.sunView.update(for: location)
         Location.current = Location(placemark: placemark)
+
         self.updateLocation()
         self.updateSunView()
         self.updateInterface()
