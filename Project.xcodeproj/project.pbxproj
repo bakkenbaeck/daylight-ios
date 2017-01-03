@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		140235781E1BC6E60072762B /* Double+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140235771E1BC6E60072762B /* Double+Helpers.swift */; };
 		143D3B221DE9D3E0003F77B9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1F1DE9D3E0003F77B9 /* Theme.swift */; };
 		143D3B261DE9D3F3003F77B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B241DE9D3F3003F77B9 /* AppDelegate.swift */; };
 		143D3B271DE9D3F3003F77B9 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B251DE9D3F3003F77B9 /* MainController.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		140235771E1BC6E60072762B /* Double+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Helpers.swift"; sourceTree = "<group>"; };
 		1418DB881E08A8BF0041C201 /* Suntimes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Suntimes.framework; path = Carthage/Build/iOS/Suntimes.framework; sourceTree = "<group>"; };
 		143D3B1F1DE9D3E0003F77B9 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		143D3B241DE9D3F3003F77B9 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				14A3E1771E09E6BF002F0D6C /* Settings.swift */,
 				14507A771E09F8C60032F0AF /* Message.swift */,
 				14A10F5A1E0D339D00A2D098 /* SunCalc.swift */,
+				140235771E1BC6E60072762B /* Double+Helpers.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				E6E337AE1E044AD600787E88 /* InformationController.swift in Sources */,
 				E6F604701E08106000A6461A /* CloseButton.swift in Sources */,
 				14A3E1781E09E6BF002F0D6C /* Settings.swift in Sources */,
+				140235781E1BC6E60072762B /* Double+Helpers.swift in Sources */,
 				E6D9D5071E02D7970007006D /* InformationButton.swift in Sources */,
 				14A10F5B1E0D339D00A2D098 /* SunCalc.swift in Sources */,
 				E6D9D5051E02CDE70007006D /* SunView.swift in Sources */,
