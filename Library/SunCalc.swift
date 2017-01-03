@@ -20,7 +20,7 @@ struct SunCalcEngine {
 
     var bundle: Bundle = Bundle.main
 
-    lazy var context: JSContext = {
+    private lazy var context: JSContext = {
         // Finding a good sun calculation library in Swift or Objective-C wasn't easy. I tried almost 5 different
         // libraries, none of them gave me the results we wanted. That's why I went for using the library used in
         // http://suncalc.net, this library is also used by the web version of Daylight. In our app, I'm embedding
@@ -33,6 +33,11 @@ struct SunCalcEngine {
 
         return context
     }()
+
+    mutating func times(withArguments arguments: [Any]) -> [String: Any] {
+        let getTimesJavaScriptMethod = self.context.objectForKeyedSubscript("getTimes")!
+        return getTimesJavaScriptMethod.call(withArguments: arguments)!.toObjectOf(NSDictionary.self)! as! [String: Any]
+    }
 }
 
 struct SunCalc {
@@ -59,8 +64,7 @@ struct SunCalc {
         self.timeZone = timeZone
 
         SunCalcEngine.sharedInstance.bundle = bundle
-        let getTimesJavaScriptMethod = SunCalcEngine.sharedInstance.context.objectForKeyedSubscript("getTimes")!
-        let times = getTimesJavaScriptMethod.call(withArguments: [date, latitude, longitude])!.toObjectOf(NSDictionary.self)! as! [String: Any]
+        let times = SunCalcEngine.sharedInstance.times(withArguments: [date, latitude, longitude])
 
         self.dawn = times["dawn"] as? Date ?? Date()
         self.dusk = times["dusk"] as? Date ?? Date()
