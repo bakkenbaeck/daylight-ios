@@ -34,7 +34,7 @@ struct SunCalcEngine {
         return context
     }()
 
-    mutating func times(withArguments arguments: [Any]) -> [String: Any] {
+    mutating func calculateTimes(withArguments arguments: [Any]) -> [String: Any] {
         let getTimesJavaScriptMethod = self.context.objectForKeyedSubscript("getTimes")!
         return getTimesJavaScriptMethod.call(withArguments: arguments)!.toObjectOf(NSDictionary.self)! as! [String: Any]
     }
@@ -64,7 +64,7 @@ struct SunCalc {
         self.timeZone = timeZone
 
         SunCalcEngine.sharedInstance.bundle = bundle
-        let times = SunCalcEngine.sharedInstance.times(withArguments: [date, latitude, longitude])
+        let times = SunCalcEngine.sharedInstance.calculateTimes(withArguments: [date, latitude, longitude])
 
         self.dawn = times["dawn"] as? Date ?? Date()
         self.dusk = times["dusk"] as? Date ?? Date()
