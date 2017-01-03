@@ -11,6 +11,30 @@ enum SunPhase: String {
     case night
 }
 
+struct SunCalcEngine {
+    static var sharedInstance : SunCalcEngine = {
+        let instance = SunCalcEngine()
+
+        return instance
+    }()
+
+    var bundle: Bundle = Bundle.main
+
+    lazy var context: JSContext = {
+        // Finding a good sun calculation library in Swift or Objective-C wasn't easy. I tried almost 5 different
+        // libraries, none of them gave me the results we wanted. That's why I went for using the library used in
+        // http://suncalc.net, this library is also used by the web version of Daylight. In our app, I'm embedding
+        // a portion of the library as a JavaScript file that I'll use to calculate the times for an specific date
+        // and coordinates.
+        let sunCalcLibraryPath = self.bundle.path(forResource: "suncalc", ofType: "js")!
+        let sunCalcLibrary = try! String(contentsOfFile: sunCalcLibraryPath)
+        let context = JSContext()!
+        context.evaluateScript(sunCalcLibrary)
+
+        return context
+    }()
+}
+
 struct SunCalc {
     private(set) var date: Date
     private(set) var timeZone: TimeZone
@@ -34,17 +58,8 @@ struct SunCalc {
         self.date = date
         self.timeZone = timeZone
 
-        // Finding a good sun calculation library in Swift or Objective-C wasn't easy. I tried almost 5 different
-        // libraries, none of them gave me the results we wanted. That's why I went for using the library used in
-        // http://suncalc.net, this library is also used by the web version of Daylight. In our app, I'm embedding
-        // a portion of the library as a JavaScript file that I'll use to calculate the times for an specific date
-        // and coordinates.
-        let sunCalcLibraryPath = bundle.path(forResource: "suncalc", ofType: "js")!
-        let sunCalcLibrary = try! String(contentsOfFile: sunCalcLibraryPath)
-        let context = JSContext()!
-        context.evaluateScript(sunCalcLibrary)
-
-        let getTimesJavaScriptMethod = context.objectForKeyedSubscript("getTimes")!
+        SunCalcEngine.sharedInstance.bundle = bundle
+        let getTimesJavaScriptMethod = SunCalcEngine.sharedInstance.context.objectForKeyedSubscript("getTimes")!
         let times = getTimesJavaScriptMethod.call(withArguments: [date, latitude, longitude])!.toObjectOf(NSDictionary.self)! as! [String: Any]
 
         self.dawn = times["dawn"] as? Date ?? Date()
