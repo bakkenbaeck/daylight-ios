@@ -22,7 +22,7 @@ struct Notifier {
         let interval = location.dayLengthDifferenceOnDate(date)
 
         let messageGenerator = MessageGenerator()
-        let minutesString = messageGenerator.minuteString(for: interval)
+        let minutesString = interval.minuteString()
 
         let message = messageGenerator.messageForNotification(sunPhase: location.sunPhase, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
         let formattedMessage = String(format: message, minutesString)
