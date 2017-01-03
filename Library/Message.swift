@@ -1,3 +1,5 @@
+import UIKit
+
 struct Message {
     enum Kind: Int {
         case longerMoreThanAMinute
@@ -43,6 +45,34 @@ struct Message {
         }
     }
 
-    let content: String
-    let coloredPart: String
+    init(format: String) {
+        self.format = format
+    }
+
+    let format: String
+
+    var content: String {
+        return self.format.replacingOccurrences(of: "**", with: "")
+    }
+
+    var coloredPart: String {
+        let regex = try! NSRegularExpression(pattern: "\\*\\*([^\"]*)\\*\\*")
+        let nsString = self.format as NSString
+        let results = regex.matches(in: self.format, range: NSRange(location: 0, length: nsString.length))
+        if let firstResultRange = results.first?.range {
+            let foundPart = nsString.substring(with: firstResultRange)
+
+            return foundPart.replacingOccurrences(of: "**", with: "")
+        } else {
+            return ""
+        }
+    }
+
+    func attributedString(withTextColor textColor: UIColor) -> NSAttributedString {
+        let range = (self.content as NSString).range(of: self.coloredPart)
+        let attributedString = NSMutableAttributedString(string: self.content)
+        attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
+
+        return attributedString
+    }
 }

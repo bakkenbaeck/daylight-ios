@@ -123,12 +123,9 @@ class MainController: UIViewController {
         let minutesString = interval.minuteString()
         let generatedMessage = messageGenerator.message(forDay: Date(), sunPhase: location.sunPhase, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
 
-        let message = String(format: generatedMessage.content, minutesString)
-        let colored = String(format: generatedMessage.coloredPart, minutesString)
-
-        let range = (message as NSString).range(of: colored)
-        let attributedString = NSMutableAttributedString(string: message)
-        attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
+        let formattedMessage = String(format: generatedMessage.format, minutesString)
+        let message = Message(format: formattedMessage)
+        let attributedString = message.attributedString(withTextColor: textColor)
 
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = backgroundColor
