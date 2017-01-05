@@ -51,7 +51,6 @@ class MainController: UIViewController {
         label.numberOfLines = 0
         label.font = Theme.light(size: 32)
         label.translatesAutoresizingMaskIntoConstraints = false
-
         label.textColor = .white
 
         return label
@@ -113,15 +112,17 @@ class MainController: UIViewController {
         self.messageLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -self.insets.right).isActive = true
         self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
 
-        self.locationLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -self.insets.top).isActive = true
-        self.locationLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: self.insets.left).isActive = true
-        self.locationLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-
         let size = CGFloat(50.0)
         self.shareButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -size / 2).isActive = true
         self.shareButton.widthAnchor.constraint(equalToConstant: size).isActive = true
         self.shareButton.heightAnchor.constraint(equalToConstant: size).isActive = true
         self.shareButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -self.insets.right).isActive = true
+
+        let rightInset = CGFloat(-10)
+        self.locationLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -self.insets.top).isActive = true
+        self.locationLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: self.insets.left).isActive = true
+        self.locationLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        self.locationLabel.rightAnchor.constraint(equalTo: self.shareButton.leftAnchor, constant: rightInset).isActive = true
     }
 
     func updateInterface() {
@@ -179,11 +180,6 @@ class MainController: UIViewController {
     func updateLocation() {
         if let location = Location.current {
             self.locationLabel.text = "\(location.city), \(location.country)"
-            let maxWidth = self.view.frame.width - self.insets.right - self.insets.left - self.shareButton.frame.width
-            let labelWidth = self.locationLabel.width()
-            let width = labelWidth > maxWidth ? maxWidth : labelWidth
-            self.locationLabel.widthAnchor.constraint(equalToConstant: width).isActive = true
-            self.updateViewConstraints()
         }
     }
 
