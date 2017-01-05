@@ -67,7 +67,7 @@ struct Location {
     }
 
     var dayLengthDifference: Double {
-        return self.dayLengthDifferenceOnDate(self.today)
+        return self.dayLengthDifferenceOnDate(Date())
     }
 
     func dayLengthDifferenceOnDate(_ date: Date) -> Double {
@@ -87,12 +87,13 @@ struct Location {
     }
 
     var yesterdayDaylightLength: Double {
-        let yesterdaySuntimes = self.suntimes(forDate: self.yesterday)
-        return yesterdaySuntimes.sunset.timeIntervalSince(yesterdaySuntimes.sunrise)
+        let suntimes = self.suntimes(forDate: self.yesterday)
+        return suntimes.sunset.timeIntervalSince(suntimes.sunrise)
     }
 
     var todayDaylightLength: Double {
-        return self.nowSuntimes.sunset.timeIntervalSince(nowSuntimes.sunrise)
+        let suntimes = self.suntimes(forDate: self.today)
+        return suntimes.sunset.timeIntervalSince(suntimes.sunrise)
     }
 
     var tomorrowDaylightLength: Double {

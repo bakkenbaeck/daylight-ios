@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>10</string>
+	<string>11</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -31,6 +31,8 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We need to know where you are in order to show you sun duration information for your current location.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Daylight would like your permission to store this screenshot.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>GT-America-Light.ttf</string>
@@ -45,8 +47,6 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Daylight would like your permission to store this screenshot.</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 </dict>

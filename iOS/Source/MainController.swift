@@ -3,6 +3,8 @@ import CoreLocation
 import SweetUIKit
 
 class MainController: UIViewController {
+    let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
+
     var messageLabelHeightAnchor: NSLayoutConstraint?
 
     lazy var informationController: InformationController = {
@@ -49,7 +51,6 @@ class MainController: UIViewController {
         label.numberOfLines = 0
         label.font = Theme.light(size: 32)
         label.translatesAutoresizingMaskIntoConstraints = false
-
         label.textColor = .white
 
         return label
@@ -89,6 +90,12 @@ class MainController: UIViewController {
         }
     }
 
+    var informationButtonTopAnchor: NSLayoutConstraint?
+
+    var locationLabelBottomAnchor: NSLayoutConstraint?
+    var locationLabelLeftAnchor: NSLayoutConstraint?
+    var locationLabelRightAnchor: NSLayoutConstraint?
+
     func addSubviewsAndConstraints() {
         self.view.addSubview(self.informationButton)
         self.view.addSubview(self.sunView)
@@ -96,32 +103,40 @@ class MainController: UIViewController {
         self.view.addSubview(self.locationLabel)
         self.view.addSubview(self.shareButton)
 
-        let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
+        self.informationButtonTopAnchor = self.informationButton.topAnchor.constraint(equalTo: self.view.topAnchor)
+        self.informationButtonTopAnchor?.isActive = true
 
-        self.informationButton.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         self.informationButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.informationButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        self.informationButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
-
-        self.shareButton.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        self.shareButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        self.shareButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        self.shareButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
+        self.informationButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -self.insets.right).isActive = true
 
         self.sunView.heightAnchor.constraint(equalToConstant: 133).isActive = true
         self.sunView.bottomAnchor.constraint(equalTo: self.messageLabel.topAnchor, constant: -10).isActive = true
-        self.sunView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: insets.left).isActive = true
-        self.sunView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
+        self.sunView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: self.insets.left).isActive = true
+        self.sunView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -self.insets.right).isActive = true
 
-        self.messageLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: (2 * -insets.bottom)).isActive = true
-        self.messageLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: insets.left).isActive = true
-        self.messageLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
+        self.messageLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: (2 * -self.insets.bottom)).isActive = true
+        self.messageLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: self.insets.left).isActive = true
+        self.messageLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -self.insets.right).isActive = true
         self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
 
-        self.locationLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -insets.top).isActive = true
-        self.locationLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: insets.left).isActive = true
+        let size = CGFloat(50.0)
+        self.shareButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -size / 2).isActive = true
+        self.shareButton.widthAnchor.constraint(equalToConstant: size).isActive = true
+        self.shareButton.heightAnchor.constraint(equalToConstant: size).isActive = true
+        self.shareButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -self.insets.right).isActive = true
+
+        let rightInset = CGFloat(-10)
         self.locationLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        self.locationLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -insets.right).isActive = true
+
+        self.locationLabelBottomAnchor = self.locationLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -self.insets.top)
+        self.locationLabelBottomAnchor?.isActive = true
+
+        self.locationLabelLeftAnchor = self.locationLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: self.insets.left)
+        self.locationLabelLeftAnchor?.isActive = true
+
+        self.locationLabelRightAnchor = self.locationLabel.rightAnchor.constraint(equalTo: self.shareButton.leftAnchor, constant: rightInset)
+        self.locationLabelRightAnchor?.isActive = true
     }
 
     func updateInterface() {
@@ -189,13 +204,47 @@ class MainController: UIViewController {
     }
 
     func share() {
-        self.shareButton.isHidden = true
-        self.informationButton.isHidden = true
+        let margin = CGFloat(20)
+        let height = CGFloat(450)
+        let y = self.messageLabel.frame.maxY - height + margin
 
-        let screenshot = UIScreen.screenshot()
+        let overlayView = UIView(frame: CGRect(x: 0, y: y, width: self.view.frame.width, height: height))
+        self.view.addSubview(overlayView)
 
-        self.shareButton.isHidden = false
-        self.informationButton.isHidden = false
+        self.informationButtonTopAnchor?.isActive = false
+        let screenshotInformationTopAnchor = self.informationButton.topAnchor.constraint(equalTo: overlayView.topAnchor, constant: -18)
+        screenshotInformationTopAnchor.isActive = true
+
+        self.locationLabelBottomAnchor?.isActive = false
+        self.locationLabelLeftAnchor?.isActive = false
+        self.locationLabelRightAnchor?.isActive = false
+
+        let screenshotLocationTopAnchor = self.locationLabel.topAnchor.constraint(equalTo: overlayView.topAnchor, constant: 20)
+        screenshotLocationTopAnchor.isActive = true
+
+        let screenshotLocationRightAnchor = self.locationLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -self.insets.right)
+        screenshotLocationRightAnchor.isActive = true
+
+        let screenshotLocationLeftAnchor = self.locationLabel.leftAnchor.constraint(equalTo: self.informationButton.leftAnchor)
+        screenshotLocationLeftAnchor.isActive = true
+
+        self.locationLabel.textAlignment = .right
+
+        let screenshot = UIScreen.screenshot(frame: overlayView.frame)
+
+        self.locationLabel.textAlignment = .left
+        screenshotLocationLeftAnchor.isActive = false
+        screenshotLocationRightAnchor.isActive = false
+        screenshotLocationTopAnchor.isActive = false
+
+        self.locationLabelBottomAnchor?.isActive = true
+        self.locationLabelLeftAnchor?.isActive = true
+        self.locationLabelRightAnchor?.isActive = true
+
+        screenshotInformationTopAnchor.isActive = false
+        self.informationButtonTopAnchor?.isActive = true
+
+        overlayView.removeFromSuperview()
 
         let activityController = UIActivityViewController(activityItems: [screenshot], applicationActivities: nil)
         activityController.excludedActivityTypes = [UIActivityType.airDrop]
