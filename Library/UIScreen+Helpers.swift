@@ -12,6 +12,7 @@ extension UIScreen {
 
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+
         return image!
     }
 }
