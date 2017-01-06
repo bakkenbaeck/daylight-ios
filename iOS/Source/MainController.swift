@@ -250,7 +250,7 @@ class MainController: UIViewController {
 
         overlayView.removeFromSuperview()
 
-        let activityController = UIActivityViewController(activityItems: [screenshot, "Made with #daylight."], applicationActivities: nil)
+        let activityController = UIActivityViewController(activityItems: [screenshot, "Made with #daylightapp."], applicationActivities: nil)
         activityController.excludedActivityTypes = [UIActivityType.airDrop]
         self.present(activityController, animated: true, completion: nil)
     }
