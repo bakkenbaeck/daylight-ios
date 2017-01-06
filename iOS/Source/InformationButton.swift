@@ -23,7 +23,7 @@ class InformationButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        nameLabel.text = NSLocalizedString("Daylight", comment: "")
+        self.nameLabel.text = NSLocalizedString("About", comment: "")
         self.addSubviewsAndConstraints()
     }
 

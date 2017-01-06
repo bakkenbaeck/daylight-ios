@@ -230,7 +230,11 @@ class MainController: UIViewController {
 
         self.locationLabel.textAlignment = .right
 
+        self.informationButton.nameLabel.text = NSLocalizedString("Daylight", comment: "")
+
         let screenshot = UIScreen.screenshot(frame: overlayView.frame)
+
+        self.informationButton.nameLabel.text = NSLocalizedString("About", comment: "")
 
         self.locationLabel.textAlignment = .left
         screenshotLocationLeftAnchor.isActive = false
@@ -246,7 +250,7 @@ class MainController: UIViewController {
 
         overlayView.removeFromSuperview()
 
-        let activityController = UIActivityViewController(activityItems: [screenshot], applicationActivities: nil)
+        let activityController = UIActivityViewController(activityItems: [screenshot, "Made with #daylight."], applicationActivities: nil)
         activityController.excludedActivityTypes = [UIActivityType.airDrop]
         self.present(activityController, animated: true, completion: nil)
     }
