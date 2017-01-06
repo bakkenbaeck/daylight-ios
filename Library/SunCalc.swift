@@ -12,7 +12,7 @@ enum SunPhase: String {
 }
 
 struct SunCalcEngine {
-    static var sharedInstance : SunCalcEngine = {
+    static var sharedInstance: SunCalcEngine = {
         let instance = SunCalcEngine()
 
         return instance

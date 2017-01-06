@@ -30,7 +30,7 @@ class MainController: UIViewController {
     }()
 
     lazy var shareButton: UIButton = {
-        let button = UIButton(type: .custom)        
+        let button = UIButton(type: .custom)
         button.setTitle("Share", for: .normal)
         button.titleLabel?.font = Theme.light(size: 16)
         button.translatesAutoresizingMaskIntoConstraints = false

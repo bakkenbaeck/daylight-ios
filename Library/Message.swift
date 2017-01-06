@@ -22,7 +22,7 @@ struct Message {
                 if tomorrowIsLonger {
                     let longerTomorrowMoreThanAMinute = tomorrowDaylightLength - todayDaylightLength > 60
 
-                    kindRawValue =  longerTomorrowMoreThanAMinute ? Message.Kind.longerTomorrowMoreThanAMinute.rawValue : Message.Kind.longerTomorrowLessThanAMinute.rawValue
+                    kindRawValue = longerTomorrowMoreThanAMinute ? Message.Kind.longerTomorrowMoreThanAMinute.rawValue : Message.Kind.longerTomorrowLessThanAMinute.rawValue
                 } else {
                     let shorterTomorrowMoreThanAMinute = todayDaylightLength - tomorrowDaylightLength > 60
 
