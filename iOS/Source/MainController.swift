@@ -176,7 +176,7 @@ class MainController: UIViewController {
                 self.view.setNeedsLayout()
             }
         } else {
-            self.messageLabel.text = "We need to know where you are, enable location access in your Settings."
+            self.messageLabel.text = "We need to know where you are, please enable location access."
             self.messageLabel.textColor = UIColor.white
             self.view.backgroundColor = UIColor.black
 
