@@ -104,20 +104,18 @@ class InformationController: UIViewController {
         }
 
         var turnNotificationsOffString: NSAttributedString {
-            let attributedString = NSMutableAttributedString(string: "Turn notifications off")
-            var range = ("Turn notifications off" as NSString).range(of: "Turn notifications")
-            attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor.withAlphaComponent(0.6), range: range)
-            range = ("Turn notifications off" as NSString).range(of: " off")
+            let content = "Turn off notifications"
+            let attributedString = NSMutableAttributedString(string: content)
+            let range = (content as NSString).range(of: "off")
             attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
 
             return attributedString
         }
 
         var turnNotificationsOnString: NSAttributedString {
-            let attributedString = NSMutableAttributedString(string: "Turn notifications on")
-            var range = ("Turn notifications on" as NSString).range(of: "Turn notifications")
-            attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor.withAlphaComponent(0.6), range: range)
-            range = ("Turn notifications on" as NSString).range(of: " on")
+            let content = "Turn on notifications"
+            let attributedString = NSMutableAttributedString(string: content)
+            let range = (content as NSString).range(of: "on")
             attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
 
             return attributedString
@@ -126,6 +124,7 @@ class InformationController: UIViewController {
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = backgroundColor
             self.closeButton.updateInterface(withBackgroundColor: backgroundColor, andTextColor: textColor)
+            self.notificationButton.titleLabel?.textColor = textColor.withAlphaComponent(0.6)
 
             if Settings.isNotificationsEnabled {
                 self.notificationButton.setAttributedTitle(turnNotificationsOffString, for: .normal)
