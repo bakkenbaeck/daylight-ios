@@ -254,7 +254,9 @@ class MainController: UIViewController {
 
 extension MainController: LocationTrackerDelegate {
     func locationTracker(_ locationTracker: LocationTracker, didFailWith error: Error) {
-        self.messageLabel.text = "We need to know where you are, enable location access in your Settings."
+        guard Location.current == nil else { return }
+
+        self.messageLabel.text = "We need to know where you are, please enable location access."
 
         let isUnexpectedError = (error as NSError).code != 0
         if isUnexpectedError {
