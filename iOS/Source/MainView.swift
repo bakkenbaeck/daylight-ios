@@ -211,14 +211,7 @@ class MainView: UIView {
                 self.setNeedsLayout()
             }
         } else {
-            self.messageLabel.text = "We need to know where you are, please enable location access."
-            self.messageLabel.textColor = UIColor.white
-            self.backgroundColor = UIColor.black
 
-            self.shareButton.isHidden = true
-            self.informationButton.isHidden = true
-            self.sunView.isHidden = true
-            self.locationLabel.isHidden = true
         }
     }
 }
