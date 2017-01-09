@@ -1,6 +1,13 @@
 import UIKit
+import CoreLocation
+
+protocol OnboardingControllerDelegate: class {
+    func onboardingControllerDidFinish(_ onboardingController: OnboardingController)
+}
 
 class OnboardingController: UIViewController {
+    weak var delegate: OnboardingControllerDelegate?
+
     private let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
 
     lazy var titleLabel: UILabel = {
@@ -8,27 +15,37 @@ class OnboardingController: UIViewController {
         label.numberOfLines = 0
         label.font = Theme.light(size: 32)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
+        label.textColor = Theme.daylightText
 
         return label
     }()
 
-    private lazy var subtitleLabel: UILabel = {
+    lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.font = Theme.light(size: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor.white.withAlphaComponent(0.6)
+        label.textColor = Theme.daylightText.withAlphaComponent(0.6)
 
         return label
     }()
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
+
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.addSubviewsAndConstraints()
 
-        self.titleLabel.text = "We need to know where you are, please enable location access."
-        self.subtitleLabel.text = "Try again"
+        LocationTracker.shared.locateIfPossible()
+        LocationTracker.shared.delegate = self
+
+        self.view.backgroundColor = Theme.daylightBackground
     }
 
     private func addSubviewsAndConstraints() {
@@ -46,5 +63,29 @@ class OnboardingController: UIViewController {
         self.subtitleLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -self.insets.top).isActive = true
         self.subtitleLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: self.insets.left).isActive = true
         self.subtitleLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: rightInset).isActive = true
+    }
+}
+
+extension OnboardingController: LocationTrackerDelegate {
+    func locationTracker(_ locationTracker: LocationTracker, didFailWith error: Error) {
+        guard Location.current == nil else { return }
+
+        let isUnexpectedError = (error as NSError).code != 0
+        if isUnexpectedError {
+            let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+
+    func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
+        guard Location.current == nil else { return }
+
+        if let location = Location(placemark: placemark) {
+            Location.current = location
+
+            self.titleLabel.text = "Enable notifications to receive daylight changes on your phone at sunrise."
+            self.subtitleLabel.text = "Skip for now"
+        }
     }
 }

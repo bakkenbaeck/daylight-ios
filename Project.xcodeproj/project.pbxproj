@@ -176,13 +176,13 @@
 			isa = PBXGroup;
 			children = (
 				143D3B241DE9D3F3003F77B9 /* AppDelegate.swift */,
+				14C5918E1E2414ED0035AB81 /* OnboardingController.swift */,
 				143D3B251DE9D3F3003F77B9 /* MainController.swift */,
 				14C5918C1E24082F0035AB81 /* MainView.swift */,
 				E6E337AD1E044AD600787E88 /* InformationController.swift */,
 				E6D9D5041E02CDE70007006D /* SunView.swift */,
 				E6D9D5061E02D7970007006D /* InformationButton.swift */,
 				E6F6046F1E08106000A6461A /* CloseButton.swift */,
-				14C5918E1E2414ED0035AB81 /* OnboardingController.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";

@@ -8,6 +8,12 @@ protocol LocationTrackerDelegate: class {
 class LocationTracker: NSObject {
     weak var delegate: LocationTrackerDelegate?
 
+    static let shared: LocationTracker = {
+        let instance = LocationTracker()
+
+        return instance
+    }()
+
     lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.delegate = self

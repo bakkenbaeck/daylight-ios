@@ -22,4 +22,14 @@ struct Settings {
         let settings = UIUserNotificationSettings(types: [.alert], categories: nil)
         UIApplication.shared.registerUserNotificationSettings(settings)
     }
+
+    static var shouldPresentOnboarding: Bool {
+        set {
+            UserDefaults.standard.set(newValue, forKey: "shouldPresentOnboarding")
+        }
+
+        get {
+            return UserDefaults.standard.value(forKey: "shouldPresentOnboarding") as? Bool ?? true
+        }
+    }
 }
