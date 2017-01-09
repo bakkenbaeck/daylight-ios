@@ -32,6 +32,7 @@
 		14A10F5B1E0D339D00A2D098 /* SunCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A10F5A1E0D339D00A2D098 /* SunCalc.swift */; };
 		14A10F5C1E0D339D00A2D098 /* SunCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A10F5A1E0D339D00A2D098 /* SunCalc.swift */; };
 		14A3E1781E09E6BF002F0D6C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A3E1771E09E6BF002F0D6C /* Settings.swift */; };
+		14C5918D1E24082F0035AB81 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C5918C1E24082F0035AB81 /* MainView.swift */; };
 		14C866D51E0B314A0018FFD2 /* Oslo.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 14C866D41E0B314A0018FFD2 /* Oslo.gpx */; };
 		14F37F931E0D554700005101 /* SunCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F37F921E0D554700005101 /* SunCalcTests.swift */; };
 		44227E8F1E067A1E002B911B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
@@ -90,6 +91,7 @@
 		14A10F571E0D336E00A2D098 /* suncalc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = suncalc.js; sourceTree = "<group>"; };
 		14A10F5A1E0D339D00A2D098 /* SunCalc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunCalc.swift; sourceTree = "<group>"; };
 		14A3E1771E09E6BF002F0D6C /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		14C5918C1E24082F0035AB81 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		14C866D41E0B314A0018FFD2 /* Oslo.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Oslo.gpx; sourceTree = "<group>"; };
 		14E6F3C91E08735200F9C3F6 /* SunPhaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunPhaseTests.swift; sourceTree = "<group>"; };
 		14F37F921E0D554700005101 /* SunCalcTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunCalcTests.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			children = (
 				143D3B241DE9D3F3003F77B9 /* AppDelegate.swift */,
 				143D3B251DE9D3F3003F77B9 /* MainController.swift */,
+				14C5918C1E24082F0035AB81 /* MainView.swift */,
 				E6E337AD1E044AD600787E88 /* InformationController.swift */,
 				E6D9D5041E02CDE70007006D /* SunView.swift */,
 				E6D9D5061E02D7970007006D /* InformationButton.swift */,
@@ -367,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				143D3B261DE9D3F3003F77B9 /* AppDelegate.swift in Sources */,
+				14C5918D1E24082F0035AB81 /* MainView.swift in Sources */,
 				143D3B271DE9D3F3003F77B9 /* MainController.swift in Sources */,
 				44227E8F1E067A1E002B911B /* Location.swift in Sources */,
 				146AE9AD1E08B050003EE788 /* Date+Helpers.swift in Sources */,
