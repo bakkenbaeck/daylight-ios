@@ -4,26 +4,12 @@ struct MessageGenerator {
     let informationMessage = Message(format: "Daylight is an experiment inspired by the dark and long winters of the north. Made by **Bakken & Bæck**.")
 
     func message(forDay day: Date, sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
-        let defaults = UserDefaults.standard
-
-        let cachingKey = self.cachingKey(forDay: day, andSunPhase: sunPhase)
-
-        if let format = UserDefaults.standard.string(forKey: cachingKey) {
-            return Message(format: format)
-        } else {
-            if let appDomain = Bundle.main.bundleIdentifier {
-                UserDefaults.standard.removePersistentDomain(forName: appDomain)
-            }
-
-            let message = self.generateMessage(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
-            defaults.set(message.format, forKey: cachingKey)
-
-            return message
-        }
+        let message = self.generateMessage(forHashValue: self.hashValue(forDay: day), sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+        return message
     }
 
-    func messageForNotification(sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> String {
-        let message = self.generateMessage(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+    func messageForNotification(forDate date: Date, sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> String {
+        let message = self.generateMessage(forHashValue: self.hashValue(forDay: date), sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
 
         return message.content
     }
