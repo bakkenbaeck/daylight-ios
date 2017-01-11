@@ -91,6 +91,7 @@ class MainController: UIViewController {
     }
 
     var informationButtonTopAnchor: NSLayoutConstraint?
+    var informationButtonWidthAnchor: NSLayoutConstraint?
 
     var locationLabelBottomAnchor: NSLayoutConstraint?
     var locationLabelLeftAnchor: NSLayoutConstraint?
@@ -108,7 +109,6 @@ class MainController: UIViewController {
 
         self.informationButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.informationButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        self.informationButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -self.insets.right).isActive = true
 
         self.sunView.heightAnchor.constraint(equalToConstant: 133).isActive = true
         self.sunView.bottomAnchor.constraint(equalTo: self.messageLabel.topAnchor, constant: -10).isActive = true
@@ -212,8 +212,11 @@ class MainController: UIViewController {
         self.view.addSubview(overlayView)
 
         self.informationButtonTopAnchor?.isActive = false
-        let screenshotInformationTopAnchor = self.informationButton.topAnchor.constraint(equalTo: overlayView.topAnchor, constant: -18)
-        screenshotInformationTopAnchor.isActive = true
+        let informationButtonTopAnchor = self.informationButton.topAnchor.constraint(equalTo: overlayView.topAnchor, constant: -18)
+        informationButtonTopAnchor.isActive = true
+
+        let informationButtonWidthAnchor = self.informationButton.widthAnchor.constraint(equalToConstant: 165)
+        informationButtonWidthAnchor.isActive = true
 
         self.locationLabelBottomAnchor?.isActive = false
         self.locationLabelLeftAnchor?.isActive = false
@@ -225,7 +228,7 @@ class MainController: UIViewController {
         let screenshotLocationRightAnchor = self.locationLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -self.insets.right)
         screenshotLocationRightAnchor.isActive = true
 
-        let screenshotLocationLeftAnchor = self.locationLabel.leftAnchor.constraint(equalTo: self.informationButton.leftAnchor)
+        let screenshotLocationLeftAnchor = self.locationLabel.leftAnchor.constraint(equalTo: self.informationButton.rightAnchor)
         screenshotLocationLeftAnchor.isActive = true
 
         self.locationLabel.textAlignment = .right
@@ -245,7 +248,8 @@ class MainController: UIViewController {
         self.locationLabelLeftAnchor?.isActive = true
         self.locationLabelRightAnchor?.isActive = true
 
-        screenshotInformationTopAnchor.isActive = false
+        informationButtonTopAnchor.isActive = false
+        informationButtonWidthAnchor.isActive = false
         self.informationButtonTopAnchor?.isActive = true
 
         overlayView.removeFromSuperview()
