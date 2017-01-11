@@ -72,6 +72,7 @@ struct Message {
         let range = (self.content as NSString).range(of: self.coloredPart)
         let attributedString = NSMutableAttributedString(string: self.content)
         attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
+        attributedString.addAttribute(NSKernAttributeName, value: -0.5, range: NSMakeRange(0, self.content.characters.count))
 
         return attributedString
     }

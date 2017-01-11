@@ -15,7 +15,7 @@ class InformationButton: UIButton {
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Theme.light(size: 12)
+        label.font = Theme.light(size: 16)
 
         return label
     }()
@@ -23,7 +23,7 @@ class InformationButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        self.nameLabel.text = NSLocalizedString("About", comment: "")
+        self.nameLabel.text = NSLocalizedString("About Daylight", comment: "")
         self.addSubviewsAndConstraints()
     }
 
