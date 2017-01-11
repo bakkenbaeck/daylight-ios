@@ -234,7 +234,6 @@ class MainController: UIViewController {
 
         let screenshot = UIScreen.screenshot(frame: overlayView.frame)
 
-        // Here the title is reset to the main UI title
         self.informationButton.nameLabel.text = NSLocalizedString("About Daylight", comment: "")
 
         self.locationLabel.textAlignment = .left
