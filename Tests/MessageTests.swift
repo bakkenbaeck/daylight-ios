@@ -38,6 +38,7 @@ class MessageTests: XCTestCase {
         var range = (content as NSString).range(of: coloredPart)
         var attributedString = NSMutableAttributedString(string: content)
         attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: range)
+        attributedString.addAttribute(NSKernAttributeName, value: -0.75, range: NSMakeRange(0, content.characters.count))
         XCTAssertEqual(message.attributedString(withTextColor: UIColor.red), attributedString)
 
         format = "**%@ minutes** more."
@@ -48,6 +49,7 @@ class MessageTests: XCTestCase {
         range = (content as NSString).range(of: coloredPart)
         attributedString = NSMutableAttributedString(string: content)
         attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: range)
+        attributedString.addAttribute(NSKernAttributeName, value: -0.75, range: NSMakeRange(0, content.characters.count))
         XCTAssertEqual(message.attributedString(withTextColor: UIColor.red), attributedString)
     }
 
