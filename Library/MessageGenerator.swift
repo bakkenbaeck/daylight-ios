@@ -34,6 +34,14 @@ struct MessageGenerator {
         return dayKey
     }
 
+    func hashValue(forDay day: Date, andSunPhase sunPhase: SunPhase) -> UInt32 {
+        let dayKey = self.dateFormatter.string(from: day) + sunPhase.rawValue
+        let value = FNVHash.fnv1a_32(string: dayKey)
+
+        return value
+    }
+
+
     private var longerMoreThanAMinuteMessages: [Message] {
         var messages = [Message]()
 

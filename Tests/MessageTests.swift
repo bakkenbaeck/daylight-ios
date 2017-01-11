@@ -50,4 +50,22 @@ class MessageTests: XCTestCase {
         attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: range)
         XCTAssertEqual(message.attributedString(withTextColor: UIColor.red), attributedString)
     }
+
+    func testHashValueForDateAndSunPhase() {
+        let messageGenerator = MessageGenerator()
+
+        let beginningOfDayString = "2014-07-15 01:00"
+        let endOfDayString = "2014-07-15 23:40"
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+
+        let beginningOfDayDate = dateFormatter.date(from: beginningOfDayString)
+        let endOfDayDate = dateFormatter.date(from: endOfDayString)
+        
+        let beginningOfDayHashValue = messageGenerator.hashValue(forDay: beginningOfDayDate!, andSunPhase: .dawn)
+        let endOfDayHashValue = messageGenerator.hashValue(forDay: endOfDayDate!, andSunPhase: .dawn)
+
+        XCTAssertEqual(beginningOfDayHashValue, endOfDayHashValue)
+    }
 }
