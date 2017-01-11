@@ -168,7 +168,7 @@ class MainController: UIViewController {
 
                 self.informationButton.updateInterface(withBackgroundColor: backgroundColor, andTextColor: textColor)
 
-                self.shareButton.setTitleColor(textColor, for: .normal)
+                self.shareButton.setTitleColor(textColor.withAlphaComponent(0.6), for: .normal)
                 self.locationLabel.textColor = textColor.withAlphaComponent(0.6)
                 self.messageLabel.textColor = textColor.withAlphaComponent(0.6)
                 self.messageLabel.attributedText = attributedString
@@ -234,7 +234,7 @@ class MainController: UIViewController {
 
         let screenshot = UIScreen.screenshot(frame: overlayView.frame)
 
-        self.informationButton.nameLabel.text = NSLocalizedString("About", comment: "")
+        self.informationButton.nameLabel.text = NSLocalizedString("About Daylight", comment: "")
 
         self.locationLabel.textAlignment = .left
         screenshotLocationLeftAnchor.isActive = false
