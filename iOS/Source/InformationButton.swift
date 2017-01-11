@@ -36,7 +36,7 @@ class InformationButton: UIButton {
         self.addSubview(self.nameLabel)
 
         self.sun.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 40).isActive = true
-        self.sun.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
+        self.sun.centerYAnchor.constraint(equalTo: self.nameLabel.centerYAnchor).isActive = true
         self.sun.widthAnchor.constraint(equalToConstant: InformationButton.sunSize).isActive = true
         self.sun.heightAnchor.constraint(equalToConstant: InformationButton.sunSize).isActive = true
 
