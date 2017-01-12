@@ -37,7 +37,9 @@
 		14C866D51E0B314A0018FFD2 /* Oslo.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 14C866D41E0B314A0018FFD2 /* Oslo.gpx */; };
 		14F37F931E0D554700005101 /* SunCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F37F921E0D554700005101 /* SunCalcTests.swift */; };
 		44227E8F1E067A1E002B911B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
+		D197B5A6D4413DEF81D6B469 /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
 		D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBC3EDBF4CA099642BCE /* Notifier.swift */; };
+		D197BB20CC86558409D763AC /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
 		D197BB6AA1F1FB8F3E2ADA6B /* MessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */; };
 		E6D9D5051E02CDE70007006D /* SunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D9D5041E02CDE70007006D /* SunView.swift */; };
 		E6D9D5071E02D7970007006D /* InformationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D9D5061E02D7970007006D /* InformationButton.swift */; };
@@ -100,6 +102,7 @@
 		44227E8E1E067A1E002B911B /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageGenerator.swift; sourceTree = "<group>"; };
 		D197BBC3EDBF4CA099642BCE /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
+		D197BD0F150956F37CAE048A /* FNVHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FNVHash.swift; sourceTree = "<group>"; };
 		E6D9D5041E02CDE70007006D /* SunView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunView.swift; sourceTree = "<group>"; };
 		E6D9D5061E02D7970007006D /* InformationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationButton.swift; sourceTree = "<group>"; };
 		E6E337AD1E044AD600787E88 /* InformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationController.swift; sourceTree = "<group>"; };
@@ -148,6 +151,7 @@
 				14A10F5A1E0D339D00A2D098 /* SunCalc.swift */,
 				140235771E1BC6E60072762B /* Double+Helpers.swift */,
 				1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */,
+				D197BD0F150956F37CAE048A /* FNVHash.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -391,6 +395,7 @@
 				1432419B1E1BF4D9000E6950 /* UIScreen+Helpers.swift in Sources */,
 				D197BB6AA1F1FB8F3E2ADA6B /* MessageGenerator.swift in Sources */,
 				D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */,
+				D197B5A6D4413DEF81D6B469 /* FNVHash.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +413,7 @@
 				144F3C171E09D908009A45D2 /* SunriseSet+HelperTests.swift in Sources */,
 				14F37F931E0D554700005101 /* SunCalcTests.swift in Sources */,
 				146EE0461E1BC40200F08A13 /* Date+HelperTests.swift in Sources */,
+				D197BB20CC86558409D763AC /* FNVHash.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
