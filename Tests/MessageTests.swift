@@ -2,6 +2,7 @@ import XCTest
 import UIKit
 
 class MessageTests: XCTestCase {
+
     func testKind() {
         XCTAssertEqual(Message.Kind.longerMoreThanAMinute, Message.Kind(sunPhase: .dawn, yesterdayDaylightLength: 0, todayDaylightLength: 61, tomorrowDaylightLength: 0))
         XCTAssertEqual(Message.Kind.longerLessThanAMinute, Message.Kind(sunPhase: .dawn, yesterdayDaylightLength: 0, todayDaylightLength: 60, tomorrowDaylightLength: 0))
@@ -64,7 +65,7 @@ class MessageTests: XCTestCase {
 
         let beginningOfDayDate = dateFormatter.date(from: beginningOfDayString)
         let endOfDayDate = dateFormatter.date(from: endOfDayString)
-        
+
         let beginningOfDayHashValue = messageGenerator.hashValue(forDay: beginningOfDayDate!)
         let endOfDayHashValue = messageGenerator.hashValue(forDay: endOfDayDate!)
 

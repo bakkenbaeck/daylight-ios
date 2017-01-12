@@ -22,7 +22,6 @@ struct MessageGenerator {
         return value
     }
 
-
     private var longerMoreThanAMinuteMessages: [Message] {
         var messages = [Message]()
 

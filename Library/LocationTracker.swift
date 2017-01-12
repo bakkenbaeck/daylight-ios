@@ -27,6 +27,7 @@ class LocationTracker: NSObject {
 }
 
 extension LocationTracker: CLLocationManagerDelegate {
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .authorizedWhenInUse, .authorizedAlways:

@@ -158,9 +158,9 @@ class MainView: UIView {
 
         screenshotInformationTopAnchor.isActive = false
         self.informationButtonTopAnchor?.isActive = true
-        
+
         overlayView.removeFromSuperview()
-        
+
         return screenshot
     }
 

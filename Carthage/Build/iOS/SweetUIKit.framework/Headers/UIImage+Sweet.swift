@@ -3,7 +3,7 @@
 
     public extension UIImage {
 
-        /**
+        /** 
          Returns the perfect frame to center a UIImage in the screen.
          */
         public func centeredFrame() -> CGRect {
