@@ -172,6 +172,10 @@ class MainView: UIView {
         self.delegate?.mainView(self, didSelectAboutButton: button)
     }
 
+    func updateMessage(messageLabel: String) {
+        self.messageLabel.text = "We need to know where you are, please enable location access."
+    }
+
     func updateInterface(location: Location?) {
         if let location = location {
             self.locationLabel.text = "\(location.city), \(location.country)"

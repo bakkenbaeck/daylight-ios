@@ -75,7 +75,7 @@ extension MainController: LocationTrackerDelegate {
     func locationTracker(_ locationTracker: LocationTracker, didFailWith error: Error) {
         guard Location.current == nil else { return }
 
-        self.rootView.messageLabel.text = "We need to know where you are, please enable location access."
+        self.rootView.updateMessage(messageLabel: "We need to know where you are, please enable location access.")
 
         let isUnexpectedError = (error as NSError).code != 0
         if isUnexpectedError {
