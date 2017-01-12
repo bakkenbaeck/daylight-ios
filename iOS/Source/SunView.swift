@@ -7,7 +7,7 @@ struct SunViewLocation {
 }
 
 class SunView: UIView {
-    static let sunSize = CGFloat(16.0)
+    static let sunSize = CGFloat(18.0)
 
     var sunPhase = SunPhase.predawn {
         didSet {
@@ -59,10 +59,9 @@ class SunView: UIView {
         return label
     }()
 
-    lazy var sun: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = CGFloat(sunSize * 0.5)
-
+    lazy var sun: Sun = {
+        let view = Sun()
+         view.backgroundColor = .clear
         return view
     }()
 
@@ -150,7 +149,7 @@ class SunView: UIView {
         self.sunsetLabel.textColor = textColor
         self.currentTimeLabel.textColor = textColor
         self.horizon.backgroundColor = textColor
-        self.sun.backgroundColor = textColor
+        self.sun.sunColor = textColor
         self.moon.backgroundColor = backgroundColor
 
         self.sunViewLocation = self.location(for: CGFloat(percentageInDay))
