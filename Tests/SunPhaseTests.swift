@@ -3,6 +3,7 @@ import XCTest
 import CoreLocation
 
 class SunPhaseTests: XCTestCase {
+
     func testSunPhase() {
         let bundle = Bundle(for: SunPhaseTests.self)
 

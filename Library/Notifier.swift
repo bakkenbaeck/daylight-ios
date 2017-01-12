@@ -3,6 +3,7 @@ import UIKit
 import SweetUIKit
 
 struct Notifier {
+
     static func scheduleNotifications(for location: Location) {
         let datesOfComingYear = Date().futureDates()
         for date in datesOfComingYear {

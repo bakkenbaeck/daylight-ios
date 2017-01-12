@@ -2,6 +2,7 @@ import UIKit
 import XCTest
 
 class Date_HelperTests: XCTestCase {
+
     func testDatesOfComingYear() {
         let date = Date()
 

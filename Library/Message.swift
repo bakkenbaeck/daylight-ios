@@ -1,6 +1,7 @@
 import UIKit
 
 struct Message {
+
     enum Kind: Int {
         case longerMoreThanAMinute
         case longerLessThanAMinute

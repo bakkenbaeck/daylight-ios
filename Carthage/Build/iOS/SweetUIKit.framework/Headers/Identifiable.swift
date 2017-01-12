@@ -20,6 +20,5 @@
     }
 
     extension UICollectionReusableView: Identifiable {
-
     }
 #endif

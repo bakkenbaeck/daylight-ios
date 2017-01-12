@@ -3,6 +3,7 @@ import XCTest
 import CoreLocation
 
 class Suntimes_HelperTests: XCTestCase {
+
     func testDaylightLengthProgress() {
         let bundle = Bundle(for: SunPhaseTests.self)
 

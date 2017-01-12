@@ -58,6 +58,7 @@ class MainController: UIViewController {
 }
 
 extension MainController: MainViewDelegate {
+
     func mainView(_ mainView: MainView, didSelectAboutButton button: UIButton) {
         self.present(self.informationController, animated: true)
     }
@@ -72,6 +73,7 @@ extension MainController: MainViewDelegate {
 }
 
 extension MainController: LocationTrackerDelegate {
+
     func locationTracker(_ locationTracker: LocationTracker, didFailWith error: Error) {
         guard Location.current == nil else { return }
 
@@ -90,10 +92,10 @@ extension MainController: LocationTrackerDelegate {
 
         self.rootView.updateInterface(location: Location.current)
     }
-
 }
 
 extension MainController: InformationControllerDelegate {
+
     func informationController(_ informationController: InformationController, didToggleNotifications isNotificationsEnabled: Bool) {
         if isNotificationsEnabled {
             if let location = Location.current {
