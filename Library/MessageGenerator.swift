@@ -4,35 +4,24 @@ struct MessageGenerator {
     let informationMessage = Message(format: "Daylight is an experiment inspired by the dark and long winters of the north. Made by **Bakken & Bæck**.")
 
     func message(forDay day: Date, sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
-        let defaults = UserDefaults.standard
-
-        let cachingKey = self.cachingKey(forDay: day, andSunPhase: sunPhase)
-
-        if let format = UserDefaults.standard.string(forKey: cachingKey) {
-            return Message(format: format)
-        } else {
-            if let appDomain = Bundle.main.bundleIdentifier {
-                UserDefaults.standard.removePersistentDomain(forName: appDomain)
-            }
-
-            let message = self.generateMessage(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
-            defaults.set(message.format, forKey: cachingKey)
-
-            return message
-        }
+        let message = self.generateMessage(forHashValue: self.hashValue(forDay: day), sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+        return message
     }
 
-    func messageForNotification(sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> String {
-        let message = self.generateMessage(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+    func messageForNotification(forDate date: Date, sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> String {
+        let message = self.generateMessage(forHashValue: self.hashValue(forDay: date), sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
 
         return message.content
     }
 
-    private func cachingKey(forDay day: Date, andSunPhase sunPhase: SunPhase) -> String {
-        let dayKey = self.dateFormatter.string(from: day) + sunPhase.rawValue
+    func hashValue(forDay day: Date) -> UInt32 {
+        let dayKey = self.dateFormatter.string(from: day)
 
-        return dayKey
+        let value = FNVHash.fnv1a_32(string: dayKey)
+
+        return value
     }
+
 
     private var longerMoreThanAMinuteMessages: [Message] {
         var messages = [Message]()
@@ -51,8 +40,8 @@ struct MessageGenerator {
         return messages
     }
 
-    private func longerMoreThanAMinuteMessage() -> Message {
-        let index = Int(arc4random_uniform(UInt32(self.longerMoreThanAMinuteMessages.count)))
+    private func longerMoreThanAMinuteMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.longerMoreThanAMinuteMessages.count))
 
         return self.longerMoreThanAMinuteMessages[index]
     }
@@ -69,8 +58,8 @@ struct MessageGenerator {
         return messages
     }
 
-    private func longerLessThanAMinuteMessage() -> Message {
-        let index = Int(arc4random_uniform(UInt32(self.longerLessThanAMinuteMessages.count)))
+    private func longerLessThanAMinuteMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.longerLessThanAMinuteMessages.count))
 
         return self.longerLessThanAMinuteMessages[index]
     }
@@ -85,8 +74,8 @@ struct MessageGenerator {
         return messages
     }
 
-    private func shorterMoreThanAMinuteMessage() -> Message {
-        let index = Int(arc4random_uniform(UInt32(self.shorterMoreThanAMinuteMessages.count)))
+    private func shorterMoreThanAMinuteMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.shorterMoreThanAMinuteMessages.count))
 
         return self.shorterMoreThanAMinuteMessages[index]
     }
@@ -101,8 +90,8 @@ struct MessageGenerator {
         return messages
     }
 
-    private func longerTomorrowLessThanAMinuteMessage() -> Message {
-        let index = Int(arc4random_uniform(UInt32(self.longerTomorrowLessThanAMinuteMessages.count)))
+    private func longerTomorrowLessThanAMinuteMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.longerLessThanAMinuteMessages.count))
 
         return self.longerTomorrowLessThanAMinuteMessages[index]
     }
@@ -119,8 +108,8 @@ struct MessageGenerator {
         return messages
     }
 
-    private func longerTomorrowMoreThanAMinuteMessage() -> Message {
-        let index = Int(arc4random_uniform(UInt32(self.longerTomorrowMoreThanAMinuteMessages.count)))
+    private func longerTomorrowMoreThanAMinuteMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.longerTomorrowMoreThanAMinuteMessages.count))
 
         return self.longerTomorrowMoreThanAMinuteMessages[index]
     }
@@ -135,8 +124,8 @@ struct MessageGenerator {
         return messages
     }
 
-    private func shorterLessThanAMinuteMessage() -> Message {
-        let index = Int(arc4random_uniform(UInt32(self.shorterLessThanAMinuteMessages.count)))
+    private func shorterLessThanAMinuteMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.shorterLessThanAMinuteMessages.count))
 
         return self.shorterLessThanAMinuteMessages[index]
     }
@@ -151,8 +140,8 @@ struct MessageGenerator {
         return messages
     }
 
-    private func shorterTomorrowMoreThanAMinuteMessage() -> Message {
-        let index = Int(arc4random_uniform(UInt32(self.shorterTomorrowMoreThanAMinuteMessages.count)))
+    private func shorterTomorrowMoreThanAMinuteMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.shorterTomorrowMoreThanAMinuteMessages.count))
 
         return self.shorterTomorrowMoreThanAMinuteMessages[index]
     }
@@ -167,8 +156,8 @@ struct MessageGenerator {
         return messages
     }
 
-    private func shorterTomorrowLessThanAMinuteMessage() -> Message {
-        let index = Int(arc4random_uniform(UInt32(self.shorterTomorrowLessThanAMinuteMessages.count)))
+    private func shorterTomorrowLessThanAMinuteMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.shorterTomorrowLessThanAMinuteMessages.count))
 
         return self.shorterTomorrowLessThanAMinuteMessages[index]
     }
@@ -180,25 +169,25 @@ struct MessageGenerator {
         return formatter
     }()
 
-    private func generateMessage(sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
+    func generateMessage(forHashValue hashValue: UInt32, sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
         let messageKind = Message.Kind(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
         switch messageKind {
         case .longerMoreThanAMinute:
-            return longerMoreThanAMinuteMessage()
+            return longerMoreThanAMinuteMessage(for: hashValue)
         case .longerLessThanAMinute:
-            return longerLessThanAMinuteMessage()
+            return longerLessThanAMinuteMessage(for: hashValue)
         case .shorterMoreThanAMinute:
-            return shorterMoreThanAMinuteMessage()
+            return shorterMoreThanAMinuteMessage(for: hashValue)
         case .shorterLessThanAMinute:
-            return self.shorterLessThanAMinuteMessage()
+            return self.shorterLessThanAMinuteMessage(for: hashValue)
         case .longerTomorrowMoreThanAMinute:
-            return self.longerTomorrowMoreThanAMinuteMessage()
+            return self.longerTomorrowMoreThanAMinuteMessage(for: hashValue)
         case .longerTomorrowLessThanAMinute:
-            return self.longerTomorrowLessThanAMinuteMessage()
+            return self.longerTomorrowLessThanAMinuteMessage(for: hashValue)
         case .shorterTomorrowMoreThanAMinute:
-            return self.shorterTomorrowMoreThanAMinuteMessage()
+            return self.shorterTomorrowMoreThanAMinuteMessage(for: hashValue)
         case .shorterTomorrowLessThanAMinute:
-            return self.shorterTomorrowLessThanAMinuteMessage()
+            return self.shorterTomorrowLessThanAMinuteMessage(for: hashValue)
         }
     }
 }

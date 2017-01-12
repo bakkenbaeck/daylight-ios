@@ -109,8 +109,8 @@ class SunView: UIView {
 
         let labelWidth = CGFloat(35.0)
 
-        self.sunriseLabel.frame = CGRect(x: 0, y: 108, width: labelWidth, height: 16)
-        self.sunsetLabel.frame = CGRect(x: self.bounds.width - labelWidth, y: 108, width: labelWidth, height: 16)
+        self.sunriseLabel.frame = CGRect(x: 0, y: 116, width: labelWidth, height: 16)
+        self.sunsetLabel.frame = CGRect(x: self.bounds.width - labelWidth, y: 116, width: labelWidth, height: 16)
         self.sun.frame = CGRect(x: self.sunViewLocation.x, y: self.sunViewLocation.y, width: SunView.sunSize, height: SunView.sunSize)
         self.sunMask.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: 108)
         self.horizon.frame = CGRect(x: 0, y: 108, width: self.bounds.width, height: 1)

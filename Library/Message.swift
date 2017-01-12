@@ -17,7 +17,7 @@ struct Message {
         init(sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) {
             var kindRawValue = 0
 
-            if sunPhase == .night {
+            if sunPhase == .night || sunPhase == .dusk {
                 let tomorrowIsLonger = tomorrowDaylightLength - todayDaylightLength > 0
                 if tomorrowIsLonger {
                     let longerTomorrowMoreThanAMinute = tomorrowDaylightLength - todayDaylightLength > 60
@@ -72,6 +72,7 @@ struct Message {
         let range = (self.content as NSString).range(of: self.coloredPart)
         let attributedString = NSMutableAttributedString(string: self.content)
         attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
+        attributedString.addAttribute(NSKernAttributeName, value: -0.75, range: NSMakeRange(0, self.content.characters.count))
 
         return attributedString
     }

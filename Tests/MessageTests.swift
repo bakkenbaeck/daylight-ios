@@ -38,6 +38,7 @@ class MessageTests: XCTestCase {
         var range = (content as NSString).range(of: coloredPart)
         var attributedString = NSMutableAttributedString(string: content)
         attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: range)
+        attributedString.addAttribute(NSKernAttributeName, value: -0.75, range: NSMakeRange(0, content.characters.count))
         XCTAssertEqual(message.attributedString(withTextColor: UIColor.red), attributedString)
 
         format = "**%@ minutes** more."
@@ -48,6 +49,67 @@ class MessageTests: XCTestCase {
         range = (content as NSString).range(of: coloredPart)
         attributedString = NSMutableAttributedString(string: content)
         attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: range)
+        attributedString.addAttribute(NSKernAttributeName, value: -0.75, range: NSMakeRange(0, content.characters.count))
         XCTAssertEqual(message.attributedString(withTextColor: UIColor.red), attributedString)
+    }
+
+    func testHashValueForDate() {
+        let messageGenerator = MessageGenerator()
+
+        let beginningOfDayString = "2014-07-15 01:00"
+        let endOfDayString = "2014-07-15 23:40"
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+
+        let beginningOfDayDate = dateFormatter.date(from: beginningOfDayString)
+        let endOfDayDate = dateFormatter.date(from: endOfDayString)
+        
+        let beginningOfDayHashValue = messageGenerator.hashValue(forDay: beginningOfDayDate!)
+        let endOfDayHashValue = messageGenerator.hashValue(forDay: endOfDayDate!)
+
+        XCTAssertEqual(beginningOfDayHashValue, endOfDayHashValue)
+    }
+
+    func testMessageForDay() {
+        let messageGenerator = MessageGenerator()
+
+        let beginningOfDayString = "2014-07-15 01:00"
+        let endOfDayString = "2014-07-15 23:40"
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+
+        let beginningOfDayDate = dateFormatter.date(from: beginningOfDayString)
+        let endOfDayDate = dateFormatter.date(from: endOfDayString)
+
+        let beginningOfDayHashValue = messageGenerator.hashValue(forDay: beginningOfDayDate!)
+        let endOfDayHashValue = messageGenerator.hashValue(forDay: endOfDayDate!)
+
+        let beginMessage = messageGenerator.generateMessage(forHashValue: beginningOfDayHashValue, sunPhase: .dawn, yesterdayDaylightLength: 100, todayDaylightLength: 100, tomorrowDaylightLength: 200)
+        let endMessage = messageGenerator.generateMessage(forHashValue: endOfDayHashValue, sunPhase: .dawn, yesterdayDaylightLength: 100, todayDaylightLength: 100, tomorrowDaylightLength: 200)
+
+        XCTAssertEqual(beginMessage.content, endMessage.content)
+    }
+
+    func testMessageForNight() {
+        let messageGenerator = MessageGenerator()
+
+        let beginningOfDayString = "2014-07-15 01:00"
+        let endOfDayString = "2014-07-15 23:40"
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+
+        let beginningOfDayDate = dateFormatter.date(from: beginningOfDayString)
+        let endOfDayDate = dateFormatter.date(from: endOfDayString)
+
+        let beginningOfDayHashValue = messageGenerator.hashValue(forDay: beginningOfDayDate!)
+        let endOfDayHashValue = messageGenerator.hashValue(forDay: endOfDayDate!)
+
+        let beginMessage = messageGenerator.generateMessage(forHashValue: beginningOfDayHashValue, sunPhase: .night, yesterdayDaylightLength: 100, todayDaylightLength: 100, tomorrowDaylightLength: 200)
+        let endMessage = messageGenerator.generateMessage(forHashValue: endOfDayHashValue, sunPhase: .night, yesterdayDaylightLength: 100, todayDaylightLength: 100, tomorrowDaylightLength: 200)
+
+        XCTAssertEqual(beginMessage.content, endMessage.content)
     }
 }
