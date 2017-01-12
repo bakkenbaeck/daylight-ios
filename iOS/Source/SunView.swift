@@ -65,8 +65,8 @@ class SunView: UIView {
         return view
     }()
 
-    lazy var moon: Sun = {
-        let view = Sun()
+    lazy var moon: UIView = {
+        let view = UIView()
         view.isHidden = true
 
         return view
@@ -150,7 +150,7 @@ class SunView: UIView {
         self.currentTimeLabel.textColor = textColor
         self.horizon.backgroundColor = textColor
         self.sun.circleColor = textColor
-        self.moon.circleColor = backgroundColor
+        self.moon.backgroundColor = backgroundColor
 
         self.sunViewLocation = self.location(for: CGFloat(percentageInDay))
         self.sunPhase = sunPhase
