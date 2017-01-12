@@ -3,7 +3,7 @@
 
     public extension UIView {
 
-        /**
+        /** 
          Shakes the view. Useful for displaying failures to users.
          */
         public func shake() {

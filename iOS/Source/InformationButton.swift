@@ -1,14 +1,10 @@
 import UIKit
 
 class InformationButton: UIButton {
-    static let sunSize = CGFloat(16.0)
+    static let sunSize = CGFloat(18.0)
 
-    lazy var sun: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = sunSize * 0.5
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isUserInteractionEnabled = false
-
+    lazy var sun: Sun = {
+        let view = Sun(withAutoLayout: true)
         return view
     }()
 
@@ -47,7 +43,7 @@ class InformationButton: UIButton {
     }
 
     func updateInterface(withBackgroundColor backgroundColor: UIColor, andTextColor textColor: UIColor) {
-        self.sun.backgroundColor = textColor.withAlphaComponent(0.6)
+        self.sun.circleColor = textColor.withAlphaComponent(0.6)
         self.nameLabel.textColor = textColor.withAlphaComponent(0.6)
     }
 }
