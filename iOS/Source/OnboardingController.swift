@@ -128,7 +128,7 @@ class OnboardingController: UIViewController {
         self.view.backgroundColor = Theme.nightBackground
         self.titleLabel.textColor = Theme.nightText.withAlphaComponent(0.6)
 
-        let text = NSLocalizedString(":( Daylight doesn't work without your location data. If you change your mind, you can enable it by going to settings.", comment: "")
+        let text = NSLocalizedString("Unfortunately, Daylight doesn't work without your location data. If you change your mind, you can enable it by going to settings.", comment: "")
 
         UIView.animate(withDuration: 0.2) {
             self.titleLabel.attributedText = text.attributedString(withColoredPart: "going to settings", withTextColor: Theme.nightText)
@@ -165,7 +165,7 @@ class OnboardingController: UIViewController {
     func didSelectButton() {
         switch self.onboardingState {
         case .locationUndetermined:
-            let locationEnabled = LocationTracker.shared.locateIfPossible()
+            LocationTracker.shared.locateIfPossible()
             LocationTracker.shared.delegate = self
         case .locationDisabled:
             UIApplication.shared.openURL(URL(string:UIApplicationOpenSettingsURLString)!)
@@ -184,23 +184,23 @@ class OnboardingController: UIViewController {
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().requestAuthorization(options:[.alert]) { granted, error in
                 if granted == true {
+                    Settings.isNotificationsEnabled = true
                     Settings.registerForNotifications()
                     Notifier.scheduleNotifications(for: Location.current!)
                 }
-
-                DispatchQueue.main.async {
-                    self.presentMainController()
-                }
+                self.presentMainController()
             }
         } else {
-            // Fallback on earlier versions
+            //WARNING: Right syntax for ios 9 should be added!
         }
     }
 
     func presentMainController() {
-        let mainController = MainController(nibName: nil, bundle: nil)
-        mainController.modalTransitionStyle = .crossDissolve
-        self.present(mainController, animated: true)
+        DispatchQueue.main.async {
+            let mainController = MainController(nibName: nil, bundle: nil)
+            mainController.modalTransitionStyle = .crossDissolve
+            self.present(mainController, animated: true)
+        }
     }
 }
 

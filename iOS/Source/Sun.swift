@@ -1,7 +1,11 @@
 import UIKit
 
 class Sun: UIView {
-    var circleColor = UIColor.clear
+    var circleColor = UIColor.clear {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
