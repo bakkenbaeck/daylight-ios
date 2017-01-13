@@ -67,7 +67,29 @@ class OnboardingController: UIViewController {
 
         self.addSubviewsAndConstraints()
 
-        self.setLocationUndetermined()
+        self.updateOnboardingStatus()
+        self.addObservers()
+    }
+
+    func addObservers() {
+        self.removeObservers()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateOnboardingStatus), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+
+    func updateOnboardingStatus() {
+        switch LocationTracker.shared.authorizationStatus {
+        case .notDetermined:
+            self.onboardingState = .locationUndetermined
+        case .denied:
+            self.onboardingState = .locationDisabled
+        case .authorizedWhenInUse, .authorizedAlways:
+            self.onboardingState = .notificationUndetermined
+        default: break
+        }
     }
 
     private func addSubviewsAndConstraints() {
@@ -98,13 +120,15 @@ class OnboardingController: UIViewController {
             self.titleLabel.attributedText = text.attributedString(withColoredPart: "daylight information", withTextColor: Theme.daylightText)
             self.button.setTitle("Tap to enable access", for: .normal)
         }
+
+        self.button.isHidden = false
     }
 
     func setLocationDisabled() {
         self.view.backgroundColor = Theme.nightBackground
         self.titleLabel.textColor = Theme.nightText.withAlphaComponent(0.6)
 
-        let text = NSLocalizedString("Unfortunately, Daylight doesn't work without your location data. If you change your mind, you can enable it by going to settings.", comment: "")
+        let text = NSLocalizedString(":( Daylight doesn't work without your location data. If you change your mind, you can enable it by going to settings.", comment: "")
 
         UIView.animate(withDuration: 0.2) {
             self.titleLabel.attributedText = text.attributedString(withColoredPart: "going to settings", withTextColor: Theme.nightText)
@@ -122,6 +146,7 @@ class OnboardingController: UIViewController {
             self.button.setTitle("Skip for now", for: .normal)
         }
         self.button.isEnabled = true
+        self.button.isHidden = false
         self.checkForNotifications()
     }
 
@@ -131,7 +156,7 @@ class OnboardingController: UIViewController {
             LocationTracker.shared.locateIfPossible()
             LocationTracker.shared.delegate = self
         case .locationDisabled:
-            print("Go to settings")
+            UIApplication.shared.openURL(URL(string:UIApplicationOpenSettingsURLString)!)
         case .notificationUndetermined:
             self.requestNotifications()
         }
@@ -140,10 +165,10 @@ class OnboardingController: UIViewController {
     func didSelectButton() {
         switch self.onboardingState {
         case .locationUndetermined:
-            LocationTracker.shared.locateIfPossible()
+            let locationEnabled = LocationTracker.shared.locateIfPossible()
             LocationTracker.shared.delegate = self
         case .locationDisabled:
-            print("Go to settings")
+            UIApplication.shared.openURL(URL(string:UIApplicationOpenSettingsURLString)!)
         case .notificationUndetermined:
             self.presentMainController()
         }
@@ -158,11 +183,14 @@ class OnboardingController: UIViewController {
     func requestNotifications() {
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().requestAuthorization(options:[.alert]) { granted, error in
-                        if granted == true {
-                            Settings.registerForNotifications()
-                            Notifier.scheduleNotifications(for: Location.current!)
-                        }
-                        self.presentMainController()
+                if granted == true {
+                    Settings.registerForNotifications()
+                    Notifier.scheduleNotifications(for: Location.current!)
+                }
+
+                DispatchQueue.main.async {
+                    self.presentMainController()
+                }
             }
         } else {
             // Fallback on earlier versions
