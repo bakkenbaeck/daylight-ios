@@ -11,21 +11,16 @@ extension AppDelegate: UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = self.window else { fatalError("Window not found") }
 
-        if Settings.shouldPresentOnboarding {
+        if Location.current == nil {
             let controller = OnboardingController(nibName: nil, bundle: nil)
-            controller.delegate = self
             window.rootViewController = controller
         } else {
-            window.rootViewController = MainController(nibName: nil, bundle: nil)
+            let mainController = MainController(nibName: nil, bundle: nil)
+            window.rootViewController = mainController
         }
+
         window.makeKeyAndVisible()
 
         return true
-    }
-}
-
-extension AppDelegate: OnboardingControllerDelegate {
-    func onboardingControllerDidFinish(_ onboardingController: OnboardingController) {
-        // show the maincontroller
     }
 }

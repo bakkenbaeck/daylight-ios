@@ -2,12 +2,25 @@ import UIKit
 import CoreLocation
 import UserNotifications
 
-protocol OnboardingControllerDelegate: class {
-    func onboardingControllerDidFinish(_ onboardingController: OnboardingController)
-}
-
 class OnboardingController: UIViewController {
-    weak var delegate: OnboardingControllerDelegate?
+    enum OnboardingState: Int {
+        case locationUndetermined
+        case locationDisabled
+        case notificationUndetermined
+    }
+
+    var onboardingState = OnboardingState.locationUndetermined {
+        didSet {
+            switch self.onboardingState {
+            case .locationUndetermined:
+                self.setLocationUndetermined()
+            case .locationDisabled:
+                self.setLocationDisabled()
+            case .notificationUndetermined:
+                self.setNotificationUndetermined()
+            }
+        }
+    }
 
     private let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
 
@@ -16,7 +29,7 @@ class OnboardingController: UIViewController {
         label.numberOfLines = 0
         label.font = Theme.light(size: 32)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = Theme.daylightText
+        label.isUserInteractionEnabled = true
 
         return label
     }()
@@ -28,7 +41,7 @@ class OnboardingController: UIViewController {
         button.setTitleColor(Theme.daylightText.withAlphaComponent(0.6), for: .normal)
         button.contentHorizontalAlignment = .left
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(didSelectSkipButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didSelectButton), for: .touchUpInside)
 
         return button
     }()
@@ -52,21 +65,9 @@ class OnboardingController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.titleLabel.text = NSLocalizedString("Hi! Please enable location access so we can give provide you daylight information.", comment: "")
-        self.button.setTitle("Waiting for access...", for: .normal)
-        self.button.isEnabled = false
-
-        self.view.addGestureRecognizer(self.tapGestureRecognizer)
-
         self.addSubviewsAndConstraints()
-        self.view.backgroundColor = Theme.daylightBackground
 
-
-    }
-
-    func didTapScreen() {
-        LocationTracker.shared.locateIfPossible()
-        LocationTracker.shared.delegate = self
+        self.setLocationUndetermined()
     }
 
     private func addSubviewsAndConstraints() {
@@ -78,6 +79,8 @@ class OnboardingController: UIViewController {
         self.titleLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -self.insets.right).isActive = true
         self.titleLabel.heightAnchor.constraint(equalToConstant: self.titleLabel.height())
 
+        self.titleLabel.addGestureRecognizer(self.tapGestureRecognizer)
+
         let rightInset = CGFloat(-10)
         self.button.heightAnchor.constraint(equalToConstant: 20).isActive = true
 
@@ -86,19 +89,69 @@ class OnboardingController: UIViewController {
         self.button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: rightInset).isActive = true
     }
 
-    func didSelectSkipButton() {
-        self.delegate?.onboardingControllerDidFinish(self)
+    func setLocationUndetermined() {
+        self.view.backgroundColor = Theme.daylightBackground
+        self.titleLabel.textColor = Theme.daylightText.withAlphaComponent(0.6)
+        let text = NSLocalizedString("Hi! Daylight uses your location to give you accurate daylight information.", comment: "")
+
+        UIView.animate(withDuration: 0.2) {
+            self.titleLabel.attributedText = text.attributedString(withColoredPart: "daylight information", withTextColor: Theme.daylightText)
+            self.button.setTitle("Tap to enable access", for: .normal)
+        }
+    }
+
+    func setLocationDisabled() {
+        self.view.backgroundColor = Theme.nightBackground
+        self.titleLabel.textColor = Theme.nightText.withAlphaComponent(0.6)
+
+        let text = NSLocalizedString("Unfortunately, Daylight doesn't work without your location data. If you change your mind, you can enable it by going to settings.", comment: "")
+
+        UIView.animate(withDuration: 0.2) {
+            self.titleLabel.attributedText = text.attributedString(withColoredPart: "going to settings", withTextColor: Theme.nightText)
+            self.button.isHidden = true
+        }
+    }
+
+    func setNotificationUndetermined() {
+        self.view.backgroundColor = Theme.daylightBackground
+        self.titleLabel.textColor = Theme.daylightText.withAlphaComponent(0.6)
+
+        let text = NSLocalizedString("Enable notifications to receive daylight changes on your phone in the morning.", comment: "")
+        UIView.animate(withDuration: 0.2) {
+            self.titleLabel.attributedText = text.attributedString(withColoredPart: "daylight changes", withTextColor: Theme.daylightText)
+            self.button.setTitle("Skip for now", for: .normal)
+        }
+        self.button.isEnabled = true
+        self.checkForNotifications()
+    }
+
+    func didTapScreen() {
+        switch self.onboardingState {
+        case .locationUndetermined:
+            LocationTracker.shared.locateIfPossible()
+            LocationTracker.shared.delegate = self
+        case .locationDisabled:
+            print("Go to settings")
+        case .notificationUndetermined:
+            self.requestNotifications()
+        }
+    }
+
+    func didSelectButton() {
+        switch self.onboardingState {
+        case .locationUndetermined:
+            LocationTracker.shared.locateIfPossible()
+            LocationTracker.shared.delegate = self
+        case .locationDisabled:
+            print("Go to settings")
+        case .notificationUndetermined:
+            self.presentMainController()
+        }
     }
 
     func checkForNotifications() {
         if UIApplication.shared.isRegisteredForRemoteNotifications {
-            print("User is already receiving notifications")
-        } else {
-            self.titleLabel.text = NSLocalizedString("Enable notifications to receive daylight changes on your phone at sunrise.", comment: "")
-            self.button.setTitle("Skip for now", for: .normal)
-            self.button.isEnabled = true
-
-            self.requestNotifications()
+            self.presentMainController()
         }
     }
 
@@ -109,33 +162,29 @@ class OnboardingController: UIViewController {
                             Settings.registerForNotifications()
                             Notifier.scheduleNotifications(for: Location.current!)
                         }
-
-                        self.delegate?.onboardingControllerDidFinish(self)
+                        self.presentMainController()
             }
         } else {
             // Fallback on earlier versions
         }
     }
+
+    func presentMainController() {
+        let mainController = MainController(nibName: nil, bundle: nil)
+        mainController.modalTransitionStyle = .crossDissolve
+        self.present(mainController, animated: true)
+    }
 }
 
 extension OnboardingController: LocationTrackerDelegate {
     func locationTracker(_ locationTracker: LocationTracker, didFailWith error: Error) {
-        guard Location.current == nil else { return }
-
-        let isUnexpectedError = (error as NSError).code != 0
-        if isUnexpectedError {
-            let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
-        }
+        self.onboardingState = .locationDisabled
     }
 
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
-        guard Location.current == nil else { return }
-
         if let location = Location(placemark: placemark) {
             Location.current = location
-            self.checkForNotifications()
+            self.onboardingState = .notificationUndetermined
         }
     }
 }
