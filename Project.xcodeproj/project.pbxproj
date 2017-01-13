@@ -37,6 +37,8 @@
 		14C866D51E0B314A0018FFD2 /* Oslo.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 14C866D41E0B314A0018FFD2 /* Oslo.gpx */; };
 		14F37F931E0D554700005101 /* SunCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F37F921E0D554700005101 /* SunCalcTests.swift */; };
 		44227E8F1E067A1E002B911B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
+		D197B2A38145C1C1E03EC48D /* String + Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */; };
+		D197B3858C3321E49A8BC664 /* String + Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */; };
 		D197B5A6D4413DEF81D6B469 /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
 		D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBC3EDBF4CA099642BCE /* Notifier.swift */; };
 		D197BB20CC86558409D763AC /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
@@ -102,6 +104,7 @@
 		14F37F921E0D554700005101 /* SunCalcTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunCalcTests.swift; sourceTree = "<group>"; };
 		44227E8E1E067A1E002B911B /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageGenerator.swift; sourceTree = "<group>"; };
+		D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + Helpers.swift"; sourceTree = "<group>"; };
 		D197BBC3EDBF4CA099642BCE /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		D197BD0F150956F37CAE048A /* FNVHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FNVHash.swift; sourceTree = "<group>"; };
 		E6AB84051E27963400A33654 /* Sun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sun.swift; sourceTree = "<group>"; };
@@ -154,6 +157,7 @@
 				140235771E1BC6E60072762B /* Double+Helpers.swift */,
 				1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */,
 				D197BD0F150956F37CAE048A /* FNVHash.swift */,
+				D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -400,6 +404,7 @@
 				D197BB6AA1F1FB8F3E2ADA6B /* MessageGenerator.swift in Sources */,
 				D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */,
 				D197B5A6D4413DEF81D6B469 /* FNVHash.swift in Sources */,
+				D197B2A38145C1C1E03EC48D /* String + Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +423,7 @@
 				14F37F931E0D554700005101 /* SunCalcTests.swift in Sources */,
 				146EE0461E1BC40200F08A13 /* Date+HelperTests.swift in Sources */,
 				D197BB20CC86558409D763AC /* FNVHash.swift in Sources */,
+				D197B3858C3321E49A8BC664 /* String + Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
