@@ -33,6 +33,14 @@ class OnboardingController: UIViewController {
         return button
     }()
 
+    lazy var tapGestureRecognizer: UITapGestureRecognizer = {
+        let recognizer = UITapGestureRecognizer()
+        recognizer.addTarget(self, action: #selector(self.didTapScreen))
+
+        return recognizer
+    }()
+
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
@@ -48,12 +56,17 @@ class OnboardingController: UIViewController {
         self.button.setTitle("Waiting for access...", for: .normal)
         self.button.isEnabled = false
 
-        self.addSubviewsAndConstraints()
+        self.view.addGestureRecognizer(self.tapGestureRecognizer)
 
+        self.addSubviewsAndConstraints()
+        self.view.backgroundColor = Theme.daylightBackground
+
+
+    }
+
+    func didTapScreen() {
         LocationTracker.shared.locateIfPossible()
         LocationTracker.shared.delegate = self
-
-        self.view.backgroundColor = Theme.daylightBackground
     }
 
     private func addSubviewsAndConstraints() {
