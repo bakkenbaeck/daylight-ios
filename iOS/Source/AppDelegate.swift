@@ -13,6 +13,7 @@ extension AppDelegate: UIApplicationDelegate {
 
         if Settings.shouldPresentOnboarding {
             let controller = OnboardingController(nibName: nil, bundle: nil)
+            controller.delegate = self
             window.rootViewController = controller
         } else {
             window.rootViewController = MainController(nibName: nil, bundle: nil)
@@ -20,5 +21,11 @@ extension AppDelegate: UIApplicationDelegate {
         window.makeKeyAndVisible()
 
         return true
+    }
+}
+
+extension AppDelegate: OnboardingControllerDelegate {
+    func onboardingControllerDidFinish(_ onboardingController: OnboardingController) {
+        // show the maincontroller
     }
 }

@@ -1,5 +1,6 @@
 import UIKit
 import CoreLocation
+import UserNotifications
 
 protocol OnboardingControllerDelegate: class {
     func onboardingControllerDidFinish(_ onboardingController: OnboardingController)
@@ -20,13 +21,16 @@ class OnboardingController: UIViewController {
         return label
     }()
 
-    lazy var subtitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = Theme.light(size: 16)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = Theme.daylightText.withAlphaComponent(0.6)
+    lazy var button: UIButton = {
+        let button = UIButton()
 
-        return label
+        button.titleLabel?.font = Theme.light(size: 16)
+        button.setTitleColor(Theme.daylightText.withAlphaComponent(0.6), for: .normal)
+        button.contentHorizontalAlignment = .left
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(didSelectSkipButton), for: .touchUpInside)
+
+        return button
     }()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -41,7 +45,8 @@ class OnboardingController: UIViewController {
         super.viewDidLoad()
 
         self.titleLabel.text = NSLocalizedString("Hi! Please enable location access so we can give provide you daylight information.", comment: "")
-        self.subtitleLabel.text = NSLocalizedString("Waiting for access...", comment: "")
+        self.button.setTitle("Waiting for access...", for: .normal)
+        self.button.isEnabled = false
 
         self.addSubviewsAndConstraints()
 
@@ -53,7 +58,7 @@ class OnboardingController: UIViewController {
 
     private func addSubviewsAndConstraints() {
         self.view.addSubview(self.titleLabel)
-        self.view.addSubview(self.subtitleLabel)
+        self.view.addSubview(self.button)
 
         self.titleLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: (2 * -self.insets.bottom)).isActive = true
         self.titleLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: self.insets.left).isActive = true
@@ -61,11 +66,15 @@ class OnboardingController: UIViewController {
         self.titleLabel.heightAnchor.constraint(equalToConstant: self.titleLabel.height())
 
         let rightInset = CGFloat(-10)
-        self.subtitleLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        self.button.heightAnchor.constraint(equalToConstant: 20).isActive = true
 
-        self.subtitleLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -self.insets.top).isActive = true
-        self.subtitleLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: self.insets.left).isActive = true
-        self.subtitleLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: rightInset).isActive = true
+        self.button.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -self.insets.top).isActive = true
+        self.button.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: self.insets.left).isActive = true
+        self.button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: rightInset).isActive = true
+    }
+
+    func didSelectSkipButton() {
+        self.delegate?.onboardingControllerDidFinish(self)
     }
 
     func checkForNotifications() {
@@ -73,7 +82,25 @@ class OnboardingController: UIViewController {
             print("User is already receiving notifications")
         } else {
             self.titleLabel.text = NSLocalizedString("Enable notifications to receive daylight changes on your phone at sunrise.", comment: "")
-            self.subtitleLabel.text = NSLocalizedString("Skip for now", comment: "")
+            self.button.setTitle("Skip for now", for: .normal)
+            self.button.isEnabled = true
+
+            self.requestNotifications()
+        }
+    }
+
+    func requestNotifications() {
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options:[.alert]) { granted, error in
+                        if granted == true {
+                            Settings.registerForNotifications()
+                            Notifier.scheduleNotifications(for: Location.current!)
+                        }
+
+                        self.delegate?.onboardingControllerDidFinish(self)
+            }
+        } else {
+            // Fallback on earlier versions
         }
     }
 }
