@@ -13,8 +13,6 @@ extension AppDelegate: UIApplicationDelegate {
 
         if Settings.shouldPresentOnboarding {
             let controller = OnboardingController(nibName: nil, bundle: nil)
-            controller.titleLabel.text = "Hi! Please enable location access so we can give provide you daylight information."
-            controller.subtitleLabel.text = "Waiting for access..."
             window.rootViewController = controller
         } else {
             window.rootViewController = MainController(nibName: nil, bundle: nil)

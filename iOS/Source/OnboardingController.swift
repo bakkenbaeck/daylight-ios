@@ -40,6 +40,9 @@ class OnboardingController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.titleLabel.text = NSLocalizedString("Hi! Please enable location access so we can give provide you daylight information.", comment: "")
+        self.subtitleLabel.text = NSLocalizedString("Waiting for access...", comment: "")
+
         self.addSubviewsAndConstraints()
 
         LocationTracker.shared.locateIfPossible()
@@ -64,6 +67,15 @@ class OnboardingController: UIViewController {
         self.subtitleLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: self.insets.left).isActive = true
         self.subtitleLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: rightInset).isActive = true
     }
+
+    func checkForNotifications() {
+        if UIApplication.shared.isRegisteredForRemoteNotifications {
+            print("User is already receiving notifications")
+        } else {
+            self.titleLabel.text = NSLocalizedString("Enable notifications to receive daylight changes on your phone at sunrise.", comment: "")
+            self.subtitleLabel.text = NSLocalizedString("Skip for now", comment: "")
+        }
+    }
 }
 
 extension OnboardingController: LocationTrackerDelegate {
@@ -83,9 +95,7 @@ extension OnboardingController: LocationTrackerDelegate {
 
         if let location = Location(placemark: placemark) {
             Location.current = location
-
-            self.titleLabel.text = "Enable notifications to receive daylight changes on your phone at sunrise."
-            self.subtitleLabel.text = "Skip for now"
+            self.checkForNotifications()
         }
     }
 }
