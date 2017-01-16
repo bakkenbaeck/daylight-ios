@@ -117,7 +117,7 @@ class OnboardingController: UIViewController {
         let text = NSLocalizedString("Hi! Daylight uses your location to give you accurate daylight information.", comment: "")
 
         UIView.animate(withDuration: 0.2) {
-            self.titleLabel.attributedText = text.attributedString(withColoredPart: "daylight information", withTextColor: Theme.daylightText)
+            self.titleLabel.attributedText = text.attributedString(withColoredPart: "your location", withTextColor: Theme.daylightText)
             self.button.setTitle("Tap to enable access", for: .normal)
         }
 
@@ -142,7 +142,7 @@ class OnboardingController: UIViewController {
 
         let text = NSLocalizedString("Enable notifications to receive daylight changes on your phone in the morning.", comment: "")
         UIView.animate(withDuration: 0.2) {
-            self.titleLabel.attributedText = text.attributedString(withColoredPart: "daylight changes", withTextColor: Theme.daylightText)
+            self.titleLabel.attributedText = text.attributedString(withColoredPart: "Enable notifications", withTextColor: Theme.daylightText)
             self.button.setTitle("Skip for now", for: .normal)
         }
         self.button.isEnabled = true
