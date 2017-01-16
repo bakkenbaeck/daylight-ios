@@ -7,6 +7,8 @@ class Sun: UIView {
         }
     }
 
+    var circleAlpha = CGFloat(1.0)
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -22,7 +24,7 @@ class Sun: UIView {
 
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = circlePath.cgPath
-        shapeLayer.fillColor = self.circleColor.cgColor
+        shapeLayer.fillColor = self.circleColor.withAlphaComponent(self.circleAlpha).cgColor
         self.layer.addSublayer(shapeLayer)
     }
 }
