@@ -32,6 +32,7 @@
 		14A10F5B1E0D339D00A2D098 /* SunCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A10F5A1E0D339D00A2D098 /* SunCalc.swift */; };
 		14A10F5C1E0D339D00A2D098 /* SunCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A10F5A1E0D339D00A2D098 /* SunCalc.swift */; };
 		14A3E1781E09E6BF002F0D6C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A3E1771E09E6BF002F0D6C /* Settings.swift */; };
+		14C56E9A1E27E0B100A8B268 /* GT-America-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14C56E991E27E0B100A8B268 /* GT-America-Light.ttf */; };
 		14C5918D1E24082F0035AB81 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C5918C1E24082F0035AB81 /* MainView.swift */; };
 		14C5918F1E2414ED0035AB81 /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C5918E1E2414ED0035AB81 /* OnboardingController.swift */; };
 		14C866D51E0B314A0018FFD2 /* Oslo.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 14C866D41E0B314A0018FFD2 /* Oslo.gpx */; };
@@ -97,6 +98,7 @@
 		14A10F571E0D336E00A2D098 /* suncalc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = suncalc.js; sourceTree = "<group>"; };
 		14A10F5A1E0D339D00A2D098 /* SunCalc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunCalc.swift; sourceTree = "<group>"; };
 		14A3E1771E09E6BF002F0D6C /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		14C56E991E27E0B100A8B268 /* GT-America-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GT-America-Light.ttf"; sourceTree = "<group>"; };
 		14C5918C1E24082F0035AB81 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		14C5918E1E2414ED0035AB81 /* OnboardingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 		14C866D41E0B314A0018FFD2 /* Oslo.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Oslo.gpx; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 		146E279E1BCD51F200959BBA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				14C56E991E27E0B100A8B268 /* GT-America-Light.ttf */,
 				14C866D41E0B314A0018FFD2 /* Oslo.gpx */,
 				146E279F1BCD51F200959BBA /* LaunchScreen.xib */,
 				146E27A11BCD51F200959BBA /* Images.xcassets */,
@@ -330,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				146E27AA1BCD51F200959BBA /* Images.xcassets in Resources */,
+				14C56E9A1E27E0B100A8B268 /* GT-America-Light.ttf in Resources */,
 				146E27A91BCD51F200959BBA /* LaunchScreen.xib in Resources */,
 				14A10F581E0D336E00A2D098 /* suncalc.js in Resources */,
 				14C866D51E0B314A0018FFD2 /* Oslo.gpx in Resources */,
