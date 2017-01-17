@@ -5,6 +5,8 @@ class InformationButton: UIButton {
 
     lazy var sun: Sun = {
         let view = Sun(withAutoLayout: true)
+        view.alpha = 0.6
+        
         return view
     }()
 
