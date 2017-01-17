@@ -41,7 +41,6 @@ class InformationController: UIViewController {
         button.contentHorizontalAlignment = .left
         button.contentEdgeInsets = UIEdgeInsetsMake(28, 0, 0, 0)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(didSelectNotifications), for: .touchUpInside)
         button.setAttributedTitle(NSAttributedString(string: ""), for: .disabled)
 
         return button
@@ -62,6 +61,16 @@ class InformationController: UIViewController {
 
         self.updateInterface()
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateInterface), userInfo: nil, repeats: true)
+        self.addObservers()
+    }
+
+    func addObservers() {
+        self.removeObservers()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateInterface), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
     func addSubviewsAndConstraints() {
@@ -103,6 +112,15 @@ class InformationController: UIViewController {
             return message.attributedString(withTextColor: textColor)
         }
 
+        var enableNotificationsString: NSAttributedString {
+            let content = "Enable notifications"
+            let attributedString = NSMutableAttributedString(string: content)
+            let range = (content as NSString).range(of: "Enable")
+            attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
+
+            return attributedString
+        }
+
         var turnNotificationsOffString: NSAttributedString {
             let content = "Turn off notifications"
             let attributedString = NSMutableAttributedString(string: content)
@@ -126,10 +144,17 @@ class InformationController: UIViewController {
             self.closeButton.updateInterface(withBackgroundColor: backgroundColor, andTextColor: textColor)
             self.notificationButton.titleLabel?.textColor = textColor.withAlphaComponent(0.6)
 
-            if Settings.isNotificationsEnabled {
-                self.notificationButton.setAttributedTitle(turnNotificationsOffString, for: .normal)
+            self.notificationButton.removeTarget(nil, action: nil, for: .allEvents)
+            if Settings.isAllowedToSendNotifications == false {
+                self.notificationButton.setAttributedTitle(enableNotificationsString, for: .normal)
+                self.notificationButton.addTarget(self, action: #selector(self.openSettings), for: .touchUpInside)
             } else {
-                self.notificationButton.setAttributedTitle(turnNotificationsOnString, for: .normal)
+                self.notificationButton.addTarget(self, action: #selector(self.didSelectNotifications), for: .touchUpInside)
+                if Settings.isNotificationsEnabled {
+                    self.notificationButton.setAttributedTitle(turnNotificationsOffString, for: .normal)
+                } else {
+                    self.notificationButton.setAttributedTitle(turnNotificationsOnString, for: .normal)
+                }
             }
 
             self.messageLabel.textColor = textColor.withAlphaComponent(0.6)
@@ -137,6 +162,10 @@ class InformationController: UIViewController {
             self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
             self.view.setNeedsLayout()
         }
+    }
+
+    func openSettings() {
+        UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
     }
 
     func didSelectNotifications() {

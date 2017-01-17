@@ -11,7 +11,14 @@ extension AppDelegate: UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = self.window else { fatalError("Window not found") }
 
-        window.rootViewController = MainController(nibName: nil, bundle: nil)
+        if Location.current == nil {
+            let controller = OnboardingController(nibName: nil, bundle: nil)
+            window.rootViewController = controller
+        } else {
+            let mainController = MainController(nibName: nil, bundle: nil)
+            window.rootViewController = mainController
+        }
+
         window.makeKeyAndVisible()
 
         return true

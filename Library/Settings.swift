@@ -11,15 +11,27 @@ struct Settings {
             if userRequestedNotification == false {
                 return false
             } else {
-                let isAllowedToSendNotifications = UIApplication.shared.currentUserNotificationSettings?.types.contains([.alert]) ?? false
-
-                return isAllowedToSendNotifications
+                return Settings.isAllowedToSendNotifications
             }
         }
     }
 
+    static var isAllowedToSendNotifications: Bool {
+        return (UIApplication.shared.currentUserNotificationSettings?.types.contains([.alert]) ?? false) || (UIApplication.shared.currentUserNotificationSettings?.types.contains([.badge]) ?? false)
+    }
+
     static func registerForNotifications() {
-        let settings = UIUserNotificationSettings(types: [.alert], categories: nil)
+        let settings = UIUserNotificationSettings(types: [.alert, .badge], categories: nil)
         UIApplication.shared.registerUserNotificationSettings(settings)
+    }
+
+    static var shouldPresentOnboarding: Bool {
+        set {
+            UserDefaults.standard.set(newValue, forKey: "shouldPresentOnboarding")
+        }
+
+        get {
+            return UserDefaults.standard.value(forKey: "shouldPresentOnboarding") as? Bool ?? true
+        }
     }
 }
