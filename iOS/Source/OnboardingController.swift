@@ -3,6 +3,7 @@ import CoreLocation
 import UserNotifications
 
 class OnboardingController: UIViewController {
+
     enum OnboardingState: Int {
         case locationUndetermined
         case locationDisabled
@@ -52,7 +53,6 @@ class OnboardingController: UIViewController {
 
         return recognizer
     }()
-
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
@@ -156,7 +156,7 @@ class OnboardingController: UIViewController {
             LocationTracker.shared.locateIfPossible()
             LocationTracker.shared.delegate = self
         case .locationDisabled:
-            UIApplication.shared.openURL(URL(string:UIApplicationOpenSettingsURLString)!)
+            UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
         case .notificationUndetermined:
             self.requestNotifications()
         }
@@ -168,7 +168,7 @@ class OnboardingController: UIViewController {
             LocationTracker.shared.locateIfPossible()
             LocationTracker.shared.delegate = self
         case .locationDisabled:
-            UIApplication.shared.openURL(URL(string:UIApplicationOpenSettingsURLString)!)
+            UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
         case .notificationUndetermined:
             self.presentMainController()
         }
@@ -182,7 +182,7 @@ class OnboardingController: UIViewController {
 
     func requestNotifications() {
         if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options:[.alert]) { granted, error in
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { granted, error in
                 if granted == true {
                     Settings.isNotificationsEnabled = true
                     Settings.registerForNotifications()
@@ -191,7 +191,7 @@ class OnboardingController: UIViewController {
                 self.presentMainController()
             }
         } else {
-            //WARNING: Right syntax for ios 9 should be added!
+            // WARNING: Right syntax for ios 9 should be added!
         }
     }
 
@@ -205,6 +205,7 @@ class OnboardingController: UIViewController {
 }
 
 extension OnboardingController: LocationTrackerDelegate {
+
     func locationTracker(_ locationTracker: LocationTracker, didFailWith error: Error) {
         self.onboardingState = .locationDisabled
     }

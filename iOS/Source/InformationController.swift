@@ -165,7 +165,7 @@ class InformationController: UIViewController {
     }
 
     func openSettings() {
-        UIApplication.shared.openURL(URL(string:UIApplicationOpenSettingsURLString)!)
+        UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
     }
 
     func didSelectNotifications() {

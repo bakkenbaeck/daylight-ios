@@ -25,7 +25,7 @@ class LocationTracker: NSObject {
         return CLLocationManager.authorizationStatus()
     }
 
-    func locateIfPossible(){
+    func locateIfPossible() {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse, .authorizedAlways:
             self.locationManager.startUpdatingLocation()
