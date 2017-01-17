@@ -11,11 +11,13 @@ struct Settings {
             if userRequestedNotification == false {
                 return false
             } else {
-                let isAllowedToSendNotifications = UIApplication.shared.currentUserNotificationSettings?.types.contains([.alert]) ?? false
-
-                return isAllowedToSendNotifications
+                return Settings.isAllowedToSendNotifications
             }
         }
+    }
+
+    static var isAllowedToSendNotifications: Bool {
+        return (UIApplication.shared.currentUserNotificationSettings?.types.contains([.alert])  ?? false) || (UIApplication.shared.currentUserNotificationSettings?.types.contains([.badge]) ?? false)
     }
 
     static func registerForNotifications() {
