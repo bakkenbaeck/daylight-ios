@@ -21,7 +21,7 @@ struct Settings {
     }
 
     static func registerForNotifications() {
-        let settings = UIUserNotificationSettings(types: [.alert], categories: nil)
+        let settings = UIUserNotificationSettings(types: [.alert, .badge], categories: nil)
         UIApplication.shared.registerUserNotificationSettings(settings)
     }
 
