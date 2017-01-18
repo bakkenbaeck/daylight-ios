@@ -27,7 +27,7 @@ struct MessageGenerator {
 
         messages.append(Message(format: "Today is **%@** longer than yesterday. Happy days!"))
         messages.append(Message(format: "The sun is out for **%d more %@** today. Enjoy!"))
-        messages.append(Message(format: "**%@ exta** sunshine today. Make them count!"))
+        messages.append(Message(format: "**%@ extra** sunshine today. Make them count!"))
         messages.append(Message(format: "Make sure to soak up that vitamin D. **%@ more** daylight today!"))
         messages.append(Message(format: "Smile! Today has **%@ more** daylight than yesterday!"))
         messages.append(Message(format: "**%@ more** daylight today. Just let it sink in…"))
