@@ -193,8 +193,8 @@ class MainView: UIView {
             let generatedMessage = messageGenerator.message(forDay: Date(), sunPhase: location.sunPhase, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
 
             let format = NSLocalizedString("number_of_minutes", comment: "")
-            let test = String.localizedStringWithFormat(format, minutesRounded)
-            let formattedMessage = String(format: generatedMessage.format, test)
+            let minuteString = String.localizedStringWithFormat(format, minutesRounded)
+            let formattedMessage = String(format: generatedMessage.format, minuteString)
 
             let message = Message(format: formattedMessage)
             let attributedString = message.attributedString(withTextColor: textColor)
