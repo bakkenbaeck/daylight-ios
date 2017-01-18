@@ -25,16 +25,16 @@ struct MessageGenerator {
     private var longerMoreThanAMinuteMessages: [Message] {
         var messages = [Message]()
 
-        messages.append(Message(format: "Today is **%@ minutes** longer than yesterday. Happy days!"))
-        messages.append(Message(format: "The sun is out for **%@ more minutes** today. Enjoy!"))
-        messages.append(Message(format: "**%@ extra minutes** of sunshine today. Make them count!"))
-        messages.append(Message(format: "Make sure to soak up that vitamin D. **%@ more minutes** of daylight today!"))
-        messages.append(Message(format: "Smile! Today has **%@ more minutes** of daylight than yesterday!"))
-        messages.append(Message(format: "**%@ more minutes** of daylight today. Just let it sink in…"))
-        messages.append(Message(format: "Today is **%@ minutes** longer. It’s getting better and better!"))
-        messages.append(Message(format: "Bring out your shorts, because today has **%@ more minutes** of sunlight."))
-        messages.append(Message(format: "Have a great day and enjoy those **%@ extra minutes** of daylight."))
-        messages.append(Message(format: "After darkness comes daylight. **%@ more minutes** to be precise!"))
+        messages.append(Message(format: "Today is **%@** longer than yesterday. Happy days!"))
+        messages.append(Message(format: "The sun is out for **%d more %@** today. Enjoy!"))
+        messages.append(Message(format: "**%@ exta** sunshine today. Make them count!"))
+        messages.append(Message(format: "Make sure to soak up that vitamin D. **%@ more** daylight today!"))
+        messages.append(Message(format: "Smile! Today has **%@ more** daylight than yesterday!"))
+        messages.append(Message(format: "**%@ more** daylight today. Just let it sink in…"))
+        messages.append(Message(format: "Today is **%@** longer. It’s getting better and better!"))
+        messages.append(Message(format: "Bring out your shorts, because today has **%@ more** sunlight."))
+        messages.append(Message(format: "Have a great day and enjoy those **%@ extra** daylight."))
+        messages.append(Message(format: "After darkness comes daylight. **%@ more** to be precise!"))
 
         return messages
     }
@@ -66,9 +66,9 @@ struct MessageGenerator {
     private var shorterMoreThanAMinuteMessages: [Message] {
         var messages = [Message]()
 
-        messages.append(Message(format: "The sun will be out **%@ minutes less** today. Keep your head up!"))
-        messages.append(Message(format: "**%@ minutes less** sunlight today, unfortunately. It’ll get better!"))
-        messages.append(Message(format: "Sadly, the day will be **%@ minutes shorter**. Make the most out of it!"))
+        messages.append(Message(format: "The sun will be out ** %@ less** today. Keep your head up!"))
+        messages.append(Message(format: "**%@ less** sunlight today, unfortunately. It’ll get better!"))
+        messages.append(Message(format: "Sadly, the day will be **%@ shorter**. Make the most out of it!"))
 
         return messages
     }
@@ -98,10 +98,10 @@ struct MessageGenerator {
     private var longerTomorrowMoreThanAMinuteMessages: [Message] {
         var messages = [Message]()
 
-        messages.append(Message(format: "Get a good night’s sleep: tomorrow there’ll be **%@ more minutes** of sunlight."))
-        messages.append(Message(format: "Lights out. Enjoy **%@ more minutes** of sunlight tomorrow!"))
-        messages.append(Message(format: "Bring out those pyjamas. **%@ more minutes** of light await tomorrow."))
-        messages.append(Message(format: "The sun has set for today. Embrace those **%@ minutes** of extra daylight tomorrow."))
+        messages.append(Message(format: "Get a good night’s sleep: tomorrow there’ll be **%@ more %@** of sunlight."))
+        messages.append(Message(format: "Lights out. Enjoy **%@** more sunlight tomorrow!"))
+        messages.append(Message(format: "Bring out those pyjamas. ** %@** more light await tomorrow."))
+        messages.append(Message(format: "The sun has set for today. Embrace those **%@** of extra daylight tomorrow."))
         messages.append(Message(format: "The sun has set. Soak up the extra vitamin D tomorrow!"))
 
         return messages
@@ -132,9 +132,9 @@ struct MessageGenerator {
     private var shorterTomorrowMoreThanAMinuteMessages: [Message] {
         var messages = [Message]()
 
-        messages.append(Message(format: "Unfortunately, tomorrow will be **%@ minutes** shorter than today. Make the most out of it!"))
-        messages.append(Message(format: "Sadly, tomorrow will be **%@ minutes** shorter than today. Enjoy it while it lasts!"))
-        messages.append(Message(format: "Tomorrow will be **%@ minutes** shorter than today. But fear not, brighter times ahead!"))
+        messages.append(Message(format: "Unfortunately, tomorrow will be **%@** shorter than today. Make the most out of it!"))
+        messages.append(Message(format: "Sadly, tomorrow will be **%@** shorter than today. Enjoy it while it lasts!"))
+        messages.append(Message(format: "Tomorrow will be **%@** shorter than today. But fear not, brighter times ahead!"))
 
         return messages
     }

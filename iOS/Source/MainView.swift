@@ -189,10 +189,13 @@ class MainView: UIView {
             let interval = location.dayLengthDifference
 
             let messageGenerator = MessageGenerator()
-            let minutesString = interval.minuteString()
+            let minutesRounded = Int(Darwin.round(interval / 60.0))
             let generatedMessage = messageGenerator.message(forDay: Date(), sunPhase: location.sunPhase, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
 
-            let formattedMessage = String(format: generatedMessage.format, minutesString)
+            let format = NSLocalizedString("number_of_minutes", comment: "")
+            let test = String.localizedStringWithFormat(format, minutesRounded)
+            let formattedMessage = String(format: generatedMessage.format, test)
+
             let message = Message(format: formattedMessage)
             let attributedString = message.attributedString(withTextColor: textColor)
 
