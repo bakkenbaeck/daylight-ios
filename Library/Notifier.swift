@@ -30,7 +30,6 @@ struct Notifier {
         let format = NSLocalizedString("number_of_minutes", comment: "")
         let minuteString = String.localizedStringWithFormat(format, minutesRounded)
         let formattedMessage = String(format: generatedMessage.format, minuteString)
-         print(formattedMessage)
         let message = Message(format: formattedMessage)
 
         UILocalNotification.schedule(notificationID, at: sunriseDate, message: formattedMessage)
