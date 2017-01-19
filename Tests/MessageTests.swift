@@ -114,33 +114,11 @@ class MessageTests: XCTestCase {
         XCTAssertEqual(beginMessage.content, endMessage.content)
     }
 
-    func testPluralization() {
+    func testNotificationMessage() {
         let messageGenerator = MessageGenerator()
 
-        let hashValue = messageGenerator.hashValue(forDay: Date())
-        let oneMinuteMessage = messageGenerator.generateMessage(forHashValue: hashValue, sunPhase: .dawn, yesterdayDaylightLength: 0, todayDaylightLength: 60, tomorrowDaylightLength: 0)
+        let message = messageGenerator.messageForNotification(forDate: Date(), sunPhase: .dawn, yesterdayDaylightLength: 100, todayDaylightLength: 100, tomorrowDaylightLength: 100)
 
-        let format = NSLocalizedString("number_of_minutes", comment: "")
-        let oneMinuteString = String.localizedStringWithFormat(format, 1)
-        let formattedMessage = String(format: oneMinuteMessage.format, oneMinuteString)
-
-        let message = Message(format: formattedMessage)
-
-        XCTAssertTrue(message.content.contains("minute"))
-    }
-
-    func testPluralizations() {
-        let messageGenerator = MessageGenerator()
-
-        let hashValue = messageGenerator.hashValue(forDay: Date())
-        let oneMinuteMessage = messageGenerator.generateMessage(forHashValue: hashValue, sunPhase: .dawn, yesterdayDaylightLength: 0, todayDaylightLength: 120, tomorrowDaylightLength: 0)
-
-        let format = NSLocalizedString("number_of_minutes", comment: "")
-        let oneMinuteString = String.localizedStringWithFormat(format, 2)
-        let formattedMessage = String(format: oneMinuteMessage.format, oneMinuteString)
-
-        let message = Message(format: formattedMessage)
-
-        XCTAssertTrue(message.content.contains("minutes"))
+        XCTAssertFalse(message.contains("**"))
     }
 }

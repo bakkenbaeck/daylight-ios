@@ -25,12 +25,11 @@ struct Notifier {
         let messageGenerator = MessageGenerator()
 
         let minutesRounded = Int(Darwin.round(interval / 60.0))
-        let generatedMessage = messageGenerator.message(forDay: Date(), sunPhase: location.sunPhase, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
+        let generatedMessage = messageGenerator.messageForNotification(forDate: Date(), sunPhase: location.sunPhase, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
 
         let format = NSLocalizedString("number_of_minutes", comment: "")
         let minuteString = String.localizedStringWithFormat(format, minutesRounded)
-        let formattedMessage = String(format: generatedMessage.format, minuteString)
-        let message = Message(format: formattedMessage)
+        let formattedMessage = String(format: generatedMessage, minuteString)
 
         UILocalNotification.schedule(notificationID, at: sunriseDate, message: formattedMessage)
     }
