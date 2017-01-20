@@ -150,6 +150,7 @@ class SunView: UIView {
         self.currentTimeLabel.textColor = textColor
         self.horizon.backgroundColor = textColor
         self.sun.circleColor = textColor
+        self.sun.sunBackgroundColor = backgroundColor
         self.moon.backgroundColor = backgroundColor
 
         self.sunViewLocation = self.location(for: CGFloat(percentageInDay))
