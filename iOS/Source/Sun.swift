@@ -18,6 +18,7 @@ class Sun: UIView {
         super.init(frame: frame)
 
         self.backgroundColor = UIColor.clear
+        self.clipsToBounds = false
     }
 
     required init?(coder aDecoder: NSCoder) {

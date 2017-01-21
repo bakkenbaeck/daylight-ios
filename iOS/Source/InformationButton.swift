@@ -46,6 +46,7 @@ class InformationButton: UIButton {
 
     func updateInterface(withBackgroundColor backgroundColor: UIColor, andTextColor textColor: UIColor) {
         self.sun.circleColor = textColor.withAlphaComponent(0.6)
+        self.sun.sunBackgroundColor = backgroundColor
         self.nameLabel.textColor = textColor.withAlphaComponent(0.6)
     }
 }
