@@ -59,10 +59,13 @@ class SunView: UIView {
         return label
     }()
 
-    lazy var sun: Sun = {
-        let view = Sun()
+    lazy var sun: UIImageView = {
+        let image = UIImage(named: "sun")!
+        let tintImage = image.withRenderingMode(.alwaysTemplate)
+        let imageView = UIImageView(image: tintImage)
+        imageView.sizeToFit()
 
-        return view
+        return imageView
     }()
 
     lazy var moon: UIView = {
@@ -149,8 +152,7 @@ class SunView: UIView {
         self.sunsetLabel.textColor = textColor
         self.currentTimeLabel.textColor = textColor
         self.horizon.backgroundColor = textColor
-        self.sun.circleColor = textColor
-        self.sun.sunBackgroundColor = backgroundColor
+        self.sun.tintColor = textColor
         self.moon.backgroundColor = backgroundColor
 
         self.sunViewLocation = self.location(for: CGFloat(percentageInDay))

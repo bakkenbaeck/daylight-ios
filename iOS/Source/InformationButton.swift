@@ -3,13 +3,15 @@ import UIKit
 class InformationButton: UIButton {
     static let sunSize = CGFloat(18.0)
 
-    lazy var sun: Sun = {
-        let view = Sun(withAutoLayout: true)
-        view.alpha = 0.6
+    lazy var sun: UIImageView = {
+        let image = UIImage(named: "sun")!
+        let tintImage = image.withRenderingMode(.alwaysTemplate)
+        let imageView = UIImageView(image: tintImage)
+        imageView.alpha = 0.6
+        imageView.translatesAutoresizingMaskIntoConstraints = false
 
-        return view
+        return imageView
     }()
-
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -41,12 +43,11 @@ class InformationButton: UIButton {
         self.nameLabel.leftAnchor.constraint(equalTo: self.sun.rightAnchor, constant: 8).isActive = true
         self.nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
         self.nameLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -40).isActive = true
-        self.nameLabel.heightAnchor.constraint(equalToConstant: 16)
+        self.nameLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
     }
 
     func updateInterface(withBackgroundColor backgroundColor: UIColor, andTextColor textColor: UIColor) {
-        self.sun.circleColor = textColor.withAlphaComponent(0.6)
-        self.sun.sunBackgroundColor = backgroundColor
+        self.sun.tintColor = textColor.withAlphaComponent(0.6)
         self.nameLabel.textColor = textColor.withAlphaComponent(0.6)
     }
 }
