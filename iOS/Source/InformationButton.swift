@@ -43,7 +43,7 @@ class InformationButton: UIButton {
         self.nameLabel.leftAnchor.constraint(equalTo: self.sun.rightAnchor, constant: 8).isActive = true
         self.nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
         self.nameLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -40).isActive = true
-        self.nameLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        self.nameLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
     }
 
     func updateInterface(withBackgroundColor backgroundColor: UIColor, andTextColor textColor: UIColor) {
