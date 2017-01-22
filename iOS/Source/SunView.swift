@@ -148,30 +148,35 @@ class SunView: UIView {
         let x = 50.0 + cos(position) * 50.0
         let y = abs(sin(position) * 100.0)
 
-        let absoluteX = ((viewWidth - SunView.sunSize) / 100) * x
+        let absoluteX = ((SunView.viewWidth - SunView.sunSize) / 100) * x
         let absoluteY = 108 - (108 / 100.0) * y
         return CGPoint(x: absoluteX, y: absoluteY)
     }
 
     func animateStart(percentageInDay percentage : CGFloat) {
-        let path = UIBezierPath()
-        path.move(to: self.location(for: 0))
+        var values = [CGPoint]()
+        for index in 0...(Int(percentage*100)) {
+            let location = self.startAnimationLocation(for: CGFloat(index)/100.0)
+            print(location)
+            values.append(location)
+        }
 
-        path.addCurve(to: self.location(for: 1), controlPoint1: self.location(for: percentage/0.33), controlPoint2: self.location(for: percentage/0.66))
         let anim = CAKeyframeAnimation(keyPath: "position")
+        anim.values = values
+        anim.duration = 3.0
 
-// set the animations path to our bezier curve
-        anim.path = path.cgPath
-
-// set some more parameters for the animation
-// this rotation mode means that our object will rotate so that it's parallel to whatever point it is currently on the curve
-        anim.rotationMode = kCAAnimationRotateAuto
-        anim.duration = 5.0
-
-// we add the animation to the squares 'layer' property
         self.sun.layer.add(anim, forKey: "animate position along path")
     }
 
+    func startAnimationLocation(for percentageInDay: CGFloat) -> CGPoint {
+        let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
+        let x = 50.0 + cos(position) * 50.0
+        let y = abs(sin(position) * 100.0)
+
+        let absoluteX = ((SunView.viewWidth - SunView.sunSize) / 100) * x
+        let absoluteY = 108 - (108 / 100.0) * y
+        return CGPoint(x: absoluteX  + (SunView.sunSize*0.5), y: absoluteY  + (SunView.sunSize*0.5))
+    }
 
     func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, sunPhase: SunPhase) {
         self.sunriseLabel.textColor = textColor
@@ -181,7 +186,7 @@ class SunView: UIView {
         self.sun.tintColor = textColor
         self.moon.backgroundColor = backgroundColor
 
-        self.sunViewLocation = self.location(for: CGFloat(0.5))
-//        self.sunPhase = sunPhase
+        self.sunViewLocation = self.location(for: CGFloat(percentageInDay))
+        self.sunPhase = sunPhase
     }
 }
