@@ -10,6 +10,7 @@ class SunView: UIView {
     static let sunSize = CGFloat(18.0)
     static let viewWidth = UIScreen.main.bounds.width - 80
     var isFirstTimeSettingLocation = true
+    var startAnimationInProgress = false
 
     var sunPhase = SunPhase.predawn {
         didSet {
@@ -55,8 +56,8 @@ class SunView: UIView {
     lazy var currentTimeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-
         label.font = Theme.light(size: 12)
+        label.alpha = 0.0
 
         return label
     }()
@@ -140,17 +141,19 @@ class SunView: UIView {
     }
 
     func location(for percentageInDay: CGFloat) -> CGPoint {
-        if self.isFirstTimeSettingLocation == true {
-            self.isFirstTimeSettingLocation = false
-             self.animateStart(percentageInDay: percentageInDay)
-        }
+        if self.isFirstTimeSettingLocation == true && self.startAnimationInProgress == false{
+            self.startAnimationInProgress = true
+            self.animateStart(percentageInDay: percentageInDay)
 
+            return CGPoint(x: 0, y: 108)
+        }
         let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
         let x = 50.0 + cos(position) * 50.0
         let y = abs(sin(position) * 100.0)
 
         let absoluteX = ((SunView.viewWidth - SunView.sunSize) / 100) * x
         let absoluteY = 108 - (108 / 100.0) * y
+
         return CGPoint(x: absoluteX, y: absoluteY)
     }
 
@@ -161,12 +164,13 @@ class SunView: UIView {
             values.append(location)
         }
 
-        let anim = CAKeyframeAnimation(keyPath: "position")
-        anim.values = values
-        anim.duration = 3.0 * Double(percentage)
-        anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        let animation = CAKeyframeAnimation(keyPath: "position")
+        animation.values = values
+        animation.duration = 3.0 * Double(percentage)
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        animation.delegate = self
 
-        self.sun.layer.add(anim, forKey: "animate position along path")
+        self.sun.layer.add(animation, forKey: "animate position along path")
     }
 
     func startAnimationLocation(for percentageInDay: CGFloat) -> CGPoint {
@@ -176,6 +180,7 @@ class SunView: UIView {
 
         let absoluteX = ((SunView.viewWidth - SunView.sunSize) / 100) * x
         let absoluteY = 108 - (108 / 100.0) * y
+
         return CGPoint(x: absoluteX  + (SunView.sunSize*0.5), y: absoluteY  + (SunView.sunSize*0.5))
     }
 
@@ -189,5 +194,14 @@ class SunView: UIView {
 
         self.sunViewLocation = self.location(for: CGFloat(percentageInDay))
         self.sunPhase = sunPhase
+    }
+}
+
+extension SunView: CAAnimationDelegate {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        self.isFirstTimeSettingLocation = false
+        UIView.animate(withDuration: 0.2) {
+            self.currentTimeLabel.alpha = 1.0
+        }
     }
 }
