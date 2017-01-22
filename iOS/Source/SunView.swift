@@ -9,7 +9,7 @@ struct SunViewLocation {
 class SunView: UIView {
     static let sunSize = CGFloat(18.0)
     static let boundingWidth = UIScreen.main.bounds.width - 80
-    static let boundingHeight = SunView.boundingHeight
+    static let boundingHeight = 108
 
     var isFirstTimeSettingLocation = true
     var startAnimationInProgress = false
