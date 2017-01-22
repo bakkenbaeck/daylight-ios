@@ -8,6 +8,8 @@ struct SunViewLocation {
 
 class SunView: UIView {
     static let sunSize = CGFloat(18.0)
+    static let viewWidth = UIScreen.main.bounds.width - 80
+    var isFirstTimeSettingLocation = true
 
     var sunPhase = SunPhase.predawn {
         didSet {
@@ -16,7 +18,7 @@ class SunView: UIView {
             switch self.sunPhase {
             case .night:
                 self.moon.isHidden = false
-                self.sunViewLocation = SunViewLocation(x: (self.frame.width - SunView.sunSize) / 2.0, y: 0.0)
+                self.sunViewLocation = CGPoint(x: (self.frame.width - SunView.sunSize) / 2.0, y: 0.0)
             case .dawn:
                 self.currentTimeLabel.isHidden = true
             default:
@@ -25,7 +27,7 @@ class SunView: UIView {
         }
     }
 
-    var sunViewLocation = SunViewLocation(x: 0, y: 0) {
+    var sunViewLocation = CGPoint(x: 0, y: 108) {
         didSet {
             self.setNeedsLayout()
         }
@@ -136,16 +138,40 @@ class SunView: UIView {
         self.sunsetLabel.text = location.sunsetTimeString
     }
 
-    func location(for percentageInDay: CGFloat) -> SunViewLocation {
+    func location(for percentageInDay: CGFloat) -> CGPoint {
+        if self.isFirstTimeSettingLocation == true {
+            self.isFirstTimeSettingLocation = false
+             self.animateStart(percentageInDay: percentageInDay)
+        }
+
         let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
         let x = 50.0 + cos(position) * 50.0
         let y = abs(sin(position) * 100.0)
 
-        let absoluteX = ((self.bounds.width - SunView.sunSize) / 100) * x
-        let absoluteY = self.sunMask.frame.height - (self.sunMask.frame.height / 100.0) * y
-
-        return SunViewLocation(x: absoluteX, y: absoluteY)
+        let absoluteX = ((viewWidth - SunView.sunSize) / 100) * x
+        let absoluteY = 108 - (108 / 100.0) * y
+        return CGPoint(x: absoluteX, y: absoluteY)
     }
+
+    func animateStart(percentageInDay percentage : CGFloat) {
+        let path = UIBezierPath()
+        path.move(to: self.location(for: 0))
+
+        path.addCurve(to: self.location(for: 1), controlPoint1: self.location(for: percentage/0.33), controlPoint2: self.location(for: percentage/0.66))
+        let anim = CAKeyframeAnimation(keyPath: "position")
+
+// set the animations path to our bezier curve
+        anim.path = path.cgPath
+
+// set some more parameters for the animation
+// this rotation mode means that our object will rotate so that it's parallel to whatever point it is currently on the curve
+        anim.rotationMode = kCAAnimationRotateAuto
+        anim.duration = 5.0
+
+// we add the animation to the squares 'layer' property
+        self.sun.layer.add(anim, forKey: "animate position along path")
+    }
+
 
     func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, sunPhase: SunPhase) {
         self.sunriseLabel.textColor = textColor
@@ -155,7 +181,7 @@ class SunView: UIView {
         self.sun.tintColor = textColor
         self.moon.backgroundColor = backgroundColor
 
-        self.sunViewLocation = self.location(for: CGFloat(percentageInDay))
-        self.sunPhase = sunPhase
+        self.sunViewLocation = self.location(for: CGFloat(0.5))
+//        self.sunPhase = sunPhase
     }
 }
