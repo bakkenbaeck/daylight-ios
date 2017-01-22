@@ -98,7 +98,7 @@ struct MessageGenerator {
     private var longerTomorrowMoreThanAMinuteMessages: [Message] {
         var messages = [Message]()
 
-        messages.append(Message(format: "Get a good night’s sleep: tomorrow there’ll be **%@ more %@** of sunlight."))
+        messages.append(Message(format: "Get a good night’s sleep: tomorrow there’ll be **%@ more** sunlight."))
         messages.append(Message(format: "Lights out. Enjoy **%@** more sunlight tomorrow!"))
         messages.append(Message(format: "Bring out those pyjamas. ** %@** more light await tomorrow."))
         messages.append(Message(format: "The sun has set for today. Embrace those **%@** of extra daylight tomorrow."))
