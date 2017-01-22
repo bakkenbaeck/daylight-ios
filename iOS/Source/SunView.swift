@@ -16,7 +16,7 @@ class SunView: UIView {
             self.moon.isHidden = true
             self.currentTimeLabel.isHidden = false
             switch self.sunPhase {
-            case .night:
+            case .night, .predawn:
                 self.moon.isHidden = false
                 self.sunViewLocation = CGPoint(x: (self.frame.width - SunView.sunSize) / 2.0, y: 0.0)
             case .dawn:
