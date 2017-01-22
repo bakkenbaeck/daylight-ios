@@ -8,7 +8,9 @@ struct SunViewLocation {
 
 class SunView: UIView {
     static let sunSize = CGFloat(18.0)
-    static let viewWidth = UIScreen.main.bounds.width - 80
+    static let boundingWidth = UIScreen.main.bounds.width - 80
+    static let boundingHeight = SunView.boundingHeight
+
     var isFirstTimeSettingLocation = true
     var startAnimationInProgress = false
 
@@ -28,7 +30,7 @@ class SunView: UIView {
         }
     }
 
-    var sunViewLocation = CGPoint(x: 0, y: 108) {
+    var sunViewLocation = CGPoint(x: 0, y: SunView.boundingHeight) {
         didSet {
             self.setNeedsLayout()
         }
@@ -118,8 +120,8 @@ class SunView: UIView {
         self.sunriseLabel.frame = CGRect(x: 0, y: 116, width: labelWidth, height: 16)
         self.sunsetLabel.frame = CGRect(x: self.bounds.width - labelWidth, y: 116, width: labelWidth, height: 16)
         self.sun.frame = CGRect(x: self.sunViewLocation.x, y: self.sunViewLocation.y, width: SunView.sunSize, height: SunView.sunSize)
-        self.sunMask.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: 108)
-        self.horizon.frame = CGRect(x: 0, y: 108, width: self.bounds.width, height: 1)
+        self.sunMask.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: SunView.boundingHeight)
+        self.horizon.frame = CGRect(x: 0, y: SunView.boundingHeight, width: self.bounds.width, height: 1)
         self.currentTimeLabel.frame = CGRect(x: self.sunViewLocation.x - 10, y: self.sunViewLocation.y - 24, width: labelWidth, height: 16)
         self.moon.frame = CGRect(x: self.sunViewLocation.x + (SunView.sunSize / 2), y: self.sunViewLocation.y, width: SunView.sunSize / 2, height: SunView.sunSize)
     }
@@ -141,26 +143,26 @@ class SunView: UIView {
     }
 
     func location(for percentageInDay: CGFloat) -> CGPoint {
-        if self.isFirstTimeSettingLocation == true && self.startAnimationInProgress == false{
+        if self.isFirstTimeSettingLocation == true && self.startAnimationInProgress == false {
             self.startAnimationInProgress = true
             self.animateStart(percentageInDay: percentageInDay)
 
-            return CGPoint(x: 0, y: 108)
+            return CGPoint(x: 0, y: SunView.boundingHeight)
         }
         let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
         let x = 50.0 + cos(position) * 50.0
         let y = abs(sin(position) * 100.0)
 
-        let absoluteX = ((SunView.viewWidth - SunView.sunSize) / 100) * x
-        let absoluteY = 108 - (108 / 100.0) * y
+        let absoluteX = ((SunView.boundingWidth - SunView.sunSize) / 100) * x
+        let absoluteY = SunView.boundingHeight - (SunView.boundingHeight / 100.0) * y
 
         return CGPoint(x: absoluteX, y: absoluteY)
     }
 
-    func animateStart(percentageInDay percentage : CGFloat) {
+    func animateStart(percentageInDay percentage: CGFloat) {
         var values = [CGPoint]()
-        for index in 0...(Int(percentage*100)) {
-            let location = self.startAnimationLocation(for: CGFloat(index)/100.0)
+        for index in 0 ... (Int(percentage * 100)) {
+            let location = self.startAnimationLocation(for: CGFloat(index) / 100.0)
             values.append(location)
         }
 
@@ -178,10 +180,10 @@ class SunView: UIView {
         let x = 50.0 + cos(position) * 50.0
         let y = abs(sin(position) * 100.0)
 
-        let absoluteX = ((SunView.viewWidth - SunView.sunSize) / 100) * x
-        let absoluteY = 108 - (108 / 100.0) * y
+        let absoluteX = ((SunView.boundingWidth - SunView.sunSize) / 100) * x
+        let absoluteY = SunView.boundingHeight - (SunView.boundingHeight / 100.0) * y
 
-        return CGPoint(x: absoluteX  + (SunView.sunSize*0.5), y: absoluteY  + (SunView.sunSize*0.5))
+        return CGPoint(x: absoluteX + (SunView.sunSize * 0.5), y: absoluteY + (SunView.sunSize * 0.5))
     }
 
     func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, sunPhase: SunPhase) {
@@ -198,8 +200,10 @@ class SunView: UIView {
 }
 
 extension SunView: CAAnimationDelegate {
+
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         self.isFirstTimeSettingLocation = false
+        self.startAnimationInProgress = false
         UIView.animate(withDuration: 0.2) {
             self.currentTimeLabel.alpha = 1.0
         }
