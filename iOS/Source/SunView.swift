@@ -66,6 +66,7 @@ class SunView: UIView {
         let tintImage = image.withRenderingMode(.alwaysTemplate)
         let imageView = UIImageView(image: tintImage)
         imageView.sizeToFit()
+        imageView.contentMode = .center
 
         return imageView
     }()
@@ -157,13 +158,13 @@ class SunView: UIView {
         var values = [CGPoint]()
         for index in 0...(Int(percentage*100)) {
             let location = self.startAnimationLocation(for: CGFloat(index)/100.0)
-            print(location)
             values.append(location)
         }
 
         let anim = CAKeyframeAnimation(keyPath: "position")
         anim.values = values
-        anim.duration = 3.0
+        anim.duration = 3.0 * Double(percentage)
+        anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
 
         self.sun.layer.add(anim, forKey: "animate position along path")
     }

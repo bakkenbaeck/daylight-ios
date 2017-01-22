@@ -1,7 +1,7 @@
 import UIKit
 
 class InformationButton: UIButton {
-    static let sunSize = CGFloat(18.0)
+    static let sunSize = CGFloat(16.0)
 
     lazy var sun: UIImageView = {
         let image = UIImage(named: "sun")!
@@ -9,6 +9,7 @@ class InformationButton: UIButton {
         let imageView = UIImageView(image: tintImage)
         imageView.alpha = 0.6
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .center
 
         return imageView
     }()
