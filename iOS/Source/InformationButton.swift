@@ -8,6 +8,7 @@ class InformationButton: UIButton {
         let tintImage = image.withRenderingMode(.alwaysTemplate)
         let imageView = UIImageView(image: tintImage)
         imageView.alpha = 0.6
+        imageView.contentMode = .center
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .center
 
