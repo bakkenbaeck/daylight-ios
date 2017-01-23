@@ -69,6 +69,7 @@ class SunView: UIView {
         let tintImage = image.withRenderingMode(.alwaysTemplate)
         let imageView = UIImageView(image: tintImage)
         imageView.contentMode = .center
+        imageView.layer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
 
         return imageView
     }()
@@ -161,7 +162,7 @@ class SunView: UIView {
     func animateStart(percentageInDay percentage: CGFloat) {
         var values = [CGPoint]()
         for index in 0 ... (Int(percentage * 100)) {
-            let location = self.startAnimationLocation(for: CGFloat(index) / 100.0)
+            let location = self.location(for: CGFloat(index) / 100.0)
             values.append(location)
         }
 
@@ -172,17 +173,6 @@ class SunView: UIView {
         animation.delegate = self
 
         self.sun.layer.add(animation, forKey: "animate position along path")
-    }
-
-    func startAnimationLocation(for percentageInDay: CGFloat) -> CGPoint {
-        let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
-        let x = 50.0 + cos(position) * 50.0
-        let y = abs(sin(position) * 100.0)
-
-        let absoluteX = ((SunView.boundingWidth - SunView.sunSize) / 100) * x
-        let absoluteY = SunView.boundingHeight - (SunView.boundingHeight / 100.0) * y
-
-        return CGPoint(x: absoluteX + (SunView.sunSize * 0.5), y: absoluteY + (SunView.sunSize * 0.5))
     }
 
     func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, sunPhase: SunPhase) {
