@@ -143,12 +143,6 @@ class SunView: UIView {
     }
 
     func location(for percentageInDay: CGFloat) -> CGPoint {
-        if self.isFirstTimeSettingLocation == true && self.startAnimationInProgress == false {
-            self.startAnimationInProgress = true
-            self.animateStart(percentageInDay: percentageInDay)
-
-            return CGPoint(x: 0, y: SunView.boundingHeight)
-        }
         let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
         let x = 50.0 + cos(position) * 50.0
         let y = abs(sin(position) * 100.0)
@@ -173,6 +167,7 @@ class SunView: UIView {
         animation.delegate = self
 
         self.sun.layer.add(animation, forKey: "animate position along path")
+        self.sunViewLocation = self.location(for: CGFloat(percentage))
     }
 
     func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, sunPhase: SunPhase) {
@@ -183,7 +178,23 @@ class SunView: UIView {
         self.sun.tintColor = textColor
         self.moon.backgroundColor = backgroundColor
 
-        self.sunViewLocation = self.location(for: CGFloat(percentageInDay))
+        let newLocation =  self.location(for: CGFloat(percentageInDay))
+
+        let differenceInX = abs(newLocation.x - self.sunViewLocation.x)
+        let differenceInY = abs(newLocation.y - self.sunViewLocation.y)
+        print(differenceInX)
+        print(differenceInY)
+
+        if differenceInX > 1 || differenceInY > 1 {
+            if self.startAnimationInProgress == false {
+                print("animate ✌️")
+                self.startAnimationInProgress = true
+                self.animateStart(percentageInDay: CGFloat(percentageInDay))
+            }
+        } else {
+            self.sunViewLocation = newLocation
+        }
+
         self.sunPhase = sunPhase
     }
 }
