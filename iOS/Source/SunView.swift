@@ -1,11 +1,6 @@
 import UIKit
 import CoreLocation
 
-struct SunViewLocation {
-    let x: CGFloat
-    let y: CGFloat
-}
-
 class SunView: UIView {
     static let sunSize = CGFloat(18.0)
     static let boundingWidth = UIScreen.main.bounds.width - 80
@@ -30,7 +25,7 @@ class SunView: UIView {
             self.moon.isHidden = true
             self.currentTimeLabel.isHidden = false
             switch self.sunPhase {
-            case .night, .predawn:
+            case .night, .predawn, .dawn, .dusk:
                 self.moon.isHidden = false
                 self.sunViewLocation = CGPoint(x: (SunView.boundingWidth - SunView.sunSize) / 2.0, y: 0.0)
 
@@ -38,8 +33,6 @@ class SunView: UIView {
                     self.sun.alpha = 1
                     self.currentTimeLabel.alpha = 1
                 }
-            case .dawn:
-                self.currentTimeLabel.isHidden = true
             default:
                 break
             }
@@ -198,9 +191,7 @@ class SunView: UIView {
 
         self.sunPhase = sunPhase
 
-        if self.sunPhase == .night || self.sunPhase == .predawn {
-
-        } else {
+        if self.sunPhase == .sunrise || self.sunPhase == .solarNoon || self.sunPhase == .sunset {
         self.sun.alpha = 1
 
         let newLocation = self.location(for: CGFloat(percentageInDay))
