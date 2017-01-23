@@ -63,7 +63,7 @@ class SunView: UIView {
         let image = UIImage(named: "sun")!
         let tintImage = image.withRenderingMode(.alwaysTemplate)
         let imageView = UIImageView(image: tintImage)
-        imageView.sizeToFit()
+        imageView.contentMode = .center
 
         return imageView
     }()
