@@ -11,6 +11,8 @@ class SunView: UIView {
     static let boundingWidth = UIScreen.main.bounds.width - 80
     static let boundingHeight = CGFloat(108)
 
+    var firstTime = true
+
     var animationInProgress = false {
         didSet {
             if self.animationInProgress == true {
@@ -30,7 +32,12 @@ class SunView: UIView {
             switch self.sunPhase {
             case .night, .predawn:
                 self.moon.isHidden = false
-                self.sunViewLocation = CGPoint(x: (self.frame.width - SunView.sunSize) / 2.0, y: 0.0)
+                self.sunViewLocation = CGPoint(x: (SunView.boundingWidth - SunView.sunSize) / 2.0, y: 0.0)
+
+                if self.firstTime == true {
+                    self.sun.alpha = 1
+                    self.currentTimeLabel.alpha = 1
+                }
             case .dawn:
                 self.currentTimeLabel.isHidden = true
             default:
@@ -42,6 +49,7 @@ class SunView: UIView {
     var sunViewLocation = CGPoint(x: 0, y: SunView.boundingHeight) {
         didSet {
             self.setNeedsLayout()
+
         }
     }
 
@@ -79,6 +87,7 @@ class SunView: UIView {
         let imageView = UIImageView(image: tintImage)
         imageView.contentMode = .center
         imageView.layer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+        imageView.alpha = 0
 
         return imageView
     }()
@@ -192,6 +201,7 @@ class SunView: UIView {
         if self.sunPhase == .night || self.sunPhase == .predawn {
 
         } else {
+        self.sun.alpha = 1
 
         let newLocation = self.location(for: CGFloat(percentageInDay))
 
@@ -207,6 +217,8 @@ class SunView: UIView {
             self.sunViewLocation = newLocation
         }
         }
+
+        self.firstTime = false
     }
 }
 
