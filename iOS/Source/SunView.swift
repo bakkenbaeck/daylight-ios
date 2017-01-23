@@ -11,8 +11,17 @@ class SunView: UIView {
     static let boundingWidth = UIScreen.main.bounds.width - 80
     static let boundingHeight = CGFloat(108)
 
-    var isFirstTimeSettingLocation = true
-    var startAnimationInProgress = false
+    var animationInProgress = false {
+        didSet {
+            if self.animationInProgress == true {
+                self.currentTimeLabel.alpha = 0
+            } else {
+                UIView.animate(withDuration: 0.3) {
+                    self.currentTimeLabel.alpha = 1
+                }
+            }
+        }
+    }
 
     var sunPhase = SunPhase.predawn {
         didSet {
@@ -59,7 +68,7 @@ class SunView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.font = Theme.light(size: 12)
-        label.alpha = 0.0
+        label.alpha = 0
 
         return label
     }()
@@ -153,7 +162,7 @@ class SunView: UIView {
         return CGPoint(x: absoluteX, y: absoluteY)
     }
 
-    func animateStart(percentageInDay percentage: CGFloat) {
+    func animateTo(percentageInDay percentage: CGFloat) {
         var values = [CGPoint]()
         for index in 0 ... (Int(percentage * 100)) {
             let location = self.location(for: CGFloat(index) / 100.0)
@@ -178,34 +187,32 @@ class SunView: UIView {
         self.sun.tintColor = textColor
         self.moon.backgroundColor = backgroundColor
 
-        let newLocation =  self.location(for: CGFloat(percentageInDay))
+        self.sunPhase = sunPhase
+
+        if self.sunPhase == .night || self.sunPhase == .predawn {
+
+        } else {
+
+        let newLocation = self.location(for: CGFloat(percentageInDay))
 
         let differenceInX = abs(newLocation.x - self.sunViewLocation.x)
         let differenceInY = abs(newLocation.y - self.sunViewLocation.y)
-        print(differenceInX)
-        print(differenceInY)
 
         if differenceInX > 1 || differenceInY > 1 {
-            if self.startAnimationInProgress == false {
-                print("animate ✌️")
-                self.startAnimationInProgress = true
-                self.animateStart(percentageInDay: CGFloat(percentageInDay))
+            if self.animationInProgress == false {
+                self.animationInProgress = true
+                self.animateTo(percentageInDay: CGFloat(percentageInDay))
             }
         } else {
             self.sunViewLocation = newLocation
         }
-
-        self.sunPhase = sunPhase
+        }
     }
 }
 
 extension SunView: CAAnimationDelegate {
 
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        self.isFirstTimeSettingLocation = false
-        self.startAnimationInProgress = false
-        UIView.animate(withDuration: 0.2) {
-            self.currentTimeLabel.alpha = 1.0
-        }
+        self.animationInProgress = false
     }
 }
