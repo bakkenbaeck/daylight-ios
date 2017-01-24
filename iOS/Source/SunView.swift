@@ -10,13 +10,7 @@ class SunView: UIView {
 
     var animationInProgress = false {
         didSet {
-            if self.animationInProgress == true {
-                self.currentTimeLabel.alpha = 0
-            } else {
-                UIView.animate(withDuration: 0.3) {
-                    self.currentTimeLabel.alpha = 1
-                }
-            }
+            self.currentTimeLabel.isHidden = self.animationInProgress
         }
     }
 
@@ -114,7 +108,13 @@ class SunView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        self.addSubviewsAndConstraints()
+        self.addSubview(self.horizon)
+        self.addSubview(self.sunriseLabel)
+        self.addSubview(self.sunsetLabel)
+        self.addSubview(self.sunMask)
+        self.sunMask.addSubview(self.sun)
+        self.sunMask.addSubview(self.moon)
+        self.addSubview(self.currentTimeLabel)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -133,16 +133,6 @@ class SunView: UIView {
         self.horizon.frame = CGRect(x: 0, y: SunView.boundingHeight, width: self.bounds.width, height: 1)
         self.currentTimeLabel.frame = CGRect(x: self.sunViewLocation.x - 10, y: self.sunViewLocation.y - 24, width: labelWidth, height: 16)
         self.moon.frame = CGRect(x: self.sunViewLocation.x + (SunView.sunSize / 2), y: self.sunViewLocation.y, width: SunView.sunSize / 2, height: SunView.sunSize)
-    }
-
-    func addSubviewsAndConstraints() {
-        self.addSubview(self.horizon)
-        self.addSubview(self.sunriseLabel)
-        self.addSubview(self.sunsetLabel)
-        self.addSubview(self.sunMask)
-        self.sunMask.addSubview(self.sun)
-        self.sunMask.addSubview(self.moon)
-        self.addSubview(self.currentTimeLabel)
     }
 
     func location(for percentageInDay: CGFloat) -> CGPoint {
@@ -217,6 +207,8 @@ class SunView: UIView {
 extension SunView: CAAnimationDelegate {
 
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        self.animationInProgress = false
+        UIView.animate(withDuration: 0.3) {
+            self.animationInProgress = false
+        }
     }
 }
