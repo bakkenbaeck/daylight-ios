@@ -1,7 +1,7 @@
 import JavaScriptCore
 import Foundation
 
-enum SunPhase: String {
+enum SunPhase {
     case predawn
     case dawn
     case sunrise
@@ -9,6 +9,20 @@ enum SunPhase: String {
     case sunset
     case dusk
     case night
+
+    enum Sky {
+        case dark
+        case light
+    }
+
+    var sky: Sky {
+        switch self {
+        case .predawn, .dawn, .dusk, .night:
+            return .dark
+        default:
+            return .light
+        }
+    }
 }
 
 struct SunCalcEngine {

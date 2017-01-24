@@ -22,10 +22,8 @@ class SunView: UIView {
 
     var sunPhase = SunPhase.predawn {
         didSet {
-            self.moon.isHidden = true
-            self.currentTimeLabel.isHidden = false
-            switch self.sunPhase {
-            case .night, .predawn, .dawn, .dusk:
+            switch self.sunPhase.sky {
+            case .dark:
                 self.moon.isHidden = false
                 self.sunViewLocation = CGPoint(x: (SunView.boundingWidth - SunView.sunSize) / 2.0, y: 0.0)
 
@@ -33,8 +31,8 @@ class SunView: UIView {
                     self.sun.alpha = 1
                     self.currentTimeLabel.alpha = 1
                 }
-            default:
-                break
+            case .light:
+                self.moon.isHidden = true
             }
         }
     }
@@ -191,22 +189,22 @@ class SunView: UIView {
 
         self.sunPhase = sunPhase
 
-        if self.sunPhase == .sunrise || self.sunPhase == .solarNoon || self.sunPhase == .sunset {
-        self.sun.alpha = 1
+        if self.sunPhase.sky == .light {
+            self.sun.alpha = 1
 
-        let newLocation = self.location(for: CGFloat(percentageInDay))
+            let newLocation = self.location(for: CGFloat(percentageInDay))
 
-        let differenceInX = abs(newLocation.x - self.sunViewLocation.x)
-        let differenceInY = abs(newLocation.y - self.sunViewLocation.y)
+            let differenceInX = abs(newLocation.x - self.sunViewLocation.x)
+            let differenceInY = abs(newLocation.y - self.sunViewLocation.y)
 
-        if differenceInX > 1 || differenceInY > 1 {
-            if self.animationInProgress == false {
-                self.animationInProgress = true
-                self.animateTo(percentageInDay: CGFloat(percentageInDay))
+            if differenceInX > 1 || differenceInY > 1 {
+                if self.animationInProgress == false {
+                    self.animationInProgress = true
+                    self.animateTo(percentageInDay: CGFloat(percentageInDay))
+                }
+            } else {
+                self.sunViewLocation = newLocation
             }
-        } else {
-            self.sunViewLocation = newLocation
-        }
         }
 
         self.firstTime = false
