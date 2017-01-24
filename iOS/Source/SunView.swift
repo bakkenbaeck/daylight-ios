@@ -169,9 +169,8 @@ class SunView: UIView {
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         animation.delegate = self
 
+        self.animationInProgress = true
         self.sun.layer.add(animation, forKey: "animate position along path")
-        let newLocation = self.location(for: CGFloat(percentage))
-        self.sunViewLocation = newLocation
     }
 
     func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, sunPhase: SunPhase) {
@@ -189,25 +188,29 @@ class SunView: UIView {
         self.sunPhase = sunPhase
 
         if self.sunPhase.sky == .light {
-            self.sun.alpha = 1
-
-            let newLocation = self.location(for: CGFloat(percentageInDay))
-
-
-            let differenceInX = abs(newLocation.x - self.sunViewLocation.x)
-            let differenceInY = abs(newLocation.y - self.sunViewLocation.y)
-
-            if differenceInX > 1 || differenceInY > 1 {
-                if self.animationInProgress == false {
-                    self.animationInProgress = true
-                    self.animateTo(percentageInDay: CGFloat(percentageInDay))
-                }
-            } else {
-                self.sunViewLocation = newLocation
-            }
+           self.setSunPosition(for: percentageInDay)
         }
 
         self.initialInterfaceUpdate = false
+    }
+
+    func setSunPosition(for percentageInDay: Double) {
+        self.sun.alpha = 1
+
+        let newLocation = self.location(for: CGFloat(percentageInDay))
+
+        if self.needToAnimate(for: newLocation) && self.animationInProgress == false  {
+            self.animateTo(percentageInDay: CGFloat(percentageInDay))
+        }
+
+        self.sunViewLocation = newLocation
+    }
+
+    func needToAnimate(for newLocation: CGPoint) -> Bool {
+        let differenceInX = abs(newLocation.x - self.sunViewLocation.x)
+        let differenceInY = abs(newLocation.y - self.sunViewLocation.y)
+
+        return differenceInX > 1 || differenceInY > 1
     }
 }
 
