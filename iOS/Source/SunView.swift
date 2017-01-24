@@ -150,12 +150,12 @@ class SunView: UIView {
     }
 
     func applicationDidBecomeActive() {
-        self.animateFrom(percentageInDay: CGFloat(self.percentageInDayOnAppEnterBackground), toPercentageInDay: CGFloat(self.percentageInDay))
-        //self.animateFrom(percentageInDay: CGFloat(0.3), toPercentageInDay: CGFloat(self.percentageInDay))
+        if self.sunPhase.sky == .light {
+            self.animateFrom(percentageInDay: CGFloat(self.percentageInDayOnAppEnterBackground), toPercentageInDay: CGFloat(self.percentageInDay))
+        }
     }
 
     func applicationDidEnterBackground() {
-        self.appIsInBackgroundMode = true
         self.percentageInDayOnAppEnterBackground = self.percentageInDay
     }
 
@@ -200,12 +200,10 @@ class SunView: UIView {
         self.moon.backgroundColor = backgroundColor
 
         self.sunPhase = sunPhase
-
-        guard !self.appIsInBackgroundMode else { return }
         self.percentageInDay = percentageInDay
 
         if self.sunPhase.sky == .light {
-           self.setSunPosition(for: percentageInDay)
+            self.setSunPosition(for: percentageInDay)
         }
 
         self.initialInterfaceUpdate = false
@@ -213,29 +211,13 @@ class SunView: UIView {
 
     func setSunPosition(for percentageInDay: Double) {
         self.sun.alpha = 1
-
-        let newLocation = self.location(for: CGFloat(percentageInDay))
-
-        if self.needToAnimate(for: newLocation) && self.animationInProgress == false  {
-            self.animateFrom(percentageInDay: CGFloat(self.percentageInDayOnAppEnterBackground), toPercentageInDay: CGFloat(self.percentageInDay))
-        }
-
-        self.sunViewLocation = newLocation
-    }
-
-    func needToAnimate(for newLocation: CGPoint) -> Bool {
-        let differenceInX = abs(newLocation.x - self.sunViewLocation.x)
-        let differenceInY = abs(newLocation.y - self.sunViewLocation.y)
-
-        return differenceInX > 1 || differenceInY > 1
+        self.sunViewLocation = self.location(for: CGFloat(percentageInDay))
     }
 }
 
 extension SunView: CAAnimationDelegate {
 
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-            print("app not in background mode anymore!")
-            self.appIsInBackgroundMode = false
             UIView.animate(withDuration: 0.9) {
                 self.animationInProgress = false
             }
