@@ -145,12 +145,6 @@ class SunView: UIView {
         self.addSubview(self.currentTimeLabel)
     }
 
-    func update(for location: Location) {
-        self.currentTimeLabel.text = self.timeFormatter.string(from: Date())
-        self.sunriseLabel.text = location.sunriseTimeString
-        self.sunsetLabel.text = location.sunsetTimeString
-    }
-
     func location(for percentageInDay: CGFloat) -> CGPoint {
         let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
         let x = 50.0 + cos(position) * 50.0
@@ -176,10 +170,15 @@ class SunView: UIView {
         animation.delegate = self
 
         self.sun.layer.add(animation, forKey: "animate position along path")
-        self.sunViewLocation = self.location(for: CGFloat(percentage))
+        let newLocation = self.location(for: CGFloat(percentage))
+        self.sunViewLocation = newLocation
     }
 
     func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, sunPhase: SunPhase) {
+        self.currentTimeLabel.text = self.timeFormatter.string(from: Date())
+        self.sunriseLabel.text = Location.current?.sunriseTimeString
+        self.sunsetLabel.text = Location.current?.sunsetTimeString
+
         self.sunriseLabel.textColor = textColor
         self.sunsetLabel.textColor = textColor
         self.currentTimeLabel.textColor = textColor
@@ -193,6 +192,7 @@ class SunView: UIView {
             self.sun.alpha = 1
 
             let newLocation = self.location(for: CGFloat(percentageInDay))
+
 
             let differenceInX = abs(newLocation.x - self.sunViewLocation.x)
             let differenceInY = abs(newLocation.y - self.sunViewLocation.y)
