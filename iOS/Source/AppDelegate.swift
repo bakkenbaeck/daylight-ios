@@ -3,6 +3,13 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder {
     var window: UIWindow?
+
+    lazy var splashView: UIImageView = {
+        let splashView = UIImageView(frame: UIScreen.main.bounds)
+        splashView.image = UIImage(named: "splash-view")
+
+        return splashView
+    }()
 }
 
 extension AppDelegate: UIApplicationDelegate {
@@ -22,5 +29,14 @@ extension AppDelegate: UIApplicationDelegate {
         window.makeKeyAndVisible()
 
         return true
+    }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        guard let window = self.window else { fatalError("Window not found") }
+        window.addSubview(self.splashView)
+    }
+
+    func applicationWillEnterForeground(_ application: UIApplication) {
+       self.splashView.removeFromSuperview()
     }
 }

@@ -86,7 +86,6 @@ class SunView: UIView {
 
     lazy var sunMask: UIView = {
         let view = UIView()
-
         view.clipsToBounds = true
 
         return view
@@ -115,6 +114,8 @@ class SunView: UIView {
         self.sunMask.addSubview(self.sun)
         self.sunMask.addSubview(self.moon)
         self.addSubview(self.currentTimeLabel)
+
+        self.addObservers()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -133,6 +134,19 @@ class SunView: UIView {
         self.horizon.frame = CGRect(x: 0, y: SunView.boundingHeight, width: self.bounds.width, height: 1)
         self.currentTimeLabel.frame = CGRect(x: self.sunViewLocation.x - 10, y: self.sunViewLocation.y - 24, width: labelWidth, height: 16)
         self.moon.frame = CGRect(x: self.sunViewLocation.x + (SunView.sunSize / 2), y: self.sunViewLocation.y, width: SunView.sunSize / 2, height: SunView.sunSize)
+    }
+
+    func addObservers() {
+        self.removeObservers()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidBecomeActive), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+
+    func applicationDidBecomeActive() {
+        print("sunview position on application did become active \(self.sunViewLocation)")
     }
 
     func location(for percentageInDay: CGFloat) -> CGPoint {
@@ -189,7 +203,7 @@ class SunView: UIView {
 
         let newLocation = self.location(for: CGFloat(percentageInDay))
 
-        if self.needToAnimate(for: newLocation) && self.animationInProgress == false  {
+          if self.needToAnimate(for: newLocation) && self.animationInProgress == false  {
             self.animateTo(percentageInDay: CGFloat(percentageInDay))
         }
 
