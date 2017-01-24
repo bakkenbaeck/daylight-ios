@@ -117,7 +117,7 @@ class MessageTests: XCTestCase {
     func testNotificationMessage() {
         let messageGenerator = MessageGenerator()
 
-        let message = messageGenerator.messageForNotification(forDate: Date(), sunPhase: .dawn, yesterdayDaylightLength: 100, todayDaylightLength: 100, tomorrowDaylightLength: 100)
+        let message = messageGenerator.messageForNotification(forDate: Date(), yesterdayDaylightLength: 100, todayDaylightLength: 100, tomorrowDaylightLength: 100)
 
         XCTAssertFalse(message.contains("**"))
     }
