@@ -6,7 +6,7 @@ class SunView: UIView {
     static let boundingWidth = UIScreen.main.bounds.width - 80
     static let boundingHeight = CGFloat(108)
 
-    var firstTime = true
+    var initialInterfaceUpdate = true
 
     var animationInProgress = false {
         didSet {
@@ -27,7 +27,7 @@ class SunView: UIView {
                 self.moon.isHidden = false
                 self.sunViewLocation = CGPoint(x: (SunView.boundingWidth - SunView.sunSize) / 2.0, y: 0.0)
 
-                if self.firstTime == true {
+                if self.initialInterfaceUpdate == true {
                     self.sun.alpha = 1
                     self.currentTimeLabel.alpha = 1
                 }
@@ -207,7 +207,7 @@ class SunView: UIView {
             }
         }
 
-        self.firstTime = false
+        self.initialInterfaceUpdate = false
     }
 }
 
