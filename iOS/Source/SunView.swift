@@ -6,7 +6,11 @@ class SunView: UIView {
     static let boundingWidth = UIScreen.main.bounds.width - 80
     static let boundingHeight = CGFloat(108)
 
+    var appIsInBackgroundMode = false
     var initialInterfaceUpdate = true
+
+    var percentageInDayOnAppEnterBackground = 0.0
+    var percentageInDay = 0.0
 
     var animationInProgress = false {
         didSet {
@@ -137,14 +141,22 @@ class SunView: UIView {
     func addObservers() {
         self.removeObservers()
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidBecomeActive), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
     }
 
     func removeObservers() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
     }
 
     func applicationDidBecomeActive() {
-        print("sunview position on application did become active \(self.sunViewLocation)")
+        self.animateFrom(percentageInDay: CGFloat(self.percentageInDayOnAppEnterBackground), toPercentageInDay: CGFloat(self.percentageInDay))
+        //self.animateFrom(percentageInDay: CGFloat(0.3), toPercentageInDay: CGFloat(self.percentageInDay))
+    }
+
+    func applicationDidEnterBackground() {
+        self.appIsInBackgroundMode = true
+        self.percentageInDayOnAppEnterBackground = self.percentageInDay
     }
 
     func location(for percentageInDay: CGFloat) -> CGPoint {
@@ -158,16 +170,16 @@ class SunView: UIView {
         return CGPoint(x: absoluteX, y: absoluteY)
     }
 
-    func animateTo(percentageInDay percentage: CGFloat) {
+    func animateFrom(percentageInDay fromPercentage: CGFloat, toPercentageInDay percentage: CGFloat) {
         var values = [CGPoint]()
-        for index in 0 ... (Int(percentage * 100)) {
+        for index in (Int(fromPercentage * 100)) ... (Int(percentage * 100)) {
             let location = self.location(for: CGFloat(index) / 100.0)
             values.append(location)
         }
 
         let animation = CAKeyframeAnimation(keyPath: "position")
         animation.values = values
-        animation.duration = 3.0 * Double(percentage)
+        animation.duration = 3.0 * Double(percentage - fromPercentage)
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         animation.delegate = self
 
@@ -189,6 +201,9 @@ class SunView: UIView {
 
         self.sunPhase = sunPhase
 
+        guard !self.appIsInBackgroundMode else { return }
+        self.percentageInDay = percentageInDay
+
         if self.sunPhase.sky == .light {
            self.setSunPosition(for: percentageInDay)
         }
@@ -201,8 +216,8 @@ class SunView: UIView {
 
         let newLocation = self.location(for: CGFloat(percentageInDay))
 
-          if self.needToAnimate(for: newLocation) && self.animationInProgress == false  {
-            self.animateTo(percentageInDay: CGFloat(percentageInDay))
+        if self.needToAnimate(for: newLocation) && self.animationInProgress == false  {
+            self.animateFrom(percentageInDay: CGFloat(self.percentageInDayOnAppEnterBackground), toPercentageInDay: CGFloat(self.percentageInDay))
         }
 
         self.sunViewLocation = newLocation
@@ -219,6 +234,8 @@ class SunView: UIView {
 extension SunView: CAAnimationDelegate {
 
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+            print("app not in background mode anymore!")
+            self.appIsInBackgroundMode = false
             UIView.animate(withDuration: 0.9) {
                 self.animationInProgress = false
             }
