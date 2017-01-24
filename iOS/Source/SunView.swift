@@ -10,7 +10,7 @@ class SunView: UIView {
 
     var animationInProgress = false {
         didSet {
-            self.currentTimeLabel.isHidden = self.animationInProgress
+            self.currentTimeLabel.alpha = self.animationInProgress == true ? 0 : 1
         }
     }
 
@@ -23,7 +23,6 @@ class SunView: UIView {
 
                 if self.initialInterfaceUpdate == true {
                     self.sun.alpha = 1
-                    self.currentTimeLabel.alpha = 1
                 }
             case .light:
                 self.moon.isHidden = true
@@ -61,7 +60,6 @@ class SunView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.font = Theme.light(size: 12)
-        label.alpha = 0
 
         return label
     }()
@@ -221,8 +219,8 @@ class SunView: UIView {
 extension SunView: CAAnimationDelegate {
 
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        UIView.animate(withDuration: 0.3) {
-            self.animationInProgress = false
-        }
+            UIView.animate(withDuration: 0.9) {
+                self.animationInProgress = false
+            }
     }
 }
