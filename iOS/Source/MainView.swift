@@ -8,9 +8,11 @@ protocol MainViewDelegate: class {
 class MainView: UIView {
     weak var delegate: MainViewDelegate?
 
-    private let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
+    var isAnimating = false
 
-    private lazy var informationButton: InformationButton = {
+    fileprivate let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
+
+    fileprivate lazy var informationButton: InformationButton = {
         let button = InformationButton()
         button.addTarget(self, action: #selector(aboutButtonAction(button:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -18,14 +20,15 @@ class MainView: UIView {
         return button
     }()
 
-    private lazy var sunView: SunView = {
+    fileprivate lazy var sunView: SunView = {
         let sunView = SunView()
         sunView.translatesAutoresizingMaskIntoConstraints = false
+        sunView.delegate = self
 
         return sunView
     }()
 
-    private lazy var messageLabel: UILabel = {
+    fileprivate lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = Theme.light(size: 32)
@@ -35,7 +38,7 @@ class MainView: UIView {
         return label
     }()
 
-    private lazy var locationLabel: UILabel = {
+    fileprivate lazy var locationLabel: UILabel = {
         let label = UILabel()
         label.font = Theme.light(size: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +46,7 @@ class MainView: UIView {
         return label
     }()
 
-    private lazy var shareButton: UIButton = {
+    fileprivate lazy var shareButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Share", for: .normal)
         button.titleLabel?.font = Theme.light(size: 16)
@@ -173,6 +176,7 @@ class MainView: UIView {
     }
 
     func updateInterface(location: Location?) {
+        guard !isAnimating else { return }
         if let location = location {
             self.locationLabel.text = "\(location.city), \(location.country)"
 
@@ -221,5 +225,30 @@ class MainView: UIView {
             self.sunView.isHidden = true
             self.locationLabel.isHidden = true
         }
+    }
+}
+extension MainView: SunViewDelegate {
+    func willAnimateWithDuration(_ duration: Double, in sunView: SunView) {
+        self.isAnimating = true
+        let oldBackgroundColor = self.backgroundColor
+        self.backgroundColor = Theme.sunriseBackground
+
+        self.messageLabel.alpha = 0
+        self.locationLabel.alpha = 0
+        self.shareButton.alpha = 0
+        self.informationButton.alpha = 0
+
+        UIView.animate(withDuration: duration, animations: {
+            self.backgroundColor = oldBackgroundColor
+        }, completion: { b in
+            self.isAnimating = false
+
+            UIView.animate(withDuration: 0.2) {
+                self.messageLabel.alpha = 1
+                self.locationLabel.alpha = 1
+                self.shareButton.alpha = 1
+                self.informationButton.alpha = 1
+            }
+        })
     }
 }

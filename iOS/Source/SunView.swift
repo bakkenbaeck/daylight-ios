@@ -1,10 +1,16 @@
 import UIKit
 import CoreLocation
 
+protocol SunViewDelegate: class {
+    func willAnimateWithDuration(_ duration: Double, in sunView: SunView)
+}
+
 class SunView: UIView {
     static let sunSize = CGFloat(18.0)
     static let boundingWidth = UIScreen.main.bounds.width - 80
     static let boundingHeight = CGFloat(108)
+
+    weak var delegate: SunViewDelegate?
 
     var appIsInBackgroundMode = false
     var initialInterfaceUpdate = true
@@ -179,11 +185,17 @@ class SunView: UIView {
 
         let animation = CAKeyframeAnimation(keyPath: "position")
         animation.values = values
-        let minimumTimeOfAnimation = 0.5
+        let minimumTimeOfAnimation = 2.0
         let addedTimeAccordingToPercentageInDay = 2.0 * Double(percentage - fromPercentage)
-        animation.duration = minimumTimeOfAnimation + addedTimeAccordingToPercentageInDay
+        let animationDuration =  minimumTimeOfAnimation + addedTimeAccordingToPercentageInDay
+        animation.duration = animationDuration
+        print(animationDuration)
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         animation.delegate = self
+
+        if fromPercentage == 0.0 {
+            self.delegate?.willAnimateWithDuration(animationDuration, in: self)
+        }
 
         self.animationInProgress = true
         self.sun.layer.add(animation, forKey: "animate position along path")
