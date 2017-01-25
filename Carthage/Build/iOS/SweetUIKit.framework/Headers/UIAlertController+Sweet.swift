@@ -3,7 +3,7 @@
 
     public extension UIAlertController {
 
-        /** 
+        /**
          Creates a dismissable alert controller.
          - parameter title: The title.
          - parameter message: The message.
@@ -16,7 +16,7 @@
             return controller
         }
 
-        /** 
+        /**
          Creates a alert controller configurated for destructive confirmations.
          - parameter title: The title.
          - parameter message: The message.
@@ -37,7 +37,7 @@
             return controller
         }
 
-        /** 
+        /**
          Creates an alert controller to display an error.
          - parameter error: The error.
          - returns: The alert controller.
@@ -49,7 +49,7 @@
             return controller
         }
 
-        /** 
+        /**
          Creates an alert controller to be displayed for tasks that block the UI or require you to wait for a response.
          - parameter title: The title.
          - returns: The alert controller.

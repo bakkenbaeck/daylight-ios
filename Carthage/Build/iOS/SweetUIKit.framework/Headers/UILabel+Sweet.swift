@@ -3,7 +3,7 @@
 
     public extension UILabel {
 
-        /** 
+        /**
          Calculates the width of the text. Because of a crash in Swift 3, it uses self.attributedText instead of self.text.
          - returns: The width of the text.
          */
@@ -12,7 +12,7 @@
             return rect.width
         }
 
-        /** 
+        /**
          Calculates the height of the text.
          - returns: The height of the text for the current width of the label
          */
@@ -22,7 +22,7 @@
             return size.height
         }
 
-        /** 
+        /**
          Sets the attributedString with line spacing.
          - parameter text: The text.
          - parameter lineSpacing: The line spacing (as used in Sketch).
