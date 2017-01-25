@@ -179,7 +179,9 @@ class SunView: UIView {
 
         let animation = CAKeyframeAnimation(keyPath: "position")
         animation.values = values
-        animation.duration = 3.0 * Double(percentage - fromPercentage)
+        let minimumTimeOfAnimation = 0.5
+        let addedTimeAccordingToPercentageInDay = 2.0 * Double(percentage - fromPercentage)
+        animation.duration = minimumTimeOfAnimation + addedTimeAccordingToPercentageInDay
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         animation.delegate = self
 
@@ -203,7 +205,7 @@ class SunView: UIView {
         self.percentageInDay = percentageInDay
 
         if self.sunPhase.sky == .light {
-            self.setSunPosition(for: percentageInDay)
+            self.setSunPosition(for: self.percentageInDay)
         }
 
         self.initialInterfaceUpdate = false
@@ -218,7 +220,7 @@ class SunView: UIView {
 extension SunView: CAAnimationDelegate {
 
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-            UIView.animate(withDuration: 0.9) {
+            UIView.animate(withDuration: 0.2) {
                 self.animationInProgress = false
             }
     }
