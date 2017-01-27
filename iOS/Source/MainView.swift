@@ -102,7 +102,7 @@ class MainView: UIView {
         self.shareButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -self.insets.right).isActive = true
 
         let rightInset = CGFloat(-10)
-        self.locationLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        self.locationLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
 
         self.locationLabelBottomAnchor = self.locationLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -self.insets.top)
         self.locationLabelBottomAnchor?.isActive = true
@@ -134,8 +134,8 @@ class MainView: UIView {
         self.locationLabelLeftAnchor?.isActive = false
         self.locationLabelRightAnchor?.isActive = false
 
-        let screenshotLocationTopAnchor = self.locationLabel.topAnchor.constraint(equalTo: overlayView.topAnchor, constant: 20)
-        screenshotLocationTopAnchor.isActive = true
+        let screenshotLocationCenterYAnchor = self.locationLabel.topAnchor.constraint(equalTo: self.informationButton.centerYAnchor)
+        screenshotLocationCenterYAnchor.isActive = true
 
         let screenshotLocationRightAnchor = self.locationLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -screenShotInsets.right)
         screenshotLocationRightAnchor.isActive = true
@@ -149,22 +149,22 @@ class MainView: UIView {
         self.informationButton.nameLabel.sizeToFit()
 
         let screenshot = UIScreen.screenshot(frame: overlayView.frame)
-//
-//        self.informationButton.nameLabel.text = NSLocalizedString("About", comment: "")
-//
-//        self.locationLabel.textAlignment = .left
-//        screenshotLocationLeftAnchor.isActive = false
-//        screenshotLocationRightAnchor.isActive = false
-//        screenshotLocationTopAnchor.isActive = false
-//
-//        self.locationLabelBottomAnchor?.isActive = true
-//        self.locationLabelLeftAnchor?.isActive = true
-//        self.locationLabelRightAnchor?.isActive = true
-//
-//        screenshotInformationTopAnchor.isActive = false
-//        self.informationButtonTopAnchor?.isActive = true
-//
-//        overlayView.removeFromSuperview()
+
+        self.informationButton.nameLabel.text = NSLocalizedString("About", comment: "")
+
+        self.locationLabel.textAlignment = .left
+        screenshotLocationLeftAnchor.isActive = false
+        screenshotLocationRightAnchor.isActive = false
+        screenshotLocationTopAnchor.isActive = false
+
+        self.locationLabelBottomAnchor?.isActive = true
+        self.locationLabelLeftAnchor?.isActive = true
+        self.locationLabelRightAnchor?.isActive = true
+
+        screenshotInformationTopAnchor.isActive = false
+        self.informationButtonTopAnchor?.isActive = true
+
+        overlayView.removeFromSuperview()
 
         return screenshot
     }
