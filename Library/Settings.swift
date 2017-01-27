@@ -1,4 +1,5 @@
 import UIKit
+import UserNotifications
 
 struct Settings {
     static var isNotificationsEnabled: Bool {
@@ -21,8 +22,9 @@ struct Settings {
     }
 
     static func registerForNotifications() {
-        let settings = UIUserNotificationSettings(types: [.alert, .badge], categories: nil)
-        UIApplication.shared.registerUserNotificationSettings(settings)
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge]) { granted, error in
+            // TODO: Implement error handling
+        }
     }
 
     static var shouldPresentOnboarding: Bool {

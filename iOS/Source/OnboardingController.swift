@@ -156,7 +156,7 @@ class OnboardingController: UIViewController {
             LocationTracker.shared.locateIfPossible()
             LocationTracker.shared.delegate = self
         case .locationDisabled:
-            UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+            UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
         case .notificationUndetermined:
             self.requestNotifications()
         }
@@ -168,7 +168,7 @@ class OnboardingController: UIViewController {
             LocationTracker.shared.locateIfPossible()
             LocationTracker.shared.delegate = self
         case .locationDisabled:
-            UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+            UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
         case .notificationUndetermined:
             self.presentMainController()
         }
@@ -181,17 +181,13 @@ class OnboardingController: UIViewController {
     }
 
     func requestNotifications() {
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { granted, error in
-                if granted == true {
-                    Settings.isNotificationsEnabled = true
-                    Settings.registerForNotifications()
-                    Notifier.scheduleNotifications(for: Location.current!)
-                }
-                self.presentMainController()
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { granted, error in
+            if granted == true {
+                Settings.isNotificationsEnabled = true
+                Settings.registerForNotifications()
+                Notifier.scheduleNotifications(for: Location.current!)
             }
-        } else {
-            // WARNING: Right syntax for ios 9 should be added!
+            self.presentMainController()
         }
     }
 
