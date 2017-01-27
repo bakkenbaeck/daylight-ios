@@ -155,7 +155,7 @@ class MainView: UIView {
         self.locationLabel.textAlignment = .left
         screenshotLocationLeftAnchor.isActive = false
         screenshotLocationRightAnchor.isActive = false
-        screenshotLocationTopAnchor.isActive = false
+        screenshotLocationCenterYAnchor.isActive = false
 
         self.locationLabelBottomAnchor?.isActive = true
         self.locationLabelLeftAnchor?.isActive = true
