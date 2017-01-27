@@ -205,7 +205,7 @@ class MainView: UIView {
 
             UIView.animate(withDuration: 0.4) {
                 self.backgroundColor = backgroundColor
-                self.sunView.updateInterface(withBackgroundColor: backgroundColor, textColor: textColor, andPercentageInDay: percentageInDay, sunPhase: sunPhase)
+                self.sunView.updateInterface(location: location, backgroundColor: backgroundColor, textColor: textColor, andPercentageInDay: percentageInDay, sunPhase: sunPhase)
 
                 self.informationButton.updateInterface(withBackgroundColor: backgroundColor, andTextColor: textColor)
 

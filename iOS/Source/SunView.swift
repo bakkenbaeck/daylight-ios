@@ -201,10 +201,10 @@ class SunView: UIView {
         self.sun.layer.add(animation, forKey: "animate position along path")
     }
 
-    func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, sunPhase: SunPhase) {
+    func updateInterface(location: Location, backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, sunPhase: SunPhase) {
         self.currentTimeLabel.text = self.timeFormatter.string(from: Date())
-        self.sunriseLabel.text = Location.current?.sunriseTimeString
-        self.sunsetLabel.text = Location.current?.sunsetTimeString
+        self.sunriseLabel.text = location.sunriseTimeString
+        self.sunsetLabel.text = location.sunsetTimeString
 
         self.sunriseLabel.textColor = textColor
         self.sunsetLabel.textColor = textColor
