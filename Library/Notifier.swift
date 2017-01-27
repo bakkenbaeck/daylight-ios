@@ -31,10 +31,12 @@ struct Notifier {
         let minuteString = String.localizedStringWithFormat(format, minutesRounded)
         let formattedMessage = String(format: generatedMessage, minuteString)
 
+        // TODO: Fix deprecated UILocalNotification
         UILocalNotification.schedule(notificationID, at: sunriseDate, message: formattedMessage)
     }
 
     static func cancelAllNotifications() {
+        // TODO: Fix deprecated UILocalNotification
         UILocalNotification.cancelAll()
     }
 }

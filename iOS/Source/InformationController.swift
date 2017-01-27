@@ -165,7 +165,7 @@ class InformationController: UIViewController {
     }
 
     func openSettings() {
-        UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+        UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
     }
 
     func didSelectNotifications() {
@@ -182,6 +182,6 @@ class InformationController: UIViewController {
     }
 
     func didSelectLinkButton() {
-        UIApplication.shared.openURL(URL(string: "https://bakkenbaeck.com")!)
+        UIApplication.shared.open(URL(string: "https://bakkenbaeck.com")!, options: [:], completionHandler: nil)
     }
 }
