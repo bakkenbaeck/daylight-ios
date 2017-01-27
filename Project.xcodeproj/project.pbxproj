@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		140235781E1BC6E60072762B /* Double+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140235771E1BC6E60072762B /* Double+Helpers.swift */; };
+		141E1D1C1E3B719C0037B45D /* Oslo.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 141E1D1B1E3B719C0037B45D /* Oslo.gpx */; };
 		1432419B1E1BF4D9000E6950 /* UIScreen+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */; };
 		143D3B221DE9D3E0003F77B9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1F1DE9D3E0003F77B9 /* Theme.swift */; };
 		143D3B261DE9D3F3003F77B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B241DE9D3F3003F77B9 /* AppDelegate.swift */; };
@@ -81,6 +82,7 @@
 /* Begin PBXFileReference section */
 		140235771E1BC6E60072762B /* Double+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Helpers.swift"; sourceTree = "<group>"; };
 		1418DB881E08A8BF0041C201 /* Suntimes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Suntimes.framework; path = Carthage/Build/iOS/Suntimes.framework; sourceTree = "<group>"; };
+		141E1D1B1E3B719C0037B45D /* Oslo.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Oslo.gpx; sourceTree = "<group>"; };
 		1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScreen+Helpers.swift"; sourceTree = "<group>"; };
 		143D3B1F1DE9D3E0003F77B9 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		143D3B241DE9D3F3003F77B9 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		146E279E1BCD51F200959BBA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				141E1D1B1E3B719C0037B45D /* Oslo.gpx */,
 				E6EE8BBB1E2F7BFB001AF195 /* Localizable.strings */,
 				146E279F1BCD51F200959BBA /* LaunchScreen.xib */,
 				146E27A11BCD51F200959BBA /* Images.xcassets */,
@@ -334,6 +337,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				141E1D1C1E3B719C0037B45D /* Oslo.gpx in Resources */,
 				146E27AA1BCD51F200959BBA /* Images.xcassets in Resources */,
 				E6EE8BBC1E2F7BFB001AF195 /* Localizable.strings in Resources */,
 				146E27A91BCD51F200959BBA /* LaunchScreen.xib in Resources */,
