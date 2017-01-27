@@ -15,7 +15,11 @@ class SunView: UIView {
     var appIsInBackgroundMode = false
     var initialInterfaceUpdate = true
 
-    var percentageInDayOnAppEnterBackground = 0.0
+    var percentageInDayOnAppEnterBackground = 0.0   {
+        didSet {
+            print(self.percentageInDayOnAppEnterBackground)
+        }
+    }
     var percentageInDay = 0.0
 
     var animationInProgress = false {
@@ -28,6 +32,8 @@ class SunView: UIView {
         didSet {
             switch self.sunPhase.sky {
             case .dark:
+                // reset percentage when it becomes night
+                self.percentageInDayOnAppEnterBackground = 0.0
                 self.moon.isHidden = false
                 self.sunViewLocation = CGPoint(x: (SunView.boundingWidth - SunView.sunSize) / 2.0, y: 0.0)
 
