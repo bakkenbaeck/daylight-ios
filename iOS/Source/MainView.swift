@@ -117,6 +117,8 @@ class MainView: UIView {
     func screenshot() -> UIImage {
         let margin = CGFloat(20)
         let height = CGFloat(450)
+        let daylightLabelWidth = CGFloat(130)
+
         let y = self.messageLabel.frame.maxY - height + margin
 
         let overlayView = UIView(frame: CGRect(x: 0, y: y, width: self.frame.width, height: height))
@@ -136,12 +138,13 @@ class MainView: UIView {
         let screenshotLocationRightAnchor = self.locationLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -self.insets.right)
         screenshotLocationRightAnchor.isActive = true
 
-        let screenshotLocationLeftAnchor = self.locationLabel.leftAnchor.constraint(equalTo: self.informationButton.leftAnchor)
+        let screenshotLocationLeftAnchor = self.locationLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: daylightLabelWidth)
         screenshotLocationLeftAnchor.isActive = true
 
         self.locationLabel.textAlignment = .right
 
         self.informationButton.nameLabel.text = NSLocalizedString("Daylight", comment: "")
+        self.informationButton.nameLabel.sizeToFit()
 
         let screenshot = UIScreen.screenshot(frame: overlayView.frame)
 
