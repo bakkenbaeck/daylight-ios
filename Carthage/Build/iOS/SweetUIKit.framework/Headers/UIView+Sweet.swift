@@ -3,7 +3,7 @@
 
     public extension UIView {
 
-        /** 
+        /**
          Shakes the view. Useful for displaying failures to users.
          */
         public func shake() {
@@ -25,10 +25,17 @@
         public func fillSuperview(with insets: UIEdgeInsets = UIEdgeInsets.zero) {
             guard let superview = self.superview else { return }
 
-            self.topAnchor.constraint(equalTo: superview.topAnchor, constant: insets.top).isActive = true
-            self.leftAnchor.constraint(equalTo: superview.leftAnchor, constant: insets.left).isActive = true
-            self.rightAnchor.constraint(equalTo: superview.rightAnchor, constant: -insets.right).isActive = true
-            self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: -insets.bottom).isActive = true
+            let constants = [
+                self.topAnchor.constraint(equalTo: superview.topAnchor, constant: insets.top),
+                self.leftAnchor.constraint(equalTo: superview.leftAnchor, constant: insets.left),
+                self.rightAnchor.constraint(equalTo: superview.rightAnchor, constant: -insets.right),
+                self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: -insets.bottom)
+            ]
+
+            constants.forEach { constant in
+                constant.priority = UILayoutPriorityDefaultLow
+                constant.isActive = true
+            }
         }
 
         public func set(height: CGFloat) {

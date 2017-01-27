@@ -117,8 +117,24 @@ class MessageTests: XCTestCase {
     func testNotificationMessage() {
         let messageGenerator = MessageGenerator()
 
-        let message = messageGenerator.messageForNotification(forDate: Date(), sunPhase: .dawn, yesterdayDaylightLength: 100, todayDaylightLength: 100, tomorrowDaylightLength: 100)
+        let message = messageGenerator.messageForNotification(forDate: Date(), yesterdayDaylightLength: 100, todayDaylightLength: 100, tomorrowDaylightLength: 100)
 
         XCTAssertFalse(message.contains("**"))
+    }
+
+    func testNotificationMessageAtNight() {
+        let nightString = "2014-07-15 00:00"
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let nightDate = dateFormatter.date(from: nightString)
+
+        let messageGenerator = MessageGenerator()
+
+        let todayDaylightLength = 100.0
+        let tomorrowDayLightLengthLongerLessThanAMinute = todayDaylightLength + 1.0
+        let message = messageGenerator.messageForNotification(forDate: nightDate!, yesterdayDaylightLength: 100, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDayLightLengthLongerLessThanAMinute)
+
+        XCTAssertFalse(message.contains("tomorrow"))
     }
 }

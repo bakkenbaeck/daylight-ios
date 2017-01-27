@@ -8,8 +8,8 @@ struct MessageGenerator {
         return message
     }
 
-    func messageForNotification(forDate date: Date, sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> String {
-        let message = self.generateMessage(forHashValue: self.hashValue(forDay: date), sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+    func messageForNotification(forDate date: Date, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> String {
+        let message = self.generateMessage(forHashValue: self.hashValue(forDay: date), sunPhase: .solarNoon, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
 
         return message.content
     }
@@ -26,7 +26,7 @@ struct MessageGenerator {
         var messages = [Message]()
 
         messages.append(Message(format: "Today is **%@** longer than yesterday. Happy days!"))
-        messages.append(Message(format: "The sun is out for **%d more %@** today. Enjoy!"))
+        messages.append(Message(format: "The sun is out for **%@ more** today. Enjoy!"))
         messages.append(Message(format: "**%@ extra** sunshine today. Make them count!"))
         messages.append(Message(format: "Make sure to soak up that vitamin D. **%@ more** daylight today!"))
         messages.append(Message(format: "Smile! Today has **%@ more** daylight than yesterday!"))
