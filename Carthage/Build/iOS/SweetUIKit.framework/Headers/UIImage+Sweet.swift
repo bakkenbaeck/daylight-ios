@@ -3,6 +3,28 @@
 
     public extension UIImage {
 
+        /// Creates a QR code from a string.
+        /// Resizing rate defaults to 15.0 here because the CIFilter result is 31x31 pixels in size.
+        ///
+        /// - Parameter string: Text to be the QR Code content
+        /// - Parameter resizeRate: The resizing rate. Positive for enlarging and negative for shrinking. Defaults to 15.0.
+        /// - Returns: image QR Code image
+        public static func imageQRCode(for string: String, resizeRate: CGFloat = 15.0) -> UIImage {
+            let data = string.data(using: .isoLatin1, allowLossyConversion: false)
+
+            let filter = CIFilter(name: "CIQRCodeGenerator")!
+            filter.setDefaults()
+            filter.setValue(data, forKey: "inputMessage")
+            filter.setValue("H", forKey: "inputCorrectionLevel")
+
+            let cImage = filter.outputImage!
+
+            let qrCode = UIImage(ciImage: cImage)
+            let qrCodeResized = qrCode.resize(by: resizeRate, quality: .none)
+
+            return qrCodeResized
+        }
+
         /**
          Returns the perfect frame to center a UIImage in the screen.
          */
@@ -34,6 +56,44 @@
 
             guard let cgImage = image?.cgImage else { return nil }
             self.init(cgImage: cgImage)
+        }
+
+        /// Resizes the image by a given rate for a given interpolation quality.
+        ///
+        /// - Parameters:
+        ///   - rate: The resize rate. Positive to enlarge, negative to shrink. Defaults to medium.
+        ///   - quality: The interpolation quality.
+        /// - Returns: The resized image.
+        public func resize(by rate: CGFloat, quality: CGInterpolationQuality = .medium) -> UIImage {
+            let width = self.size.width * rate
+            let height = self.size.height * rate
+            let size = CGSize(width: width, height: height)
+
+            UIGraphicsBeginImageContext(size)
+            let context = UIGraphicsGetCurrentContext()
+            context?.interpolationQuality = quality
+            self.draw(in: CGRect(origin: .zero, size: size))
+            let resized = UIGraphicsGetImageFromCurrentImageContext()!
+            UIGraphicsEndImageContext()
+
+            return resized
+        }
+
+        /// Normalizes image orientation by rotating an image so that it's orientation is UIImageOrientation.up
+        ///
+        /// - Returns: The normalized image.
+        public func imageByNormalizingOrientation() -> UIImage? {
+            if self.imageOrientation == .up {
+                return self
+            }
+
+            let size = self.size
+            UIGraphicsBeginImageContextWithOptions(size, false, self.scale)
+            self.draw(in: CGRect(origin: CGPoint.zero, size: size))
+            let normalizedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            return normalizedImage
         }
     }
 #endif

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		140235781E1BC6E60072762B /* Double+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140235771E1BC6E60072762B /* Double+Helpers.swift */; };
+		140C5C831E3B8180000E5761 /* GT-America-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 140C5C821E3B8180000E5761 /* GT-America-Light.ttf */; };
 		141E1D1C1E3B719C0037B45D /* Oslo.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 141E1D1B1E3B719C0037B45D /* Oslo.gpx */; };
 		1432419B1E1BF4D9000E6950 /* UIScreen+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */; };
 		143D3B221DE9D3E0003F77B9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1F1DE9D3E0003F77B9 /* Theme.swift */; };
@@ -81,6 +82,7 @@
 
 /* Begin PBXFileReference section */
 		140235771E1BC6E60072762B /* Double+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Helpers.swift"; sourceTree = "<group>"; };
+		140C5C821E3B8180000E5761 /* GT-America-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GT-America-Light.ttf"; sourceTree = "<group>"; };
 		1418DB881E08A8BF0041C201 /* Suntimes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Suntimes.framework; path = Carthage/Build/iOS/Suntimes.framework; sourceTree = "<group>"; };
 		141E1D1B1E3B719C0037B45D /* Oslo.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Oslo.gpx; sourceTree = "<group>"; };
 		1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScreen+Helpers.swift"; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		146E279E1BCD51F200959BBA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				140C5C821E3B8180000E5761 /* GT-America-Light.ttf */,
 				141E1D1B1E3B719C0037B45D /* Oslo.gpx */,
 				E6EE8BBB1E2F7BFB001AF195 /* Localizable.strings */,
 				146E279F1BCD51F200959BBA /* LaunchScreen.xib */,
@@ -343,6 +346,7 @@
 				146E27A91BCD51F200959BBA /* LaunchScreen.xib in Resources */,
 				14A10F581E0D336E00A2D098 /* suncalc.js in Resources */,
 				E6EE8BB91E2F7170001AF195 /* Localizable.stringsdict in Resources */,
+				140C5C831E3B8180000E5761 /* GT-America-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

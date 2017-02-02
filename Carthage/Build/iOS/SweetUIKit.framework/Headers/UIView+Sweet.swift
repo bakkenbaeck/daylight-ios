@@ -33,7 +33,7 @@
             ]
 
             constants.forEach { constant in
-                constant.priority = UILayoutPriorityDefaultLow
+                constant.priority = 999
                 constant.isActive = true
             }
         }
@@ -46,10 +46,10 @@
             self.widthAnchor.constraint(equalToConstant: width).isActive = true
         }
 
-        public func attachToTop() {
+        public func attachToTop(viewController: UIViewController? = nil) {
             guard let superview = self.superview else { return }
 
-            self.topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
+            self.topAnchor.constraint(equalTo: viewController?.topLayoutGuide.bottomAnchor ?? superview.topAnchor).isActive = true
             self.leftAnchor.constraint(equalTo: superview.leftAnchor).isActive = true
             self.rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
         }

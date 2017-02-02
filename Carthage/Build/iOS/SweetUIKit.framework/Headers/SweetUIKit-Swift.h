@@ -154,9 +154,11 @@ SWIFT_CLASS("_TtC10SweetUIKit25SweetCollectionController")
 SWIFT_CLASS("_TtC10SweetUIKit20SweetTableController")
 @interface SweetTableController : UIViewController
 @property (nonatomic, strong) UITableView * _Nonnull tableView;
+@property (nonatomic) BOOL clearsSelectionOnViewWillAppear;
 - (nonnull instancetype)initWithStyle:(UITableViewStyle)style OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 - (void)viewDidLoad;
+- (void)viewWillAppear:(BOOL)animated;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
@@ -232,6 +234,18 @@ SWIFT_CLASS("_TtC10SweetUIKit20SweetTableController")
 */
 - (nonnull instancetype)initWithHex:(NSString * _Nonnull)hex;
 /**
+  Convenience initializers for RGB colors.
+  \param red The red part, ranging from 0 to 255.
+
+  \param green The green part, ranging from 0 to 255.
+
+  \param blue The blue part, ranging from 0 to 255.
+
+  \param alpha The alpha part, ranging from 0 to 100.
+
+*/
+- (nonnull instancetype)initWithR:(double)red g:(double)green b:(double)blue a:(double)alpha;
+/**
   Compares if two colors are equal.
   \param color A UIColor to compare.
 
@@ -245,10 +259,40 @@ SWIFT_CLASS("_TtC10SweetUIKit20SweetTableController")
 
 @interface UIImage (SWIFT_EXTENSION(SweetUIKit))
 /**
+  Creates a QR code from a string.
+  Resizing rate defaults to 15.0 here because the CIFilter result is 31x31 pixels in size.
+  \param string Text to be the QR Code content
+
+  \param resizeRate The resizing rate. Positive for enlarging and negative for shrinking. Defaults to 15.0.
+
+
+  returns:
+  image QR Code image
+*/
++ (UIImage * _Nonnull)imageQRCodeFor:(NSString * _Nonnull)string resizeRate:(CGFloat)resizeRate;
+/**
   Returns the perfect frame to center a UIImage in the screen.
 */
 - (CGRect)centeredFrame;
 - (nullable instancetype)initWithColor:(UIColor * _Nonnull)color size:(CGSize)size;
+/**
+  Resizes the image by a given rate for a given interpolation quality.
+  \param rate The resize rate. Positive to enlarge, negative to shrink. Defaults to medium.
+
+  \param quality The interpolation quality.
+
+
+  returns:
+  The resized image.
+*/
+- (UIImage * _Nonnull)resizeBy:(CGFloat)rate quality:(CGInterpolationQuality)quality;
+/**
+  Normalizes image orientation by rotating an image so that it’s orientation is UIImageOrientation.up
+
+  returns:
+  The normalized image.
+*/
+- (UIImage * _Nullable)imageByNormalizingOrientation;
 @end
 
 
@@ -357,7 +401,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 - (void)fillSuperviewWith:(UIEdgeInsets)insets;
 - (void)setWithHeight:(CGFloat)height;
 - (void)setWithWidth:(CGFloat)width;
-- (void)attachToTop;
+- (void)attachToTopWithViewController:(UIViewController * _Nullable)viewController;
 @end
 
 @class UIWindow;
