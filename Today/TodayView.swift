@@ -94,7 +94,7 @@ class TodayView: UIView {
 
 	func updateView() {
 		if let location = Location.current {
-			let tintColor = Theme.colors(for: location.sunPhase).textColor
+			let tintColor = self.color(for: location.sunPhase)
 			sunriseIcon.tintColor = tintColor
 			sunsetIcon.tintColor = tintColor
 			sunriseLabel.textColor = tintColor.darker(by: 20)
@@ -117,6 +117,16 @@ class TodayView: UIView {
 
 			messageLabel.textColor = tintColor
 			messageLabel.attributedText = attributedString
+		}
+	}
+
+	private func color(for sunPhase: SunPhase) -> UIColor {
+		if sunPhase == .night || sunPhase == .predawn {
+			// Theme.nightText is a bit too bright on the light background of the widget
+			// Let's just use twiligtText color here, it fits well for the night too :)
+			return Theme.twilightText
+		} else {
+			return Theme.colors(for: sunPhase).textColor
 		}
 	}
 }
