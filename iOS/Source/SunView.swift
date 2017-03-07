@@ -15,11 +15,7 @@ class SunView: UIView {
     var appIsInBackgroundMode = false
     var initialInterfaceUpdate = true
 
-    var percentageInDayOnAppEnterBackground = 0.0   {
-        didSet {
-            print(self.percentageInDayOnAppEnterBackground)
-        }
-    }
+    var percentageInDayOnAppEnterBackground = 0.0
     var percentageInDay = 0.0
 
     var animationInProgress = false {
@@ -163,7 +159,14 @@ class SunView: UIView {
 
     func applicationDidBecomeActive() {
         if self.sunPhase.sky == .light {
-            self.animateFrom(percentageInDay: CGFloat(self.percentageInDayOnAppEnterBackground), toPercentageInDay: CGFloat(self.percentageInDay))
+            let differenceInPercentage = self.percentageInDay - self.percentageInDayOnAppEnterBackground
+            let shouldAnimateFully = differenceInPercentage > 10 || differenceInPercentage <= 0 || self.percentageInDayOnAppEnterBackground == 0.0
+
+            if shouldAnimateFully {
+                self.animateFully(toPercentageInDay: CGFloat(self.percentageInDay))
+            } else {
+                self.animateFrom(percentageInDay: CGFloat(self.percentageInDayOnAppEnterBackground), toPercentageInDay: CGFloat(self.percentageInDay))
+            }
         }
     }
 
@@ -191,17 +194,30 @@ class SunView: UIView {
 
         let animation = CAKeyframeAnimation(keyPath: "position")
         animation.values = values
-        let minimumTimeOfAnimation = 2.0
-        let addedTimeAccordingToPercentageInDay = 2.0 * Double(percentage - fromPercentage)
-        let animationDuration =  minimumTimeOfAnimation + addedTimeAccordingToPercentageInDay
-        animation.duration = animationDuration
-        print(animationDuration)
+        animation.duration = 0.2
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         animation.delegate = self
 
-        if fromPercentage == 0.0 {
-            self.delegate?.willAnimateWithDuration(animationDuration, in: self)
+        self.animationInProgress = true
+        self.sun.layer.add(animation, forKey: "animate position along path")
+    }
+
+    func animateFully(toPercentageInDay percentage: CGFloat) {
+        var values = [CGPoint]()
+        for index in 0 ... (Int(percentage * 100)) {
+            let location = self.location(for: CGFloat(index) / 100.0)
+            values.append(location)
         }
+
+        let animationDuration = Double(2.0 + (2.0 * percentage))
+        let animation = CAKeyframeAnimation(keyPath: "position")
+
+        animation.values = values
+        animation.duration = animationDuration
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        animation.delegate = self
+
+        self.delegate?.willAnimateWithDuration(animationDuration, in: self)
 
         self.animationInProgress = true
         self.sun.layer.add(animation, forKey: "animate position along path")
