@@ -87,6 +87,10 @@ class OnboardingController: UIViewController {
         case .denied:
             self.onboardingState = .locationDisabled
         case .authorizedWhenInUse, .authorizedAlways:
+            guard Location.current != nil else {
+                self.getLocation()
+                break
+            }
             self.onboardingState = .notificationUndetermined
         default: break
         }
@@ -153,13 +157,17 @@ class OnboardingController: UIViewController {
     func didTapScreen() {
         switch self.onboardingState {
         case .locationUndetermined:
-            LocationTracker.shared.locateIfPossible()
-            LocationTracker.shared.delegate = self
+           self.getLocation()
         case .locationDisabled:
             UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
         case .notificationUndetermined:
             self.requestNotifications()
         }
+    }
+
+    func getLocation() {
+        LocationTracker.shared.locateIfPossible()
+        LocationTracker.shared.delegate = self
     }
 
     func didSelectButton() {
@@ -205,7 +213,13 @@ class OnboardingController: UIViewController {
 extension OnboardingController: LocationTrackerDelegate {
 
     func locationTracker(_ locationTracker: LocationTracker, didFailWith error: Error) {
-        self.onboardingState = .locationDisabled
+        if (error as NSError).code == 9999 {
+            self.onboardingState = .locationDisabled
+        } else {
+            // We should update the UI here to show something for this particular case
+            let alertController = UIAlertController.dismissableAlert(title: NSLocalizedString("Your location could not be determined", comment: ""), message: NSLocalizedString("Check whether you are on planet earth, and maybe check your internet connection as well", comment: ""))
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
 
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
