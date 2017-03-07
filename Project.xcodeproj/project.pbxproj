@@ -26,7 +26,6 @@
 		03C628B71E59BA4400A69F3D /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
 		03C628B81E59BAD200A69F3D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E6EE8BB81E2F7170001AF195 /* Localizable.stringsdict */; };
 		140235781E1BC6E60072762B /* Double+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140235771E1BC6E60072762B /* Double+Helpers.swift */; };
-		140C5C831E3B8180000E5761 /* GT-America-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 140C5C821E3B8180000E5761 /* GT-America-Light.ttf */; };
 		141E1D1C1E3B719C0037B45D /* Oslo.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 141E1D1B1E3B719C0037B45D /* Oslo.gpx */; };
 		1432419B1E1BF4D9000E6950 /* UIScreen+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */; };
 		143D3B221DE9D3E0003F77B9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1F1DE9D3E0003F77B9 /* Theme.swift */; };
@@ -52,6 +51,9 @@
 		14A10F5B1E0D339D00A2D098 /* SunCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A10F5A1E0D339D00A2D098 /* SunCalc.swift */; };
 		14A10F5C1E0D339D00A2D098 /* SunCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A10F5A1E0D339D00A2D098 /* SunCalc.swift */; };
 		14A3E1781E09E6BF002F0D6C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A3E1771E09E6BF002F0D6C /* Settings.swift */; };
+		14B97DAA1E6ECD4800AA87FC /* GT-America-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14B97DA91E6ECD4800AA87FC /* GT-America-Light.ttf */; };
+		14B97DAB1E6ECD4800AA87FC /* GT-America-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14B97DA91E6ECD4800AA87FC /* GT-America-Light.ttf */; };
+		14B97DAC1E6ECD4800AA87FC /* GT-America-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14B97DA91E6ECD4800AA87FC /* GT-America-Light.ttf */; };
 		14C5918D1E24082F0035AB81 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C5918C1E24082F0035AB81 /* MainView.swift */; };
 		14C5918F1E2414ED0035AB81 /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C5918E1E2414ED0035AB81 /* OnboardingController.swift */; };
 		14F37F931E0D554700005101 /* SunCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F37F921E0D554700005101 /* SunCalcTests.swift */; };
@@ -128,7 +130,6 @@
 		03C628B01E59AE8F00A69F3D /* TodayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		03C628B21E59B55100A69F3D /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
 		140235771E1BC6E60072762B /* Double+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Helpers.swift"; sourceTree = "<group>"; };
-		140C5C821E3B8180000E5761 /* GT-America-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GT-America-Light.ttf"; sourceTree = "<group>"; };
 		1418DB881E08A8BF0041C201 /* Suntimes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Suntimes.framework; path = Carthage/Build/iOS/Suntimes.framework; sourceTree = "<group>"; };
 		141E1D1B1E3B719C0037B45D /* Oslo.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Oslo.gpx; sourceTree = "<group>"; };
 		1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScreen+Helpers.swift"; sourceTree = "<group>"; };
@@ -152,6 +153,7 @@
 		14A10F571E0D336E00A2D098 /* suncalc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = suncalc.js; sourceTree = "<group>"; };
 		14A10F5A1E0D339D00A2D098 /* SunCalc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunCalc.swift; sourceTree = "<group>"; };
 		14A3E1771E09E6BF002F0D6C /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		14B97DA91E6ECD4800AA87FC /* GT-America-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GT-America-Light.ttf"; sourceTree = "<group>"; };
 		14C5918C1E24082F0035AB81 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		14C5918E1E2414ED0035AB81 /* OnboardingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 		14E6F3C91E08735200F9C3F6 /* SunPhaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunPhaseTests.swift; sourceTree = "<group>"; };
@@ -250,7 +252,7 @@
 		146E279E1BCD51F200959BBA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				140C5C821E3B8180000E5761 /* GT-America-Light.ttf */,
+				14B97DA91E6ECD4800AA87FC /* GT-America-Light.ttf */,
 				141E1D1B1E3B719C0037B45D /* Oslo.gpx */,
 				E6EE8BBB1E2F7BFB001AF195 /* Localizable.strings */,
 				146E279F1BCD51F200959BBA /* LaunchScreen.xib */,
@@ -438,6 +440,7 @@
 				03C628AF1E59A60200A69F3D /* suncalc.js in Resources */,
 				03C6289E1E58F71F00A69F3D /* Images.xcassets in Resources */,
 				03C628B81E59BAD200A69F3D /* Localizable.stringsdict in Resources */,
+				14B97DAC1E6ECD4800AA87FC /* GT-America-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,7 +454,7 @@
 				146E27A91BCD51F200959BBA /* LaunchScreen.xib in Resources */,
 				14A10F581E0D336E00A2D098 /* suncalc.js in Resources */,
 				E6EE8BB91E2F7170001AF195 /* Localizable.stringsdict in Resources */,
-				140C5C831E3B8180000E5761 /* GT-America-Light.ttf in Resources */,
+				14B97DAA1E6ECD4800AA87FC /* GT-America-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +465,7 @@
 				14A10F591E0D336E00A2D098 /* suncalc.js in Resources */,
 				E6EE8BBD1E2F7BFB001AF195 /* Localizable.strings in Resources */,
 				E6EE8BBA1E2F7170001AF195 /* Localizable.stringsdict in Resources */,
+				14B97DAB1E6ECD4800AA87FC /* GT-America-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
