@@ -105,7 +105,7 @@ class MainView: UIView {
         self.shareButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -self.insets.right).isActive = true
 
         let rightInset = CGFloat(-10)
-        self.locationLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        self.locationLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
 
         self.locationLabelBottomAnchor = self.locationLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -self.insets.top)
         self.locationLabelBottomAnchor?.isActive = true
@@ -120,6 +120,10 @@ class MainView: UIView {
     func screenshot() -> UIImage {
         let margin = CGFloat(20)
         let height = CGFloat(450)
+        let daylightLabelWidth = CGFloat(100)
+
+        let screenShotInsets = UIEdgeInsets(top: 32, left: 32, bottom: 32, right: 32)
+
         let y = self.messageLabel.frame.maxY - height + margin
 
         let overlayView = UIView(frame: CGRect(x: 0, y: y, width: self.frame.width, height: height))
@@ -133,18 +137,19 @@ class MainView: UIView {
         self.locationLabelLeftAnchor?.isActive = false
         self.locationLabelRightAnchor?.isActive = false
 
-        let screenshotLocationTopAnchor = self.locationLabel.topAnchor.constraint(equalTo: overlayView.topAnchor, constant: 20)
-        screenshotLocationTopAnchor.isActive = true
+        let screenshotLocationCenterYAnchor = self.locationLabel.topAnchor.constraint(equalTo: self.informationButton.centerYAnchor)
+        screenshotLocationCenterYAnchor.isActive = true
 
-        let screenshotLocationRightAnchor = self.locationLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -self.insets.right)
+        let screenshotLocationRightAnchor = self.locationLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -screenShotInsets.right)
         screenshotLocationRightAnchor.isActive = true
 
-        let screenshotLocationLeftAnchor = self.locationLabel.leftAnchor.constraint(equalTo: self.informationButton.leftAnchor)
+        let screenshotLocationLeftAnchor = self.locationLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: daylightLabelWidth + screenShotInsets.right)
         screenshotLocationLeftAnchor.isActive = true
 
         self.locationLabel.textAlignment = .right
 
         self.informationButton.nameLabel.text = NSLocalizedString("Daylight", comment: "")
+        self.informationButton.nameLabel.sizeToFit()
 
         let screenshot = UIScreen.screenshot(frame: overlayView.frame)
 
@@ -153,7 +158,7 @@ class MainView: UIView {
         self.locationLabel.textAlignment = .left
         screenshotLocationLeftAnchor.isActive = false
         screenshotLocationRightAnchor.isActive = false
-        screenshotLocationTopAnchor.isActive = false
+        screenshotLocationCenterYAnchor.isActive = false
 
         self.locationLabelBottomAnchor?.isActive = true
         self.locationLabelLeftAnchor?.isActive = true

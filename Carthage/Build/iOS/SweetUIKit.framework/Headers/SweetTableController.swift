@@ -4,6 +4,8 @@
     open class SweetTableController: UIViewController {
         open var tableView: UITableView
 
+        public var clearsSelectionOnViewWillAppear = true
+
         public init(style: UITableViewStyle = .plain) {
             let view = UITableView(frame: .zero, style: style)
             view.translatesAutoresizingMaskIntoConstraints = false
@@ -22,6 +24,16 @@
             self.view.addSubview(self.tableView)
 
             self.addConstraints()
+        }
+
+        open override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+
+            if self.clearsSelectionOnViewWillAppear {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    tableView.deselectRow(at: indexPath, animated: true)
+                }
+            }
         }
 
         func addConstraints() {
