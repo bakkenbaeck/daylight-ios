@@ -39,6 +39,3 @@ Carthage/Build/watchOS
 
 # Appcode
 .idea/
-
-# Fonts
-iOS/Resources/GT-America-Light.ttf
