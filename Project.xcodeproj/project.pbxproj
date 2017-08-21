@@ -131,7 +131,7 @@
 		03C628B21E59B55100A69F3D /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
 		140235771E1BC6E60072762B /* Double+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Helpers.swift"; sourceTree = "<group>"; };
 		1418DB881E08A8BF0041C201 /* Suntimes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Suntimes.framework; path = Carthage/Build/iOS/Suntimes.framework; sourceTree = "<group>"; };
-		141E1D1B1E3B719C0037B45D /* Oslo.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Oslo.gpx; sourceTree = "<group>"; };
+		141E1D1B1E3B719C0037B45D /* Oslo.gpx */ = {isa = PBXFileReference; fileEncoding = 1; lastKnownFileType = text.xml; path = Oslo.gpx; sourceTree = "<group>"; };
 		1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScreen+Helpers.swift"; sourceTree = "<group>"; };
 		143D3B1F1DE9D3E0003F77B9 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		143D3B241DE9D3F3003F77B9 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 		D197BD0F150956F37CAE048A /* FNVHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FNVHash.swift; sourceTree = "<group>"; };
 		E6D9D5061E02D7970007006D /* InformationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationButton.swift; sourceTree = "<group>"; };
 		E6E337AD1E044AD600787E88 /* InformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationController.swift; sourceTree = "<group>"; };
-		E6EE8BB81E2F7170001AF195 /* Localizable.stringsdict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
+		E6EE8BB81E2F7170001AF195 /* Localizable.stringsdict */ = {isa = PBXFileReference; fileEncoding = 1; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		E6EE8BBB1E2F7BFB001AF195 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		E6F6046F1E08106000A6461A /* CloseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
