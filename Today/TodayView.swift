@@ -105,7 +105,7 @@ class TodayView: UIView {
 
 			let interval = location.dayLengthDifference
 			let messageGenerator = MessageGenerator()
-			let minutesRounded = Int(Darwin.round(interval / 60.0))
+			let minutesRounded = abs(Int(Darwin.round(interval / 60.0)))
 			let generatedMessage = messageGenerator.message(forDay: Date(), sunPhase: location.sunPhase, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
 
 			let format = NSLocalizedString("number_of_minutes", comment: "")

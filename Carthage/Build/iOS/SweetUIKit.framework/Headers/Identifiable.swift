@@ -1,25 +1,20 @@
-#if os(iOS) || os(tvOS)
-    import UIKit
+import UIKit
 
-    public protocol Identifiable {
-        static var reuseIdentifier: String { get }
+public protocol Identifiable {
+    static var reuseIdentifier: String { get }
+}
+
+public extension Identifiable {
+    public static var reuseIdentifier: String {
+        return String(describing: self)
     }
+}
 
-    public extension Identifiable {
-        public static var reuseIdentifier: String {
-            get {
-                return String(describing: self)
-            }
-        }
-    }
+extension UITableViewCell: Identifiable {
+}
 
-    extension UITableViewCell: Identifiable {
-    }
+extension UITableViewHeaderFooterView: Identifiable {
+}
 
-    extension UITableViewHeaderFooterView: Identifiable {
-    }
-
-    extension UICollectionReusableView: Identifiable {
-
-    }
-#endif
+extension UICollectionReusableView: Identifiable {
+}
