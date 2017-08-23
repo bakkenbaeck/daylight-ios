@@ -6,6 +6,10 @@ A beautiful app that will let you know how much sun you have today.
 
 ## Running the project
 
+- Open terminal and navigate project folder and run below command
+
+  ```$carthage update```
+
 - Open `Project.xcodeproj` and run
 
 ## What's interesting about this project?
