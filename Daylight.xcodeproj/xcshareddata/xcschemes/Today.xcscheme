@@ -18,7 +18,7 @@
                BlueprintIdentifier = "0387E4CE1E58F2E10029E7CF"
                BuildableName = "Today.appex"
                BlueprintName = "Today"
-               ReferencedContainer = "container:Project.xcodeproj">
+               ReferencedContainer = "container:Daylight.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -32,7 +32,7 @@
                BlueprintIdentifier = "146E27881BCD51C800959BBA"
                BuildableName = "iOS.app"
                BlueprintName = "iOS"
-               ReferencedContainer = "container:Project.xcodeproj">
+               ReferencedContainer = "container:Daylight.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -41,6 +41,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -50,7 +51,7 @@
             BlueprintIdentifier = "0387E4CE1E58F2E10029E7CF"
             BuildableName = "Today.appex"
             BlueprintName = "Today"
-            ReferencedContainer = "container:Project.xcodeproj">
+            ReferencedContainer = "container:Daylight.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -60,6 +61,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = ""
       selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -74,7 +76,7 @@
             BlueprintIdentifier = "146E27881BCD51C800959BBA"
             BuildableName = "iOS.app"
             BlueprintName = "iOS"
-            ReferencedContainer = "container:Project.xcodeproj">
+            ReferencedContainer = "container:Daylight.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,7 +96,7 @@
             BlueprintIdentifier = "146E27881BCD51C800959BBA"
             BuildableName = "iOS.app"
             BlueprintName = "iOS"
-            ReferencedContainer = "container:Project.xcodeproj">
+            ReferencedContainer = "container:Daylight.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
