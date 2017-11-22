@@ -43,7 +43,7 @@ struct Theme {
     }
 
     static func light(size: CGFloat) -> UIFont {
-        return UIFont(name: "GTAmerica-Light", size: size) ?? UIFont.systemFont(ofSize: CGFloat(size), weight: UIFontWeightLight)
+        return UIFont(name: "GTAmerica-Light", size: size) ?? UIFont.systemFont(ofSize: CGFloat(size), weight: UIFont.Weight.light)
     }
 
     static func colors(for sunPhase: SunPhase) -> (backgroundColor: UIColor, textColor: UIColor) {

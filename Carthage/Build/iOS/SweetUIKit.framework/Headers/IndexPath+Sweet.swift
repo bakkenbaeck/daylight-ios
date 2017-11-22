@@ -19,9 +19,9 @@ public extension IndexPath {
     }
 
     public func comparePosition(to indexPath: IndexPath) -> Direction {
-        if self.section == indexPath.section {
-            return self.comparePosition(self.row, otherRow: indexPath.row)
-        } else if self.section < indexPath.section {
+        if section == indexPath.section {
+            return comparePosition(row, otherRow: indexPath.row)
+        } else if section < indexPath.section {
             return .before
         } else {
             return .ahead
@@ -53,6 +53,6 @@ public extension IndexPath {
             }
         }
 
-        return count + self.row
+        return count + row
     }
 }

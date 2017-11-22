@@ -15,13 +15,13 @@ public extension UIViewController {
     ///   - controller: The controller to be added
     ///   - frame: The frame for the added controller, if the frame is not provided or is `nil` then the parent controller's frame will be used
     public func addChild(_ controller: UIViewController, frame: CGRect? = nil) {
-        self.addChildViewController(controller)
+        addChildViewController(controller)
 
         if let frame = frame {
             controller.view.frame = frame
         }
 
-        self.view.addSubview(controller.view)
+        view.addSubview(controller.view)
         controller.didMove(toParentViewController: self)
     }
 

@@ -19,7 +19,7 @@ class TodayView: UIView {
 	private lazy var sunriseLabel: UILabel = {
 		let sunriseLabel = UILabel()
 		sunriseLabel.translatesAutoresizingMaskIntoConstraints = false
-		sunriseLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFontWeightMedium)
+		sunriseLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium)
 		sunriseLabel.textAlignment = .center
 		return sunriseLabel
 	}()
@@ -33,7 +33,7 @@ class TodayView: UIView {
 	private lazy var sunsetLabel: UILabel = {
 		let sunsetLabel = UILabel()
 		sunsetLabel.translatesAutoresizingMaskIntoConstraints = false
-		sunsetLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFontWeightMedium)
+		sunsetLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium)
 		sunsetLabel.textAlignment = .center
 		return sunsetLabel
 	}()
@@ -41,7 +41,7 @@ class TodayView: UIView {
 	private lazy var messageLabel: UILabel = {
 		let messageLabel = UILabel()
 		messageLabel.translatesAutoresizingMaskIntoConstraints = false
-		messageLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightMedium)
+		messageLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
 		messageLabel.textAlignment = .center
 		messageLabel.numberOfLines = 0
 		return messageLabel

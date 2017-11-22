@@ -52,7 +52,7 @@ class MainController: UIViewController {
         }
     }
 
-    func updateInterface() {
+    @objc func updateInterface() {
         self.rootView.updateInterface(location: Location.current)
     }
 }

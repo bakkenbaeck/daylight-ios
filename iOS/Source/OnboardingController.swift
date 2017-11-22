@@ -80,7 +80,7 @@ class OnboardingController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
-    func updateOnboardingStatus() {
+    @objc func updateOnboardingStatus() {
         switch LocationTracker.shared.authorizationStatus {
         case .notDetermined:
             self.onboardingState = .locationUndetermined
@@ -150,7 +150,7 @@ class OnboardingController: UIViewController {
         self.checkForNotifications()
     }
 
-    func didTapScreen() {
+    @objc func didTapScreen() {
         switch self.onboardingState {
         case .locationUndetermined:
             LocationTracker.shared.locateIfPossible()
@@ -162,7 +162,7 @@ class OnboardingController: UIViewController {
         }
     }
 
-    func didSelectButton() {
+    @objc func didSelectButton() {
         switch self.onboardingState {
         case .locationUndetermined:
             LocationTracker.shared.locateIfPossible()

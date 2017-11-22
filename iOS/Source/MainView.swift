@@ -169,11 +169,11 @@ class MainView: UIView {
         return screenshot
     }
 
-    func shareButtonAction(button: UIButton) {
+    @objc func shareButtonAction(button: UIButton) {
         self.delegate?.mainView(self, didSelectShareButton: button)
     }
 
-    func aboutButtonAction(button: UIButton) {
+    @objc func aboutButtonAction(button: UIButton) {
         self.delegate?.mainView(self, didSelectAboutButton: button)
     }
 
