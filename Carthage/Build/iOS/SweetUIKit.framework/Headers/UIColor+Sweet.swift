@@ -29,7 +29,7 @@ public extension UIColor {
     ///   - blue: The blue part, ranging from 0 to 255.
     ///   - alpha: The alpha part, ranging from 0 to 100.
     public convenience init(r red: Double, g green: Double, b blue: Double, a alpha: Double = 100) {
-        self.init(red: CGFloat(red) / CGFloat(255.0), green: CGFloat(green) / CGFloat(255.0), blue: CGFloat(blue) / CGFloat(255.0), alpha: CGFloat(alpha) / CGFloat(100.0))
+        self.init(red: CGFloat(red / 255.0), green: CGFloat(green / 255.0), blue: CGFloat(blue / 255.0), alpha: CGFloat(alpha / 100.0))
     }
 
     /// Compares if two colors are equal.
@@ -37,21 +37,24 @@ public extension UIColor {
     /// - Parameter color: A UIColor to compare.
     /// - Returns: A boolean, true if same (or very similar) and false otherwise.
     public func isEqual(to color: UIColor) -> Bool {
-        let currentRGBA = self.RGBA
+        let currentRGBA = RGBA
         let comparedRGBA = color.RGBA
 
-        return self.compareColorComponents(a: currentRGBA[0], b: comparedRGBA[0]) &&
-            self.compareColorComponents(a: currentRGBA[1], b: comparedRGBA[1]) &&
-            self.compareColorComponents(a: currentRGBA[2], b: comparedRGBA[2]) &&
-            self.compareColorComponents(a: currentRGBA[3], b: comparedRGBA[3])
+        return compareColorComponents(a: currentRGBA[0], b: comparedRGBA[0]) &&
+            compareColorComponents(a: currentRGBA[1], b: comparedRGBA[1]) &&
+            compareColorComponents(a: currentRGBA[2], b: comparedRGBA[2]) &&
+            compareColorComponents(a: currentRGBA[3], b: comparedRGBA[3])
     }
 
     /// Get the red, green, blue and alpha values.
     private var RGBA: [CGFloat] {
-        var RGBA: [CGFloat] = [0, 0, 0, 0]
-        self.getRed(&RGBA[0], green: &RGBA[1], blue: &RGBA[2], alpha: &RGBA[3])
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
 
-        return RGBA
+        return [red, green, blue, alpha]
     }
 
     private func compareColorComponents(a: CGFloat, b: CGFloat) -> Bool {

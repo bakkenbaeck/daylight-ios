@@ -7,7 +7,7 @@ public extension UILabel {
      - returns: The width of the text.
      */
     public func width() -> CGFloat {
-        let rect = (self.attributedText ?? NSAttributedString()).boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, context: nil)
+        let rect = (attributedText ?? NSAttributedString()).boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, context: nil)
         return rect.width
     }
 
@@ -16,7 +16,7 @@ public extension UILabel {
      - returns: The height of the text for the current width of the label
      */
     public func height() -> CGFloat {
-        let size = self.sizeThatFits(CGSize(width: self.bounds.width, height: CGFloat.greatestFiniteMagnitude))
+        let size = sizeThatFits(CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude))
 
         return size.height
     }
@@ -28,11 +28,11 @@ public extension UILabel {
      */
     public func setSpacedOutText(_ text: String, lineSpacing: CGFloat) {
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = lineSpacing - self.font.pointSize
-        paragraphStyle.alignment = self.textAlignment
+        paragraphStyle.lineSpacing = lineSpacing - font.pointSize
+        paragraphStyle.alignment = textAlignment
 
         let attributedString = NSMutableAttributedString(string: text)
-        attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
-        self.attributedText = attributedString
+        attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+        attributedText = attributedString
     }
 }

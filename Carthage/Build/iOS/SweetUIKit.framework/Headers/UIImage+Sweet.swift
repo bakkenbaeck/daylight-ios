@@ -29,16 +29,16 @@ public extension UIImage {
      */
     public func centeredFrame() -> CGRect {
         let screenBounds = UIScreen.main.bounds
-        let widthScaleFactor = self.size.width / screenBounds.size.width
-        let heightScaleFactor = self.size.height / screenBounds.size.height
+        let widthScaleFactor = size.width / screenBounds.size.width
+        let heightScaleFactor = size.height / screenBounds.size.height
         var centeredFrame = CGRect.zero
 
         let shouldFitHorizontally = widthScaleFactor > heightScaleFactor
         if shouldFitHorizontally && widthScaleFactor > 0 {
-            let y = (screenBounds.size.height / 2) - ((self.size.height / widthScaleFactor) / 2)
-            centeredFrame = CGRect(x: 0, y: y, width: screenBounds.size.width, height: self.size.height / widthScaleFactor)
+            let y = (screenBounds.size.height / 2) - ((size.height / widthScaleFactor) / 2)
+            centeredFrame = CGRect(x: 0, y: y, width: screenBounds.size.width, height: size.height / widthScaleFactor)
         } else if heightScaleFactor > 0 {
-            let x = (screenBounds.size.width / 2) - ((self.size.width / heightScaleFactor) / 2)
+            let x = (screenBounds.size.width / 2) - ((size.width / heightScaleFactor) / 2)
             centeredFrame = CGRect(x: x, y: 0, width: screenBounds.size.width - (2 * x), height: screenBounds.size.height)
         }
 
@@ -71,7 +71,7 @@ public extension UIImage {
         UIGraphicsBeginImageContext(size)
         let context = UIGraphicsGetCurrentContext()
         context?.interpolationQuality = quality
-        self.draw(in: CGRect(origin: .zero, size: size))
+        draw(in: CGRect(origin: .zero, size: size))
         let resized = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
@@ -83,14 +83,14 @@ public extension UIImage {
     /// - Parameter width: The new scaled width
     /// - Returns: A scaled image
     public func resized(toWidth width: CGFloat, quality: CGInterpolationQuality = .medium) -> UIImage {
-        let scale = width / self.size.width
-        let height = self.size.height * scale
+        let scale = width / size.width
+        let height = size.height * scale
 
         UIGraphicsBeginImageContext(CGSize(width: width, height: height))
         let context = UIGraphicsGetCurrentContext()
         context?.interpolationQuality = quality
 
-        self.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+        draw(in: CGRect(x: 0, y: 0, width: width, height: height))
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
 
         UIGraphicsEndImageContext()
@@ -103,14 +103,14 @@ public extension UIImage {
     /// - Parameter height: The new scaled height
     /// - Returns: A scaled image
     public func resized(toHeight height: CGFloat, quality: CGInterpolationQuality = .medium) -> UIImage {
-        let scale = height / self.size.height
-        let width = self.size.width * scale
+        let scale = height / size.height
+        let width = size.width * scale
 
         UIGraphicsBeginImageContext(CGSize(width: width, height: height))
         let context = UIGraphicsGetCurrentContext()
         context?.interpolationQuality = quality
 
-        self.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+        draw(in: CGRect(x: 0, y: 0, width: width, height: height))
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
 
         UIGraphicsEndImageContext()
@@ -122,13 +122,13 @@ public extension UIImage {
     ///
     /// - Returns: The normalized image.
     public func imageByNormalizingOrientation() -> UIImage? {
-        if self.imageOrientation == .up {
+        if imageOrientation == .up {
             return self
         }
 
         let size = self.size
-        UIGraphicsBeginImageContextWithOptions(size, false, self.scale)
-        self.draw(in: CGRect(origin: CGPoint.zero, size: size))
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        draw(in: CGRect(origin: CGPoint.zero, size: size))
         let normalizedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 

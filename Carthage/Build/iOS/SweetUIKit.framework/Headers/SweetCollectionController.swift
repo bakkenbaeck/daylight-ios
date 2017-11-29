@@ -6,7 +6,7 @@ open class SweetCollectionController: UIViewController {
     public init(collectionViewLayout layout: UICollectionViewLayout = UICollectionViewFlowLayout()) {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.collectionView = view
+        collectionView = view
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -18,15 +18,15 @@ open class SweetCollectionController: UIViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.addSubview(self.collectionView)
+        view.addSubview(collectionView)
 
-        self.addConstraints()
+        addConstraints()
     }
 
     func addConstraints() {
         let anchors = [self.collectionView.topAnchor.constraint(equalTo: self.view.topAnchor), self.collectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor), self.collectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor), self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)]
         for anchor in anchors {
-            anchor.priority = UILayoutPriorityDefaultLow
+            anchor.priority = UILayoutPriority.defaultLow
             anchor.isActive = true
         }
     }

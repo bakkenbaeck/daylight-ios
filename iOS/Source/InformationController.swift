@@ -102,7 +102,7 @@ class InformationController: UIViewController {
         self.webButton.heightAnchor.constraint(equalToConstant: 44)
     }
 
-    func updateInterface() {
+    @objc func updateInterface() {
         let sunPhase = Location.current?.sunPhase ?? .night
         let (backgroundColor, textColor) = Theme.colors(for: sunPhase)
 
@@ -116,7 +116,7 @@ class InformationController: UIViewController {
             let content = "Enable notifications"
             let attributedString = NSMutableAttributedString(string: content)
             let range = (content as NSString).range(of: "Enable")
-            attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
+            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: textColor, range: range)
 
             return attributedString
         }
@@ -125,7 +125,7 @@ class InformationController: UIViewController {
             let content = "Turn off notifications"
             let attributedString = NSMutableAttributedString(string: content)
             let range = (content as NSString).range(of: "off")
-            attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
+            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: textColor, range: range)
 
             return attributedString
         }
@@ -134,7 +134,7 @@ class InformationController: UIViewController {
             let content = "Turn on notifications"
             let attributedString = NSMutableAttributedString(string: content)
             let range = (content as NSString).range(of: "on")
-            attributedString.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
+            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: textColor, range: range)
 
             return attributedString
         }
@@ -164,11 +164,11 @@ class InformationController: UIViewController {
         }
     }
 
-    func openSettings() {
+    @objc func openSettings() {
         UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
     }
 
-    func didSelectNotifications() {
+    @objc func didSelectNotifications() {
         self.notificationButton.isEnabled = false
         Settings.isNotificationsEnabled = !Settings.isNotificationsEnabled
         Settings.registerForNotifications()
@@ -177,11 +177,11 @@ class InformationController: UIViewController {
         self.updateInterface()
     }
 
-    func didSelectClose() {
+    @objc func didSelectClose() {
         self.dismiss(animated: true)
     }
 
-    func didSelectLinkButton() {
+    @objc func didSelectLinkButton() {
         UIApplication.shared.open(URL(string: "https://bakkenbaeck.com")!, options: [:], completionHandler: nil)
     }
 }

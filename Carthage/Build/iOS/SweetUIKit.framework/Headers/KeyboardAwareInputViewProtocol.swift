@@ -38,7 +38,7 @@ private var valueKey: UInt8 = 0 // We still need this boilerplate
 
 public extension KeyboardAwareAccessoryViewDelegate where Self: UIResponder {
     var keyboardAwareInputView: KeyboardAwareInputAccessoryView {
-        return self.associatedObject(base: self, key: &valueKey) { () -> KeyboardAwareInputAccessoryView in
+        return associatedObject(base: self, key: &valueKey) { () -> KeyboardAwareInputAccessoryView in
 
             let view = KeyboardAwareInputAccessoryView(withAutoLayout: true)
             view.delegate = self
@@ -86,16 +86,16 @@ open class KeyboardAwareInputAccessoryView: UIView {
 
     open override func didMoveToSuperview() {
         if let superview = self.delegate?.inputAccessoryView?.superview {
-            self.storedSuperview = superview
-            self.storedSuperview.addObserver(self, forKeyPath: self.observableKeyPath, options: .new, context: &self.inputAccessoryContext)
+            storedSuperview = superview
+            storedSuperview.addObserver(self, forKeyPath: observableKeyPath, options: .new, context: &inputAccessoryContext)
         } else {
-            self.storedSuperview.removeObserver(self, forKeyPath: self.observableKeyPath, context: &self.inputAccessoryContext)
+            storedSuperview.removeObserver(self, forKeyPath: observableKeyPath, context: &inputAccessoryContext)
         }
     }
 
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == self.observableKeyPath {
-            let superview = self.storedSuperview
+        if keyPath == observableKeyPath {
+            let superview = storedSuperview
 
             /*
              To get the constant we need here, to keep input view on the correct position at all times,
@@ -107,15 +107,15 @@ open class KeyboardAwareInputAccessoryView: UIView {
             guard let window = self.window else { return }
             let constant = -(superview.frame.intersection(window.bounds).height)
 
-            self.delegate?.inputView(self, shouldUpdatePosition: constant)
+            delegate?.inputView(self, shouldUpdatePosition: constant)
         } else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
 
     func invalidateLayout() {
-        if self.frame.isEmpty { return }
-        self.invalidateIntrinsicContentSize()
-        self.layoutIfNeeded()
+        if frame.isEmpty { return }
+        invalidateIntrinsicContentSize()
+        layoutIfNeeded()
     }
 }
