@@ -33,6 +33,8 @@
 	<string>We need to know where you are in order to show you sun duration information for your current location.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Daylight would like your permission to store this screenshot.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Daylight would like your permission to store this screenshot.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>GT-America-Light.ttf</string>
