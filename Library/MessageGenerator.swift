@@ -40,7 +40,7 @@ struct MessageGenerator {
     }
 
     private func longerMoreThanAMinuteMessage(for hashValue: UInt32) -> Message {
-        let index = Int(hashValue % UInt32(self.longerMoreThanAMinuteMessages.count))
+        let index = Int(hashValue % UInt32(self.longerMoreThanAMinuteMessages.count - 1))
 
         return self.longerMoreThanAMinuteMessages[index]
     }
@@ -58,7 +58,7 @@ struct MessageGenerator {
     }
 
     private func longerLessThanAMinuteMessage(for hashValue: UInt32) -> Message {
-        let index = Int(hashValue % UInt32(self.longerLessThanAMinuteMessages.count))
+        let index = Int(hashValue % UInt32(self.longerLessThanAMinuteMessages.count - 1))
 
         return self.longerLessThanAMinuteMessages[index]
     }
@@ -74,7 +74,7 @@ struct MessageGenerator {
     }
 
     private func shorterMoreThanAMinuteMessage(for hashValue: UInt32) -> Message {
-        let index = Int(hashValue % UInt32(self.shorterMoreThanAMinuteMessages.count))
+        let index = Int(hashValue % UInt32(self.shorterMoreThanAMinuteMessages.count - 1))
 
         return self.shorterMoreThanAMinuteMessages[index]
     }
@@ -90,7 +90,7 @@ struct MessageGenerator {
     }
 
     private func longerTomorrowLessThanAMinuteMessage(for hashValue: UInt32) -> Message {
-        let index = Int(hashValue % UInt32(self.longerLessThanAMinuteMessages.count))
+        let index = Int(hashValue % UInt32(self.longerLessThanAMinuteMessages.count - 1))
 
         return self.longerTomorrowLessThanAMinuteMessages[index]
     }
@@ -108,7 +108,7 @@ struct MessageGenerator {
     }
 
     private func longerTomorrowMoreThanAMinuteMessage(for hashValue: UInt32) -> Message {
-        let index = Int(hashValue % UInt32(self.longerTomorrowMoreThanAMinuteMessages.count))
+        let index = Int(hashValue % UInt32(self.longerTomorrowMoreThanAMinuteMessages.count - 1))
 
         return self.longerTomorrowMoreThanAMinuteMessages[index]
     }
@@ -124,7 +124,7 @@ struct MessageGenerator {
     }
 
     private func shorterLessThanAMinuteMessage(for hashValue: UInt32) -> Message {
-        let index = Int(hashValue % UInt32(self.shorterLessThanAMinuteMessages.count))
+        let index = Int(hashValue % UInt32(self.shorterLessThanAMinuteMessages.count - 1))
 
         return self.shorterLessThanAMinuteMessages[index]
     }
@@ -140,7 +140,7 @@ struct MessageGenerator {
     }
 
     private func shorterTomorrowMoreThanAMinuteMessage(for hashValue: UInt32) -> Message {
-        let index = Int(hashValue % UInt32(self.shorterTomorrowMoreThanAMinuteMessages.count))
+        let index = Int(hashValue % UInt32(self.shorterTomorrowMoreThanAMinuteMessages.count - 1))
 
         return self.shorterTomorrowMoreThanAMinuteMessages[index]
     }
@@ -156,7 +156,7 @@ struct MessageGenerator {
     }
 
     private func shorterTomorrowLessThanAMinuteMessage(for hashValue: UInt32) -> Message {
-        let index = Int(hashValue % UInt32(self.shorterTomorrowLessThanAMinuteMessages.count))
+        let index = Int(hashValue % UInt32(self.shorterTomorrowLessThanAMinuteMessages.count - 1))
 
         return self.shorterTomorrowLessThanAMinuteMessages[index]
     }

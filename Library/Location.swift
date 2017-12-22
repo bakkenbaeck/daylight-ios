@@ -3,6 +3,8 @@ import CoreLocation
 
 struct Location {
 
+    private let calendar = Calendar.current
+    
     let coordinate: CLLocationCoordinate2D
     let city: String
     let country: String
@@ -71,7 +73,7 @@ struct Location {
     }
 
     func dayLengthDifferenceOnDate(_ date: Date) -> Double {
-        let dayBefore = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: date)!
+        let dayBefore = self.calendar.date(byAdding: .day, value: -1, to: date)!
 
         let daySunTimes = self.suntimes(forDate: date)
         let dayBeforeSunTimes = self.suntimes(forDate: dayBefore)
@@ -102,19 +104,19 @@ struct Location {
     }
 
     private var today: Date {
-        return Calendar.autoupdatingCurrent.startOfDay(for: Date())
+        return Date()
     }
 
     private var tomorrow: Date {
-        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: 1, to: self.today)!
+        return self.calendar.date(byAdding: .day, value: 1, to: self.today)!
     }
 
     private var yesterday: Date {
-        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: self.today)!
+        return self.calendar.date(byAdding: .day, value: -1, to: self.today)!
     }
 
     private func suntimes(forDate date: Date) -> SunCalc {
-        return SunCalc(date: date, timeZone: TimeZone.autoupdatingCurrent, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
+        return SunCalc(date: date, timeZone: .current, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
     }
 
     private var nowSuntimes: SunCalc {
