@@ -15,7 +15,7 @@ extension Date {
     }
 
     func dayAfter() -> Date {
-        return Calendar.current.date(byAdding: .day, value: 1, to: self)!
+        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: 1, to: self)!
     }
 
     func futureDates() -> [Date] {

@@ -10,7 +10,7 @@ class Suntimes_HelperTests: XCTestCase {
         let coordinate = CLLocationCoordinate2D(latitude: 59.917, longitude: 10.75)
 
         let timeZone = TimeZone(identifier: "UTC")!
-        var calendar = Calendar.current
+        var calendar = Calendar.autoupdatingCurrent
         calendar.timeZone = timeZone
 
         var dateComponents = DateComponents()

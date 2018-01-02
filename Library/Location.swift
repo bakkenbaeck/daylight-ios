@@ -3,7 +3,7 @@ import CoreLocation
 
 struct Location {
 
-    private let calendar = Calendar.current
+    private let calendar = Calendar.autoupdatingCurrent
     
     let coordinate: CLLocationCoordinate2D
     let city: String

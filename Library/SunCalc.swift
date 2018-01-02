@@ -95,7 +95,7 @@ struct SunCalc {
     }
 
     var sunPhase: SunPhase {
-        var calendar = Calendar.current
+        var calendar = Calendar.autoupdatingCurrent
         calendar.timeZone = self.timeZone
         let startOfTheDay = calendar.startOfDay(for: self.date)
 
