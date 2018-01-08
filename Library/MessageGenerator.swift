@@ -1,25 +1,23 @@
 import Foundation
 
+extension Collection where Index == Int {
+    var random: Element? {
+        return self.isEmpty ? nil : self[Int(arc4random_uniform(UInt32(self.endIndex)))]
+    }
+}
+
 struct MessageGenerator {
     let informationMessage = Message(format: "Daylight is an experiment inspired by the dark and long winters of the north. Made by **Bakken & Bæck**.")
 
     func message(forDay day: Date, sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
-        let message = self.generateMessage(forHashValue: self.hashValue(forDay: day), sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+        let message = self.generateMessage(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
         return message
     }
 
     func messageForNotification(forDate date: Date, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> String {
-        let message = self.generateMessage(forHashValue: self.hashValue(forDay: date), sunPhase: .solarNoon, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+        let message = self.generateMessage(sunPhase: .solarNoon, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
 
         return message.content
-    }
-
-    func hashValue(forDay day: Date) -> UInt32 {
-        let dayKey = self.dateFormatter.string(from: day)
-
-        let value = FNVHash.fnv1a_32(string: dayKey)
-
-        return value
     }
 
     private var longerMoreThanAMinuteMessages: [Message] {
@@ -39,10 +37,8 @@ struct MessageGenerator {
         return messages
     }
 
-    private func longerMoreThanAMinuteMessage(for hashValue: UInt32) -> Message {
-        let index = Int(hashValue % UInt32(self.longerMoreThanAMinuteMessages.count - 1))
-
-        return self.longerMoreThanAMinuteMessages[index]
+    private func longerMoreThanAMinuteRandomMessage() -> Message {
+        return self.longerMoreThanAMinuteMessages.random!
     }
 
     private var longerLessThanAMinuteMessages: [Message] {
@@ -57,10 +53,8 @@ struct MessageGenerator {
         return messages
     }
 
-    private func longerLessThanAMinuteMessage(for hashValue: UInt32) -> Message {
-        let index = Int(hashValue % UInt32(self.longerLessThanAMinuteMessages.count - 1))
-
-        return self.longerLessThanAMinuteMessages[index]
+    private func longerLessThanAMinuteRandomMessage() -> Message {
+        return self.longerLessThanAMinuteMessages.random!
     }
 
     private var shorterMoreThanAMinuteMessages: [Message] {
@@ -73,10 +67,8 @@ struct MessageGenerator {
         return messages
     }
 
-    private func shorterMoreThanAMinuteMessage(for hashValue: UInt32) -> Message {
-        let index = Int(hashValue % UInt32(self.shorterMoreThanAMinuteMessages.count - 1))
-
-        return self.shorterMoreThanAMinuteMessages[index]
+    private func shorterMoreThanAMinuteRandomMessage() -> Message {
+        return self.shorterMoreThanAMinuteMessages.random!
     }
 
     private var longerTomorrowLessThanAMinuteMessages: [Message] {
@@ -89,10 +81,8 @@ struct MessageGenerator {
         return messages
     }
 
-    private func longerTomorrowLessThanAMinuteMessage(for hashValue: UInt32) -> Message {
-        let index = Int(hashValue % UInt32(self.longerLessThanAMinuteMessages.count - 1))
-
-        return self.longerTomorrowLessThanAMinuteMessages[index]
+    private func longerTomorrowLessThanAMinuteRandomMessage() -> Message {
+        return self.longerTomorrowLessThanAMinuteMessages.random!
     }
 
     private var longerTomorrowMoreThanAMinuteMessages: [Message] {
@@ -107,10 +97,8 @@ struct MessageGenerator {
         return messages
     }
 
-    private func longerTomorrowMoreThanAMinuteMessage(for hashValue: UInt32) -> Message {
-        let index = Int(hashValue % UInt32(self.longerTomorrowMoreThanAMinuteMessages.count - 1))
-
-        return self.longerTomorrowMoreThanAMinuteMessages[index]
+    private func longerTomorrowMoreThanAMinuteRandomMessage() -> Message {
+        return self.longerTomorrowMoreThanAMinuteMessages.random!
     }
 
     private var shorterLessThanAMinuteMessages: [Message] {
@@ -123,10 +111,8 @@ struct MessageGenerator {
         return messages
     }
 
-    private func shorterLessThanAMinuteMessage(for hashValue: UInt32) -> Message {
-        let index = Int(hashValue % UInt32(self.shorterLessThanAMinuteMessages.count - 1))
-
-        return self.shorterLessThanAMinuteMessages[index]
+    private func shorterLessThanAMinuteRandomMessage() -> Message {
+        return self.shorterLessThanAMinuteMessages.random!
     }
 
     private var shorterTomorrowMoreThanAMinuteMessages: [Message] {
@@ -139,10 +125,8 @@ struct MessageGenerator {
         return messages
     }
 
-    private func shorterTomorrowMoreThanAMinuteMessage(for hashValue: UInt32) -> Message {
-        let index = Int(hashValue % UInt32(self.shorterTomorrowMoreThanAMinuteMessages.count - 1))
-
-        return self.shorterTomorrowMoreThanAMinuteMessages[index]
+    private func shorterTomorrowMoreThanAMinuteRandomMessage() -> Message {
+        return self.shorterTomorrowMoreThanAMinuteMessages.random!
     }
 
     private var shorterTomorrowLessThanAMinuteMessages: [Message] {
@@ -155,10 +139,8 @@ struct MessageGenerator {
         return messages
     }
 
-    private func shorterTomorrowLessThanAMinuteMessage(for hashValue: UInt32) -> Message {
-        let index = Int(hashValue % UInt32(self.shorterTomorrowLessThanAMinuteMessages.count - 1))
-
-        return self.shorterTomorrowLessThanAMinuteMessages[index]
+    private func shorterTomorrowLessThanAMinuteRandomMessage() -> Message {
+        return self.shorterTomorrowLessThanAMinuteMessages.random!
     }
 
     private var dateFormatter: DateFormatter = {
@@ -168,25 +150,25 @@ struct MessageGenerator {
         return formatter
     }()
 
-    func generateMessage(forHashValue hashValue: UInt32, sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
+    func generateMessage(sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
         let messageKind = Message.Kind(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
         switch messageKind {
         case .longerMoreThanAMinute:
-            return longerMoreThanAMinuteMessage(for: hashValue)
+            return self.longerMoreThanAMinuteRandomMessage()
         case .longerLessThanAMinute:
-            return longerLessThanAMinuteMessage(for: hashValue)
+            return self.longerLessThanAMinuteRandomMessage()
         case .shorterMoreThanAMinute:
-            return shorterMoreThanAMinuteMessage(for: hashValue)
+            return self.shorterMoreThanAMinuteRandomMessage()
         case .shorterLessThanAMinute:
-            return self.shorterLessThanAMinuteMessage(for: hashValue)
+            return self.shorterLessThanAMinuteRandomMessage()
         case .longerTomorrowMoreThanAMinute:
-            return self.longerTomorrowMoreThanAMinuteMessage(for: hashValue)
+            return self.longerTomorrowMoreThanAMinuteRandomMessage()
         case .longerTomorrowLessThanAMinute:
-            return self.longerTomorrowLessThanAMinuteMessage(for: hashValue)
+            return self.longerTomorrowLessThanAMinuteRandomMessage()
         case .shorterTomorrowMoreThanAMinute:
-            return self.shorterTomorrowMoreThanAMinuteMessage(for: hashValue)
+            return self.shorterTomorrowMoreThanAMinuteRandomMessage()
         case .shorterTomorrowLessThanAMinute:
-            return self.shorterTomorrowLessThanAMinuteMessage(for: hashValue)
+            return self.shorterTomorrowLessThanAMinuteRandomMessage()
         }
     }
 }
