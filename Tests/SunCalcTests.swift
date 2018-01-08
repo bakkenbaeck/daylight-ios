@@ -134,4 +134,3 @@ class SunCalcTests: XCTestCase {
         XCTAssertEqual(sunCalc.nauticalDusk.timeIntervalSince1970, expectedNauticalDusk.timeIntervalSince1970, accuracy: 0.99)
     }
 }
-

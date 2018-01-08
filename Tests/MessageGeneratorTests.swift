@@ -67,7 +67,7 @@ class MessageGeneratorTests: XCTestCase {
             "Today is 2 minutes longer than yesterday. Happy days!",
             "Bring out your shorts, because today has 2 minutes more sunlight.",
             "Smile! Today has 3 minutes more daylight than yesterday!",
-            "Smile! Today has 3 minutes more daylight than yesterday!",
+            "Smile! Today has 3 minutes more daylight than yesterday!"
         ]
 
         let initialDate = self.initialDate
@@ -121,7 +121,7 @@ class MessageGeneratorTests: XCTestCase {
             "Bring out your shorts, because today has 3 minutes more sunlight.",
             "Today is 3 minutes longer than yesterday. Happy days!",
             "After darkness comes daylight. 3 minutes more to be precise!",
-            "3 minutes extra sunshine today. Make them count!",
+            "3 minutes extra sunshine today. Make them count!"
         ]
 
         let initialDate = self.afterDate
@@ -176,8 +176,8 @@ class MessageGeneratorTests: XCTestCase {
             "Smile! Today has 1 minute more daylight than yesterday!",
             "After darkness comes daylight. 1 minute more to be precise!",
             "Today is 1 minute longer. It’s getting better and better!",
-            "1 minute more daylight today. Just let it sink in…",
-            ]
+            "1 minute more daylight today. Just let it sink in…"
+        ]
 
         // Date is now two days after
         let initialDate = self.beforeDate
@@ -232,8 +232,8 @@ class MessageGeneratorTests: XCTestCase {
             "Sadly, the day will be 1 minute shorter. Make the most out of it!",
             "1 minute less sunlight today, unfortunately. It’ll get better!",
             "1 minute less sunlight today, unfortunately. It’ll get better!",
-            "Sadly, the day will be 1 minute shorter. Make the most out of it!",
-            ]
+            "Sadly, the day will be 1 minute shorter. Make the most out of it!"
+        ]
 
         // Date is now two days after
         let initialDate = self.includesJuneSolstice
