@@ -52,6 +52,8 @@
 		9FFFCA48200384530060F86F /* SunriseSet+HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144D8CEA1E089D6C0036FD4B /* SunriseSet+HelperTests.swift */; };
 		9FFFCA49200384530060F86F /* MessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14507A7B1E09F9AF0032F0AF /* MessageTests.swift */; };
 		9FFFCA4A200384530060F86F /* Date+HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146EE0451E1BC40200F08A13 /* Date+HelperTests.swift */; };
+		9FFFCA4C2003ABEE0060F86F /* Numbers+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */; };
+		9FFFCA4D2003AC1C0060F86F /* Numbers+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */; };
 		D197B2A38145C1C1E03EC48D /* String + Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */; };
 		D197B5A6D4413DEF81D6B469 /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
 		D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBC3EDBF4CA099642BCE /* Notifier.swift */; };
@@ -144,6 +146,7 @@
 		14F37F921E0D554700005101 /* SunCalcTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunCalcTests.swift; sourceTree = "<group>"; };
 		44227E8E1E067A1E002B911B /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		9FFFCA3B200384390060F86F /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numbers+Time.swift"; sourceTree = "<group>"; };
 		D197B54C8E75BC3669A5BD10 /* SunView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunView.swift; sourceTree = "<group>"; };
 		D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageGenerator.swift; sourceTree = "<group>"; };
 		D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + Helpers.swift"; sourceTree = "<group>"; };
@@ -209,6 +212,7 @@
 			children = (
 				14A10F571E0D336E00A2D098 /* suncalc.js */,
 				143D3B1F1DE9D3E0003F77B9 /* Theme.swift */,
+				9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */,
 				143D3B281DE9D434003F77B9 /* LocationTracker.swift */,
 				D197BA3AFD6ABA7A71444B40 /* MessageGenerator.swift */,
 				44227E8E1E067A1E002B911B /* Location.swift */,
@@ -492,6 +496,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03C628A91E58FAE600A69F3D /* SunCalc.swift in Sources */,
+				9FFFCA4D2003AC1C0060F86F /* Numbers+Time.swift in Sources */,
 				03C628B61E59BA3B00A69F3D /* String + Helpers.swift in Sources */,
 				03C628B71E59BA4400A69F3D /* FNVHash.swift in Sources */,
 				03C628B51E59BA2300A69F3D /* MessageGenerator.swift in Sources */,
@@ -525,6 +530,7 @@
 				14A10F5B1E0D339D00A2D098 /* SunCalc.swift in Sources */,
 				143D3B291DE9D434003F77B9 /* LocationTracker.swift in Sources */,
 				14507A781E09F8C60032F0AF /* Message.swift in Sources */,
+				9FFFCA4C2003ABEE0060F86F /* Numbers+Time.swift in Sources */,
 				1432419B1E1BF4D9000E6950 /* UIScreen+Helpers.swift in Sources */,
 				D197BB6AA1F1FB8F3E2ADA6B /* MessageGenerator.swift in Sources */,
 				D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */,

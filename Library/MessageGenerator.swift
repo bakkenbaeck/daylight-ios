@@ -3,13 +3,14 @@ import Foundation
 struct MessageGenerator {
     let informationMessage = Message(format: "Daylight is an experiment inspired by the dark and long winters of the north. Made by **Bakken & Bæck**.")
 
-    func message(for day: Date, hemisphere: Location.Hemisphere, sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
-        let message = self.generateMessage(date: day, hemisphere: hemisphere, sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+    func message(for day: Date, hemisphere: Location.Hemisphere, sunPhase: SunPhase, daylightLenghtDifference: Double) -> Message {
+        let message = self.generateMessage(date: day, hemisphere: hemisphere, sunPhase: sunPhase, daylightLenghtDifference: daylightLenghtDifference)
+
         return message
     }
 
-    func messageForNotification(date: Date, hemisphere: Location.Hemisphere, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> String {
-        let message = self.generateMessage(date: date, hemisphere: hemisphere, sunPhase: .solarNoon, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+    func messageForNotification(date: Date, hemisphere: Location.Hemisphere, daylightLenghtDifference: Double) -> String {
+        let message = self.generateMessage(date: date, hemisphere: hemisphere, sunPhase: .solarNoon, daylightLenghtDifference: daylightLenghtDifference)
 
         return message.content
     }
@@ -160,27 +161,27 @@ struct MessageGenerator {
         return formatter
     }()
 
-    func generateMessage(date: Date, hemisphere: Location.Hemisphere, sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
+    func generateMessage(date: Date, hemisphere: Location.Hemisphere, sunPhase: SunPhase, daylightLenghtDifference: Double) -> Message {
 
         if date.isSolstice {
             if date.isJuneSolstice {
                 switch hemisphere {
                 case .southern:
-                    return Message(format: "Today is the winter solstice ☀️! From now on, every day will get a bit brighter! Enjoy!")
+                    return Message(format: "Today is the winter solstice ☀️! From now on, every day should get a bit brighter! Enjoy!")
                 case .northern:
-                    return Message(format: "Today is the summer solstice ☀️! Days will start getting darker now…")
+                    return Message(format: "Today is the summer solstice ☀️! Days should start getting darker now…")
                 }
             } else {
                 switch hemisphere {
                 case .southern:
-                    return Message(format: "Today is the summer solstice ☀️! Days will start getting darker now…")
+                    return Message(format: "Today is the summer solstice ☀️! Days should start getting darker now…")
                 case .northern:
-                    return Message(format: "Today is the winter solstice ☀️! From now on, every day will get a bit brighter! Enjoy!")
+                    return Message(format: "Today is the winter solstice ☀️! From now on, every day should get a bit brighter! Enjoy!")
                 }
             }
         } else {
             let hashValue = self.hashValue(for: date)
-            let messageKind = Message.Kind(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+            let messageKind = Message.Kind(sunPhase: sunPhase, daylightLenghtDifference: daylightLenghtDifference)
             switch messageKind {
             case .longerMoreThanAMinute:
                 return self.longerMoreThanAMinuteMessage(for: hashValue)
@@ -190,14 +191,6 @@ struct MessageGenerator {
                 return shorterMoreThanAMinuteMessage(for: hashValue)
             case .shorterLessThanAMinute:
                 return self.shorterLessThanAMinuteMessage(for: hashValue)
-            case .longerTomorrowMoreThanAMinute:
-                return self.longerTomorrowMoreThanAMinuteMessage(for: hashValue)
-            case .longerTomorrowLessThanAMinute:
-                return self.longerTomorrowLessThanAMinuteMessage(for: hashValue)
-            case .shorterTomorrowMoreThanAMinute:
-                return self.shorterTomorrowMoreThanAMinuteMessage(for: hashValue)
-            case .shorterTomorrowLessThanAMinute:
-                return self.shorterTomorrowLessThanAMinuteMessage(for: hashValue)
             }
         }
     }

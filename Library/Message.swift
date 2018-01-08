@@ -9,40 +9,21 @@ struct Message {
         case shorterMoreThanAMinute
         case shorterLessThanAMinute
 
-        case longerTomorrowMoreThanAMinute
-        case longerTomorrowLessThanAMinute
-
-        case shorterTomorrowMoreThanAMinute
-        case shorterTomorrowLessThanAMinute
-
-        init(sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) {
-            var kindRawValue = 0
-
-            if sunPhase == .night || sunPhase == .dusk {
-                let tomorrowIsLonger = tomorrowDaylightLength - todayDaylightLength > 0
-                if tomorrowIsLonger {
-                    let longerTomorrowMoreThanAMinute = tomorrowDaylightLength - todayDaylightLength > 60
-
-                    kindRawValue = longerTomorrowMoreThanAMinute ? Message.Kind.longerTomorrowMoreThanAMinute.rawValue : Message.Kind.longerTomorrowLessThanAMinute.rawValue
+        init(sunPhase: SunPhase, daylightLenghtDifference: Double) {
+            // positive values mean days are getting longer
+            if daylightLenghtDifference == abs(daylightLenghtDifference) {
+                if daylightLenghtDifference >= 1.minute {
+                    self = .longerMoreThanAMinute
                 } else {
-                    let shorterTomorrowMoreThanAMinute = todayDaylightLength - tomorrowDaylightLength > 60
-
-                    kindRawValue = shorterTomorrowMoreThanAMinute ? Message.Kind.shorterTomorrowMoreThanAMinute.rawValue : Message.Kind.shorterTomorrowLessThanAMinute.rawValue
+                    self = .longerLessThanAMinute
                 }
             } else {
-                let todayIsLonger = todayDaylightLength - yesterdayDaylightLength > 0
-                if todayIsLonger {
-                    let longerMoreThanAMinute = todayDaylightLength - yesterdayDaylightLength > 60
-
-                    kindRawValue = longerMoreThanAMinute ? Message.Kind.longerMoreThanAMinute.rawValue : Message.Kind.longerLessThanAMinute.rawValue
+                if abs(daylightLenghtDifference) >= 1.minute {
+                    self = .shorterMoreThanAMinute
                 } else {
-                    let shorterMoreThanAMinute = yesterdayDaylightLength - todayDaylightLength > 60
-
-                    kindRawValue = shorterMoreThanAMinute ? Message.Kind.shorterMoreThanAMinute.rawValue : Message.Kind.shorterLessThanAMinute.rawValue
+                    self = .shorterLessThanAMinute
                 }
             }
-
-            self.init(rawValue: kindRawValue)!
         }
     }
 
