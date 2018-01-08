@@ -1,6 +1,8 @@
 import UIKit
 import XCTest
 
+@testable import Daylight
+
 class Date_HelperTests: XCTestCase {
 
     func testDatesOfComingYear() {

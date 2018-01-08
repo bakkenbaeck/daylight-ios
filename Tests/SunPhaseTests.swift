@@ -2,6 +2,8 @@ import UIKit
 import XCTest
 import CoreLocation
 
+@testable import Daylight
+
 class SunPhaseTests: XCTestCase {
 
     func testSunPhase() {

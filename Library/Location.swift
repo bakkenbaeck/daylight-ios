@@ -3,11 +3,26 @@ import CoreLocation
 
 struct Location {
 
+    enum Hemisphere {
+        case northern
+        case southern
+
+        init(latitude: CLLocationDegrees) {
+            if latitude > 0 {
+                self = .northern
+            } else {
+                self = .southern
+            }
+        }
+    }
+
     private let calendar = Calendar.autoupdatingCurrent
     
     let coordinate: CLLocationCoordinate2D
     let city: String
     let country: String
+
+    let hemisphere: Hemisphere
 
     init?(placemark: CLPlacemark) {
         guard let coordinate = placemark.location?.coordinate else { return nil }
@@ -21,6 +36,7 @@ struct Location {
         self.coordinate = coordinate
         self.city = city
         self.country = country
+        self.hemisphere = Hemisphere(latitude: coordinate.latitude)
     }
 
     static var current: Location? {

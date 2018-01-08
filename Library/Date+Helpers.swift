@@ -2,6 +2,22 @@ import Foundation
 
 extension Date {
 
+    var isSolstice: Bool {
+        return self.isJuneSolstice || self.isDecemberSolstice
+    }
+
+    var isDecemberSolstice: Bool {
+        let components = Calendar.current.dateComponents([.day, .month, .timeZone], from: self)
+
+        return components.day == 21 && components.month == 12
+    }
+
+    var isJuneSolstice: Bool {
+        let components = Calendar.current.dateComponents([.day, .month, .timeZone], from: self)
+
+        return components.day == 21 && components.month == 6
+    }
+
     func isBetween(_ beginDate: Date, and endDate: Date) -> Bool {
         if self.compare(beginDate) == .orderedAscending {
             return false

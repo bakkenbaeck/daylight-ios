@@ -1,21 +1,15 @@
 import Foundation
 
-extension Collection where Index == Int {
-    var random: Element? {
-        return self.isEmpty ? nil : self[Int(arc4random_uniform(UInt32(self.endIndex)))]
-    }
-}
-
 struct MessageGenerator {
     let informationMessage = Message(format: "Daylight is an experiment inspired by the dark and long winters of the north. Made by **Bakken & Bæck**.")
 
-    func message(forDay day: Date, sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
-        let message = self.generateMessage(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+    func message(for day: Date, hemisphere: Location.Hemisphere, sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
+        let message = self.generateMessage(date: day, hemisphere: hemisphere, sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
         return message
     }
 
-    func messageForNotification(forDate date: Date, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> String {
-        let message = self.generateMessage(sunPhase: .solarNoon, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+    func messageForNotification(date: Date, hemisphere: Location.Hemisphere, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> String {
+        let message = self.generateMessage(date: date, hemisphere: hemisphere, sunPhase: .solarNoon, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
 
         return message.content
     }
@@ -37,8 +31,10 @@ struct MessageGenerator {
         return messages
     }
 
-    private func longerMoreThanAMinuteRandomMessage() -> Message {
-        return self.longerMoreThanAMinuteMessages.random!
+    private func longerMoreThanAMinuteMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.longerMoreThanAMinuteMessages.count))
+
+        return self.longerMoreThanAMinuteMessages[index]
     }
 
     private var longerLessThanAMinuteMessages: [Message] {
@@ -53,8 +49,10 @@ struct MessageGenerator {
         return messages
     }
 
-    private func longerLessThanAMinuteRandomMessage() -> Message {
-        return self.longerLessThanAMinuteMessages.random!
+    private func longerLessThanAMinuteMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.longerLessThanAMinuteMessages.count))
+
+        return self.longerLessThanAMinuteMessages[index]
     }
 
     private var shorterMoreThanAMinuteMessages: [Message] {
@@ -67,8 +65,10 @@ struct MessageGenerator {
         return messages
     }
 
-    private func shorterMoreThanAMinuteRandomMessage() -> Message {
-        return self.shorterMoreThanAMinuteMessages.random!
+    private func shorterMoreThanAMinuteMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.shorterMoreThanAMinuteMessages.count))
+
+        return self.shorterMoreThanAMinuteMessages[index]
     }
 
     private var longerTomorrowLessThanAMinuteMessages: [Message] {
@@ -81,8 +81,10 @@ struct MessageGenerator {
         return messages
     }
 
-    private func longerTomorrowLessThanAMinuteRandomMessage() -> Message {
-        return self.longerTomorrowLessThanAMinuteMessages.random!
+    private func longerTomorrowLessThanAMinuteMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.longerLessThanAMinuteMessages.count))
+
+        return self.longerTomorrowLessThanAMinuteMessages[index]
     }
 
     private var longerTomorrowMoreThanAMinuteMessages: [Message] {
@@ -97,8 +99,10 @@ struct MessageGenerator {
         return messages
     }
 
-    private func longerTomorrowMoreThanAMinuteRandomMessage() -> Message {
-        return self.longerTomorrowMoreThanAMinuteMessages.random!
+    private func longerTomorrowMoreThanAMinuteMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.longerTomorrowMoreThanAMinuteMessages.count))
+
+        return self.longerTomorrowMoreThanAMinuteMessages[index]
     }
 
     private var shorterLessThanAMinuteMessages: [Message] {
@@ -111,8 +115,10 @@ struct MessageGenerator {
         return messages
     }
 
-    private func shorterLessThanAMinuteRandomMessage() -> Message {
-        return self.shorterLessThanAMinuteMessages.random!
+    private func shorterLessThanAMinuteMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.shorterLessThanAMinuteMessages.count))
+
+        return self.shorterLessThanAMinuteMessages[index]
     }
 
     private var shorterTomorrowMoreThanAMinuteMessages: [Message] {
@@ -125,8 +131,10 @@ struct MessageGenerator {
         return messages
     }
 
-    private func shorterTomorrowMoreThanAMinuteRandomMessage() -> Message {
-        return self.shorterTomorrowMoreThanAMinuteMessages.random!
+    private func shorterTomorrowMoreThanAMinuteMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.shorterTomorrowMoreThanAMinuteMessages.count))
+
+        return self.shorterTomorrowMoreThanAMinuteMessages[index]
     }
 
     private var shorterTomorrowLessThanAMinuteMessages: [Message] {
@@ -139,8 +147,10 @@ struct MessageGenerator {
         return messages
     }
 
-    private func shorterTomorrowLessThanAMinuteRandomMessage() -> Message {
-        return self.shorterTomorrowLessThanAMinuteMessages.random!
+    private func shorterTomorrowLessThanAMinuteMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.shorterTomorrowLessThanAMinuteMessages.count))
+
+        return self.shorterTomorrowLessThanAMinuteMessages[index]
     }
 
     private var dateFormatter: DateFormatter = {
@@ -150,25 +160,55 @@ struct MessageGenerator {
         return formatter
     }()
 
-    func generateMessage(sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
-        let messageKind = Message.Kind(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
-        switch messageKind {
-        case .longerMoreThanAMinute:
-            return self.longerMoreThanAMinuteRandomMessage()
-        case .longerLessThanAMinute:
-            return self.longerLessThanAMinuteRandomMessage()
-        case .shorterMoreThanAMinute:
-            return self.shorterMoreThanAMinuteRandomMessage()
-        case .shorterLessThanAMinute:
-            return self.shorterLessThanAMinuteRandomMessage()
-        case .longerTomorrowMoreThanAMinute:
-            return self.longerTomorrowMoreThanAMinuteRandomMessage()
-        case .longerTomorrowLessThanAMinute:
-            return self.longerTomorrowLessThanAMinuteRandomMessage()
-        case .shorterTomorrowMoreThanAMinute:
-            return self.shorterTomorrowMoreThanAMinuteRandomMessage()
-        case .shorterTomorrowLessThanAMinute:
-            return self.shorterTomorrowLessThanAMinuteRandomMessage()
+    func generateMessage(date: Date, hemisphere: Location.Hemisphere, sunPhase: SunPhase, yesterdayDaylightLength: Double, todayDaylightLength: Double, tomorrowDaylightLength: Double) -> Message {
+
+        if date.isSolstice {
+            if date.isJuneSolstice {
+                switch hemisphere {
+                case .southern:
+                    return Message(format: "Today is the winter solstice ☀️! From now on, every day will get a bit brighter! Enjoy!")
+                case .northern:
+                    return Message(format: "Today is the summer solstice ☀️! Days will start getting darker now…")
+                }
+            } else {
+                switch hemisphere {
+                case .southern:
+                    return Message(format: "Today is the summer solstice ☀️! Days will start getting darker now…")
+                case .northern:
+                    return Message(format: "Today is the winter solstice ☀️! From now on, every day will get a bit brighter! Enjoy!")
+                }
+            }
+        } else {
+            let hashValue = self.hashValue(for: date)
+            let messageKind = Message.Kind(sunPhase: sunPhase, yesterdayDaylightLength: yesterdayDaylightLength, todayDaylightLength: todayDaylightLength, tomorrowDaylightLength: tomorrowDaylightLength)
+            switch messageKind {
+            case .longerMoreThanAMinute:
+                return self.longerMoreThanAMinuteMessage(for: hashValue)
+            case .longerLessThanAMinute:
+                return self.longerLessThanAMinuteMessage(for: hashValue)
+            case .shorterMoreThanAMinute:
+                return shorterMoreThanAMinuteMessage(for: hashValue)
+            case .shorterLessThanAMinute:
+                return self.shorterLessThanAMinuteMessage(for: hashValue)
+            case .longerTomorrowMoreThanAMinute:
+                return self.longerTomorrowMoreThanAMinuteMessage(for: hashValue)
+            case .longerTomorrowLessThanAMinute:
+                return self.longerTomorrowLessThanAMinuteMessage(for: hashValue)
+            case .shorterTomorrowMoreThanAMinute:
+                return self.shorterTomorrowMoreThanAMinuteMessage(for: hashValue)
+            case .shorterTomorrowLessThanAMinute:
+                return self.shorterTomorrowLessThanAMinuteMessage(for: hashValue)
+            }
         }
     }
+
+    func hashValue(for date: Date) -> UInt32 {
+        let dateString = self.dateFormatter.string(from: date)
+
+        // We use an FNV hash of the date string, to ensure that each day has it's own message, instead of randomising.
+        let value = FNVHash.fnv1a_32(string: dateString)
+
+        return value
+    }
 }
+

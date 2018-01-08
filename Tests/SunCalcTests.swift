@@ -1,6 +1,8 @@
 import XCTest
 import CoreLocation
 
+@testable import Daylight
+
 class SunCalcTests: XCTestCase {
 
     /*
@@ -132,3 +134,4 @@ class SunCalcTests: XCTestCase {
         XCTAssertEqual(sunCalc.nauticalDusk.timeIntervalSince1970, expectedNauticalDusk.timeIntervalSince1970, accuracy: 0.99)
     }
 }
+

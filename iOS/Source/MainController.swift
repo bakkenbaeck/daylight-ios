@@ -2,6 +2,20 @@ import UIKit
 import CoreLocation
 import SweetUIKit
 
+extension TimeInterval {
+    var day: TimeInterval {
+        return self.hour * 24
+    }
+
+    var hour: TimeInterval {
+        return self.minute * 60.0
+    }
+
+    var minute: TimeInterval {
+        return self * 60.0
+    }
+}
+
 class MainController: UIViewController {
     lazy var informationController: InformationController = {
         let informationController = InformationController()
@@ -42,7 +56,7 @@ class MainController: UIViewController {
         self.locationTracker.locateIfPossible()
         self.updateInterface()
 
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateInterface), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.updateInterface), userInfo: nil, repeats: true)
 
         Notifier.cancelAllNotifications()
         if Settings.isNotificationsEnabled {
