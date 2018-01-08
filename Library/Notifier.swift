@@ -25,7 +25,7 @@ struct Notifier {
         let messageGenerator = MessageGenerator()
 
         let minutesRounded = abs(Int(Darwin.round(interval / 60.0)))
-        let generatedMessage = messageGenerator.messageForNotification(forDate: Date(), yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
+        let generatedMessage = messageGenerator.messageForNotification(forDate: date, yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
 
         let format = NSLocalizedString("number_of_minutes", comment: "")
         let minuteString = String.localizedStringWithFormat(format, minutesRounded)
