@@ -15,6 +15,11 @@ class MessageGeneratorTests: XCTestCase {
         return Calendar.autoupdatingCurrent.date(byAdding: .day, value: -15, to: self.initialDate)!
     }
 
+    var includesJuneSolstice: Date {
+        let date = Calendar.autoupdatingCurrent.date(byAdding: .month, value: -6, to: self.initialDate)!
+        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: -15, to: date)!
+    }
+
     private var location: Location!
 
     override func setUp() {
@@ -30,7 +35,7 @@ class MessageGeneratorTests: XCTestCase {
         super.tearDown()
     }
 
-    func testMessageGeneration() {
+    func testSolstice() {
         let expected = [
             "Today is the winter solstice ☀️! From now on, every day should get a bit brighter! Enjoy!",
             "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
@@ -81,7 +86,7 @@ class MessageGeneratorTests: XCTestCase {
         print(actual)
     }
 
-    func testAndDemonstrateMessageDeterminism() {
+    func testAfterSolstice() {
         // same list as before, without the first 2 elements, with two new ones appended at the end.
         // For a given day, we'll always get the same message format.
         // For a given day and location, always the same message.
@@ -136,7 +141,7 @@ class MessageGeneratorTests: XCTestCase {
         print(actual)
     }
 
-    func testEarlier() {
+    func testIncludingSolstice() {
         // same list as before, without the first 2 elements, with two new ones appended at the end.
         // For a given day, we'll always get the same message format.
         // For a given day and location, always the same message.
@@ -176,6 +181,62 @@ class MessageGeneratorTests: XCTestCase {
 
         // Date is now two days after
         let initialDate = self.beforeDate
+        let futureDates = initialDate.futureDates()
+        var actual = [String]()
+
+        // Expected string should match date list
+        XCTAssertEqual(expected.count, futureDates.count)
+
+        for (index, date) in futureDates.enumerated() {
+            let message = Notifier.formattedMessage(location: self.location, date: date)
+            actual.append(message)
+
+            XCTAssertEqual(message, expected[index], "Index: \(index).")
+        }
+
+        print(actual)
+    }
+
+    func testJuneSolstice() {
+        // same list as before, without the first 2 elements, with two new ones appended at the end.
+        // For a given day, we'll always get the same message format.
+        // For a given day and location, always the same message.
+        let expected = [
+            "Bring out your shorts, because today has 1 minute more sunlight.",
+            "1 minute extra sunshine today. Make them count!",
+            "After darkness comes daylight. 1 minute more to be precise!",
+            "Today is 1 minute longer than yesterday. Happy days!",
+            "Today is 1 minute longer. It’s getting better and better!",
+            "1 minute more daylight today. Just let it sink in…",
+            "We’ve reached the tipping point: we’ll have more sunlight every day now!",
+            "We’ll have about a minute of extra light today. It’s upwards from here.",
+            "We’ve reached the tipping point: we’ll have more sunlight every day now!",
+            "There’s about a minute of extra light at the end of this tunnel.",
+            "We’ll have about a minute of extra light today. It’s upwards from here.",
+            "There’s about a minute of extra light at the end of this tunnel.",
+            "We’ve reached the tipping point: we’ll have more sunlight every day now!",
+            "About a minute of extra light. You’ll start noticing the difference soon!",
+            "There’s about a minute of extra light at the end of this tunnel.",
+            "Today is the summer solstice ☀️! Days should start getting darker now…",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "Sadly, the day will be 1 minute shorter. Make the most out of it!",
+            "1 minute less sunlight today, unfortunately. It’ll get better!",
+            "1 minute less sunlight today, unfortunately. It’ll get better!",
+            "Sadly, the day will be 1 minute shorter. Make the most out of it!",
+            ]
+
+        // Date is now two days after
+        let initialDate = self.includesJuneSolstice
         let futureDates = initialDate.futureDates()
         var actual = [String]()
 
