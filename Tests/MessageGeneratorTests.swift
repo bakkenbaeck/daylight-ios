@@ -37,7 +37,7 @@ class MessageGeneratorTests: XCTestCase {
 
     func testSolstice() {
         let expected = [
-            "Today is the winter solstice ☀️! From now on, every day should get a bit brighter! Enjoy!",
+            "Have a magical winter solstice! The light will soon brighten up your days again.", // Winter solstice ☀️
             "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
             "We’ve reached the tipping point: we’ll have more sunlight every day now!",
             "We’ve reached the tipping point: we’ll have more sunlight every day now!",
@@ -71,7 +71,7 @@ class MessageGeneratorTests: XCTestCase {
         ]
 
         let initialDate = self.initialDate
-        let futureDates = initialDate.futureDates()
+        let futureDates = initialDate.next30days()
         var actual = [String]()
 
         // Expected string should match date list
@@ -125,7 +125,7 @@ class MessageGeneratorTests: XCTestCase {
         ]
 
         let initialDate = self.afterDate
-        let futureDates = initialDate.futureDates()
+        let futureDates = initialDate.next30days()
         var actual = [String]()
 
         // Expected string should match date list
@@ -161,7 +161,7 @@ class MessageGeneratorTests: XCTestCase {
             "Today is shorter than yesterday. But fear not, brighter times ahead!",
             "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
             "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
-            "Today is the winter solstice ☀️! From now on, every day should get a bit brighter! Enjoy!",
+            "Have a magical winter solstice! The light will soon brighten up your days again.", // Solstice ☀️
             "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
             "We’ve reached the tipping point: we’ll have more sunlight every day now!",
             "We’ve reached the tipping point: we’ll have more sunlight every day now!",
@@ -181,7 +181,7 @@ class MessageGeneratorTests: XCTestCase {
 
         // Date is now two days after
         let initialDate = self.beforeDate
-        let futureDates = initialDate.futureDates()
+        let futureDates = initialDate.next30days()
         var actual = [String]()
 
         // Expected string should match date list
@@ -217,7 +217,7 @@ class MessageGeneratorTests: XCTestCase {
             "We’ve reached the tipping point: we’ll have more sunlight every day now!",
             "About a minute of extra light. You’ll start noticing the difference soon!",
             "There’s about a minute of extra light at the end of this tunnel.",
-            "Today is the summer solstice ☀️! Days should start getting darker now…",
+            "Happy summer solstice! Get yourself a healthy summer glow.", // Soltice ☀️
             "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
             "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
             "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
@@ -237,7 +237,7 @@ class MessageGeneratorTests: XCTestCase {
 
         // Date is now two days after
         let initialDate = self.includesJuneSolstice
-        let futureDates = initialDate.futureDates()
+        let futureDates = initialDate.next30days()
         var actual = [String]()
 
         // Expected string should match date list

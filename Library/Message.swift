@@ -9,7 +9,7 @@ struct Message {
         case shorterMoreThanAMinute
         case shorterLessThanAMinute
 
-        init(sunPhase: SunPhase, daylightLenghtDifference: Double) {
+        init(daylightLenghtDifference: Double) {
             // positive values mean days are getting longer
             if daylightLenghtDifference == abs(daylightLenghtDifference) {
                 if daylightLenghtDifference >= 1.minute {

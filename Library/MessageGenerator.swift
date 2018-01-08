@@ -4,13 +4,13 @@ struct MessageGenerator {
     let informationMessage = Message(format: "Daylight is an experiment inspired by the dark and long winters of the north. Made by **Bakken & Bæck**.")
 
     func message(for day: Date, hemisphere: Location.Hemisphere, sunPhase: SunPhase, daylightLenghtDifference: Double) -> Message {
-        let message = self.generateMessage(date: day, hemisphere: hemisphere, sunPhase: sunPhase, daylightLenghtDifference: daylightLenghtDifference)
+        let message = self.generateMessage(date: day, hemisphere: hemisphere, daylightLenghtDifference: daylightLenghtDifference)
 
         return message
     }
 
     func messageForNotification(date: Date, hemisphere: Location.Hemisphere, daylightLenghtDifference: Double) -> String {
-        let message = self.generateMessage(date: date, hemisphere: hemisphere, sunPhase: .solarNoon, daylightLenghtDifference: daylightLenghtDifference)
+        let message = self.generateMessage(date: date, hemisphere: hemisphere, daylightLenghtDifference: daylightLenghtDifference)
 
         return message.content
     }
@@ -154,6 +154,32 @@ struct MessageGenerator {
         return self.shorterTomorrowLessThanAMinuteMessages[index]
     }
 
+    private var summerSolsticeMessages: [Message] {
+        return [
+            Message(format: "Happy summer solstice! Get yourself a healthy summer glow."),
+            Message(format: "Happy first day of summer: make the most out of it!")
+        ]
+    }
+
+    private func summerSolsticeMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.summerSolsticeMessages.count))
+
+        return self.summerSolsticeMessages[index]
+    }
+
+    private var winterSolsticeMessages: [Message] {
+        return [
+            Message(format: "Happy winter solstice! The light begins its journey back to full brightness from now on."),
+            Message(format: "Have a magical winter solstice! The light will soon brighten up your days again.")
+        ]
+    }
+
+    private func winterSolsticeMessage(for hashValue: UInt32) -> Message {
+        let index = Int(hashValue % UInt32(self.winterSolsticeMessages.count))
+
+        return self.winterSolsticeMessages[index]
+    }
+
     private var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.long
@@ -161,27 +187,27 @@ struct MessageGenerator {
         return formatter
     }()
 
-    func generateMessage(date: Date, hemisphere: Location.Hemisphere, sunPhase: SunPhase, daylightLenghtDifference: Double) -> Message {
+    func generateMessage(date: Date, hemisphere: Location.Hemisphere, daylightLenghtDifference: Double) -> Message {
+        let hashValue = self.hashValue(for: date)
 
         if date.isSolstice {
             if date.isJuneSolstice {
                 switch hemisphere {
                 case .southern:
-                    return Message(format: "Today is the winter solstice ☀️! From now on, every day should get a bit brighter! Enjoy!")
+                    return self.winterSolsticeMessage(for: hashValue)
                 case .northern:
-                    return Message(format: "Today is the summer solstice ☀️! Days should start getting darker now…")
+                    return self.summerSolsticeMessage(for: hashValue)
                 }
             } else {
                 switch hemisphere {
                 case .southern:
-                    return Message(format: "Today is the summer solstice ☀️! Days should start getting darker now…")
+                    return self.summerSolsticeMessage(for: hashValue)
                 case .northern:
-                    return Message(format: "Today is the winter solstice ☀️! From now on, every day should get a bit brighter! Enjoy!")
+                    return self.winterSolsticeMessage(for: hashValue)
                 }
             }
         } else {
-            let hashValue = self.hashValue(for: date)
-            let messageKind = Message.Kind(sunPhase: sunPhase, daylightLenghtDifference: daylightLenghtDifference)
+            let messageKind = Message.Kind(daylightLenghtDifference: daylightLenghtDifference)
             switch messageKind {
             case .longerMoreThanAMinute:
                 return self.longerMoreThanAMinuteMessage(for: hashValue)
