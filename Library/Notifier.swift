@@ -22,8 +22,6 @@ struct Notifier {
 
         let formattedMessage = self.formattedMessage(location: location, date: date)
 
-        print(formattedMessage)
-
         // TODO: Fix deprecated UILocalNotification
         UILocalNotification.schedule(notificationID, at: sunriseDate, message: formattedMessage)
     }

@@ -72,22 +72,17 @@ class MessageGeneratorTests: XCTestCase {
 
         let initialDate = self.initialDate
         let futureDates = initialDate.next30days()
-        var actual = [String]()
 
-        // Expected string should match date list
+        // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
 
         for (index, date) in futureDates.enumerated() {
             let message = Notifier.formattedMessage(location: self.location, date: date)
-            actual.append(message)
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
-
-        print(actual)
     }
 
     func testAfterSolstice() {
-        // same list as before, without the first 2 elements, with two new ones appended at the end.
         // For a given day, we'll always get the same message format.
         // For a given day and location, always the same message.
         let expected = [
@@ -126,23 +121,18 @@ class MessageGeneratorTests: XCTestCase {
 
         let initialDate = self.afterDate
         let futureDates = initialDate.next30days()
-        var actual = [String]()
 
-        // Expected string should match date list
+        // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
 
         for (index, date) in futureDates.enumerated() {
             let message = Notifier.formattedMessage(location: self.location, date: date)
-            actual.append(message)
 
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
-
-        print(actual)
     }
 
     func testIncludingSolstice() {
-        // same list as before, without the first 2 elements, with two new ones appended at the end.
         // For a given day, we'll always get the same message format.
         // For a given day and location, always the same message.
         let expected = [
@@ -182,23 +172,17 @@ class MessageGeneratorTests: XCTestCase {
         // Date is now two days after
         let initialDate = self.beforeDate
         let futureDates = initialDate.next30days()
-        var actual = [String]()
 
-        // Expected string should match date list
+        // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
 
         for (index, date) in futureDates.enumerated() {
             let message = Notifier.formattedMessage(location: self.location, date: date)
-            actual.append(message)
-
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
-
-        print(actual)
     }
 
     func testJuneSolstice() {
-        // same list as before, without the first 2 elements, with two new ones appended at the end.
         // For a given day, we'll always get the same message format.
         // For a given day and location, always the same message.
         let expected = [
@@ -238,18 +222,13 @@ class MessageGeneratorTests: XCTestCase {
         // Date is now two days after
         let initialDate = self.includesJuneSolstice
         let futureDates = initialDate.next30days()
-        var actual = [String]()
 
-        // Expected string should match date list
+        // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
 
         for (index, date) in futureDates.enumerated() {
             let message = Notifier.formattedMessage(location: self.location, date: date)
-            actual.append(message)
-
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
-
-        print(actual)
     }
 }

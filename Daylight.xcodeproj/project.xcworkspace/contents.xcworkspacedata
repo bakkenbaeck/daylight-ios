@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/elland/Documents/bb/daylight-ios/Daylight.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
