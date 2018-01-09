@@ -9,16 +9,16 @@ struct Message {
         case shorterMoreThanAMinute
         case shorterLessThanAMinute
 
-        init(daylightLenghtDifference: Double) {
+        init(daylightLengthDifference: Double) {
             // positive values mean days are getting longer
-            if daylightLenghtDifference == abs(daylightLenghtDifference) {
-                if daylightLenghtDifference >= 1.minute {
+            if daylightLengthDifference == abs(daylightLengthDifference) {
+                if daylightLengthDifference >= 1.minute {
                     self = .longerMoreThanAMinute
                 } else {
                     self = .longerLessThanAMinute
                 }
             } else {
-                if abs(daylightLenghtDifference) >= 1.minute {
+                if abs(daylightLengthDifference) >= 1.minute {
                     self = .shorterMoreThanAMinute
                 } else {
                     self = .shorterLessThanAMinute

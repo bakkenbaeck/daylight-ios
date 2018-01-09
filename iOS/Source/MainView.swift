@@ -195,7 +195,7 @@ class MainView: UIView {
 
             let messageGenerator = MessageGenerator()
             let minutesRounded = abs(Int(Darwin.round(interval / 60.0)))
-            let generatedMessage = messageGenerator.message(for: Date(), hemisphere: location.hemisphere, sunPhase: location.sunPhase, daylightLenghtDifference: interval)
+            let generatedMessage = messageGenerator.message(for: Date(), hemisphere: location.hemisphere, sunPhase: location.sunPhase, daylightLengthDifference: interval)
 
             let format = NSLocalizedString("number_of_minutes", comment: "")
             let minuteString = String.localizedStringWithFormat(format, minutesRounded)

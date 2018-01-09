@@ -36,7 +36,7 @@ struct Notifier {
         // never say 0 minute…
         let minutesRounded = max(abs(Int(Darwin.round(interval / 60.0))), 1)
 
-        let generatedMessage = messageGenerator.messageForNotification(date: date, hemisphere: location.hemisphere, daylightLenghtDifference: interval)
+        let generatedMessage = messageGenerator.messageForNotification(date: date, hemisphere: location.hemisphere, daylightLengthDifference: interval)
 
         let format = NSLocalizedString("number_of_minutes", comment: "")
         let minuteString = String.localizedStringWithFormat(format, minutesRounded)

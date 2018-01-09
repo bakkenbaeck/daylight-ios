@@ -3,14 +3,14 @@ import Foundation
 struct MessageGenerator {
     let informationMessage = Message(format: "Daylight is an experiment inspired by the dark and long winters of the north. Made by **Bakken & Bæck**.")
 
-    func message(for day: Date, hemisphere: Location.Hemisphere, sunPhase: SunPhase, daylightLenghtDifference: Double) -> Message {
-        let message = self.generateMessage(date: day, hemisphere: hemisphere, daylightLenghtDifference: daylightLenghtDifference)
+    func message(for day: Date, hemisphere: Location.Hemisphere, sunPhase: SunPhase, daylightLengthDifference: Double) -> Message {
+        let message = self.generateMessage(date: day, hemisphere: hemisphere, daylightLengthDifference: daylightLengthDifference)
 
         return message
     }
 
-    func messageForNotification(date: Date, hemisphere: Location.Hemisphere, daylightLenghtDifference: Double) -> String {
-        let message = self.generateMessage(date: date, hemisphere: hemisphere, daylightLenghtDifference: daylightLenghtDifference)
+    func messageForNotification(date: Date, hemisphere: Location.Hemisphere, daylightLengthDifference: Double) -> String {
+        let message = self.generateMessage(date: date, hemisphere: hemisphere, daylightLengthDifference: daylightLengthDifference)
 
         return message.content
     }
@@ -187,7 +187,7 @@ struct MessageGenerator {
         return formatter
     }()
 
-    func generateMessage(date: Date, hemisphere: Location.Hemisphere, daylightLenghtDifference: Double) -> Message {
+    func generateMessage(date: Date, hemisphere: Location.Hemisphere, daylightLengthDifference: Double) -> Message {
         let hashValue = self.hashValue(for: date)
 
         if date.isSolstice {
@@ -207,7 +207,7 @@ struct MessageGenerator {
                 }
             }
         } else {
-            let messageKind = Message.Kind(daylightLenghtDifference: daylightLenghtDifference)
+            let messageKind = Message.Kind(daylightLengthDifference: daylightLengthDifference)
             switch messageKind {
             case .longerMoreThanAMinute:
                 return self.longerMoreThanAMinuteMessage(for: hashValue)

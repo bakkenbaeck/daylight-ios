@@ -6,10 +6,10 @@ import UIKit
 class MessageTests: XCTestCase {
 
     func testKind() {
-        XCTAssertEqual(Message.Kind.longerMoreThanAMinute, Message.Kind(daylightLenghtDifference: 70))
-        XCTAssertEqual(Message.Kind.longerLessThanAMinute, Message.Kind(daylightLenghtDifference: 40))
-        XCTAssertEqual(Message.Kind.shorterMoreThanAMinute, Message.Kind(daylightLenghtDifference: -120))
-        XCTAssertEqual(Message.Kind.shorterLessThanAMinute, Message.Kind(daylightLenghtDifference: -40))
+        XCTAssertEqual(Message.Kind.longerMoreThanAMinute, Message.Kind(daylightLengthDifference: 70))
+        XCTAssertEqual(Message.Kind.longerLessThanAMinute, Message.Kind(daylightLengthDifference: 40))
+        XCTAssertEqual(Message.Kind.shorterMoreThanAMinute, Message.Kind(daylightLengthDifference: -120))
+        XCTAssertEqual(Message.Kind.shorterLessThanAMinute, Message.Kind(daylightLengthDifference: -40))
     }
 
     func testContent() {
@@ -82,8 +82,8 @@ class MessageTests: XCTestCase {
         let beginningOfDayDate = dateFormatter.date(from: beginningOfDayString)
         let endOfDayDate = dateFormatter.date(from: endOfDayString)
 
-        let beginMessage = messageGenerator.generateMessage(date: beginningOfDayDate!, hemisphere: .southern, daylightLenghtDifference: 100)
-        let endMessage = messageGenerator.generateMessage(date: endOfDayDate!, hemisphere: .southern, daylightLenghtDifference: 100)
+        let beginMessage = messageGenerator.generateMessage(date: beginningOfDayDate!, hemisphere: .southern, daylightLengthDifference: 100)
+        let endMessage = messageGenerator.generateMessage(date: endOfDayDate!, hemisphere: .southern, daylightLengthDifference: 100)
 
         XCTAssertEqual(beginMessage.content, endMessage.content)
     }
@@ -100,8 +100,8 @@ class MessageTests: XCTestCase {
         let beginningOfDayDate = dateFormatter.date(from: beginningOfDayString)
         let endOfDayDate = dateFormatter.date(from: endOfDayString)
 
-        let beginMessage = messageGenerator.generateMessage(date: beginningOfDayDate!, hemisphere: .southern, daylightLenghtDifference: 100)
-        let endMessage = messageGenerator.generateMessage(date: endOfDayDate!, hemisphere: .southern, daylightLenghtDifference: 100)
+        let beginMessage = messageGenerator.generateMessage(date: beginningOfDayDate!, hemisphere: .southern, daylightLengthDifference: 100)
+        let endMessage = messageGenerator.generateMessage(date: endOfDayDate!, hemisphere: .southern, daylightLengthDifference: 100)
 
         XCTAssertEqual(beginMessage.content, endMessage.content)
     }
@@ -109,7 +109,7 @@ class MessageTests: XCTestCase {
     func testNotificationMessage() {
         let messageGenerator = MessageGenerator()
 
-        let message = messageGenerator.messageForNotification(date: Date(), hemisphere: .southern, daylightLenghtDifference: 100)
+        let message = messageGenerator.messageForNotification(date: Date(), hemisphere: .southern, daylightLengthDifference: 100)
 
         XCTAssertFalse(message.contains("**"))
     }
@@ -125,7 +125,7 @@ class MessageTests: XCTestCase {
 
         let todayDaylightLength = 100.0
         let tomorrowDayLightLengthLongerLessThanAMinute = todayDaylightLength + 1.0
-        let message = messageGenerator.messageForNotification(date: nightDate!, hemisphere: .southern, daylightLenghtDifference: tomorrowDayLightLengthLongerLessThanAMinute)
+        let message = messageGenerator.messageForNotification(date: nightDate!, hemisphere: .southern, daylightLengthDifference: tomorrowDayLightLengthLongerLessThanAMinute)
 
         XCTAssertFalse(message.contains("tomorrow"))
     }
