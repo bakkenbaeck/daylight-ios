@@ -97,16 +97,4 @@ class MessageTests: XCTestCase {
 
         XCTAssertFalse(message.contains("**"))
     }
-
-    func testNotificationMessageAtNight() {
-        let nightString = "2014-07-15 00:00"
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        let nightDate = dateFormatter.date(from: nightString)!
-
-        let message = Message.notificationMessage(for: nightDate, coordinates: Location.current!.coordinates)
-
-        XCTAssertFalse(message.contains("tomorrow"))
-    }
 }
