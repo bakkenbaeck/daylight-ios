@@ -4,7 +4,7 @@ import CoreLocation
 
 @testable import Daylight
 
-class MessageGeneratorTests: XCTestCase {
+class MessageGenerationTests: XCTestCase {
     // 21st of December 2017 12:00
     let decemberSolsticeDate: Date = Date(timeIntervalSince1970: 1513854000)
 
