@@ -2,9 +2,11 @@ import UIKit
 import CoreLocation
 
 class DateHasher {
-    private var dateFormatter: DateFormatter = {
+    private var hashingDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateStyle = DateFormatter.Style.long
+        // Use a manually created date format.
+        // Ensures strings are the same regardless of user locale.
+        formatter.dateFormat = "D MMMM yyyy"
 
         return formatter
     }()
@@ -12,7 +14,8 @@ class DateHasher {
     private static let shared = DateHasher()
 
     static func hashValue(for date: Date) -> UInt32 {
-        let dateString = self.shared.dateFormatter.string(from: date)
+        let dateString = self.shared.hashingDateFormatter.string(from: date)
+        print(dateString)
         // We use an FNV hash of the date string, to ensure that each day has it's own message, instead of randomising.
         let value = FNVHash.fnv1a_32(string: dateString)
 
