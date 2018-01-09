@@ -217,7 +217,7 @@ class MessageGeneratorTests: XCTestCase {
             "We’ve reached the tipping point: we’ll have more sunlight every day now!",
             "About a minute of extra light. You’ll start noticing the difference soon!",
             "There’s about a minute of extra light at the end of this tunnel.",
-            "Happy summer solstice! Get yourself a healthy summer glow.", // Soltice ☀️
+            "Happy summer solstice! Get yourself a healthy summer glow.", // Solstice ☀️
             "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
             "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
             "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
