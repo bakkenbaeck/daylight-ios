@@ -1,8 +1,7 @@
-import XCTest
-import UIKit
 import CoreLocation
-
 @testable import Daylight
+import UIKit
+import XCTest
 
 extension Location {
     static var testLocation: CLLocationCoordinate2D {

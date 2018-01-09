@@ -1,7 +1,6 @@
-import XCTest
 import CoreLocation
-
 @testable import Daylight
+import XCTest
 
 class SunCalcTests: XCTestCase {
 

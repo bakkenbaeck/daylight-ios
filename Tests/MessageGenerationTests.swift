@@ -1,8 +1,7 @@
+import CoreLocation
+@testable import Daylight
 import UIKit
 import XCTest
-import CoreLocation
-
-@testable import Daylight
 
 class MessageGenerationTests: XCTestCase {
     // 21st of December 2017 12:00
@@ -62,7 +61,7 @@ class MessageGenerationTests: XCTestCase {
             "Have a great day and enjoy those 2 minutes extra daylight.",
             "Bring out your shorts, because today has 2 minutes more sunlight.",
             "Today is 3 minutes longer. It’s getting better and better!",
-            "Today is 3 minutes longer than yesterday. Happy days!",
+            "Today is 3 minutes longer than yesterday. Happy days!"
         ]
 
         let initialDate = self.decemberSolsticeDate
@@ -111,7 +110,7 @@ class MessageGenerationTests: XCTestCase {
             "3 minutes more daylight today. Just let it sink in…",
             "Today is 3 minutes longer. It’s getting better and better!",
             "After darkness comes daylight. 3 minutes more to be precise!",
-            "Today is 3 minutes longer. It’s getting better and better!",
+            "Today is 3 minutes longer. It’s getting better and better!"
         ]
 
         let initialDate = self.afterDecemberSolticeDate
@@ -161,7 +160,7 @@ class MessageGenerationTests: XCTestCase {
             "Smile! Today has 1 minute more daylight than yesterday!",
             "After darkness comes daylight. 1 minute more to be precise!",
             "Today is 1 minute longer. It’s getting better and better!",
-            "After darkness comes daylight. 1 minute more to be precise!",
+            "After darkness comes daylight. 1 minute more to be precise!"
         ]
 
         // Date is now two days after
@@ -211,7 +210,7 @@ class MessageGenerationTests: XCTestCase {
             "The sun will be out  1 minute less today. Keep your head up!",
             "1 minute less sunlight today, unfortunately. It’ll get better!",
             "1 minute less sunlight today, unfortunately. It’ll get better!",
-            "1 minute less sunlight today, unfortunately. It’ll get better!",
+            "1 minute less sunlight today, unfortunately. It’ll get better!"
         ]
 
         // Date is now two days after

@@ -1,8 +1,7 @@
+import CoreLocation
+@testable import Daylight
 import UIKit
 import XCTest
-import CoreLocation
-
-@testable import Daylight
 
 class Suntimes_HelperTests: XCTestCase {
 

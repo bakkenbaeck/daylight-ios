@@ -1,6 +1,6 @@
-import JavaScriptCore
-import Foundation
 import CoreLocation
+import Foundation
+import JavaScriptCore
 
 extension DateFormatter {
     convenience init(dateFormat: String) {
@@ -15,7 +15,6 @@ extension DateFormatter {
  return SunTime(date: date, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
  }
 
- 
  var sunPhase: SunPhase {
  return self.nowSuntimes.sunPhase
  }
@@ -103,11 +102,11 @@ struct SunTime {
     }
 
     struct SunPhaseTimes {
-        enum Keys : String {
+        enum Keys: String {
             case dawnTime = "dawn"
             case duskTime = "dusk"
             case goldenHourStart = "goldenHour"
-            case goldenHourEnd = "goldenHourEnd"
+            case goldenHourEnd
             case nadirTime = "nadir"
             case nauticalDawnTime = "nauticalDawn"
             case nauticalDuskTime = "nauticalDusk"
@@ -158,15 +157,15 @@ struct SunTime {
 
         if self.date.isBetween(startOfTheDay, and: self.sunTimes.dawnTime) {
             return .predawn
-        } else if date.isBetween(self.sunTimes.dawnTime, and: self.sunTimes.sunriseTimeStart) {
+        } else if self.date.isBetween(self.sunTimes.dawnTime, and: self.sunTimes.sunriseTimeStart) {
             return .dawn
-        } else if date.isBetween(self.sunTimes.sunriseTimeStart, and: self.sunTimes.solarNoonTime) {
+        } else if self.date.isBetween(self.sunTimes.sunriseTimeStart, and: self.sunTimes.solarNoonTime) {
             return .sunrise
-        } else if date.isBetween(self.sunTimes.solarNoonTime, and: self.sunTimes.sunsetTimeEnd) {
+        } else if self.date.isBetween(self.sunTimes.solarNoonTime, and: self.sunTimes.sunsetTimeEnd) {
             return .solarNoon
-        } else if date.isBetween(self.sunTimes.sunsetTimeEnd, and: self.sunTimes.duskTime) {
+        } else if self.date.isBetween(self.sunTimes.sunsetTimeEnd, and: self.sunTimes.duskTime) {
             return .sunset
-        } else if date.isBetween(self.sunTimes.duskTime, and: self.sunTimes.nightTimeStart) {
+        } else if self.date.isBetween(self.sunTimes.duskTime, and: self.sunTimes.nightTimeStart) {
             return .dusk
         } else {
             return .night
@@ -230,19 +229,19 @@ struct SunTime {
         let times = SunCalcEngine.sharedInstance.calculateTimes(withArguments: [date, latitude, longitude]) as! [String: Date]
 
         return SunPhaseTimes(dawnTime: times[SunPhaseTimes.Keys.dawnTime.rawValue]!,
-                      duskTime: times[SunPhaseTimes.Keys.duskTime.rawValue]!,
-                      goldenHourStart: times[SunPhaseTimes.Keys.goldenHourStart.rawValue]!,
-                      goldenHourEnd: times[SunPhaseTimes.Keys.goldenHourEnd.rawValue]!,
-                      nadirTime: times[SunPhaseTimes.Keys.nadirTime.rawValue]!,
-                      nauticalDawnTime: times[SunPhaseTimes.Keys.nauticalDawnTime.rawValue]!,
-                      nauticalDuskTime: times[SunPhaseTimes.Keys.nauticalDuskTime.rawValue]!,
-                      nightTimeStart: times[SunPhaseTimes.Keys.nightTimeStart.rawValue]!,
-                      nightTimeEnd: times[SunPhaseTimes.Keys.nightTimeEnd.rawValue]!,
-                      solarNoonTime: times[SunPhaseTimes.Keys.solarNoonTime.rawValue]!,
-                      sunriseTimeStart: times[SunPhaseTimes.Keys.sunriseTimeStart.rawValue]!,
-                      sunriseTimeEnd: times[SunPhaseTimes.Keys.sunriseTimeEnd.rawValue]!,
-                      sunsetTimeStart: times[SunPhaseTimes.Keys.sunsetTimeStart.rawValue]!,
-                      sunsetTimeEnd: times[SunPhaseTimes.Keys.sunsetTimeEnd.rawValue]!)
+                             duskTime: times[SunPhaseTimes.Keys.duskTime.rawValue]!,
+                             goldenHourStart: times[SunPhaseTimes.Keys.goldenHourStart.rawValue]!,
+                             goldenHourEnd: times[SunPhaseTimes.Keys.goldenHourEnd.rawValue]!,
+                             nadirTime: times[SunPhaseTimes.Keys.nadirTime.rawValue]!,
+                             nauticalDawnTime: times[SunPhaseTimes.Keys.nauticalDawnTime.rawValue]!,
+                             nauticalDuskTime: times[SunPhaseTimes.Keys.nauticalDuskTime.rawValue]!,
+                             nightTimeStart: times[SunPhaseTimes.Keys.nightTimeStart.rawValue]!,
+                             nightTimeEnd: times[SunPhaseTimes.Keys.nightTimeEnd.rawValue]!,
+                             solarNoonTime: times[SunPhaseTimes.Keys.solarNoonTime.rawValue]!,
+                             sunriseTimeStart: times[SunPhaseTimes.Keys.sunriseTimeStart.rawValue]!,
+                             sunriseTimeEnd: times[SunPhaseTimes.Keys.sunriseTimeEnd.rawValue]!,
+                             sunsetTimeStart: times[SunPhaseTimes.Keys.sunsetTimeStart.rawValue]!,
+                             sunsetTimeEnd: times[SunPhaseTimes.Keys.sunsetTimeEnd.rawValue]!)
     }
 
     func sunriseStartTime(for date: Date) -> Date {

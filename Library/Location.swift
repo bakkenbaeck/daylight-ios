@@ -1,5 +1,5 @@
-import Foundation
 import CoreLocation
+import Foundation
 
 struct Location {
     enum Hemisphere {
@@ -16,7 +16,7 @@ struct Location {
     }
 
     private let calendar = Calendar.autoupdatingCurrent
-    
+
     let coordinates: CLLocationCoordinate2D
     let city: String
     let country: String

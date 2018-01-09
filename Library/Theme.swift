@@ -1,5 +1,5 @@
-import UIKit
 import SweetUIKit
+import UIKit
 
 struct Theme {
     static var sunriseBackground: UIColor {
