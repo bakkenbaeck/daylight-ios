@@ -7,13 +7,13 @@ extension Date {
     }
 
     var isDecemberSolstice: Bool {
-        let components = Calendar.current.dateComponents([.day, .month, .timeZone], from: self)
+        let components = Calendar.autoupdatingCurrent.dateComponents([.day, .month, .timeZone], from: self)
 
         return components.day == 21 && components.month == 12
     }
 
     var isJuneSolstice: Bool {
-        let components = Calendar.current.dateComponents([.day, .month, .timeZone], from: self)
+        let components = Calendar.autoupdatingCurrent.dateComponents([.day, .month, .timeZone], from: self)
 
         return components.day == 21 && components.month == 6
     }

@@ -5,6 +5,7 @@ import CoreLocation
 @testable import Daylight
 
 class MessageGeneratorTests: XCTestCase {
+    // 21st of December 2017 12:00
     let decemberSolsticeDate: Date = Date(timeIntervalSince1970: 1513854000)
 
     var afterDecemberSolticeDate: Date {
@@ -25,7 +26,7 @@ class MessageGeneratorTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        // Bonn, Germany, 21st of December 2017 12:00
+        // Bonn, Germany
         // <+50.73390258,+7.09812965> +/- 65.00m (speed -1.00 mps / course -1.00) @ 08.01.18, 11:33:02 Central European Standard Time
         let coordinate = CLLocationCoordinate2D(latitude: 50.73390258, longitude: 7.09812965)
         self.location = Location(coordinate: coordinate, city: "Bonn", country: "Germany")

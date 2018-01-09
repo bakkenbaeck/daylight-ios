@@ -4,14 +4,6 @@ import UIKit
 @testable import Daylight
 
 class MessageTests: XCTestCase {
-
-    func testKind() {
-        XCTAssertEqual(Message.Kind.longerMoreThanAMinute, Message.Kind(daylightLengthDifference: 70))
-        XCTAssertEqual(Message.Kind.longerLessThanAMinute, Message.Kind(daylightLengthDifference: 40))
-        XCTAssertEqual(Message.Kind.shorterMoreThanAMinute, Message.Kind(daylightLengthDifference: -120))
-        XCTAssertEqual(Message.Kind.shorterLessThanAMinute, Message.Kind(daylightLengthDifference: -40))
-    }
-
     func testContent() {
         var message = Message(format: "Hello **mom**.")
         XCTAssertEqual(message.content, "Hello mom.")
@@ -53,8 +45,6 @@ class MessageTests: XCTestCase {
     }
 
     func testHashValueForDate() {
-        let messageGenerator = MessageGenerator()
-
         let beginningOfDayString = "2014-07-15 01:00"
         let endOfDayString = "2014-07-15 23:40"
 
@@ -64,52 +54,46 @@ class MessageTests: XCTestCase {
         let beginningOfDayDate = dateFormatter.date(from: beginningOfDayString)
         let endOfDayDate = dateFormatter.date(from: endOfDayString)
 
-        let beginningOfDayHashValue = messageGenerator.hashValue(for: beginningOfDayDate!)
-        let endOfDayHashValue = messageGenerator.hashValue(for: endOfDayDate!)
+        let beginningOfDayHashValue = DateHasher.hashValue(for: beginningOfDayDate!)
+        let endOfDayHashValue = DateHasher.hashValue(for: endOfDayDate!)
 
         XCTAssertEqual(beginningOfDayHashValue, endOfDayHashValue)
     }
 
     func testMessageForDay() {
-        let messageGenerator = MessageGenerator()
-
         let beginningOfDayString = "2014-07-15 01:00"
         let endOfDayString = "2014-07-15 23:40"
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
 
-        let beginningOfDayDate = dateFormatter.date(from: beginningOfDayString)
-        let endOfDayDate = dateFormatter.date(from: endOfDayString)
+        let beginningOfDayDate = dateFormatter.date(from: beginningOfDayString)!
+        let endOfDayDate = dateFormatter.date(from: endOfDayString)!
 
-        let beginMessage = messageGenerator.generateMessage(date: beginningOfDayDate!, hemisphere: .southern, daylightLengthDifference: 100)
-        let endMessage = messageGenerator.generateMessage(date: endOfDayDate!, hemisphere: .southern, daylightLengthDifference: 100)
+        let beginMessage = Message(for: beginningOfDayDate, coordinates: Location.current!.coordinates)
+        let endMessage = Message(for: endOfDayDate, coordinates: Location.current!.coordinates)
 
         XCTAssertEqual(beginMessage.content, endMessage.content)
     }
 
     func testMessageForNight() {
-        let messageGenerator = MessageGenerator()
-
         let beginningOfDayString = "2014-07-15 01:00"
         let endOfDayString = "2014-07-15 23:40"
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
 
-        let beginningOfDayDate = dateFormatter.date(from: beginningOfDayString)
-        let endOfDayDate = dateFormatter.date(from: endOfDayString)
+        let beginningOfDayDate = dateFormatter.date(from: beginningOfDayString)!
+        let endOfDayDate = dateFormatter.date(from: endOfDayString)!
 
-        let beginMessage = messageGenerator.generateMessage(date: beginningOfDayDate!, hemisphere: .southern, daylightLengthDifference: 100)
-        let endMessage = messageGenerator.generateMessage(date: endOfDayDate!, hemisphere: .southern, daylightLengthDifference: 100)
+        let beginMessage = Message(for: beginningOfDayDate, coordinates: Location.current!.coordinates)
+        let endMessage = Message(for: endOfDayDate, coordinates: Location.current!.coordinates)
 
         XCTAssertEqual(beginMessage.content, endMessage.content)
     }
 
     func testNotificationMessage() {
-        let messageGenerator = MessageGenerator()
-
-        let message = messageGenerator.messageForNotification(date: Date(), hemisphere: .southern, daylightLengthDifference: 100)
+        let message = Message.notificationMessage(for: Date(), coordinates: Location.current!.coordinates)
 
         XCTAssertFalse(message.contains("**"))
     }
@@ -119,13 +103,9 @@ class MessageTests: XCTestCase {
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        let nightDate = dateFormatter.date(from: nightString)
+        let nightDate = dateFormatter.date(from: nightString)!
 
-        let messageGenerator = MessageGenerator()
-
-        let todayDaylightLength = 100.0
-        let tomorrowDayLightLengthLongerLessThanAMinute = todayDaylightLength + 1.0
-        let message = messageGenerator.messageForNotification(date: nightDate!, hemisphere: .southern, daylightLengthDifference: tomorrowDayLightLengthLongerLessThanAMinute)
+        let message = Message.notificationMessage(for: nightDate, coordinates: Location.current!.coordinates)
 
         XCTAssertFalse(message.contains("tomorrow"))
     }

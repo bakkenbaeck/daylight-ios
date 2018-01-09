@@ -186,16 +186,15 @@ class MainView: UIView {
             self.sunView.isHidden = false
             self.locationLabel.isHidden = false
 
-            let percentageInDay = location.daylightLengthProgress
+            let percentageInDay = location.sunTime.daylightLengthProgress
 
-            let sunPhase = location.sunPhase
+            let sunPhase = location.sunTime.sunPhase
             let (backgroundColor, textColor) = Theme.colors(for: sunPhase)
 
-            let interval = location.dayLengthDifference
+            let interval = location.sunTime.dayLengthDifference
 
-            let messageGenerator = MessageGenerator()
             let minutesRounded = abs(Int(Darwin.round(interval / 60.0)))
-            let generatedMessage = messageGenerator.message(for: Date(), hemisphere: location.hemisphere, sunPhase: location.sunPhase, daylightLengthDifference: interval)
+            let generatedMessage = Message(for: Date(), coordinates: location.coordinates)
 
             let format = NSLocalizedString("number_of_minutes", comment: "")
             let minuteString = String.localizedStringWithFormat(format, minutesRounded)
