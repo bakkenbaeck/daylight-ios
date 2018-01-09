@@ -15,7 +15,7 @@ class DateHasher {
 
     static func hashValue(for date: Date) -> UInt32 {
         let dateString = self.shared.hashingDateFormatter.string(from: date)
-        print(dateString)
+
         // We use an FNV hash of the date string, to ensure that each day has it's own message, instead of randomising.
         let value = FNVHash.fnv1a_32(string: dateString)
 

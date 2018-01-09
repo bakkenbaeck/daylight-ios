@@ -26,9 +26,7 @@ class MessageGenerationTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        // Bonn, Germany
-        // <+50.73390258,+7.09812965> +/- 65.00m (speed -1.00 mps / course -1.00) @ 08.01.18, 11:33:02 Central European Standard Time
-        let coordinate = CLLocationCoordinate2D(latitude: 50.73390258, longitude: 7.09812965)
+        let coordinate = Location.testLocation
         self.location = Location(coordinate: coordinate, city: "Bonn", country: "Germany")
     }
 

@@ -2,7 +2,6 @@ import Foundation
 import CoreLocation
 
 struct Location {
-
     enum Hemisphere {
         case northern
         case southern

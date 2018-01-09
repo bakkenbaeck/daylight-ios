@@ -1,7 +1,15 @@
 import XCTest
 import UIKit
+import CoreLocation
 
 @testable import Daylight
+
+extension Location {
+    static var testLocation: CLLocationCoordinate2D {
+        // Bonn
+        return CLLocationCoordinate2D(latitude: 50.73390258, longitude: 7.09812965)
+    }
+}
 
 class MessageTests: XCTestCase {
     func testContent() {
@@ -70,8 +78,8 @@ class MessageTests: XCTestCase {
         let beginningOfDayDate = dateFormatter.date(from: beginningOfDayString)!
         let endOfDayDate = dateFormatter.date(from: endOfDayString)!
 
-        let beginMessage = Message(for: beginningOfDayDate, coordinates: Location.current!.coordinates)
-        let endMessage = Message(for: endOfDayDate, coordinates: Location.current!.coordinates)
+        let beginMessage = Message(for: beginningOfDayDate, coordinates: Location.testLocation)
+        let endMessage = Message(for: endOfDayDate, coordinates: Location.testLocation)
 
         XCTAssertEqual(beginMessage.content, endMessage.content)
     }
@@ -86,14 +94,14 @@ class MessageTests: XCTestCase {
         let beginningOfDayDate = dateFormatter.date(from: beginningOfDayString)!
         let endOfDayDate = dateFormatter.date(from: endOfDayString)!
 
-        let beginMessage = Message(for: beginningOfDayDate, coordinates: Location.current!.coordinates)
-        let endMessage = Message(for: endOfDayDate, coordinates: Location.current!.coordinates)
+        let beginMessage = Message(for: beginningOfDayDate, coordinates: Location.testLocation)
+        let endMessage = Message(for: endOfDayDate, coordinates: Location.testLocation)
 
         XCTAssertEqual(beginMessage.content, endMessage.content)
     }
 
     func testNotificationMessage() {
-        let message = Message.notificationMessage(for: Date(), coordinates: Location.current!.coordinates)
+        let message = Message.notificationMessage(for: Date(), coordinates: Location.testLocation)
 
         XCTAssertFalse(message.contains("**"))
     }
