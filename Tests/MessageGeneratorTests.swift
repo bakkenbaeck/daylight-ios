@@ -15,7 +15,7 @@ class MessageGeneratorTests: XCTestCase {
         return Calendar.autoupdatingCurrent.date(byAdding: .day, value: -15, to: self.initialDate)!
     }
 
-    var includesJuneSolstice: Date {
+    var juneSolstice: Date {
         let date = Calendar.autoupdatingCurrent.date(byAdding: .month, value: -6, to: self.initialDate)!
         return Calendar.autoupdatingCurrent.date(byAdding: .day, value: -15, to: date)!
     }
@@ -31,11 +31,7 @@ class MessageGeneratorTests: XCTestCase {
         self.location = Location(coordinate: coordinate, city: "Bonn", country: "Germany")
     }
 
-    override func tearDown() {
-        super.tearDown()
-    }
-
-    func testSolstice() {
+    func testMessageDeterminismFromWinterSolstice() {
         let expected = [
             "Have a magical winter solstice! The light will soon brighten up your days again.", // Winter solstice ☀️
             "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
@@ -82,7 +78,7 @@ class MessageGeneratorTests: XCTestCase {
         }
     }
 
-    func testAfterSolstice() {
+    func testMessageDeterminismAfterSolstice() {
         // For a given day, we'll always get the same message format.
         // For a given day and location, always the same message.
         let expected = [
@@ -132,7 +128,7 @@ class MessageGeneratorTests: XCTestCase {
         }
     }
 
-    func testIncludingSolstice() {
+    func testMessageDeterminismIncludingSolstice() {
         // For a given day, we'll always get the same message format.
         // For a given day and location, always the same message.
         let expected = [
@@ -182,7 +178,7 @@ class MessageGeneratorTests: XCTestCase {
         }
     }
 
-    func testJuneSolstice() {
+    func testMessageDeterminismIncludingJuneSolstice() {
         // For a given day, we'll always get the same message format.
         // For a given day and location, always the same message.
         let expected = [
@@ -220,7 +216,7 @@ class MessageGeneratorTests: XCTestCase {
         ]
 
         // Date is now two days after
-        let initialDate = self.includesJuneSolstice
+        let initialDate = self.juneSolstice
         let futureDates = initialDate.next30days()
 
         // Expected string should match date list count. 31 messages for 31 days.
