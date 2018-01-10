@@ -61,7 +61,7 @@ extension LocationTracker: CLLocationManagerDelegate {
             if let error = error {
                 self.delegate?.locationTracker(self, didFailWith: error)
             } else if let placemarks = placemarks, let placemark = placemarks.first {
-                if self.placemark?.country != placemark.country && self.placemark?.locality != placemark.locality {
+                if self.placemark?.country != placemark.country || self.placemark?.locality != placemark.locality {
                     self.placemark = placemark
                     self.delegate?.locationTracker(self, didFindLocation: placemark)
                 }
