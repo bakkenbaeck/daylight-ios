@@ -94,25 +94,24 @@ class TodayView: UIView {
 
 	func updateView() {
 		if let location = Location.current {
-			let tintColor = self.color(for: location.sunPhase)
+			let tintColor = self.color(for: location.sunTime.sunPhase)
 			sunriseIcon.tintColor = tintColor
 			sunsetIcon.tintColor = tintColor
 			sunriseLabel.textColor = tintColor.darker(by: 20)
 			sunsetLabel.textColor = tintColor.darker(by: 20)
 
-			sunriseLabel.text = location.sunriseTimeString
-			sunsetLabel.text = location.sunsetTimeString
+			sunriseLabel.text = location.sunTime.sunriseTimeString
+			sunsetLabel.text = location.sunTime.sunsetTimeString
 
-			let interval = location.dayLengthDifference
-			let messageGenerator = MessageGenerator()
+			let interval = location.sunTime.dayLengthDifference
 			let minutesRounded = abs(Int(Darwin.round(interval / 60.0)))
-            let generatedMessage = messageGenerator.message(for: Date(), hemisphere: location.hemisphere, sunPhase: location.sunPhase, daylightLengthDifference: interval)
+            let generatedMessage = Message(for: Date(), coordinates: location.coordinates)
 
 			let format = NSLocalizedString("number_of_minutes", comment: "")
 			let minuteString = String.localizedStringWithFormat(format, minutesRounded)
 			let formattedMessage = String(format: generatedMessage.format, minuteString)
 
-			let message = Message(format: formattedMessage)
+            let message = Message(format: formattedMessage)
 			let attributedString = message.attributedString(withTextColor: tintColor.darker(by: 20)!)
 
 			messageLabel.textColor = tintColor
@@ -120,7 +119,7 @@ class TodayView: UIView {
 		}
 	}
 
-	private func color(for sunPhase: SunPhase) -> UIColor {
+	private func color(for sunPhase: SunTime.SunPhase) -> UIColor {
 		if sunPhase == .night || sunPhase == .predawn {
 			// Theme.nightText is a bit too bright on the light background of the widget
 			// Let's just use twiligtText color here, it fits well for the night too :)

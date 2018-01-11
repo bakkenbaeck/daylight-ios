@@ -1,5 +1,5 @@
-import UIKit
 import CoreLocation
+import UIKit
 
 struct SunViewLocation {
     let x: CGFloat
@@ -9,7 +9,7 @@ struct SunViewLocation {
 class SunView: UIView {
     static let sunSize = CGFloat(18.0)
 
-    var sunPhase = SunPhase.predawn {
+    var sunPhase = SunTime.SunPhase.predawn {
         didSet {
             self.moon.isHidden = true
             self.currentTimeLabel.isHidden = false
@@ -132,8 +132,8 @@ class SunView: UIView {
 
     func update(for location: Location) {
         self.currentTimeLabel.text = self.timeFormatter.string(from: Date())
-        self.sunriseLabel.text = location.sunriseTimeString
-        self.sunsetLabel.text = location.sunsetTimeString
+        self.sunriseLabel.text = location.sunTime.sunriseTimeString
+        self.sunsetLabel.text = location.sunTime.sunsetTimeString
     }
 
     func location(for percentageInDay: CGFloat) -> SunViewLocation {
@@ -147,7 +147,7 @@ class SunView: UIView {
         return SunViewLocation(x: absoluteX, y: absoluteY)
     }
 
-    func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, sunPhase: SunPhase) {
+    func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, sunPhase: SunTime.SunPhase) {
         self.sunriseLabel.textColor = textColor
         self.sunsetLabel.textColor = textColor
         self.currentTimeLabel.textColor = textColor

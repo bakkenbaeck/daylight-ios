@@ -1,6 +1,6 @@
 import Foundation
-import UIKit
 import SweetUIKit
+import UIKit
 
 struct Notifier {
 
@@ -18,7 +18,7 @@ struct Notifier {
         dateFormatter.dateStyle = DateFormatter.Style.long
 
         let notificationID = dateFormatter.string(from: date)
-        let sunriseDate = location.sunriseForDate(date)
+        let sunriseDate = location.sunTime.sunriseStartTime(for: date)
 
         let formattedMessage = self.formattedMessage(location: location, date: date)
 
@@ -27,14 +27,12 @@ struct Notifier {
     }
 
     static func formattedMessage(location: Location, date: Date) -> String {
-        let interval = location.dayLengthDifferenceOnDate(date)
-
-        let messageGenerator = MessageGenerator()
+        let interval = location.sunTime.daylightLengthDifference(on: date)
 
         // If the time differential is smaller than a minute, say 1 minute instead.
         let minutesRounded = max(abs(Int(Darwin.round(interval / 60.0))), 1)
 
-        let generatedMessage = messageGenerator.messageForNotification(date: date, hemisphere: location.hemisphere, daylightLengthDifference: interval)
+        let generatedMessage = Message.notificationMessage(for: date, coordinates: location.coordinates)
 
         let format = NSLocalizedString("number_of_minutes", comment: "")
         let minuteString = String.localizedStringWithFormat(format, minutesRounded)

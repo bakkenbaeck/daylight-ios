@@ -1,6 +1,6 @@
-import UIKit
 import CoreLocation
 import SweetUIKit
+import UIKit
 
 class MainController: UIViewController {
     lazy var informationController: InformationController = {

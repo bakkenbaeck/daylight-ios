@@ -1,7 +1,6 @@
 // import Foundation
 
 struct FNVHash {
-
     // FNV parameters
     static let offsetBasis: UInt32 = 2166136261
     static let prime: UInt32 = 16777619

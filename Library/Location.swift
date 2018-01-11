@@ -1,8 +1,7 @@
-import Foundation
 import CoreLocation
+import Foundation
 
 struct Location {
-
     enum Hemisphere {
         case northern
         case southern
@@ -17,33 +16,20 @@ struct Location {
     }
 
     private let calendar = Calendar.autoupdatingCurrent
-    
-    let coordinate: CLLocationCoordinate2D
+
+    let coordinates: CLLocationCoordinate2D
     let city: String
     let country: String
 
     let hemisphere: Hemisphere
 
-    init?(placemark: CLPlacemark) {
-        guard let coordinate = placemark.location?.coordinate else { return nil }
-        guard let locality = placemark.locality else { return nil }
-        guard let country = placemark.country else { return nil }
-
-        self.init(coordinate: coordinate, city: locality, country: country)
-    }
-
-    init(coordinate: CLLocationCoordinate2D, city: String, country: String) {
-        self.coordinate = coordinate
-        self.city = city
-        self.country = country
-        self.hemisphere = Hemisphere(latitude: coordinate.latitude)
-    }
+    var sunTime: SunTime
 
     static var current: Location? {
         set {
             if let location = newValue {
-                UserDefaults.standard.set(location.coordinate.latitude, forKey: "latitude")
-                UserDefaults.standard.set(location.coordinate.longitude, forKey: "longitude")
+                UserDefaults.standard.set(location.coordinates.latitude, forKey: "latitude")
+                UserDefaults.standard.set(location.coordinates.longitude, forKey: "longitude")
                 UserDefaults.standard.set(location.city, forKey: "city")
                 UserDefaults.standard.set(location.country, forKey: "country")
             } else {
@@ -68,81 +54,20 @@ struct Location {
         }
     }
 
-    var sunPhase: SunPhase {
-        return self.nowSuntimes.sunPhase
+    init?(placemark: CLPlacemark) {
+        guard let coordinate = placemark.location?.coordinate else { return nil }
+        guard let city = placemark.locality else { return nil }
+        guard let country = placemark.country else { return nil }
+
+        self.init(coordinate: coordinate, city: city, country: country)
     }
 
-    var daylightLengthProgress: Double {
-        return self.nowSuntimes.daylightLengthProgress
+    init(coordinate: CLLocationCoordinate2D, city: String, country: String) {
+        self.coordinates = coordinate
+        self.city = city
+        self.country = country
+        self.hemisphere = Hemisphere(latitude: coordinate.latitude)
+
+        self.sunTime = SunTime(date: Date(), coordinate: coordinate)
     }
-
-    var sunsetTimeString: String {
-        return self.timeFormatter.string(from: self.nowSuntimes.sunset)
-    }
-
-    var sunriseTimeString: String {
-        return self.timeFormatter.string(from: self.nowSuntimes.sunrise)
-    }
-
-    var dayLengthDifference: Double {
-        return self.dayLengthDifferenceOnDate(Date())
-    }
-
-    func dayLengthDifferenceOnDate(_ date: Date) -> Double {
-        let dayBefore = self.calendar.date(byAdding: .day, value: -1, to: date)!
-
-        let daySunTimes = self.suntimes(forDate: date)
-        let dayBeforeSunTimes = self.suntimes(forDate: dayBefore)
-
-        let dayLength = daySunTimes.sunset.timeIntervalSince(daySunTimes.sunrise)
-        let dayBeforeDayLength = dayBeforeSunTimes.sunset.timeIntervalSince(dayBeforeSunTimes.sunrise)
-
-        return dayLength - dayBeforeDayLength
-    }
-
-    func sunriseForDate(_ date: Date) -> Date {
-        return self.suntimes(forDate: date).sunrise
-    }
-
-    var yesterdayDaylightLength: Double {
-        let suntimes = self.suntimes(forDate: self.yesterday)
-        return suntimes.sunset.timeIntervalSince(suntimes.sunrise)
-    }
-
-    var todayDaylightLength: Double {
-        let suntimes = self.suntimes(forDate: self.today)
-        return suntimes.sunset.timeIntervalSince(suntimes.sunrise)
-    }
-
-    var tomorrowDaylightLength: Double {
-        let tomorrowSuntimes = self.suntimes(forDate: self.tomorrow)
-        return tomorrowSuntimes.sunset.timeIntervalSince(tomorrowSuntimes.sunrise)
-    }
-
-    private var today: Date {
-        return Date()
-    }
-
-    private var tomorrow: Date {
-        return self.calendar.date(byAdding: .day, value: 1, to: self.today)!
-    }
-
-    private var yesterday: Date {
-        return self.calendar.date(byAdding: .day, value: -1, to: self.today)!
-    }
-
-    private func suntimes(forDate date: Date) -> SunCalc {
-        return SunCalc(date: date, timeZone: .current, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
-    }
-
-    private var nowSuntimes: SunCalc {
-        return self.suntimes(forDate: Date())
-    }
-
-    private var timeFormatter: DateFormatter = {
-        let shortTimeFormatter = DateFormatter()
-        shortTimeFormatter.dateFormat = "HH:mm"
-
-        return shortTimeFormatter
-    }()
 }
