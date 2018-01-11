@@ -60,13 +60,11 @@ class InformationController: UIViewController {
         self.addSubviewsAndConstraints()
 
         self.updateInterface()
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateInterface), userInfo: nil, repeats: true)
         self.addObservers()
     }
 
     func addObservers() {
         self.removeObservers()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateInterface), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
     func removeObservers() {
