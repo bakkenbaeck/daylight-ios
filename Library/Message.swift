@@ -82,7 +82,7 @@ struct Message {
             .longerMoreThanAMinute: [
                 "Get a good night’s sleep: tomorrow there’ll be %@ more sunlight.",
                 "Lights out. Enjoy %@ more sunlight tomorrow!",
-                "Bring out those pyjamas. ** %@** more light await tomorrow.",
+                "Bring out those pyjamas. ** %@** more light awaits tomorrow.",
                 "The sun has set for today. Embrace those %@ of extra daylight tomorrow.",
                 "The sun has set. Soak up the extra vitamin D tomorrow!"
             ],
