@@ -5,18 +5,18 @@ import CoreLocation
 @testable import Daylight
 
 class MessageGeneratorTests: XCTestCase {
-    let initialDate: Date = Date(timeIntervalSince1970: 1513854000)
+    let decemberSolsticeDate: Date = Date(timeIntervalSince1970: 1513854000)
 
-    var afterDate: Date {
-        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: 15, to: self.initialDate)!
+    var afterDecemberSolticeDate: Date {
+        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: 15, to: self.decemberSolsticeDate)!
     }
 
-    var beforeDate: Date {
-        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: -15, to: self.initialDate)!
+    var beforeDecemberSolsticeDate: Date {
+        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: -15, to: self.decemberSolsticeDate)!
     }
 
-    var juneSolstice: Date {
-        let date = Calendar.autoupdatingCurrent.date(byAdding: .month, value: -6, to: self.initialDate)!
+    var juneSolsticeDate: Date {
+        let date = Calendar.autoupdatingCurrent.date(byAdding: .month, value: -6, to: self.decemberSolsticeDate)!
         return Calendar.autoupdatingCurrent.date(byAdding: .day, value: -15, to: date)!
     }
 
@@ -66,7 +66,7 @@ class MessageGeneratorTests: XCTestCase {
             "Smile! Today has 3 minutes more daylight than yesterday!"
         ]
 
-        let initialDate = self.initialDate
+        let initialDate = self.decemberSolsticeDate
         let futureDates = initialDate.next30days()
 
         // Expected string should match date list count. 31 messages for 31 days.
@@ -115,7 +115,7 @@ class MessageGeneratorTests: XCTestCase {
             "3 minutes extra sunshine today. Make them count!"
         ]
 
-        let initialDate = self.afterDate
+        let initialDate = self.afterDecemberSolticeDate
         let futureDates = initialDate.next30days()
 
         // Expected string should match date list count. 31 messages for 31 days.
@@ -166,7 +166,7 @@ class MessageGeneratorTests: XCTestCase {
         ]
 
         // Date is now two days after
-        let initialDate = self.beforeDate
+        let initialDate = self.beforeDecemberSolsticeDate
         let futureDates = initialDate.next30days()
 
         // Expected string should match date list count. 31 messages for 31 days.
@@ -216,7 +216,7 @@ class MessageGeneratorTests: XCTestCase {
         ]
 
         // Date is now two days after
-        let initialDate = self.juneSolstice
+        let initialDate = self.juneSolsticeDate
         let futureDates = initialDate.next30days()
 
         // Expected string should match date list count. 31 messages for 31 days.

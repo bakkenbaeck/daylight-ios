@@ -31,7 +31,7 @@ struct Notifier {
 
         let messageGenerator = MessageGenerator()
 
-        // never say 0 minute…
+        // If the time differential is smaller than a minute, say 1 minute instead.
         let minutesRounded = max(abs(Int(Darwin.round(interval / 60.0))), 1)
 
         let generatedMessage = messageGenerator.messageForNotification(date: date, hemisphere: location.hemisphere, daylightLengthDifference: interval)
