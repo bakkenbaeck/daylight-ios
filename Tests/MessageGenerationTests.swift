@@ -225,4 +225,55 @@ class MessageGenerationTests: XCTestCase {
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
     }
+
+    func testMessageFormatting() {
+        // For a given day, we'll always get the same message format.
+        // For a given day and location, always the same message.
+        let expected = [
+            "The sun will be out **%@** less today. Keep your head up!",
+            "Sadly, the day will be **%@** shorter. Make the most out of it!",
+            "Sadly, the day will be **%@** shorter. Make the most out of it!",
+            "**%@** less sunlight today, unfortunately. It’ll get better!",
+            "**%@** less sunlight today, unfortunately. It’ll get better!",
+            "Sadly, the day will be **%@** shorter. Make the most out of it!",
+            "Sadly, the day will be **%@** shorter. Make the most out of it!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "Today is shorter than yesterday. But fear not, brighter times ahead!",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "Today is shorter than yesterday. But fear not, brighter times ahead!",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "Today is shorter than yesterday. But fear not, brighter times ahead!",
+            "Have a magical winter solstice! The light will soon brighten up your days again.",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "There’s about a minute of extra light at the end of this tunnel.",
+            "About a minute of extra light. You’ll start noticing the difference soon!",
+            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "We’ll have about a minute of extra light today. It’s upwards from here.",
+            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "There’s about a minute of extra light at the end of this tunnel.",
+            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "About a minute of extra light. You’ll start noticing the difference soon!",
+            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "**%@** more daylight today. Just let it sink in…",
+            "Smile! Today has **%@** more daylight than yesterday!",
+            "After darkness comes daylight. **%@** more to be precise!",
+            "Today is **%@** longer. It’s getting better and better!",
+            "After darkness comes daylight. **%@** more to be precise!"
+        ]
+
+        // Date is now two days after
+        let initialDate = self.beforeDecemberSolsticeDate
+        let futureDates = initialDate.next30days()
+
+        // Expected string should match date list count. 31 messages for 31 days.
+        XCTAssertEqual(expected.count, futureDates.count)
+
+        for (index, date) in futureDates.enumerated() {
+            let message = Message(for: date, coordinates: self.location.coordinates).format
+            XCTAssertEqual(message, expected[index], "Index: \(index).")
+        }
+    }
+
 }
