@@ -59,12 +59,18 @@ class InformationController: UIViewController {
 
         self.addSubviewsAndConstraints()
 
-        self.updateInterface()
         self.addObservers()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.updateInterface()
     }
 
     func addObservers() {
         self.removeObservers()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateInterface), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
     func removeObservers() {
