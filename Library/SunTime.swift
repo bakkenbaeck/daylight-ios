@@ -9,52 +9,6 @@ extension DateFormatter {
         self.dateFormat = dateFormat
     }
 }
-/*
-
- private func suntimes(forDate date: Date) -> SunTime {
- return SunTime(date: date, latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
- }
-
- var sunPhase: SunPhase {
- return self.nowSuntimes.sunPhase
- }
-
- var daylightLengthProgress: Double {
- return self.nowSuntimes.daylightLengthProgress
- }
-
- var yesterdayDaylightLength: Double {
- let suntimes = self.suntimes(forDate: self.yesterday)
- return suntimes.sunset.timeIntervalSince(suntimes.sunrise)
- }
-
- var todayDaylightLength: Double {
- let suntimes = self.suntimes(forDate: self.today)
- return suntimes.sunset.timeIntervalSince(suntimes.sunrise)
- }
-
- var tomorrowDaylightLength: Double {
- let tomorrowSuntimes = self.suntimes(forDate: self.tomorrow)
- return tomorrowSuntimes.sunset.timeIntervalSince(tomorrowSuntimes.sunrise)
- }
-
- private var today: Date {
- return Date()
- }
-
- private var tomorrow: Date {
- return self.calendar.date(byAdding: .day, value: 1, to: self.today)!
- }
-
- private var yesterday: Date {
- return self.calendar.date(byAdding: .day, value: -1, to: self.today)!
- }
-
- private var nowSuntimes: SunTime {
- return self.suntimes(forDate: Date())
- }
-
- */
 
 struct SunCalcEngine {
     static var sharedInstance: SunCalcEngine = {
