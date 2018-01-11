@@ -1,13 +1,12 @@
 import UIKit
 
 extension String {
+    func attributedMessageString(textColor: UIColor, highlightColor: UIColor, highlightedSubstring: String) -> NSAttributedString {
+        let string = NSMutableAttributedString(string: self, attributes: [.foregroundColor: textColor, .kern: -0.75])
 
-    func attributedString(withColoredPart coloredPart: String, withTextColor textColor: UIColor) -> NSAttributedString {
-        let range = (self as NSString).range(of: coloredPart)
-        let attributedString = NSMutableAttributedString(string: self)
-        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: textColor, range: range)
-        attributedString.addAttribute(NSAttributedStringKey.kern, value: -0.75, range: NSRange(location: 0, length: self.count))
+        let range = (self as NSString).range(of: highlightedSubstring)
+        string.addAttribute(.foregroundColor, value: highlightColor, range: range)
 
-        return attributedString
+        return string
     }
 }

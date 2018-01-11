@@ -185,7 +185,7 @@ struct Message {
         self.format = format
     }
 
-    func attributedString(withTextColor textColor: UIColor) -> NSAttributedString {
-        return self.content.attributedString(withColoredPart: self.coloredPart, withTextColor: textColor)
+    func attributedString(textColor: UIColor, highlightColor: UIColor) -> NSAttributedString {
+        return self.content.attributedMessageString(textColor: textColor, highlightColor: highlightColor, highlightedSubstring: self.coloredPart)
     }
 }

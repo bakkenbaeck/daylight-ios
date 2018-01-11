@@ -113,11 +113,11 @@ class OnboardingController: UIViewController {
 
     func setLocationUndetermined() {
         self.view.backgroundColor = Theme.daylightBackground
-        self.titleLabel.textColor = Theme.daylightText.withAlphaComponent(0.6)
+
         let text = NSLocalizedString("Hi! Daylight uses your location to give you accurate daylight information.", comment: "")
 
         UIView.animate(withDuration: 0.2) {
-            self.titleLabel.attributedText = text.attributedString(withColoredPart: "your location", withTextColor: Theme.daylightText)
+            self.titleLabel.attributedText = text.attributedMessageString(textColor: Theme.daylightText.withAlphaComponent(0.6), highlightColor: Theme.daylightText, highlightedSubstring: "your location")
             self.button.setTitle("Tap to enable access", for: .normal)
         }
 
@@ -126,25 +126,24 @@ class OnboardingController: UIViewController {
 
     func setLocationDisabled() {
         self.view.backgroundColor = Theme.nightBackground
-        self.titleLabel.textColor = Theme.nightText.withAlphaComponent(0.6)
 
         let text = NSLocalizedString("Unfortunately, Daylight doesn't work without your location data. If you change your mind, you can enable it by going to settings.", comment: "")
 
         UIView.animate(withDuration: 0.2) {
-            self.titleLabel.attributedText = text.attributedString(withColoredPart: "going to settings", withTextColor: Theme.nightText)
+            self.titleLabel.attributedText = text.attributedMessageString(textColor: Theme.nightText.withAlphaComponent(0.6), highlightColor: Theme.nightText, highlightedSubstring: "going to settings")
             self.button.isHidden = true
         }
     }
 
     func setNotificationUndetermined() {
         self.view.backgroundColor = Theme.daylightBackground
-        self.titleLabel.textColor = Theme.daylightText.withAlphaComponent(0.6)
 
         let text = NSLocalizedString("Enable notifications to receive daylight changes on your phone in the morning.", comment: "")
         UIView.animate(withDuration: 0.2) {
-            self.titleLabel.attributedText = text.attributedString(withColoredPart: "Enable notifications", withTextColor: Theme.daylightText)
+            self.titleLabel.attributedText = text.attributedMessageString(textColor: Theme.daylightText.withAlphaComponent(0.6), highlightColor: Theme.daylightText, highlightedSubstring: "Enable notifications")
             self.button.setTitle("Skip for now", for: .normal)
         }
+
         self.button.isEnabled = true
         self.button.isHidden = false
         self.checkForNotifications()

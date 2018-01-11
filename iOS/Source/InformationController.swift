@@ -106,19 +106,48 @@ class InformationController: UIViewController {
         self.webButton.heightAnchor.constraint(equalToConstant: 44)
     }
 
+    private func enableNotificationsString(textColor: UIColor) -> NSAttributedString {
+        let string = NSMutableAttributedString(string: "Enable notifications", attributes: [.foregroundColor : textColor.withAlphaComponent(0.6)])
+        let range = (string.string as NSString).range(of: "Enable")
+
+        string.addAttribute(.foregroundColor, value: textColor, range: range)
+
+        return string
+    }
+
+    private func turnNotificationsOffString(textColor: UIColor) -> NSAttributedString {
+        let string = NSMutableAttributedString(string: "Turn off notifications", attributes: [.foregroundColor : textColor.withAlphaComponent(0.6)])
+        let range = (string.string as NSString).range(of: "off")
+
+        string.addAttribute(.foregroundColor, value: textColor, range: range)
+
+        return string
+    }
+
+    private func turnNotificationsOnString(textColor: UIColor) -> NSAttributedString {
+        let string = NSMutableAttributedString(string: "Turn on notifications", attributes: [.foregroundColor : textColor.withAlphaComponent(0.6)])
+        let range = (string.string as NSString).range(of: "on")
+
+        string.addAttribute(.foregroundColor, value: textColor, range: range)
+
+        return string
+    }
+
     @objc func updateInterface() {
         let sunPhase = Location.current?.sunTime.sunPhase ?? .night
-        let (backgroundColor, textColor) = Theme.colors(for: sunPhase)
+        let (backgroundColor, highlightColor) = Theme.colors(for: sunPhase)
 
-        let messageString = Message.informationMessage.attributedString(withTextColor: textColor)
-        let enableNotificationsString = "Enable notifications".attributedString(withColoredPart: "Enable", withTextColor: textColor)
-        let turnNotificationsOffString = "Turn off notifications".attributedString(withColoredPart: "off", withTextColor: textColor)
-        let turnNotificationsOnString = "Turn on notifications".attributedString(withColoredPart: "on", withTextColor: textColor)
+        let textColor = highlightColor.withAlphaComponent(0.6)
+        let messageString = Message.informationMessage.attributedString(textColor: textColor, highlightColor: highlightColor)
+
+        let enableNotificationsString = "Enable notifications".attributedMessageString(textColor: textColor, highlightColor: highlightColor, highlightedSubstring: "Enable")
+        let turnNotificationsOffString = "Turn off notifications".attributedMessageString(textColor: textColor, highlightColor: highlightColor, highlightedSubstring: "off")
+        let turnNotificationsOnString = "Turn on notifications".attributedMessageString(textColor: textColor, highlightColor: highlightColor, highlightedSubstring: "on")
+
 
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = backgroundColor
             self.closeButton.updateInterface(withBackgroundColor: backgroundColor, andTextColor: textColor)
-            self.notificationButton.titleLabel?.textColor = textColor.withAlphaComponent(0.6)
 
             self.notificationButton.removeTarget(nil, action: nil, for: .allEvents)
             if Settings.isAllowedToSendNotifications == false {
@@ -133,7 +162,6 @@ class InformationController: UIViewController {
                 }
             }
 
-            self.messageLabel.textColor = textColor.withAlphaComponent(0.6)
             self.messageLabel.attributedText = messageString
             self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
             self.view.setNeedsLayout()

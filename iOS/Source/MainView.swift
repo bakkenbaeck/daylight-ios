@@ -201,7 +201,8 @@ class MainView: UIView {
             let formattedMessage = String(format: generatedMessage.format, minuteString)
 
             let message = Message(format: formattedMessage)
-            let attributedString = message.attributedString(withTextColor: textColor)
+
+            let attributedString = message.attributedString(textColor: textColor.withAlphaComponent(0.6), highlightColor: textColor)
 
             UIView.animate(withDuration: 0.4) {
                 self.backgroundColor = backgroundColor
@@ -212,7 +213,7 @@ class MainView: UIView {
 
                 self.shareButton.setTitleColor(textColor, for: .normal)
                 self.locationLabel.textColor = textColor.withAlphaComponent(0.6)
-                self.messageLabel.textColor = textColor.withAlphaComponent(0.6)
+
                 self.messageLabel.attributedText = attributedString
                 self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
                 self.setNeedsLayout()
