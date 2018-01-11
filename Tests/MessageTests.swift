@@ -106,14 +106,14 @@ class MessageTests: XCTestCase {
     }
 
     func testNightMessageOnlyAtNight() {
-        // 20st of December 2017 11:00 UTC
+        // 20th of December 2017 11:00 UTC
         let date = Date(timeIntervalSince1970: 1513767600.0)
         let dayExpected = "Today is shorter than yesterday. But fear not, brighter times ahead!"
         let dayMessage = Message(for: date, coordinates: Location.testLocation)
 
         XCTAssertEqual(dayMessage.content, dayExpected)
 
-        // 20st of December 2017 21:00 UTC
+        // 20th of December 2017 21:00 UTC
         let nightDate = Date(timeIntervalSince1970: 1513803600.0)
         let nightExpected = "Tomorrow will be shorter than today. But fear not, brighter times ahead!"
         let nightMessage = Message(for: nightDate, coordinates: Location.testLocation)
