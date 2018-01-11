@@ -186,6 +186,6 @@ struct Message {
     }
 
     func attributedString(textColor: UIColor, highlightColor: UIColor) -> NSAttributedString {
-        return self.content.attributedMessageString(textColor: textColor, highlightColor: highlightColor, highlightedSubstring: self.coloredPart)
+        return self.content.attributedMessageString(textColor: textColor, highlightColor: highlightColor ?? textColor, highlightedSubstring: self.coloredPart)
     }
 }
