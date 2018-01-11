@@ -1,6 +1,6 @@
-import UIKit
 import CoreLocation
 import SweetUIKit
+import UIKit
 
 class MainController: UIViewController {
     lazy var informationController: InformationController = {
@@ -42,7 +42,7 @@ class MainController: UIViewController {
         self.locationTracker.locateIfPossible()
         self.updateInterface()
 
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateInterface), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.updateInterface), userInfo: nil, repeats: true)
 
         Notifier.cancelAllNotifications()
         if Settings.isNotificationsEnabled {

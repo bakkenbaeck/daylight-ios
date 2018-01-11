@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "146E27881BCD51C800959BBA"
-               BuildableName = "iOS.app"
-               BlueprintName = "iOS"
+               BuildableName = "Daylight.app"
+               BlueprintName = "Daylight"
                ReferencedContainer = "container:Daylight.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,7 +33,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "148312881B92C11500266943"
+               BlueprintIdentifier = "9FFFCA3A200384390060F86F"
                BuildableName = "Tests.xctest"
                BlueprintName = "Tests"
                ReferencedContainer = "container:Daylight.xcodeproj">
@@ -44,8 +44,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "146E27881BCD51C800959BBA"
-            BuildableName = "iOS.app"
-            BlueprintName = "iOS"
+            BuildableName = "Daylight.app"
+            BlueprintName = "Daylight"
             ReferencedContainer = "container:Daylight.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -68,8 +68,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "146E27881BCD51C800959BBA"
-            BuildableName = "iOS.app"
-            BlueprintName = "iOS"
+            BuildableName = "Daylight.app"
+            BlueprintName = "Daylight"
             ReferencedContainer = "container:Daylight.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -98,8 +98,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "146E27881BCD51C800959BBA"
-            BuildableName = "iOS.app"
-            BlueprintName = "iOS"
+            BuildableName = "Daylight.app"
+            BlueprintName = "Daylight"
             ReferencedContainer = "container:Daylight.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

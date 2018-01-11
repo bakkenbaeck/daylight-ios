@@ -8,6 +8,8 @@ protocol LocationTrackerDelegate: class {
 class LocationTracker: NSObject {
     weak var delegate: LocationTrackerDelegate?
 
+    private var placemark: CLPlacemark?
+
     static let shared: LocationTracker = {
         let instance = LocationTracker()
 
@@ -16,6 +18,7 @@ class LocationTracker: NSObject {
 
     lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
+        manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         manager.delegate = self
 
         return manager
@@ -57,9 +60,11 @@ extension LocationTracker: CLLocationManagerDelegate {
         geocoder.reverseGeocodeLocation(locations.first!) { placemarks, error in
             if let error = error {
                 self.delegate?.locationTracker(self, didFailWith: error)
-            } else if let placemarks = placemarks {
-                let placemark = placemarks.first!
-                self.delegate?.locationTracker(self, didFindLocation: placemark)
+            } else if let placemarks = placemarks, let placemark = placemarks.first {
+                if self.placemark?.country != placemark.country || self.placemark?.locality != placemark.locality {
+                    self.placemark = placemark
+                    self.delegate?.locationTracker(self, didFindLocation: placemark)
+                }
             }
         }
     }

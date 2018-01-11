@@ -30,8 +30,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "146E27881BCD51C800959BBA"
-               BuildableName = "iOS.app"
-               BlueprintName = "iOS"
+               BuildableName = "Daylight.app"
+               BlueprintName = "Daylight"
                ReferencedContainer = "container:Daylight.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -74,8 +74,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "146E27881BCD51C800959BBA"
-            BuildableName = "iOS.app"
-            BlueprintName = "iOS"
+            BuildableName = "Daylight.app"
+            BlueprintName = "Daylight"
             ReferencedContainer = "container:Daylight.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -94,8 +94,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "146E27881BCD51C800959BBA"
-            BuildableName = "iOS.app"
-            BlueprintName = "iOS"
+            BuildableName = "Daylight.app"
+            BlueprintName = "Daylight"
             ReferencedContainer = "container:Daylight.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

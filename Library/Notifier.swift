@@ -1,11 +1,11 @@
 import Foundation
-import UIKit
 import SweetUIKit
+import UIKit
 
 struct Notifier {
 
     static func scheduleNotifications(for location: Location) {
-        let datesOfComingYear = Date().futureDates()
+        let datesOfComingYear = Date().next30days()
         for date in datesOfComingYear {
             self.scheduleNotification(for: location, at: date)
         }
@@ -18,21 +18,27 @@ struct Notifier {
         dateFormatter.dateStyle = DateFormatter.Style.long
 
         let notificationID = dateFormatter.string(from: date)
-        let sunriseDate = location.sunriseForDate(date)
+        let sunriseDate = location.sunTime.sunriseStartTime(for: date)
 
-        let interval = location.dayLengthDifferenceOnDate(date)
+        let formattedMessage = self.formattedMessage(location: location, date: date)
 
-        let messageGenerator = MessageGenerator()
+        // TODO: Fix deprecated UILocalNotification
+        UILocalNotification.schedule(notificationID, at: sunriseDate, message: formattedMessage)
+    }
 
-        let minutesRounded = abs(Int(Darwin.round(interval / 60.0)))
-        let generatedMessage = messageGenerator.messageForNotification(forDate: Date(), yesterdayDaylightLength: location.yesterdayDaylightLength, todayDaylightLength: location.todayDaylightLength, tomorrowDaylightLength: location.tomorrowDaylightLength)
+    static func formattedMessage(location: Location, date: Date) -> String {
+        let interval = location.sunTime.daylightLengthDifference(on: date)
+
+        // If the time differential is smaller than a minute, say 1 minute instead.
+        let minutesRounded = max(abs(Int(Darwin.round(interval / 60.0))), 1)
+
+        let generatedMessage = Message.notificationMessage(for: date, coordinates: location.coordinates)
 
         let format = NSLocalizedString("number_of_minutes", comment: "")
         let minuteString = String.localizedStringWithFormat(format, minutesRounded)
         let formattedMessage = String(format: generatedMessage, minuteString)
 
-        // TODO: Fix deprecated UILocalNotification
-        UILocalNotification.schedule(notificationID, at: sunriseDate, message: formattedMessage)
+        return formattedMessage
     }
 
     static func cancelAllNotifications() {

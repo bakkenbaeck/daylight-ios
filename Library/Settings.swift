@@ -22,7 +22,7 @@ struct Settings {
     }
 
     static func registerForNotifications() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge]) { granted, error in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge]) { _, _ in
             // TODO: Implement error handling
         }
     }
