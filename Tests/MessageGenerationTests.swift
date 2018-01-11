@@ -130,7 +130,7 @@ class MessageGenerationTests: XCTestCase {
         // For a given day, we'll always get the same message format.
         // For a given day and location, always the same message.
         let expected = [
-            "The sun will be out  2 minutes less today. Keep your head up!",
+            "The sun will be out 2 minutes less today. Keep your head up!",
             "Sadly, the day will be 1 minute shorter. Make the most out of it!",
             "Sadly, the day will be 1 minute shorter. Make the most out of it!",
             "1 minute less sunlight today, unfortunately. It’ll get better!",
@@ -207,7 +207,7 @@ class MessageGenerationTests: XCTestCase {
             "Today is shorter than yesterday. But fear not, brighter times ahead!",
             "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
             "Today is shorter than yesterday. But fear not, brighter times ahead!",
-            "The sun will be out  1 minute less today. Keep your head up!",
+            "The sun will be out 1 minute less today. Keep your head up!",
             "1 minute less sunlight today, unfortunately. It’ll get better!",
             "1 minute less sunlight today, unfortunately. It’ll get better!",
             "1 minute less sunlight today, unfortunately. It’ll get better!"
