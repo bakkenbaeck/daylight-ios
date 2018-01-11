@@ -186,7 +186,9 @@ class OnboardingController: UIViewController {
                 Settings.isNotificationsEnabled = true
                 Settings.registerForNotifications()
                 if let location = Location.current {
-                    Notifier.scheduleNotifications(for: location)
+                    DispatchQueue.main.async {
+                        Notifier.scheduleNotifications(for: location)
+                    }
                 }
             }
             self.presentMainController()

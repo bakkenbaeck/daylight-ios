@@ -106,38 +106,10 @@ class InformationController: UIViewController {
         let sunPhase = Location.current?.sunTime.sunPhase ?? .night
         let (backgroundColor, textColor) = Theme.colors(for: sunPhase)
 
-        var messageString: NSAttributedString {
-            let message = Message.informationMessage
-
-            return message.attributedString(withTextColor: textColor)
-        }
-
-        var enableNotificationsString: NSAttributedString {
-            let content = "Enable notifications"
-            let attributedString = NSMutableAttributedString(string: content)
-            let range = (content as NSString).range(of: "Enable")
-            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: textColor, range: range)
-
-            return attributedString
-        }
-
-        var turnNotificationsOffString: NSAttributedString {
-            let content = "Turn off notifications"
-            let attributedString = NSMutableAttributedString(string: content)
-            let range = (content as NSString).range(of: "off")
-            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: textColor, range: range)
-
-            return attributedString
-        }
-
-        var turnNotificationsOnString: NSAttributedString {
-            let content = "Turn on notifications"
-            let attributedString = NSMutableAttributedString(string: content)
-            let range = (content as NSString).range(of: "on")
-            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: textColor, range: range)
-
-            return attributedString
-        }
+        let messageString = Message.informationMessage.attributedString(withTextColor: textColor)
+        let enableNotificationsString = "Enable notifications".attributedString(withColoredPart: "Enable", withTextColor: textColor)
+        let turnNotificationsOffString = "Turn off notifications".attributedString(withColoredPart: "off", withTextColor: textColor)
+        let turnNotificationsOnString = "Turn on notifications".attributedString(withColoredPart: "on", withTextColor: textColor)
 
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = backgroundColor
