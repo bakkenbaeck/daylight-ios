@@ -107,7 +107,7 @@ class InformationController: UIViewController {
     }
 
     private func enableNotificationsString(textColor: UIColor) -> NSAttributedString {
-        let string = NSMutableAttributedString(string: "Enable notifications", attributes: [.foregroundColor : textColor.withAlphaComponent(0.6)])
+        let string = NSMutableAttributedString(string: "Enable notifications", attributes: [.foregroundColor: textColor.withAlphaComponent(0.6)])
         let range = (string.string as NSString).range(of: "Enable")
 
         string.addAttribute(.foregroundColor, value: textColor, range: range)
@@ -116,7 +116,7 @@ class InformationController: UIViewController {
     }
 
     private func turnNotificationsOffString(textColor: UIColor) -> NSAttributedString {
-        let string = NSMutableAttributedString(string: "Turn off notifications", attributes: [.foregroundColor : textColor.withAlphaComponent(0.6)])
+        let string = NSMutableAttributedString(string: "Turn off notifications", attributes: [.foregroundColor: textColor.withAlphaComponent(0.6)])
         let range = (string.string as NSString).range(of: "off")
 
         string.addAttribute(.foregroundColor, value: textColor, range: range)
@@ -125,7 +125,7 @@ class InformationController: UIViewController {
     }
 
     private func turnNotificationsOnString(textColor: UIColor) -> NSAttributedString {
-        let string = NSMutableAttributedString(string: "Turn on notifications", attributes: [.foregroundColor : textColor.withAlphaComponent(0.6)])
+        let string = NSMutableAttributedString(string: "Turn on notifications", attributes: [.foregroundColor: textColor.withAlphaComponent(0.6)])
         let range = (string.string as NSString).range(of: "on")
 
         string.addAttribute(.foregroundColor, value: textColor, range: range)
@@ -143,7 +143,6 @@ class InformationController: UIViewController {
         let enableNotificationsString = "Enable notifications".attributedMessageString(textColor: textColor, highlightColor: highlightColor, highlightedSubstring: "Enable")
         let turnNotificationsOffString = "Turn off notifications".attributedMessageString(textColor: textColor, highlightColor: highlightColor, highlightedSubstring: "off")
         let turnNotificationsOnString = "Turn on notifications".attributedMessageString(textColor: textColor, highlightColor: highlightColor, highlightedSubstring: "on")
-
 
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = backgroundColor

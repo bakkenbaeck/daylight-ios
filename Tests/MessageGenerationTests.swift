@@ -275,5 +275,4 @@ class MessageGenerationTests: XCTestCase {
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
     }
-
 }
