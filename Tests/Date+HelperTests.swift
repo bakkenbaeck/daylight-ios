@@ -7,7 +7,7 @@ class Date_HelperTests: XCTestCase {
     func testDatesOfComingYear() {
         let date = Date()
 
-        let datesOfComingYear: Array = date.next30days()
+        let datesOfComingYear: Array = date.andNext30Days()
 
         let firstDay = datesOfComingYear.first
         let lastDay = datesOfComingYear.last

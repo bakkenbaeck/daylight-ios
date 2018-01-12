@@ -21,12 +21,16 @@ class MessageGenerationTests: XCTestCase {
     }
 
     private var location: Location!
+    private var locationSouth: Location!
 
     override func setUp() {
         super.setUp()
 
         let coordinate = Location.testLocation
         self.location = Location(coordinate: coordinate, city: "Bonn", country: "Germany")
+
+        let coordinateSouth = CLLocationCoordinate2D(latitude: -27.4698, longitude: 153.0251)
+        self.locationSouth = Location(coordinate: coordinateSouth, city: "Brisbane", country: "Australia")
     }
 
     func testMessageDeterminismFromWinterSolstice() {
@@ -65,7 +69,7 @@ class MessageGenerationTests: XCTestCase {
         ]
 
         let initialDate = self.decemberSolsticeDate
-        let futureDates = initialDate.next30days()
+        let futureDates = initialDate.andNext30Days()
 
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
@@ -114,7 +118,7 @@ class MessageGenerationTests: XCTestCase {
         ]
 
         let initialDate = self.afterDecemberSolticeDate
-        let futureDates = initialDate.next30days()
+        let futureDates = initialDate.andNext30Days()
 
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
@@ -130,7 +134,7 @@ class MessageGenerationTests: XCTestCase {
         // For a given day, we'll always get the same message format.
         // For a given day and location, always the same message.
         let expected = [
-            "The sun will be out  2 minutes less today. Keep your head up!",
+            "The sun will be out 2 minutes less today. Keep your head up!",
             "Sadly, the day will be 1 minute shorter. Make the most out of it!",
             "Sadly, the day will be 1 minute shorter. Make the most out of it!",
             "1 minute less sunlight today, unfortunately. It’ll get better!",
@@ -165,7 +169,7 @@ class MessageGenerationTests: XCTestCase {
 
         // Date is now two days after
         let initialDate = self.beforeDecemberSolsticeDate
-        let futureDates = initialDate.next30days()
+        let futureDates = initialDate.andNext30Days()
 
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
@@ -207,7 +211,7 @@ class MessageGenerationTests: XCTestCase {
             "Today is shorter than yesterday. But fear not, brighter times ahead!",
             "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
             "Today is shorter than yesterday. But fear not, brighter times ahead!",
-            "The sun will be out  1 minute less today. Keep your head up!",
+            "The sun will be out 1 minute less today. Keep your head up!",
             "1 minute less sunlight today, unfortunately. It’ll get better!",
             "1 minute less sunlight today, unfortunately. It’ll get better!",
             "1 minute less sunlight today, unfortunately. It’ll get better!"
@@ -215,13 +219,114 @@ class MessageGenerationTests: XCTestCase {
 
         // Date is now two days after
         let initialDate = self.juneSolsticeDate
-        let futureDates = initialDate.next30days()
+        let futureDates = initialDate.andNext30Days()
 
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
 
         for (index, date) in futureDates.enumerated() {
             let message = Notifier.formattedMessage(location: self.location, date: date)
+            XCTAssertEqual(message, expected[index], "Index: \(index).")
+        }
+    }
+
+    func testMessageDeterminismForSouthernHemisphere() {
+        // For a given day, we'll always get the same message format.
+        // For a given day and location, always the same message.
+        // Remeber, in the south, it's winter in july!
+        let expected = [
+            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
+            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
+            "Unfortunately, tomorrow will be a little bit shorter than today. Make the most out of it!",
+            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
+            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
+            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
+            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
+            "Unfortunately, tomorrow will be a little bit shorter than today. Make the most out of it!",
+            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
+            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
+            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
+            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
+            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
+            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
+            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
+            "Have a magical winter solstice! The light will soon brighten up your days again.",
+            "The sun has set. Soak up the extra vitamin D tomorrow!",
+            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
+            "The sun has set. Soak up the extra vitamin D tomorrow!",
+            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
+            "The sun has set. Soak up the extra vitamin D tomorrow!",
+            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
+            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
+            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
+            "The sun has set. Soak up the extra vitamin D tomorrow!",
+            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
+            "The sun has set. Soak up the extra vitamin D tomorrow!",
+            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
+            "Bring out those pyjamas. More daylight awaits tomorrow!",
+            "Bring out those pyjamas. More daylight awaits tomorrow!",
+            "Bring out those pyjamas. More daylight awaits tomorrow!",
+        ]
+
+        // Date is now two days after
+        let initialDate = self.juneSolsticeDate
+        let futureDates = initialDate.andNext30Days()
+
+        // Expected string should match date list count. 31 messages for 31 days.
+        XCTAssertEqual(expected.count, futureDates.count)
+
+        for (index, date) in futureDates.enumerated() {
+            let message = Notifier.formattedMessage(location: self.locationSouth, date: date)
+            XCTAssertEqual(message, expected[index], "Index: \(index).")
+        }
+    }
+
+    func testMessageFormatting() {
+        // For a given day, we'll always get the same message format.
+        // For a given day and location, always the same message.
+        let expected = [
+            "The sun will be out **%@** less today. Keep your head up!",
+            "Sadly, the day will be **%@** shorter. Make the most out of it!",
+            "Sadly, the day will be **%@** shorter. Make the most out of it!",
+            "**%@** less sunlight today, unfortunately. It’ll get better!",
+            "**%@** less sunlight today, unfortunately. It’ll get better!",
+            "Sadly, the day will be **%@** shorter. Make the most out of it!",
+            "Sadly, the day will be **%@** shorter. Make the most out of it!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "Today is shorter than yesterday. But fear not, brighter times ahead!",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "Today is shorter than yesterday. But fear not, brighter times ahead!",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "Today is shorter than yesterday. But fear not, brighter times ahead!",
+            "Have a magical winter solstice! The light will soon brighten up your days again.",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "There’s about a minute of extra light at the end of this tunnel.",
+            "About a minute of extra light. You’ll start noticing the difference soon!",
+            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "We’ll have about a minute of extra light today. It’s upwards from here.",
+            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "There’s about a minute of extra light at the end of this tunnel.",
+            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "About a minute of extra light. You’ll start noticing the difference soon!",
+            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "**%@** more daylight today. Just let it sink in…",
+            "Smile! Today has **%@** more daylight than yesterday!",
+            "After darkness comes daylight. **%@** more to be precise!",
+            "Today is **%@** longer. It’s getting better and better!",
+            "After darkness comes daylight. **%@** more to be precise!"
+        ]
+
+        // Date is now two days after
+        let initialDate = self.beforeDecemberSolsticeDate
+        let futureDates = initialDate.andNext30Days()
+
+        // Expected string should match date list count. 31 messages for 31 days.
+        XCTAssertEqual(expected.count, futureDates.count)
+
+        for (index, date) in futureDates.enumerated() {
+            let message = Message(for: date, coordinates: self.location.coordinates).format
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
     }

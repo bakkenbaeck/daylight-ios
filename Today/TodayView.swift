@@ -112,9 +112,8 @@ class TodayView: UIView {
             let formattedMessage = String(format: generatedMessage.format, minuteString)
 
             let message = Message(format: formattedMessage)
-            let attributedString = message.attributedString(withTextColor: tintColor.darker(by: 20)!)
+            let attributedString = message.attributedString(textColor: tintColor.darker(by: 20), highlightColor: tintColor)
 
-            messageLabel.textColor = tintColor
             messageLabel.attributedText = attributedString
         }
     }

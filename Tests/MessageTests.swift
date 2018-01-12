@@ -35,9 +35,11 @@ class MessageTests: XCTestCase {
         var message = Message(format: format)
         var range = (content as NSString).range(of: coloredPart)
         var attributedString = NSMutableAttributedString(string: content)
-        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.red, range: range)
-        attributedString.addAttribute(NSAttributedStringKey.kern, value: -0.75, range: NSRange(location: 0, length: content.count))
-        XCTAssertEqual(message.attributedString(withTextColor: UIColor.red), attributedString)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.black, range: attributedString.string.whole)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: range)
+        attributedString.addAttribute(.kern, value: -0.75, range: NSRange(location: 0, length: content.count))
+
+        XCTAssertEqual(message.attributedString(textColor: .black, highlightColor: .red), attributedString)
 
         format = "**%@ minutes** more."
         content = "%@ minutes more."
@@ -46,9 +48,11 @@ class MessageTests: XCTestCase {
         message = Message(format: format)
         range = (content as NSString).range(of: coloredPart)
         attributedString = NSMutableAttributedString(string: content)
-        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.red, range: range)
-        attributedString.addAttribute(NSAttributedStringKey.kern, value: -0.75, range: NSRange(location: 0, length: content.count))
-        XCTAssertEqual(message.attributedString(withTextColor: UIColor.red), attributedString)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.black, range: attributedString.string.whole)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: range)
+        attributedString.addAttribute(.kern, value: -0.75, range: NSRange(location: 0, length: content.count))
+
+        XCTAssertEqual(message.attributedString(textColor: .black, highlightColor: .red), attributedString)
     }
 
     func testHashValueForDate() {

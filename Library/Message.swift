@@ -49,16 +49,16 @@ struct Message {
     private let messages: [SunTime.DayOrNight: [TimeDiferential: [String]]] = [
         .day: [
             .longerMoreThanAMinute: [
-                "Today is %@ longer than yesterday. Happy days!",
-                "The sun is out for %@ more today. Enjoy!",
-                "%@ extra sunshine today. Make them count!",
-                "Make sure to soak up that vitamin D. %@ more daylight today!",
-                "Smile! Today has %@ more daylight than yesterday!",
-                "%@ more daylight today. Just let it sink in…",
-                "Today is %@ longer. It’s getting better and better!",
-                "Bring out your shorts, because today has %@ more sunlight.",
-                "Have a great day and enjoy those %@ extra daylight.",
-                "After darkness comes daylight. %@ more to be precise!"
+                "Today is **%@** longer than yesterday. Happy days!",
+                "The sun is out for **%@** more today. Enjoy!",
+                "**%@** extra sunshine today. Make them count!",
+                "Make sure to soak up that vitamin D. **%@** more daylight today!",
+                "Smile! Today has **%@** more daylight than yesterday!",
+                "**%@** more daylight today. Just let it sink in…",
+                "Today is **%@** longer. It’s getting better and better!",
+                "Bring out your shorts, because today has **%@** more sunlight.",
+                "Have a great day and enjoy those **%@** extra daylight.",
+                "After darkness comes daylight. **%@** more to be precise!"
             ],
             .longerLessThanAMinute: [
                 "Little less than a minute of extra sunlight today. It’s getting better!",
@@ -68,9 +68,9 @@ struct Message {
                 "We’ll have about a minute of extra light today. It’s upwards from here."
             ],
             .shorterMoreThanAMinute: [
-                "The sun will be out ** %@ less** today. Keep your head up!",
-                "%@ less sunlight today, unfortunately. It’ll get better!",
-                "Sadly, the day will be %@ shorter. Make the most out of it!"
+                "The sun will be out **%@** less today. Keep your head up!",
+                "**%@** less sunlight today, unfortunately. It’ll get better!",
+                "Sadly, the day will be **%@** shorter. Make the most out of it!"
             ],
             .shorterLessThanAMinute: [
                 "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
@@ -80,10 +80,10 @@ struct Message {
         ],
         .night: [
             .longerMoreThanAMinute: [
-                "Get a good night’s sleep: tomorrow there’ll be %@ more sunlight.",
-                "Lights out. Enjoy %@ more sunlight tomorrow!",
-                "Bring out those pyjamas. ** %@** more light awaits tomorrow.",
-                "The sun has set for today. Embrace those %@ of extra daylight tomorrow.",
+                "Get a good night’s sleep: tomorrow there’ll be **%@** more sunlight.",
+                "Lights out. Enjoy **%@** more sunlight tomorrow!",
+                "Bring out those pyjamas. **%@** more light awaits tomorrow.",
+                "The sun has set for today. Embrace those **%@** of extra daylight tomorrow.",
                 "The sun has set. Soak up the extra vitamin D tomorrow!"
             ],
             .longerLessThanAMinute: [
@@ -92,9 +92,9 @@ struct Message {
                 "The sun has set. Soak up the extra vitamin D tomorrow!"
             ],
             .shorterMoreThanAMinute: [
-                "Unfortunately, tomorrow will be %@ shorter than today. Make the most out of it!",
-                "Sadly, tomorrow will be %@ shorter than today. Enjoy it while it lasts!",
-                "Tomorrow will be %@ shorter than today. But fear not, brighter times ahead!"
+                "Unfortunately, tomorrow will be **%@** shorter than today. Make the most out of it!",
+                "Sadly, tomorrow will be **%@** shorter than today. Enjoy it while it lasts!",
+                "Tomorrow will be **%@** shorter than today. But fear not, brighter times ahead!"
             ],
             .shorterLessThanAMinute: [
                 "Unfortunately, tomorrow will be a little bit shorter than today. Make the most out of it!",
@@ -185,7 +185,7 @@ struct Message {
         self.format = format
     }
 
-    func attributedString(withTextColor textColor: UIColor) -> NSAttributedString {
-        return self.content.attributedString(withColoredPart: self.coloredPart, withTextColor: textColor)
+    func attributedString(textColor: UIColor, highlightColor: UIColor) -> NSAttributedString {
+        return self.content.attributedMessageString(textColor: textColor, highlightColor: highlightColor, highlightedSubstring: self.coloredPart)
     }
 }
