@@ -34,7 +34,7 @@ extension Date {
         return Calendar.autoupdatingCurrent.date(byAdding: .day, value: 1, to: self)!
     }
 
-    func next31days() -> [Date] {
+    func andNext30Days() -> [Date] {
         var dayArray = [self]
 
         for i in 0..<30 {

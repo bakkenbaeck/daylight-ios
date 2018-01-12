@@ -69,7 +69,7 @@ class MessageGenerationTests: XCTestCase {
         ]
 
         let initialDate = self.decemberSolsticeDate
-        let futureDates = initialDate.next31days()
+        let futureDates = initialDate.andNext30Days()
 
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
@@ -118,7 +118,7 @@ class MessageGenerationTests: XCTestCase {
         ]
 
         let initialDate = self.afterDecemberSolticeDate
-        let futureDates = initialDate.next31days()
+        let futureDates = initialDate.andNext30Days()
 
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
@@ -169,7 +169,7 @@ class MessageGenerationTests: XCTestCase {
 
         // Date is now two days after
         let initialDate = self.beforeDecemberSolsticeDate
-        let futureDates = initialDate.next31days()
+        let futureDates = initialDate.andNext30Days()
 
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
@@ -219,7 +219,7 @@ class MessageGenerationTests: XCTestCase {
 
         // Date is now two days after
         let initialDate = self.juneSolsticeDate
-        let futureDates = initialDate.next31days()
+        let futureDates = initialDate.andNext30Days()
 
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
@@ -270,7 +270,7 @@ class MessageGenerationTests: XCTestCase {
 
         // Date is now two days after
         let initialDate = self.juneSolsticeDate
-        let futureDates = initialDate.next31days()
+        let futureDates = initialDate.andNext30Days()
 
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
@@ -320,7 +320,7 @@ class MessageGenerationTests: XCTestCase {
 
         // Date is now two days after
         let initialDate = self.beforeDecemberSolsticeDate
-        let futureDates = initialDate.next31days()
+        let futureDates = initialDate.andNext30Days()
 
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
