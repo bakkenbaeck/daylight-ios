@@ -21,12 +21,16 @@ class MessageGenerationTests: XCTestCase {
     }
 
     private var location: Location!
+    private var locationSouth: Location!
 
     override func setUp() {
         super.setUp()
 
         let coordinate = Location.testLocation
         self.location = Location(coordinate: coordinate, city: "Bonn", country: "Germany")
+
+        let coordinateSouth = CLLocationCoordinate2D(latitude: -27.4698, longitude: 153.0251)
+        self.locationSouth = Location(coordinate: coordinateSouth, city: "Brisbane", country: "Australia")
     }
 
     func testMessageDeterminismFromWinterSolstice() {
@@ -65,7 +69,7 @@ class MessageGenerationTests: XCTestCase {
         ]
 
         let initialDate = self.decemberSolsticeDate
-        let futureDates = initialDate.next30days()
+        let futureDates = initialDate.next31days()
 
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
@@ -114,7 +118,7 @@ class MessageGenerationTests: XCTestCase {
         ]
 
         let initialDate = self.afterDecemberSolticeDate
-        let futureDates = initialDate.next30days()
+        let futureDates = initialDate.next31days()
 
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
@@ -165,7 +169,7 @@ class MessageGenerationTests: XCTestCase {
 
         // Date is now two days after
         let initialDate = self.beforeDecemberSolsticeDate
-        let futureDates = initialDate.next30days()
+        let futureDates = initialDate.next31days()
 
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
@@ -215,13 +219,64 @@ class MessageGenerationTests: XCTestCase {
 
         // Date is now two days after
         let initialDate = self.juneSolsticeDate
-        let futureDates = initialDate.next30days()
+        let futureDates = initialDate.next31days()
 
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
 
         for (index, date) in futureDates.enumerated() {
             let message = Notifier.formattedMessage(location: self.location, date: date)
+            XCTAssertEqual(message, expected[index], "Index: \(index).")
+        }
+    }
+
+    func testMessageDeterminismForSouthernHemisphere() {
+        // For a given day, we'll always get the same message format.
+        // For a given day and location, always the same message.
+        // Remeber, in the south, it's winter in july!
+        let expected = [
+            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
+            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
+            "Unfortunately, tomorrow will be a little bit shorter than today. Make the most out of it!",
+            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
+            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
+            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
+            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
+            "Unfortunately, tomorrow will be a little bit shorter than today. Make the most out of it!",
+            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
+            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
+            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
+            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
+            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
+            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
+            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
+            "Have a magical winter solstice! The light will soon brighten up your days again.",
+            "The sun has set. Soak up the extra vitamin D tomorrow!",
+            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
+            "The sun has set. Soak up the extra vitamin D tomorrow!",
+            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
+            "The sun has set. Soak up the extra vitamin D tomorrow!",
+            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
+            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
+            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
+            "The sun has set. Soak up the extra vitamin D tomorrow!",
+            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
+            "The sun has set. Soak up the extra vitamin D tomorrow!",
+            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
+            "Bring out those pyjamas. More daylight awaits tomorrow!",
+            "Bring out those pyjamas. More daylight awaits tomorrow!",
+            "Bring out those pyjamas. More daylight awaits tomorrow!",
+        ]
+
+        // Date is now two days after
+        let initialDate = self.juneSolsticeDate
+        let futureDates = initialDate.next31days()
+
+        // Expected string should match date list count. 31 messages for 31 days.
+        XCTAssertEqual(expected.count, futureDates.count)
+
+        for (index, date) in futureDates.enumerated() {
+            let message = Notifier.formattedMessage(location: self.locationSouth, date: date)
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
     }
@@ -265,7 +320,7 @@ class MessageGenerationTests: XCTestCase {
 
         // Date is now two days after
         let initialDate = self.beforeDecemberSolsticeDate
-        let futureDates = initialDate.next30days()
+        let futureDates = initialDate.next31days()
 
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)

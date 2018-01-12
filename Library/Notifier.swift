@@ -5,7 +5,7 @@ import UIKit
 struct Notifier {
 
     static func scheduleNotifications(for location: Location) {
-        let datesOfComingYear = Date().next30days()
+        let datesOfComingYear = Date().next31days()
         for date in datesOfComingYear {
             self.scheduleNotification(for: location, at: date)
         }
