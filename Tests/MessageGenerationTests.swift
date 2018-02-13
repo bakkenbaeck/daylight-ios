@@ -4,7 +4,7 @@ import UIKit
 import XCTest
 
 class MessageGenerationTests: XCTestCase {
-    // 21st of December 2017 12:00
+    // 21st of December 2017 12:00 GMT
     let decemberSolsticeDate: Date = Date(timeIntervalSince1970: 1513854000)
 
     var afterDecemberSolticeDate: Date {
@@ -326,8 +326,18 @@ class MessageGenerationTests: XCTestCase {
         XCTAssertEqual(expected.count, futureDates.count)
 
         for (index, date) in futureDates.enumerated() {
-            let message = Message(for: date, coordinates: self.location.coordinates).format
+            let message = Message(for: date, coordinates: self.location.coordinates).preformattedMessage
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
+    }
+
+    func testWeeklyMessages() {
+        // 12th of November 2018 12:00 GMT
+        let sunday = Date(timeIntervalSince1970: 1518350400)
+        let messageNorth = Message(for: sunday, coordinates: self.location.coordinates, weeklySummary: true).formattedMessage
+        let messageSouth = Message(for: sunday, coordinates: self.locationSouth.coordinates, weeklySummary: true).formattedMessage
+
+        XCTAssertEqual(messageNorth, "Hooray, you've gained more than 24 minutes sunshine since last week!")
+        XCTAssertEqual(messageSouth, "There are 10 minutes less sun than last week, but don't worry!")
     }
 }

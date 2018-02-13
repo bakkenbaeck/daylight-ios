@@ -13,10 +13,10 @@ extension Location {
 class MessageTests: XCTestCase {
     func testContent() {
         var message = Message(format: "Hello **mom**.")
-        XCTAssertEqual(message.content, "Hello mom.")
+        XCTAssertEqual(message.formattedMessage, "Hello mom.")
 
-        message = Message(format: "**%@ minutes** more.")
-        XCTAssertEqual(message.content, "%@ minutes more.")
+        message = Message(format: "**%@** more.")
+        XCTAssertEqual(message.formattedMessage, "0 minutes more.")
     }
 
     func testColoredPart() {
@@ -41,9 +41,9 @@ class MessageTests: XCTestCase {
 
         XCTAssertEqual(message.attributedString(textColor: .black, highlightColor: .red), attributedString)
 
-        format = "**%@ minutes** more."
-        content = "%@ minutes more."
-        coloredPart = "%@ minutes"
+        format = "**0 minutes** more."
+        content = "0 minutes more."
+        coloredPart = "0 minutes"
 
         message = Message(format: format)
         range = (content as NSString).range(of: coloredPart)
@@ -84,7 +84,7 @@ class MessageTests: XCTestCase {
         let beginMessage = Message(for: beginningOfDayDate, coordinates: Location.testLocation)
         let endMessage = Message(for: endOfDayDate, coordinates: Location.testLocation)
 
-        XCTAssertEqual(beginMessage.content, endMessage.content)
+        XCTAssertEqual(beginMessage.formattedMessage, endMessage.formattedMessage)
     }
 
     func testMessageForNight() {
@@ -100,7 +100,7 @@ class MessageTests: XCTestCase {
         let beginMessage = Message(for: beginningOfDayDate, coordinates: Location.testLocation)
         let endMessage = Message(for: endOfDayDate, coordinates: Location.testLocation)
 
-        XCTAssertEqual(beginMessage.content, endMessage.content)
+        XCTAssertEqual(beginMessage.formattedMessage, endMessage.formattedMessage)
     }
 
     func testNotificationMessage() {
@@ -115,13 +115,13 @@ class MessageTests: XCTestCase {
         let dayExpected = "Today is shorter than yesterday. But fear not, brighter times ahead!"
         let dayMessage = Message(for: date, coordinates: Location.testLocation)
 
-        XCTAssertEqual(dayMessage.content, dayExpected)
+        XCTAssertEqual(dayMessage.formattedMessage, dayExpected)
 
         // 20th of December 2017 21:00 UTC
         let nightDate = Date(timeIntervalSince1970: 1513803600.0)
         let nightExpected = "Tomorrow will be shorter than today. But fear not, brighter times ahead!"
         let nightMessage = Message(for: nightDate, coordinates: Location.testLocation)
 
-        XCTAssertEqual(nightMessage.content, nightExpected)
+        XCTAssertEqual(nightMessage.formattedMessage, nightExpected)
     }
 }

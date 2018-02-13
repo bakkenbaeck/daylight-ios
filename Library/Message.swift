@@ -46,6 +46,16 @@ struct Message {
         "Have a magical winter solstice! The light will soon brighten up your days again."
     ]
 
+    private let weeklySummaryMoreSunlightMessages = [
+        "Hooray, you've gained more than **%@** sunshine since last week!",
+        "**%@** more sunlight since last week!",
+    ]
+
+    private let weeklySummaryLessSunlightMessages = [
+        "There are **%@** less sun than last week, but don't worry!",
+        "**%@** less sunshine. Fuck this 💩!",
+    ]
+
     private let messages: [SunTime.DayOrNight: [TimeDiferential: [String]]] = [
         .day: [
             .longerMoreThanAMinute: [
@@ -135,24 +145,33 @@ struct Message {
         }
     }
 
-    static func notificationMessage(for date: Date, coordinates: CLLocationCoordinate2D) -> String {
-        return self.init(for: date, coordinates: coordinates).formattedMessage
+    static func notificationMessage(for date: Date, coordinates: CLLocationCoordinate2D, weeklySummary: Bool = false) -> String {
+        return self.init(for: date, coordinates: coordinates, weeklySummary: weeklySummary).formattedMessage
     }
 
-    init(for date: Date, since sinceDate: Date? = nil, coordinates: CLLocationCoordinate2D) {
-        self.init(for: date, since: sinceDate, latitude: coordinates.latitude, longitude: coordinates.longitude)
+    init(for date: Date, coordinates: CLLocationCoordinate2D, weeklySummary: Bool = false) {
+        self.init(for: date, latitude: coordinates.latitude, longitude: coordinates.longitude, weeklySummary: weeklySummary)
     }
 
-    init(for date: Date, since sinceDate: Date? = nil, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+    init(for date: Date, latitude: CLLocationDegrees, longitude: CLLocationDegrees, weeklySummary: Bool = false) {
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let sunTimes = SunTime(date: date, coordinate: coordinate)
+
+        let sinceDate: Date? = weeklySummary ? Calendar.autoupdatingCurrent.date(byAdding: .day, value: -7, to: date)! : nil
         self.daylightLengthDifference = sunTimes.daylightLenghtDifference(from: sinceDate ?? date.dayBefore, to: date)
 
         let hemisphere = Location.Hemisphere(latitude: latitude)
 
         guard let messagesForCycle = self.messages[sunTimes.dayNightCycle] else { fatalError("Could not recover messages for day/night cycle.") }
         let possibleMessages: [String]
-        if date.isSolstice {
+
+        if weeklySummary {
+            if self.daylightLengthDifference > 0 {
+                possibleMessages = self.weeklySummaryMoreSunlightMessages
+            } else {
+                possibleMessages = self.weeklySummaryLessSunlightMessages
+            }
+        } else if date.isSolstice {
             if date.isJuneSolstice {
                 switch hemisphere {
                 case .southern:
