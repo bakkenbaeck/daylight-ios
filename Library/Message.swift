@@ -106,16 +106,26 @@ struct Message {
 
     static let informationMessage = Message(format: "Daylight is an experiment inspired by the dark and long winters of the north. Made by **Bakken & Bæck**.")
 
-    private(set) var format: String = ""
+    private(set) var preformattedMessage: String = ""
 
-    var content: String {
-        return self.format.replacingOccurrences(of: "**", with: "")
+    var formattedMessage: String {
+        let format = NSLocalizedString("number_of_minutes", comment: "")
+        let minuteString = String.localizedStringWithFormat(format, self.minutesRounded)
+        let formattedMessage = String(format: self.preformattedMessage, minuteString)
+
+        return formattedMessage.replacingOccurrences(of: "**", with: "")
+    }
+
+    private var daylightLengthDifference: Double = 0
+
+    private var minutesRounded: Int {
+        return abs(Int(Darwin.round(self.daylightLengthDifference / 60.0)))
     }
 
     var coloredPart: String {
         let regex = try! NSRegularExpression(pattern: "\\*\\*([^\"]*)\\*\\*")
-        let nsString = self.format as NSString
-        let results = regex.matches(in: self.format, range: NSRange(location: 0, length: nsString.length))
+        let nsString = self.preformattedMessage as NSString
+        let results = regex.matches(in: self.preformattedMessage, range: NSRange(location: 0, length: nsString.length))
         if let firstResultRange = results.first?.range {
             let foundPart = nsString.substring(with: firstResultRange)
 
@@ -126,17 +136,17 @@ struct Message {
     }
 
     static func notificationMessage(for date: Date, coordinates: CLLocationCoordinate2D) -> String {
-        return self.init(for: date, coordinates: coordinates).content
+        return self.init(for: date, coordinates: coordinates).formattedMessage
     }
 
-    init(for date: Date, coordinates: CLLocationCoordinate2D) {
-        self.init(for: date, latitude: coordinates.latitude, longitude: coordinates.longitude)
+    init(for date: Date, since sinceDate: Date? = nil, coordinates: CLLocationCoordinate2D) {
+        self.init(for: date, since: sinceDate, latitude: coordinates.latitude, longitude: coordinates.longitude)
     }
 
-    init(for date: Date, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+    init(for date: Date, since sinceDate: Date? = nil, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let sunTimes = SunTime(date: date, coordinate: coordinate)
-        let daylightLengthDifference = sunTimes.dayLengthDifference
+        self.daylightLengthDifference = sunTimes.daylightLenghtDifference(from: sinceDate ?? date.dayBefore, to: date)
 
         let hemisphere = Location.Hemisphere(latitude: latitude)
 
@@ -160,14 +170,14 @@ struct Message {
             }
         } else {
             // positive values mean days are getting longer
-            if daylightLengthDifference == abs(daylightLengthDifference) {
-                if daylightLengthDifference >= 1.minute {
+            if self.daylightLengthDifference == abs(self.daylightLengthDifference) {
+                if self.daylightLengthDifference >= 1.minute {
                     possibleMessages = messagesForCycle[.longerMoreThanAMinute]!
                 } else {
                     possibleMessages = messagesForCycle[.longerLessThanAMinute]!
                 }
             } else {
-                if abs(daylightLengthDifference) >= 1.minute {
+                if abs(self.daylightLengthDifference) >= 1.minute {
                     possibleMessages = messagesForCycle[.shorterMoreThanAMinute]!
                 } else {
                     possibleMessages = messagesForCycle[.shorterLessThanAMinute]!
@@ -178,14 +188,14 @@ struct Message {
         let hashValue = DateHasher.hashValue(for: date)
         let index = Int(hashValue % UInt32(possibleMessages.count))
 
-        self.format = possibleMessages[index]
+        self.preformattedMessage = possibleMessages[index]
     }
 
     init(format: String) {
-        self.format = format
+        self.preformattedMessage = format
     }
 
     func attributedString(textColor: UIColor, highlightColor: UIColor) -> NSAttributedString {
-        return self.content.attributedMessageString(textColor: textColor, highlightColor: highlightColor, highlightedSubstring: self.coloredPart)
+        return self.formattedMessage.attributedMessageString(textColor: textColor, highlightColor: highlightColor, highlightedSubstring: self.coloredPart)
     }
 }

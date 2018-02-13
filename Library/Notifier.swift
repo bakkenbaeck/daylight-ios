@@ -27,18 +27,7 @@ struct Notifier {
     }
 
     static func formattedMessage(location: Location, date: Date) -> String {
-        let interval = location.sunTime.daylightLengthDifference(on: date)
-
-        // If the time differential is smaller than a minute, say 1 minute instead.
-        let minutesRounded = max(abs(Int(Darwin.round(interval / 60.0))), 1)
-
-        let generatedMessage = Message.notificationMessage(for: date, coordinates: location.coordinates)
-
-        let format = NSLocalizedString("number_of_minutes", comment: "")
-        let minuteString = String.localizedStringWithFormat(format, minutesRounded)
-        let formattedMessage = String(format: generatedMessage, minuteString)
-
-        return formattedMessage
+        return Message.notificationMessage(for: date, coordinates: location.coordinates)
     }
 
     static func cancelAllNotifications() {

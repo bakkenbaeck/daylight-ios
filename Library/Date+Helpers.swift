@@ -1,6 +1,13 @@
 import Foundation
 
 extension Date {
+    var dayAfter: Date {
+        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: 1, to: self)!
+    }
+
+    var dayBefore: Date {
+        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: self)!
+    }
 
     var isSolstice: Bool {
         return self.isJuneSolstice || self.isDecemberSolstice
@@ -30,15 +37,11 @@ extension Date {
         return true
     }
 
-    func dayAfter() -> Date {
-        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: 1, to: self)!
-    }
-
     func andNext30Days() -> [Date] {
         var dayArray = [self]
 
         for i in 0..<30 {
-            dayArray.append(dayArray[i].dayAfter())
+            dayArray.append(dayArray[i].dayAfter)
         }
 
         return dayArray

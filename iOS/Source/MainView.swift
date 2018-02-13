@@ -191,17 +191,7 @@ class MainView: UIView {
             let sunPhase = location.sunTime.sunPhase
             let (backgroundColor, textColor) = Theme.colors(for: sunPhase)
 
-            let interval = location.sunTime.dayLengthDifference
-
-            let minutesRounded = abs(Int(Darwin.round(interval / 60.0)))
-            let generatedMessage = Message(for: Date(), coordinates: location.coordinates)
-
-            let format = NSLocalizedString("number_of_minutes", comment: "")
-            let minuteString = String.localizedStringWithFormat(format, minutesRounded)
-            let formattedMessage = String(format: generatedMessage.format, minuteString)
-
-            let message = Message(format: formattedMessage)
-
+            let message = Message(for: Date(), coordinates: location.coordinates)
             let attributedString = message.attributedString(textColor: textColor.withAlphaComponent(0.6), highlightColor: textColor)
 
             UIView.animate(withDuration: 0.4) {
