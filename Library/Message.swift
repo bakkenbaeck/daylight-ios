@@ -1,12 +1,14 @@
 import CoreLocation
 import UIKit
+import SweetSwift
 
 class DateHasher {
     private var hashingDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         // Use a manually created date format.
         // Ensures strings are the same regardless of user locale.
-        formatter.dateFormat = "D MMMM yyyy"
+        formatter.dateFormat = "d MMMM yyyy"
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
 
         return formatter
     }()
@@ -129,7 +131,7 @@ struct Message {
     private var daylightLengthDifference: Double = 0
 
     private var minutesRounded: Int {
-        return abs(Int(Darwin.round(self.daylightLengthDifference / 60.0)))
+        return abs(Int(Darwin.ceil(self.daylightLengthDifference / 60.0)))
     }
 
     var coloredPart: String {
@@ -146,6 +148,11 @@ struct Message {
     }
 
     static func notificationMessage(for date: Date, coordinates: CLLocationCoordinate2D, weeklySummary: Bool = false) -> String {
+        var weeklySummary = weeklySummary
+        if date.components([.weekday]).weekday == 1 {
+            weeklySummary = true
+        }
+
         return self.init(for: date, coordinates: coordinates, weeklySummary: weeklySummary).formattedMessage
     }
 

@@ -3,7 +3,6 @@ import SweetUIKit
 import UIKit
 
 struct Notifier {
-
     static func scheduleNotifications(for location: Location) {
         let datesOfComingYear = Date().andNext30Days()
         for date in datesOfComingYear {
@@ -14,10 +13,7 @@ struct Notifier {
     private static func scheduleNotification(for location: Location, at date: Date) {
         guard let location = Location.current else { return }
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = DateFormatter.Style.long
-
-        let notificationID = dateFormatter.string(from: date)
+        let notificationID = String(DateHasher.hashValue(for: date))
         let sunriseDate = location.sunTime.sunriseStartTime(for: date)
 
         let formattedMessage = self.formattedMessage(location: location, date: date)

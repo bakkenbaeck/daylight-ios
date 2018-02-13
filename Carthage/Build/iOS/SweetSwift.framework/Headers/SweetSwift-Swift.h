@@ -172,9 +172,6 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 # define SWIFT_DEPRECATED_OBJC(Msg) SWIFT_DEPRECATED_MSG(Msg)
 #endif
 #if __has_feature(modules)
-@import UIKit;
-@import CoreGraphics;
-@import Foundation;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -185,128 +182,6 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Wunknown-pragmas"
 #pragma clang diagnostic ignored "-Wnullability"
 
-SWIFT_MODULE_NAMESPACE_PUSH("SweetUIKit")
-@class NSCoder;
-
-SWIFT_CLASS("_TtC10SweetUIKit31KeyboardAwareInputAccessoryView")
-@interface KeyboardAwareInputAccessoryView : UIView
-@property (nonatomic, readonly) CGSize intrinsicContentSize;
-- (void)didMoveToSuperview;
-- (void)observeValueForKeyPath:(NSString * _Nullable)keyPath ofObject:(id _Nullable)object change:(NSDictionary<NSKeyValueChangeKey, id> * _Nullable)change context:(void * _Nullable)context;
-- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
-@end
-
-@class UIImage;
-
-SWIFT_CLASS("_TtC10SweetUIKit20OpenInSafariActivity")
-@interface OpenInSafariActivity : UIActivity
-@property (nonatomic, readonly) UIActivityType _Nullable activityType;
-@property (nonatomic, readonly, copy) NSString * _Nullable activityTitle;
-@property (nonatomic, readonly, strong) UIImage * _Nullable activityImage;
-- (BOOL)canPerformWithActivityItems:(NSArray * _Nonnull)activityItems SWIFT_WARN_UNUSED_RESULT;
-- (void)prepareWithActivityItems:(NSArray * _Nonnull)activityItems;
-- (void)performActivity;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-@class UIColor;
-
-SWIFT_CLASS("_TtC10SweetUIKit22SearchBarContainerView")
-@interface SearchBarContainerView : UIView
-@property (nonatomic, strong) UIColor * _Nullable backgroundColor;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
-@end
-
-@class NSBundle;
-
-SWIFT_CLASS("_TtC10SweetUIKit25SweetCollectionController")
-@interface SweetCollectionController : UIViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)_ OBJC_DESIGNATED_INITIALIZER;
-- (void)viewDidLoad;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
-@end
-
-
-/// SearchableCollectionController is a subclass of SweetCollectionController
-/// SearchableCollectionController replicates the behaviour and features of a UITableViewController with a UISearchController
-/// combined, with a UISearchBar as the headerView.
-/// The UISearchBar can be customised directly, as it’s accessible through the <code>searchBar</code> property.
-/// The same applies to the UISearchController.
-SWIFT_CLASS("_TtC10SweetUIKit30SearchableCollectionController")
-@interface SearchableCollectionController : SweetCollectionController
-- (void)viewDidLoad;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)argument OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-@interface SearchableCollectionController (SWIFT_EXTENSION(SweetUIKit)) <UICollectionViewDelegateFlowLayout>
-@end
-
-@class UICollectionView;
-@class UICollectionViewCell;
-
-@interface SearchableCollectionController (SWIFT_EXTENSION(SweetUIKit)) <UICollectionViewDataSource>
-- (UICollectionViewCell * _Nonnull)collectionView:(UICollectionView * _Nonnull)_ cellForItemAtIndexPath:(NSIndexPath * _Nonnull)_ SWIFT_WARN_UNUSED_RESULT;
-- (NSInteger)collectionView:(UICollectionView * _Nonnull)_ numberOfItemsInSection:(NSInteger)_ SWIFT_WARN_UNUSED_RESULT;
-@end
-
-@class UIScrollView;
-
-@interface SearchableCollectionController (SWIFT_EXTENSION(SweetUIKit)) <UICollectionViewDelegate>
-- (void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
-- (void)scrollViewDidEndDragging:(UIScrollView * _Nonnull)scrollView willDecelerate:(BOOL)_;
-@end
-
-@class UISearchController;
-
-@interface SearchableCollectionController (SWIFT_EXTENSION(SweetUIKit)) <UISearchControllerDelegate>
-/// Call super to keep the same animation behaviours
-- (void)willPresentSearchController:(UISearchController * _Nonnull)_;
-/// Call super to keep the same animation behaviours
-- (void)didPresentSearchController:(UISearchController * _Nonnull)_;
-/// Call super to keep the same animation behaviours
-- (void)willDismissSearchController:(UISearchController * _Nonnull)_;
-/// Call super to keep the same animation behaviours
-- (void)didDismissSearchController:(UISearchController * _Nonnull)_;
-@end
-
-
-
-SWIFT_CLASS("_TtC10SweetUIKit20SweetTableController")
-@interface SweetTableController : UIViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)_ OBJC_DESIGNATED_INITIALIZER;
-- (void)viewDidLoad;
-- (void)viewWillAppear:(BOOL)animated;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
-@end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+SWIFT_MODULE_NAMESPACE_PUSH("SweetSwift")
 SWIFT_MODULE_NAMESPACE_POP
 #pragma clang diagnostic pop

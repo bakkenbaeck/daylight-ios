@@ -36,36 +36,36 @@ class MessageGenerationTests: XCTestCase {
     func testMessageDeterminismFromWinterSolstice() {
         let expected = [
             "Have a magical winter solstice! The light will soon brighten up your days again.",
-            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
-            "There’s about a minute of extra light at the end of this tunnel.",
-            "About a minute of extra light. You’ll start noticing the difference soon!",
-            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
             "We’ll have about a minute of extra light today. It’s upwards from here.",
-            "Little less than a minute of extra sunlight today. It’s getting better!",
-            "There’s about a minute of extra light at the end of this tunnel.",
-            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "There are 0 minutes less sun than last week, but don't worry!",  // weekly summary
+            "We’ve reached the tipping point: we’ll have more sunlight every day now!",
             "About a minute of extra light. You’ll start noticing the difference soon!",
-            "Little less than a minute of extra sunlight today. It’s getting better!",
-            "1 minute more daylight today. Just let it sink in…",
-            "Smile! Today has 1 minute more daylight than yesterday!",
-            "After darkness comes daylight. 1 minute more to be precise!",
-            "Today is 1 minute longer. It’s getting better and better!",
-            "After darkness comes daylight. 1 minute more to be precise!",
+            "We’ve reached the tipping point: we’ll have more sunlight every day now!",
+            "We’ll have about a minute of extra light today. It’s upwards from here.",
+            "About a minute of extra light. You’ll start noticing the difference soon!",
+            "There’s about a minute of extra light at the end of this tunnel.",
+            "Hooray, you've gained more than 5 minutes sunshine since last week!",  // weekly summary
+            "2 minutes more daylight today. Just let it sink in…",
             "Smile! Today has 2 minutes more daylight than yesterday!",
-            "Make sure to soak up that vitamin D. 2 minutes more daylight today!",
-            "Smile! Today has 2 minutes more daylight than yesterday!",
-            "Make sure to soak up that vitamin D. 2 minutes more daylight today!",
-            "Bring out your shorts, because today has 2 minutes more sunlight.",
-            "Smile! Today has 2 minutes more daylight than yesterday!",
-            "Make sure to soak up that vitamin D. 2 minutes more daylight today!",
-            "2 minutes extra sunshine today. Make them count!",
-            "The sun is out for 2 minutes more today. Enjoy!",
+            "After darkness comes daylight. 2 minutes more to be precise!",
             "Today is 2 minutes longer. It’s getting better and better!",
+            "After darkness comes daylight. 2 minutes more to be precise!",
+            "Smile! Today has 2 minutes more daylight than yesterday!",
+            "10 minutes more sunlight since last week!", // weekly summary
+            "Smile! Today has 2 minutes more daylight than yesterday!",
             "Make sure to soak up that vitamin D. 2 minutes more daylight today!",
-            "Have a great day and enjoy those 2 minutes extra daylight.",
             "Bring out your shorts, because today has 2 minutes more sunlight.",
+            "Smile! Today has 2 minutes more daylight than yesterday!",
+            "Make sure to soak up that vitamin D. 3 minutes more daylight today!",
+            "3 minutes extra sunshine today. Make them count!",
+            "14 minutes more sunlight since last week!", // weekly summary
             "Today is 3 minutes longer. It’s getting better and better!",
-            "Today is 3 minutes longer than yesterday. Happy days!"
+            "Make sure to soak up that vitamin D. 3 minutes more daylight today!",
+            "Have a great day and enjoy those 3 minutes extra daylight.",
+            "Bring out your shorts, because today has 3 minutes more sunlight.",
+            "Today is 3 minutes longer. It’s getting better and better!",
+            "Today is 3 minutes longer than yesterday. Happy days!",
         ]
 
         let initialDate = self.decemberSolsticeDate
@@ -74,47 +74,52 @@ class MessageGenerationTests: XCTestCase {
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
 
+        // var actual = [String]()
+
         for (index, date) in futureDates.enumerated() {
             let message = Notifier.formattedMessage(location: self.location, date: date)
+           // actual.append(message)
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
+
+        // print(actual)
     }
 
     func testMessageDeterminismAfterSolstice() {
         // For a given day, we'll always get the same message format.
         // For a given day and location, always the same message.
         let expected = [
-            "After darkness comes daylight. 1 minute more to be precise!",
+            "After darkness comes daylight. 2 minutes more to be precise!",
             "Smile! Today has 2 minutes more daylight than yesterday!",
-            "Make sure to soak up that vitamin D. 2 minutes more daylight today!",
+            "10 minutes more sunlight since last week!", // weekly summary
             "Smile! Today has 2 minutes more daylight than yesterday!",
             "Make sure to soak up that vitamin D. 2 minutes more daylight today!",
             "Bring out your shorts, because today has 2 minutes more sunlight.",
             "Smile! Today has 2 minutes more daylight than yesterday!",
-            "Make sure to soak up that vitamin D. 2 minutes more daylight today!",
-            "2 minutes extra sunshine today. Make them count!",
-            "The sun is out for 2 minutes more today. Enjoy!",
-            "Today is 2 minutes longer. It’s getting better and better!",
-            "Make sure to soak up that vitamin D. 2 minutes more daylight today!",
-            "Have a great day and enjoy those 2 minutes extra daylight.",
-            "Bring out your shorts, because today has 2 minutes more sunlight.",
+            "Make sure to soak up that vitamin D. 3 minutes more daylight today!",
+            "3 minutes extra sunshine today. Make them count!",
+            "14 minutes more sunlight since last week!", // weekly summary
+            "Today is 3 minutes longer. It’s getting better and better!",
+            "Make sure to soak up that vitamin D. 3 minutes more daylight today!",
+            "Have a great day and enjoy those 3 minutes extra daylight.",
+            "Bring out your shorts, because today has 3 minutes more sunlight.",
             "Today is 3 minutes longer. It’s getting better and better!",
             "Today is 3 minutes longer than yesterday. Happy days!",
-            "Make sure to soak up that vitamin D. 3 minutes more daylight today!",
+            "18 minutes more sunlight since last week!", // weekly summary
             "Have a great day and enjoy those 3 minutes extra daylight.",
             "Bring out your shorts, because today has 3 minutes more sunlight.",
             "3 minutes extra sunshine today. Make them count!",
             "3 minutes more daylight today. Just let it sink in…",
             "Have a great day and enjoy those 3 minutes extra daylight.",
             "Make sure to soak up that vitamin D. 3 minutes more daylight today!",
-            "Have a great day and enjoy those 3 minutes extra daylight.",
-            "Make sure to soak up that vitamin D. 3 minutes more daylight today!",
-            "Bring out your shorts, because today has 3 minutes more sunlight.",
-            "Have a great day and enjoy those 3 minutes extra daylight.",
-            "3 minutes more daylight today. Just let it sink in…",
-            "Today is 3 minutes longer. It’s getting better and better!",
-            "After darkness comes daylight. 3 minutes more to be precise!",
-            "Today is 3 minutes longer. It’s getting better and better!"
+            "Hooray, you've gained more than 21 minutes sunshine since last week!", // weekly summary
+            "Make sure to soak up that vitamin D. 4 minutes more daylight today!",
+            "Bring out your shorts, because today has 4 minutes more sunlight.",
+            "Have a great day and enjoy those 4 minutes extra daylight.",
+            "4 minutes more daylight today. Just let it sink in…",
+            "Smile! Today has 4 minutes more daylight than yesterday!",
+            "Bring out your shorts, because today has 4 minutes more sunlight.",
+            "Hooray, you've gained more than 23 minutes sunshine since last week!" // weekly summary
         ]
 
         let initialDate = self.afterDecemberSolticeDate
@@ -123,48 +128,52 @@ class MessageGenerationTests: XCTestCase {
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
 
+        // var actual = [String]()
+
         for (index, date) in futureDates.enumerated() {
             let message = Notifier.formattedMessage(location: self.location, date: date)
-
+           // actual.append(message)
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
+
+        // print(actual)
     }
 
     func testMessageDeterminismIncludingSolstice() {
         // For a given day, we'll always get the same message format.
         // For a given day and location, always the same message.
         let expected = [
-            "The sun will be out 2 minutes less today. Keep your head up!",
-            "Sadly, the day will be 1 minute shorter. Make the most out of it!",
-            "Sadly, the day will be 1 minute shorter. Make the most out of it!",
-            "1 minute less sunlight today, unfortunately. It’ll get better!",
             "1 minute less sunlight today, unfortunately. It’ll get better!",
             "Sadly, the day will be 1 minute shorter. Make the most out of it!",
             "Sadly, the day will be 1 minute shorter. Make the most out of it!",
-            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
-            "Today is shorter than yesterday. But fear not, brighter times ahead!",
-            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
-            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
-            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
-            "Today is shorter than yesterday. But fear not, brighter times ahead!",
+            "The sun will be out 1 minute less today. Keep your head up!",
+            "10 minutes less sunshine. Fuck this 💩!", // weekly summary
+            "Sadly, the day will be 1 minute shorter. Make the most out of it!",
+            "1 minute less sunlight today, unfortunately. It’ll get better!",
             "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
             "Today is shorter than yesterday. But fear not, brighter times ahead!",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "Today is shorter than yesterday. But fear not, brighter times ahead!",
+            "There are 5 minutes less sun than last week, but don't worry!", // weekly summary
+            "Today is shorter than yesterday. But fear not, brighter times ahead!",
+            "Today is shorter than yesterday. But fear not, brighter times ahead!",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
             "Have a magical winter solstice! The light will soon brighten up your days again.",
-            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
-            "There’s about a minute of extra light at the end of this tunnel.",
-            "About a minute of extra light. You’ll start noticing the difference soon!",
-            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
             "We’ll have about a minute of extra light today. It’s upwards from here.",
-            "Little less than a minute of extra sunlight today. It’s getting better!",
-            "There’s about a minute of extra light at the end of this tunnel.",
-            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "There are 0 minutes less sun than last week, but don't worry!", // weekly summary
+            "We’ve reached the tipping point: we’ll have more sunlight every day now!",
             "About a minute of extra light. You’ll start noticing the difference soon!",
-            "Little less than a minute of extra sunlight today. It’s getting better!",
-            "1 minute more daylight today. Just let it sink in…",
-            "Smile! Today has 1 minute more daylight than yesterday!",
-            "After darkness comes daylight. 1 minute more to be precise!",
-            "Today is 1 minute longer. It’s getting better and better!",
-            "After darkness comes daylight. 1 minute more to be precise!"
+            "We’ve reached the tipping point: we’ll have more sunlight every day now!",
+            "We’ll have about a minute of extra light today. It’s upwards from here.",
+            "About a minute of extra light. You’ll start noticing the difference soon!",
+            "There’s about a minute of extra light at the end of this tunnel.",
+            "Hooray, you've gained more than 5 minutes sunshine since last week!", // weekly summary
+            "2 minutes more daylight today. Just let it sink in…",
+            "Smile! Today has 2 minutes more daylight than yesterday!",
+            "After darkness comes daylight. 2 minutes more to be precise!",
+            "Today is 2 minutes longer. It’s getting better and better!",
+            "After darkness comes daylight. 2 minutes more to be precise!",
         ]
 
         // Date is now two days after
@@ -174,47 +183,52 @@ class MessageGenerationTests: XCTestCase {
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
 
+        // var actual = [String]()
+
         for (index, date) in futureDates.enumerated() {
             let message = Notifier.formattedMessage(location: self.location, date: date)
+            // actual.append(message)
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
+
+        // print(actual)
     }
 
     func testMessageDeterminismIncludingJuneSolstice() {
         // For a given day, we'll always get the same message format.
         // For a given day and location, always the same message.
         let expected = [
-            "Today is 1 minute longer. It’s getting better and better!",
-            "After darkness comes daylight. 1 minute more to be precise!",
-            "Today is 1 minute longer. It’s getting better and better!",
-            "Today is 1 minute longer. It’s getting better and better!",
-            "The sun is out for 1 minute more today. Enjoy!",
-            "Smile! Today has 1 minute more daylight than yesterday!",
-            "We’ll have about a minute of extra light today. It’s upwards from here.",
-            "We’ll have about a minute of extra light today. It’s upwards from here.",
-            "About a minute of extra light. You’ll start noticing the difference soon!",
-            "We’ve reached the tipping point: we’ll have more sunlight every day now!",
-            "About a minute of extra light. You’ll start noticing the difference soon!",
-            "About a minute of extra light. You’ll start noticing the difference soon!",
-            "We’ve reached the tipping point: we’ll have more sunlight every day now!",
+            "The sun is out for 2 minutes more today. Enjoy!",
+            "Today is 2 minutes longer. It’s getting better and better!",
+            "After darkness comes daylight. 2 minutes more to be precise!",
+            "Today is 2 minutes longer. It’s getting better and better!",
+            "Have a great day and enjoy those 2 minutes extra daylight.",
+            "9 minutes more sunlight since last week!", // weekly summary
             "Little less than a minute of extra sunlight today. It’s getting better!",
-            "About a minute of extra light. You’ll start noticing the difference soon!",
-            "Happy first day of summer: make the most out of it!",
-            "Today is shorter than yesterday. But fear not, brighter times ahead!",
+            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "We’ve reached the tipping point: we’ll have more sunlight every day now!",
+            "There’s about a minute of extra light at the end of this tunnel.",
+            "We’ve reached the tipping point: we’ll have more sunlight every day now!",
+            "Hooray, you've gained more than 5 minutes sunshine since last week!",  // weekly summary
+            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "Happy summer solstice! Get yourself a healthy summer glow.",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "There are 0 minutes less sun than last week, but don't worry!", // weekly summary
             "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
             "Today is shorter than yesterday. But fear not, brighter times ahead!",
             "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
-            "Today is shorter than yesterday. But fear not, brighter times ahead!",
             "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
-            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
-            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
-            "Today is shorter than yesterday. But fear not, brighter times ahead!",
-            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
-            "Today is shorter than yesterday. But fear not, brighter times ahead!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "5 minutes less sunshine. Fuck this 💩!", // weekly summary
+            "1 minute less sunlight today, unfortunately. It’ll get better!",
+            "Sadly, the day will be 1 minute shorter. Make the most out of it!",
             "The sun will be out 1 minute less today. Keep your head up!",
-            "1 minute less sunlight today, unfortunately. It’ll get better!",
-            "1 minute less sunlight today, unfortunately. It’ll get better!",
-            "1 minute less sunlight today, unfortunately. It’ll get better!"
+            "The sun will be out 1 minute less today. Keep your head up!",
         ]
 
         // Date is now two days after
@@ -224,10 +238,15 @@ class MessageGenerationTests: XCTestCase {
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
 
+        // var actual = [String]()
+
         for (index, date) in futureDates.enumerated() {
             let message = Notifier.formattedMessage(location: self.location, date: date)
+            // actual.append(message)
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
+
+        // print(actual)
     }
 
     func testMessageDeterminismForSouthernHemisphere() {
@@ -235,37 +254,37 @@ class MessageGenerationTests: XCTestCase {
         // For a given day and location, always the same message.
         // Remeber, in the south, it's winter in july!
         let expected = [
-            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
-            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
-            "Unfortunately, tomorrow will be a little bit shorter than today. Make the most out of it!",
-            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
-            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
-            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
-            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
-            "Unfortunately, tomorrow will be a little bit shorter than today. Make the most out of it!",
-            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
-            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
-            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
-            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
-            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
-            "Tomorrow will be shorter than today. But fear not, brighter times ahead!",
-            "Sadly, tomorrow will be a tiny bit shorter than today. Enjoy it while it lasts!",
-            "Have a magical winter solstice! The light will soon brighten up your days again.",
-            "The sun has set. Soak up the extra vitamin D tomorrow!",
-            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
-            "The sun has set. Soak up the extra vitamin D tomorrow!",
-            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
-            "The sun has set. Soak up the extra vitamin D tomorrow!",
-            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
-            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
-            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
-            "The sun has set. Soak up the extra vitamin D tomorrow!",
-            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
-            "The sun has set. Soak up the extra vitamin D tomorrow!",
-            "Get a good night’s sleep: tomorrow there’ll be more sunlight for you.",
-            "Bring out those pyjamas. More daylight awaits tomorrow!",
-            "Bring out those pyjamas. More daylight awaits tomorrow!",
-            "Bring out those pyjamas. More daylight awaits tomorrow!",
+            "The sun is out for 2 minutes more today. Enjoy!",
+            "Today is 2 minutes longer. It’s getting better and better!",
+            "After darkness comes daylight. 2 minutes more to be precise!",
+            "Today is 2 minutes longer. It’s getting better and better!",
+            "Have a great day and enjoy those 2 minutes extra daylight.",
+            "9 minutes more sunlight since last week!", // weekly summary
+            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "We’ve reached the tipping point: we’ll have more sunlight every day now!",
+            "There’s about a minute of extra light at the end of this tunnel.",
+            "We’ve reached the tipping point: we’ll have more sunlight every day now!",
+            "Hooray, you've gained more than 5 minutes sunshine since last week!", // weekly summary
+            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "Happy summer solstice! Get yourself a healthy summer glow.",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "There are 0 minutes less sun than last week, but don't worry!", // weekly summary
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "Today is shorter than yesterday. But fear not, brighter times ahead!",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "5 minutes less sunshine. Fuck this 💩!", // weekly summary
+            "1 minute less sunlight today, unfortunately. It’ll get better!",
+            "Sadly, the day will be 1 minute shorter. Make the most out of it!",
+            "The sun will be out 1 minute less today. Keep your head up!",
+            "The sun will be out 1 minute less today. Keep your head up!",
         ]
 
         // Date is now two days after
@@ -275,47 +294,52 @@ class MessageGenerationTests: XCTestCase {
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
 
+        // var actual = [String]()
+
         for (index, date) in futureDates.enumerated() {
-            let message = Notifier.formattedMessage(location: self.locationSouth, date: date)
+            let message = Notifier.formattedMessage(location: self.location, date: date)
+           //  actual.append(message)
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
+
+        // print(actual)
     }
 
     func testMessageFormatting() {
         // For a given day, we'll always get the same message format.
         // For a given day and location, always the same message.
         let expected = [
+            "**%@** less sunlight today, unfortunately. It’ll get better!",
+            "Sadly, the day will be **%@** shorter. Make the most out of it!",
+            "Sadly, the day will be **%@** shorter. Make the most out of it!",
             "The sun will be out **%@** less today. Keep your head up!",
             "Sadly, the day will be **%@** shorter. Make the most out of it!",
             "Sadly, the day will be **%@** shorter. Make the most out of it!",
             "**%@** less sunlight today, unfortunately. It’ll get better!",
-            "**%@** less sunlight today, unfortunately. It’ll get better!",
-            "Sadly, the day will be **%@** shorter. Make the most out of it!",
-            "Sadly, the day will be **%@** shorter. Make the most out of it!",
-            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
-            "Today is shorter than yesterday. But fear not, brighter times ahead!",
             "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
-            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
-            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
             "Today is shorter than yesterday. But fear not, brighter times ahead!",
             "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
             "Today is shorter than yesterday. But fear not, brighter times ahead!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
+            "Today is shorter than yesterday. But fear not, brighter times ahead!",
+            "Today is shorter than yesterday. But fear not, brighter times ahead!",
+            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
             "Have a magical winter solstice! The light will soon brighten up your days again.",
-            "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
-            "There’s about a minute of extra light at the end of this tunnel.",
-            "About a minute of extra light. You’ll start noticing the difference soon!",
-            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
             "We’ll have about a minute of extra light today. It’s upwards from here.",
-            "Little less than a minute of extra sunlight today. It’s getting better!",
-            "There’s about a minute of extra light at the end of this tunnel.",
-            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "We’ve reached the tipping point: we’ll have more sunlight every day now!",
+            "We’ve reached the tipping point: we’ll have more sunlight every day now!",
             "About a minute of extra light. You’ll start noticing the difference soon!",
-            "Little less than a minute of extra sunlight today. It’s getting better!",
+            "We’ve reached the tipping point: we’ll have more sunlight every day now!",
+            "We’ll have about a minute of extra light today. It’s upwards from here.",
+            "About a minute of extra light. You’ll start noticing the difference soon!",
+            "There’s about a minute of extra light at the end of this tunnel.",
+            "There’s about a minute of extra light at the end of this tunnel.",
             "**%@** more daylight today. Just let it sink in…",
             "Smile! Today has **%@** more daylight than yesterday!",
             "After darkness comes daylight. **%@** more to be precise!",
             "Today is **%@** longer. It’s getting better and better!",
-            "After darkness comes daylight. **%@** more to be precise!"
+            "After darkness comes daylight. **%@** more to be precise!",
         ]
 
         // Date is now two days after
@@ -325,10 +349,15 @@ class MessageGenerationTests: XCTestCase {
         // Expected string should match date list count. 31 messages for 31 days.
         XCTAssertEqual(expected.count, futureDates.count)
 
+        // var actual = [String]()
+
         for (index, date) in futureDates.enumerated() {
             let message = Message(for: date, coordinates: self.location.coordinates).preformattedMessage
+           // actual.append(message)
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
+
+        // print(actual)
     }
 
     func testWeeklyMessages() {
@@ -337,7 +366,7 @@ class MessageGenerationTests: XCTestCase {
         let messageNorth = Message(for: sunday, coordinates: self.location.coordinates, weeklySummary: true).formattedMessage
         let messageSouth = Message(for: sunday, coordinates: self.locationSouth.coordinates, weeklySummary: true).formattedMessage
 
-        XCTAssertEqual(messageNorth, "Hooray, you've gained more than 24 minutes sunshine since last week!")
-        XCTAssertEqual(messageSouth, "There are 10 minutes less sun than last week, but don't worry!")
+        XCTAssertEqual(messageNorth, "Hooray, you've gained more than 25 minutes sunshine since last week!")
+        XCTAssertEqual(messageSouth, "There are 9 minutes less sun than last week, but don't worry!")
     }
 }
