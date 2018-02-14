@@ -1,2 +1,2 @@
 github "UseSweet/SweetUIKit" ~> 1.0
-github "UseSweet/SweetSwift" "master"
+github "UseSweet/SweetSwift" ~> 1.2.1
