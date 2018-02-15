@@ -49,15 +49,16 @@ struct Message {
     ]
 
     private let weeklySummaryMoreSunlightMessages = [
-        "The Winter Solstice becomes a distant memory, as we gained **%@** minutes of extra sunlight this past week!",
-        "We saw **%@** minutes of daylight during the past week, inching us further away from the dark days of winter!",
+        "The Winter Solstice becomes a distant memory, as we gained **%@** of extra sunlight this past week!",
+        "We saw **%@** of daylight during the past week, inching us further away from the dark days of winter!",
         "Daylight time increased by **%@** the past few days. It’s allowed to start daydreaming about the long and toasty days of summer!"
     ]
 
     private let weeklySummaryLessSunlightMessages = [
-        "OK, daylight is dwindling. Time to bundle up and get out there, the sun is out there for **%@** during the coming week!",
-        "Yes, it’s gloomy outside. It’s time to leave the Misery Olympics and enjoy the dark magic of winter! Ice skating and cocoa, anyone?",
-        "The chill of winter is in the air. Make sure to get a window seat and start soaking up the **%@** of daylight the coming week!"
+        "OK, daylight is dwindling. Make sure to bundle up, the sun is out there for **%@** during the coming week!",
+        "Yes, the sun drops and drops. It’s time to leave the Misery Olympics and enjoy all of the **%@** of daylight the coming days!",
+        "The chill of autumn is in the air. Make sure to get a window seat and start soaking up the **%@** of daylight during the coming week!",
+        "Noticed how the light is thicker, almost gold, this time of year? Make sure to admire it closely during the **%@** of daylight this week!"
     ]
 
     private let messages: [SunTime.DayOrNight: [TimeDiferential: [String]]] = [
