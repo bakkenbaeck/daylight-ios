@@ -23,7 +23,7 @@ class MessageTests: XCTestCase {
         XCTAssertEqual(message.formattedMessage, "Hello mom.")
 
         message = Message(format: "**%@** more.")
-        XCTAssertEqual(message.formattedMessage, "0 minutes more.")
+        XCTAssertEqual(message.formattedMessage, "1 minute more.")
     }
 
     func testColoredPart() {
@@ -48,9 +48,9 @@ class MessageTests: XCTestCase {
 
         XCTAssertEqual(message.attributedString(textColor: .black, highlightColor: .red), attributedString)
 
-        format = "**0 minutes** more."
-        content = "0 minutes more."
-        coloredPart = "0 minutes"
+        format = "**1 minute** more."
+        content = "1 minute more."
+        coloredPart = "1 minute"
 
         message = Message(format: format)
         range = (content as NSString).range(of: coloredPart)

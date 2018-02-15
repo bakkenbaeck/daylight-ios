@@ -134,7 +134,7 @@ struct Message {
     private var daylightLengthDifference: Double = 0
 
     private var minutesRounded: Int {
-        return abs(Int(Darwin.ceil(self.daylightLengthDifference / 60.0)))
+        return max(abs(Int(Darwin.ceil(self.daylightLengthDifference / 60.0))), 1)
     }
 
     var coloredPart: String {
