@@ -107,7 +107,12 @@ open class KeyboardAwareInputAccessoryView: UIView {
             guard let window = self.window else { return }
             let constant = -(superview.frame.intersection(window.bounds).height)
 
-            delegate?.inputView(self, shouldUpdatePosition: constant)
+            var offset: CGFloat = 0.0
+            if #available(iOS 11.0, tvOS 11.0, *) {
+                offset = constant == 0.0 ? 0.0 : superview.safeAreaInsets.bottom
+            }
+
+            delegate?.inputView(self, shouldUpdatePosition: constant + offset)
         } else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
