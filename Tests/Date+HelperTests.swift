@@ -4,17 +4,17 @@ import XCTest
 
 class Date_HelperTests: XCTestCase {
 
-    func testDatesOfComingYear() {
+    func testNext30Dates() {
         let date = Date()
 
-        let datesOfComingYear: Array = date.andNext30Days()
+        let dateWithNext30: Array = date.andNext30Days()
 
-        let firstDay = datesOfComingYear.first
-        let lastDay = datesOfComingYear.last
+        let firstDay = dateWithNext30.first
+        let lastDay = dateWithNext30.last
 
-        let dayInAYear = Calendar.autoupdatingCurrent.date(byAdding: .day, value: 30, to: date)
+        let day31 = Calendar.autoupdatingCurrent.date(byAdding: .day, value: 30, to: date)
 
         XCTAssertEqual(date, firstDay)
-        XCTAssertEqual(dayInAYear, lastDay)
+        XCTAssertEqual(day31, lastDay)
     }
 }
