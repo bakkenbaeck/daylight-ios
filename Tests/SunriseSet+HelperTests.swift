@@ -8,7 +8,7 @@ class Suntimes_HelperTests: XCTestCase {
     func testDaylightLengthProgress() {
         let coordinate = CLLocationCoordinate2D(latitude: 59.917, longitude: 10.75)
 
-        let timeZone = TimeZone(identifier: "UTC")!
+        let timeZone = TimeZone(secondsFromGMT: 0)!
         var calendar = Calendar.autoupdatingCurrent
         calendar.timeZone = timeZone
 
