@@ -23,7 +23,7 @@ class SunCalcTests: XCTestCase {
     func testAPI() {
         let coordinate = CLLocationCoordinate2D(latitude: 50.5, longitude: 30.5)
 
-        let timeZone = TimeZone(identifier: "UTC")!
+        let timeZone = TimeZone(secondsFromGMT: 0)!
         var calendar = Calendar.autoupdatingCurrent
         calendar.timeZone = timeZone
 
