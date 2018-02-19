@@ -70,7 +70,7 @@ struct Message {
                 "Make sure to soak up that vitamin D. **%@** more daylight today!",
                 "Smile! Today has **%@** more daylight than yesterday!",
                 "**%@** more daylight today. Just let it sink in…",
-                "Today is **%@** longer. It’s getting better and better!",
+                "Today is **%@** longer. It’s getting better and better! 🌞",
                 "Bring out your shorts, because today has **%@** more sunlight.",
                 "Have a great day and enjoy those **%@** extra daylight.",
                 "After darkness comes daylight. **%@** more to be precise!"
@@ -86,7 +86,7 @@ struct Message {
                 "The sun will be out **%@** less today. Keep your head up!",
                 "**%@** less sunlight today, unfortunately. It’ll get better!",
                 "Sadly, the day will be **%@** shorter. Make the most out of it!",
-                "Today will be %@  shorter than yesterday. Bundle up and absorb some precious sun rays during your lunch break!"
+                "Today will be %@  shorter than yesterday. Bundle up and absorb some precious sun rays during your lunch break! ☀️"
             ],
             .shorterLessThanAMinute: [
                 "OK, daylight is dwindling. It's time to leave the Misery Olympics and enjoy every minute of daylight you can get today!",
