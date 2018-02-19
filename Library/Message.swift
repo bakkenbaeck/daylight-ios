@@ -8,7 +8,7 @@ class DateHasher {
         // Use a manually created date format.
         // Ensures strings are the same regardless of user locale.
         formatter.dateFormat = "dd MMMM yyyy"
-        formatter.timeZone = TimeZone(abbreviation: "UTC")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
 
         return formatter
     }()
