@@ -54,12 +54,12 @@ struct Message {
         "Daylight time increased by **%@** the past few days. It’s allowed to start daydreaming about the long and toasty days of summer!"
     ]
 
-    private let weeklySummaryLessSunlightMessages = [
-        "OK, daylight is dwindling. Make sure to bundle up, the sun is out there for **%@** during the coming week!",
-        "Yes, the sun drops and drops. It’s time to leave the Misery Olympics and enjoy all of the **%@** of daylight the coming days!",
-        "The chill of autumn is in the air. Make sure to get a window seat and start soaking up the **%@** of daylight during the coming week!",
-        "Noticed how the light is thicker, almost gold, this time of year? Make sure to admire it closely during the **%@** of daylight this week!"
-    ]
+//    private let weeklySummaryLessSunlightMessages = [
+//        "OK, daylight is dwindling. Make sure to bundle up, the sun is out there for **%@** during the coming week!",
+//        "Yes, the sun drops and drops. It’s time to leave the Misery Olympics and enjoy all of the **%@** of daylight the coming days!",
+//        "The chill of autumn is in the air. Make sure to get a window seat and start soaking up the **%@** of daylight during the coming week!",
+//        "Noticed how the light is thicker, almost gold, this time of year? Make sure to admire it closely during the **%@** of daylight this week!"
+//    ]
 
     private let messages: [SunTime.DayOrNight: [TimeDiferential: [String]]] = [
         .day: [
@@ -85,9 +85,13 @@ struct Message {
             .shorterMoreThanAMinute: [
                 "The sun will be out **%@** less today. Keep your head up!",
                 "**%@** less sunlight today, unfortunately. It’ll get better!",
-                "Sadly, the day will be **%@** shorter. Make the most out of it!"
+                "Sadly, the day will be **%@** shorter. Make the most out of it!",
+                "Today will be %@  shorter than yesterday. Bundle up and absorb some precious sun rays during your lunch break!"
             ],
             .shorterLessThanAMinute: [
+                "OK, daylight is dwindling. It's time to leave the Misery Olympics and enjoy every minute of daylight you can get today!",
+                "The chill of autumn is in the air. Make sure to get a window seat and start soaking up some daylight today!",
+                "Noticed how the light is thicker, almost gold, this time of year? Make sure to admire it closely today!",
                 "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
                 "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
                 "Today is shorter than yesterday. But fear not, brighter times ahead!"
@@ -175,12 +179,8 @@ struct Message {
         guard let messagesForCycle = self.messages[sunTimes.dayNightCycle] else { fatalError("Could not recover messages for day/night cycle.") }
         let possibleMessages: [String]
 
-        if weeklySummary {
-            if self.daylightLengthDifference > 0 {
+        if weeklySummary, self.daylightLengthDifference > 0 {
                 possibleMessages = self.weeklySummaryMoreSunlightMessages
-            } else {
-                possibleMessages = self.weeklySummaryLessSunlightMessages
-            }
         } else if date.isSolstice {
             if date.isJuneSolstice {
                 switch hemisphere {
