@@ -45,7 +45,7 @@ class MainController: UIViewController {
         Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.updateInterface), userInfo: nil, repeats: true)
 
         Notifier.cancelAllNotifications()
-        if Settings.isNotificationsEnabled {
+        if Settings.areNotificationsEnabled {
             if let location = Location.current {
                 Notifier.scheduleNotifications(for: location)
             }

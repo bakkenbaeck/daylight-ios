@@ -1,6 +1,7 @@
 import Foundation
 import SweetUIKit
 import UIKit
+import UserNotifications
 
 struct Notifier {
     static func scheduleNotifications(for location: Location) {
@@ -17,8 +18,14 @@ struct Notifier {
         let sunriseDate = location.sunTime.sunriseStartTime(for: date)
 
         let formattedMessage = self.formattedMessage(location: location, date: date)
+        let components = sunriseDate.components([.calendar, .year, .month, .day, .hour, .minute, .second, .timeZone])
 
-        UILocalNotification.schedule(notificationID, at: sunriseDate, message: formattedMessage)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+        let content = UNMutableNotificationContent()
+        content.body = formattedMessage
+        let request = UNNotificationRequest(identifier: notificationID, content: content, trigger: trigger)
+
+        UNUserNotificationCenter.current().add(request)
     }
 
     static func formattedMessage(location: Location, date: Date) -> String {
@@ -26,6 +33,6 @@ struct Notifier {
     }
 
     static func cancelAllNotifications() {
-        UILocalNotification.cancelAll()
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 }

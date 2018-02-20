@@ -2,7 +2,7 @@ import UIKit
 import UserNotifications
 
 struct Settings {
-    static var isNotificationsEnabled: Bool {
+    static var areNotificationsEnabled: Bool {
         set {
             UserDefaults.standard.set(newValue, forKey: "isNotificationsEnabled")
         }
@@ -18,12 +18,23 @@ struct Settings {
     }
 
     static var isAllowedToSendNotifications: Bool {
-        return (UIApplication.shared.currentUserNotificationSettings?.types.contains([.alert]) ?? false) || (UIApplication.shared.currentUserNotificationSettings?.types.contains([.badge]) ?? false)
+        var authorized = false
+
+        // Make call synchronous.
+        let semaphore = DispatchSemaphore(value: 0)
+
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            authorized = settings.authorizationStatus == .authorized
+            semaphore.signal()
+        }
+        print(semaphore.wait(timeout: DispatchTime.distantFuture))
+
+        return authorized
     }
 
     static func registerForNotifications() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge]) { _, _ in
-            // TODO: Implement error handling
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge]) { _, error in
+            print(error ?? "Registered for notifications.")
         }
     }
 
@@ -31,7 +42,6 @@ struct Settings {
         set {
             UserDefaults.standard.set(newValue, forKey: "shouldPresentOnboarding")
         }
-
         get {
             return UserDefaults.standard.value(forKey: "shouldPresentOnboarding") as? Bool ?? true
         }
