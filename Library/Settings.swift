@@ -27,7 +27,7 @@ struct Settings {
             authorized = settings.authorizationStatus == .authorized
             semaphore.signal()
         }
-        print(semaphore.wait(timeout: DispatchTime.distantFuture))
+        _ = semaphore.wait(timeout: DispatchTime.distantFuture)
 
         return authorized
     }
