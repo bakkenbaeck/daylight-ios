@@ -1,6 +1,8 @@
 import SweetUIKit
 import UIKit
 
+let TransitionDuration: TimeInterval = 0.25
+
 struct Theme {
     static var sunriseBackground: UIColor {
         return UIColor(hex: "#FDEDA8")

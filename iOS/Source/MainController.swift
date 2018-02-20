@@ -52,6 +52,15 @@ class MainController: UIViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.rootView.alpha = 0.1
+        UIView.animate(withDuration: TransitionDuration, animations: {
+            self.rootView.alpha = 1.0
+        })
+    }
+
     @objc func updateInterface() {
         self.rootView.updateInterface(location: Location.current)
     }
@@ -60,7 +69,13 @@ class MainController: UIViewController {
 extension MainController: MainViewDelegate {
 
     func mainView(_ mainView: MainView, didSelectAboutButton button: UIButton) {
-        self.present(self.informationController, animated: true)
+        UIView.animate(withDuration: TransitionDuration, animations: {
+            self.rootView.alpha = 0.1
+        }) { _ in
+            self.present(self.informationController, animated: false) {
+                self.rootView.alpha = 1.0
+            }
+        }
     }
 
     func mainView(_ mainView: MainView, didSelectShareButton button: UIButton) {

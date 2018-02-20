@@ -66,6 +66,18 @@ class InformationController: UIViewController {
         super.viewWillAppear(animated)
 
         self.updateInterface()
+
+        self.messageLabel.alpha = 0.1
+        self.webButton.alpha = 0.1
+        self.closeButton.alpha = 0.1
+        self.notificationButton.alpha = 0.1
+
+        UIView.animate(withDuration: TransitionDuration, animations: {
+            self.messageLabel.alpha = 1.0
+            self.webButton.alpha = 1.0
+            self.closeButton.alpha = 1.0
+            self.notificationButton.alpha = 1.0
+        })
     }
 
     func addObservers() {
@@ -181,7 +193,19 @@ class InformationController: UIViewController {
     }
 
     @objc func didSelectClose() {
-        self.dismiss(animated: true)
+        UIView.animate(withDuration: TransitionDuration, animations: {
+            self.messageLabel.alpha = 0.1
+            self.webButton.alpha = 0.1
+            self.closeButton.alpha = 0.1
+            self.notificationButton.alpha = 0.1
+        }) { _ in
+            self.dismiss(animated: false) {
+                self.messageLabel.alpha = 1.0
+                self.webButton.alpha = 1.0
+                self.closeButton.alpha = 1.0
+                self.notificationButton.alpha = 1.0
+            }
+        }
     }
 
     @objc func didSelectLinkButton() {

@@ -195,6 +195,7 @@ class MainView: UIView {
             let attributedString = message.attributedString(textColor: textColor.withAlphaComponent(0.6), highlightColor: textColor)
 
             UIView.animate(withDuration: 0.4) {
+                self.window?.backgroundColor = backgroundColor
                 self.backgroundColor = backgroundColor
                 self.sunView.updateInterface(withBackgroundColor: backgroundColor, textColor: textColor, andPercentageInDay: percentageInDay, sunPhase: sunPhase)
                 self.sunView.update(for: location)
