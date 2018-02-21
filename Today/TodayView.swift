@@ -103,15 +103,7 @@ class TodayView: UIView {
             sunriseLabel.text = location.sunTime.sunriseTimeString
             sunsetLabel.text = location.sunTime.sunsetTimeString
 
-            let interval = location.sunTime.dayLengthDifference
-            let minutesRounded = abs(Int(Darwin.round(interval / 60.0)))
-            let generatedMessage = Message(for: Date(), coordinates: location.coordinates)
-
-            let format = NSLocalizedString("number_of_minutes", comment: "")
-            let minuteString = String.localizedStringWithFormat(format, minutesRounded)
-            let formattedMessage = String(format: generatedMessage.format, minuteString)
-
-            let message = Message(format: formattedMessage)
+            let message = Message(for: Date(), coordinates: location.coordinates)
             let attributedString = message.attributedString(textColor: tintColor.darker(by: 20), highlightColor: tintColor)
 
             messageLabel.attributedText = attributedString

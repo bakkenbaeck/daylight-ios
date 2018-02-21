@@ -1,12 +1,14 @@
 import CoreLocation
 import UIKit
+import SweetSwift
 
 class DateHasher {
     private var hashingDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         // Use a manually created date format.
         // Ensures strings are the same regardless of user locale.
-        formatter.dateFormat = "D MMMM yyyy"
+        formatter.dateFormat = "dd MMMM yyyy"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
 
         return formatter
     }()
@@ -46,6 +48,19 @@ struct Message {
         "Have a magical winter solstice! The light will soon brighten up your days again."
     ]
 
+    private let weeklySummaryMoreSunlightMessages = [
+        "The Winter Solstice becomes a distant memory, as we gained **%@** of extra sunlight this past week!",
+        "We saw **%@** of daylight during the past week, inching us further away from the dark days of winter!",
+        "Daylight time increased by **%@** the past few days. It’s allowed to start daydreaming about the long and toasty days of summer!"
+    ]
+
+//    private let weeklySummaryLessSunlightMessages = [
+//        "OK, daylight is dwindling. Make sure to bundle up, the sun is out there for **%@** during the coming week!",
+//        "Yes, the sun drops and drops. It’s time to leave the Misery Olympics and enjoy all of the **%@** of daylight the coming days!",
+//        "The chill of autumn is in the air. Make sure to get a window seat and start soaking up the **%@** of daylight during the coming week!",
+//        "Noticed how the light is thicker, almost gold, this time of year? Make sure to admire it closely during the **%@** of daylight this week!"
+//    ]
+
     private let messages: [SunTime.DayOrNight: [TimeDiferential: [String]]] = [
         .day: [
             .longerMoreThanAMinute: [
@@ -55,7 +70,7 @@ struct Message {
                 "Make sure to soak up that vitamin D. **%@** more daylight today!",
                 "Smile! Today has **%@** more daylight than yesterday!",
                 "**%@** more daylight today. Just let it sink in…",
-                "Today is **%@** longer. It’s getting better and better!",
+                "Today is **%@** longer. It’s getting better and better! 🌞",
                 "Bring out your shorts, because today has **%@** more sunlight.",
                 "Have a great day and enjoy those **%@** extra daylight.",
                 "After darkness comes daylight. **%@** more to be precise!"
@@ -70,9 +85,13 @@ struct Message {
             .shorterMoreThanAMinute: [
                 "The sun will be out **%@** less today. Keep your head up!",
                 "**%@** less sunlight today, unfortunately. It’ll get better!",
-                "Sadly, the day will be **%@** shorter. Make the most out of it!"
+                "Sadly, the day will be **%@** shorter. Make the most out of it!",
+                "Today will be %@  shorter than yesterday. Bundle up and absorb some precious sun rays during your lunch break! ☀️"
             ],
             .shorterLessThanAMinute: [
+                "OK, daylight is dwindling. It's time to leave the Misery Olympics and enjoy every minute of daylight you can get today!",
+                "The chill of autumn is in the air. Make sure to get a window seat and start soaking up some daylight today!",
+                "Noticed how the light is thicker, almost gold, this time of year? Make sure to admire it closely today!",
                 "Unfortunately, the day is a little bit shorter today. Make the most out of it!",
                 "Sadly, today is a tiny bit shorter than yesterday. Enjoy it while it lasts!",
                 "Today is shorter than yesterday. But fear not, brighter times ahead!"
@@ -106,16 +125,26 @@ struct Message {
 
     static let informationMessage = Message(format: "Daylight is an experiment inspired by the dark and long winters of the north. Made by **Bakken & Bæck**.")
 
-    private(set) var format: String = ""
+    private(set) var preformattedMessage: String = ""
 
-    var content: String {
-        return self.format.replacingOccurrences(of: "**", with: "")
+    var formattedMessage: String {
+        let format = NSLocalizedString("number_of_minutes", comment: "")
+        let minuteString = String.localizedStringWithFormat(format, self.minutesRounded)
+        let formattedMessage = String(format: self.preformattedMessage, minuteString)
+
+        return formattedMessage.replacingOccurrences(of: "**", with: "")
+    }
+
+    private var daylightLengthDifference: Double = 0
+
+    private var minutesRounded: Int {
+        return max(abs(Int(Darwin.ceil(self.daylightLengthDifference / 60.0))), 1)
     }
 
     var coloredPart: String {
         let regex = try! NSRegularExpression(pattern: "\\*\\*([^\"]*)\\*\\*")
-        let nsString = self.format as NSString
-        let results = regex.matches(in: self.format, range: NSRange(location: 0, length: nsString.length))
+        let nsString = self.preformattedMessage as NSString
+        let results = regex.matches(in: self.preformattedMessage, range: NSRange(location: 0, length: nsString.length))
         if let firstResultRange = results.first?.range {
             let foundPart = nsString.substring(with: firstResultRange)
 
@@ -125,24 +154,34 @@ struct Message {
         }
     }
 
-    static func notificationMessage(for date: Date, coordinates: CLLocationCoordinate2D) -> String {
-        return self.init(for: date, coordinates: coordinates).content
+    static func notificationMessage(for date: Date, coordinates: CLLocationCoordinate2D, weeklySummary: Bool = false) -> String {
+        var weeklySummary = weeklySummary
+        if date.components([.weekday]).weekday == 1 {
+            weeklySummary = true
+        }
+
+        return self.init(for: date, coordinates: coordinates, weeklySummary: weeklySummary).formattedMessage
     }
 
-    init(for date: Date, coordinates: CLLocationCoordinate2D) {
-        self.init(for: date, latitude: coordinates.latitude, longitude: coordinates.longitude)
+    init(for date: Date, coordinates: CLLocationCoordinate2D, weeklySummary: Bool = false) {
+        self.init(for: date, latitude: coordinates.latitude, longitude: coordinates.longitude, weeklySummary: weeklySummary)
     }
 
-    init(for date: Date, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+    init(for date: Date, latitude: CLLocationDegrees, longitude: CLLocationDegrees, weeklySummary: Bool = false) {
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let sunTimes = SunTime(date: date, coordinate: coordinate)
-        let daylightLengthDifference = sunTimes.dayLengthDifference
+
+        let sinceDate: Date? = weeklySummary ? Calendar.autoupdatingCurrent.date(byAdding: .day, value: -7, to: date)! : nil
+        self.daylightLengthDifference = sunTimes.daylightLenghtDifference(from: sinceDate ?? date.dayBefore, to: date)
 
         let hemisphere = Location.Hemisphere(latitude: latitude)
 
         guard let messagesForCycle = self.messages[sunTimes.dayNightCycle] else { fatalError("Could not recover messages for day/night cycle.") }
         let possibleMessages: [String]
-        if date.isSolstice {
+
+        if weeklySummary, self.daylightLengthDifference > 0 {
+                possibleMessages = self.weeklySummaryMoreSunlightMessages
+        } else if date.isSolstice {
             if date.isJuneSolstice {
                 switch hemisphere {
                 case .southern:
@@ -160,14 +199,14 @@ struct Message {
             }
         } else {
             // positive values mean days are getting longer
-            if daylightLengthDifference == abs(daylightLengthDifference) {
-                if daylightLengthDifference >= 1.minute {
+            if self.daylightLengthDifference == abs(self.daylightLengthDifference) {
+                if self.daylightLengthDifference >= 1.minute {
                     possibleMessages = messagesForCycle[.longerMoreThanAMinute]!
                 } else {
                     possibleMessages = messagesForCycle[.longerLessThanAMinute]!
                 }
             } else {
-                if abs(daylightLengthDifference) >= 1.minute {
+                if abs(self.daylightLengthDifference) >= 1.minute {
                     possibleMessages = messagesForCycle[.shorterMoreThanAMinute]!
                 } else {
                     possibleMessages = messagesForCycle[.shorterLessThanAMinute]!
@@ -178,14 +217,14 @@ struct Message {
         let hashValue = DateHasher.hashValue(for: date)
         let index = Int(hashValue % UInt32(possibleMessages.count))
 
-        self.format = possibleMessages[index]
+        self.preformattedMessage = possibleMessages[index]
     }
 
     init(format: String) {
-        self.format = format
+        self.preformattedMessage = format
     }
 
     func attributedString(textColor: UIColor, highlightColor: UIColor) -> NSAttributedString {
-        return self.content.attributedMessageString(textColor: textColor, highlightColor: highlightColor, highlightedSubstring: self.coloredPart)
+        return self.formattedMessage.attributedMessageString(textColor: textColor, highlightColor: highlightColor, highlightedSubstring: self.coloredPart)
     }
 }

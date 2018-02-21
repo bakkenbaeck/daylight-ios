@@ -205,8 +205,12 @@ struct SunTime {
     func daylightLengthDifference(on date: Date) -> Double {
         let dayBefore = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: date)!
 
-        let daySunTimes = SunTime.sunPhaseTimes(for: date, latitude: self.latitude, longitude: self.longitude)
-        let dayBeforeSunTimes = SunTime.sunPhaseTimes(for: dayBefore, latitude: self.latitude, longitude: self.longitude)
+        return self.daylightLenghtDifference(from: date, to: dayBefore)
+    }
+
+    func daylightLenghtDifference(from fromDate: Date, to toDate: Date) -> Double {
+        let daySunTimes = SunTime.sunPhaseTimes(for: toDate, latitude: self.latitude, longitude: self.longitude)
+        let dayBeforeSunTimes = SunTime.sunPhaseTimes(for: fromDate, latitude: self.latitude, longitude: self.longitude)
 
         let dayLength = daySunTimes.sunsetTimeEnd.timeIntervalSince(daySunTimes.sunriseTimeStart)
         let dayBeforeDayLength = dayBeforeSunTimes.sunsetTimeEnd.timeIntervalSince(dayBeforeSunTimes.sunriseTimeStart)

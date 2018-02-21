@@ -15,6 +15,10 @@ extension TimeInterval {
 }
 
 extension Int {
+    var week: TimeInterval {
+        return self.day * 7
+    }
+
     var day: TimeInterval {
         return self.hour * 24
     }
