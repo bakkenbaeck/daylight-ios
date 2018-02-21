@@ -66,6 +66,18 @@ class InformationController: UIViewController {
         super.viewWillAppear(animated)
 
         self.updateInterface()
+
+        self.messageLabel.alpha = 0.1
+        self.webButton.alpha = 0.1
+        self.closeButton.alpha = 0.1
+        self.notificationButton.alpha = 0.1
+
+        UIView.animate(withDuration: TransitionDuration, animations: {
+            self.messageLabel.alpha = 1.0
+            self.webButton.alpha = 1.0
+            self.closeButton.alpha = 1.0
+            self.notificationButton.alpha = 1.0
+        })
     }
 
     func addObservers() {
@@ -154,7 +166,7 @@ class InformationController: UIViewController {
                 self.notificationButton.addTarget(self, action: #selector(self.openSettings), for: .touchUpInside)
             } else {
                 self.notificationButton.addTarget(self, action: #selector(self.didSelectNotifications), for: .touchUpInside)
-                if Settings.isNotificationsEnabled {
+                if Settings.areNotificationsEnabled {
                     self.notificationButton.setAttributedTitle(turnNotificationsOffString, for: .normal)
                 } else {
                     self.notificationButton.setAttributedTitle(turnNotificationsOnString, for: .normal)
@@ -173,15 +185,27 @@ class InformationController: UIViewController {
 
     @objc func didSelectNotifications() {
         self.notificationButton.isEnabled = false
-        Settings.isNotificationsEnabled = !Settings.isNotificationsEnabled
+        Settings.areNotificationsEnabled = !Settings.areNotificationsEnabled
         Settings.registerForNotifications()
-        self.delegate?.informationController(self, didToggleNotifications: Settings.isNotificationsEnabled)
+        self.delegate?.informationController(self, didToggleNotifications: Settings.areNotificationsEnabled)
         self.notificationButton.isEnabled = true
         self.updateInterface()
     }
 
     @objc func didSelectClose() {
-        self.dismiss(animated: true)
+        UIView.animate(withDuration: TransitionDuration, animations: {
+            self.messageLabel.alpha = 0.1
+            self.webButton.alpha = 0.1
+            self.closeButton.alpha = 0.1
+            self.notificationButton.alpha = 0.1
+        }) { _ in
+            self.dismiss(animated: false) {
+                self.messageLabel.alpha = 1.0
+                self.webButton.alpha = 1.0
+                self.closeButton.alpha = 1.0
+                self.notificationButton.alpha = 1.0
+            }
+        }
     }
 
     @objc func didSelectLinkButton() {

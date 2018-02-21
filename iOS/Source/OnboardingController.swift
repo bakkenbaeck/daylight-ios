@@ -182,7 +182,7 @@ class OnboardingController: UIViewController {
     func requestNotifications() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { granted, _ in
             if granted == true {
-                Settings.isNotificationsEnabled = true
+                Settings.areNotificationsEnabled = true
                 Settings.registerForNotifications()
                 if let location = Location.current {
                     DispatchQueue.main.async {

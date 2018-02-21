@@ -12,7 +12,7 @@ class MainView: UIView {
 
     private lazy var informationButton: InformationButton = {
         let button = InformationButton()
-        button.addTarget(self, action: #selector(aboutButtonAction(button:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapAboutButton(button:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -173,7 +173,7 @@ class MainView: UIView {
         self.delegate?.mainView(self, didSelectShareButton: button)
     }
 
-    @objc func aboutButtonAction(button: UIButton) {
+    @objc func didTapAboutButton(button: UIButton) {
         self.delegate?.mainView(self, didSelectAboutButton: button)
     }
 
@@ -195,6 +195,7 @@ class MainView: UIView {
             let attributedString = message.attributedString(textColor: textColor.withAlphaComponent(0.6), highlightColor: textColor)
 
             UIView.animate(withDuration: 0.4) {
+                self.window?.backgroundColor = backgroundColor
                 self.backgroundColor = backgroundColor
                 self.sunView.updateInterface(withBackgroundColor: backgroundColor, textColor: textColor, andPercentageInDay: percentageInDay, sunPhase: sunPhase)
                 self.sunView.update(for: location)
