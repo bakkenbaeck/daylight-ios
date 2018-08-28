@@ -1,6 +1,6 @@
 machine:
   xcode:
-    version: "9.1"
+    version: "9.4.1"
 test:
   override:
    - set -o pipefail && xcodebuild clean build test -project Daylight.xcodeproj -scheme Daylight -destination 'platform=iOS Simulator,name=iPhone 7' | xcpretty --color && exit ${PIPESTATUS[0]}
