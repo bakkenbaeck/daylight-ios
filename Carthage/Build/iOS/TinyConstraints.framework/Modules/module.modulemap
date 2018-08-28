@@ -1,0 +1,11 @@
+framework module TinyConstraints {
+  umbrella header "TinyConstraints.h"
+
+  export *
+  module * { export * }
+}
+
+module TinyConstraints.Swift {
+    header "TinyConstraints-Swift.h"
+    requires objc
+}
