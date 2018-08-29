@@ -1,0 +1,92 @@
+BCSymbolMap Version: 2.0
+_swift_rt_swift_dynamicCast
+__T010SweetSwiftytWh2_
+__swift_FORCE_LOAD_$_swiftFoundation_$_SweetSwift
+__swift_FORCE_LOAD_$_swiftObjectiveC_$_SweetSwift
+__swift_FORCE_LOAD_$_swiftDarwin_$_SweetSwift
+__swift_FORCE_LOAD_$_swiftCoreFoundation_$_SweetSwift
+__swift_FORCE_LOAD_$_swiftDispatch_$_SweetSwift
+___swift_reflection_version
+Apple LLVM version 9.1.0 (clang-902.0.39.2)
+-emit-bc "/Volumes/Macintosh HD/Users/elland/Documents/bb/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/RawRepresentable+Sweetness.swift" "/Volumes/Macintosh HD/Users/elland/Documents/bb/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/String+Sweetness.swift" "/Volumes/Macintosh HD/Users/elland/Documents/bb/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/CollectionType+Sweetness.swift" "/Volumes/Macintosh HD/Users/elland/Documents/bb/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/Date+Sweet.swift" "/Volumes/Macintosh HD/Users/elland/Documents/bb/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/Integer+Repetition.swift" -target armv7-apple-ios9.0 -enable-objc-interop -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.4.sdk -I /Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/BuildProductsPath/Release-iphoneos -F /Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/BuildProductsPath/Release-iphoneos -application-extension -g -import-underlying-module -module-cache-path /Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/ModuleCache.noindex -swift-version 4 -O -serialize-debugging-options -Xcc -I/Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/swift-overrides.hmap -Xcc -iquote -Xcc /Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/SweetSwift-generated-files.hmap -Xcc -I/Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/SweetSwift-own-target-headers.hmap -Xcc -I/Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/SweetSwift-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/all-product-headers.yaml -Xcc -iquote -Xcc /Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/SweetSwift-project-headers.hmap -Xcc -I/Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/BuildProductsPath/Release-iphoneos/include -Xcc -I/Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/DerivedSources/armv7 -Xcc -I/Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/DerivedSources -Xcc -ivfsoverlay -Xcc /Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/unextended-module-overlay.yaml -Xcc "-working-directory/Volumes/Macintosh HD/Users/elland/Documents/bb/daylight-ios/Carthage/Checkouts/SweetSwift" -emit-module-doc-path /Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/Objects-normal/armv7/SweetSwift.swiftdoc -serialize-diagnostics-path /Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/Objects-normal/armv7/RawRepresentable+Sweetness.dia -module-name SweetSwift -emit-module-path /Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/Objects-normal/armv7/SweetSwift.swiftmodule -emit-objc-header-path /Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/Objects-normal/armv7/SweetSwift-Swift.h -emit-dependencies-path /Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/Objects-normal/armv7/RawRepresentable+Sweetness.d -num-threads 8 -o /Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/Objects-normal/armv7/RawRepresentable+Sweetness.bc -o /Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/Objects-normal/armv7/String+Sweetness.bc -o /Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/Objects-normal/armv7/CollectionType+Sweetness.bc -o /Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/Objects-normal/armv7/Date+Sweet.bc -o /Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/Objects-normal/armv7/Integer+Repetition.bc -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift
+<swift-imported-modules>
+/Volumes/Macintosh HD/Users/elland/Documents/bb/daylight-ios/Carthage/Checkouts/SweetSwift
+Apple Swift version 4.1.2 (swiftlang-902.0.54 clang-902.0.39.2)
+/Volumes/Macintosh HD/Users/elland/Documents/bb/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/RawRepresentable+Sweetness.swift
+_T010SweetSwiftytWh2_
+RawRepresentable+Sweetness.swift
+/Volumes/Macintosh HD/Users/elland/Documents/bb/daylight-ios/Carthage/Checkouts/SweetSwift/Sources
+_T010Foundation4DateV10SweetSwiftE10componentsAA0B10ComponentsVs3SetVyAA8CalendarV9ComponentOG_AK8calendartFfA0_
+Date+Sweet.swift
+count.get
+advanced
+init
+_T0s5Int64Vs13BinaryIntegerssACPxqd__18truncatingIfNeeded_tcsACRd__lufCTW
+_T0s17FixedWidthIntegerPsExqd__18truncatingIfNeeded_tcs06BinaryC0Rd__lufCqd__s5Int64VXMTA2FRszsADRd__r__lIetMiyd_Tpq5
+_T0s5Int64Vs9EquatablessACP2eeoiSbx_xtFZTW
+_T0s5Int64Vs10ComparablessACP1loiSbx_xtFZTW
+_T0s5Int64Vs17FixedWidthIntegerssACP3maxxvgZTW
+__T0SS14_CharacterViewV39_internalExtraCheckGraphemeBreakBetweenSbs6UInt16V_AEtFZTf4nnd_n
+__T0s23BidirectionalCollectionPsE8distanceSi5IndexQz4from_AE2totFSS14_CharacterViewV_Tgq5Tf4xxn_n
+/Volumes/Macintosh HD/Users/elland/Documents/bb/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/String+Sweetness.swift
+_T0s23BidirectionalCollectionPsE8distanceSi5IndexQz4from_AE2totFSS14_CharacterViewV_Tgq5Tf4xxn_n
+String+Sweetness.swift
+_T0s11_StringCoreV10startASCIISpys5UInt8VGvg
+_T0s11_StringCoreV10startASCIISpys5UInt8VGvgTf4x_n
+_T0SrxSicigs5UInt8V_Tgq5
+_T0SrxSicigs5UInt8V_Tgq5Tf4nx_n
+_T0SS14_CharacterViewV39_internalExtraCheckGraphemeBreakBetweenSbs6UInt16V_AEtFZ
+_T0s15UnsignedIntegerPss010FixedWidthB0RzrlExqd__cs06BinaryB0Rd__lufCs6UInt16V_s5UInt8VTgq5
+_T0s11_StringCoreV8_pointerSvSi11toElementAt_tF
+_T0s11_StringCoreV8_pointerSvSi11toElementAt_tFTf4nx_n
+_T0SS14_CharacterViewV39_internalExtraCheckGraphemeBreakBetweenSbs6UInt16V_AEtFZTf4nnd_n
+_T0SS14_CharacterViewV39_internalExtraCheckGraphemeBreakBetweenSbs6UInt16V_AEtFZ03hasG10WhenPairedL_SbAEF
+length.get
+_T0SSs10CollectionssAAP8distanceSi5IndexQz4from_AE2totFTW
+_T0s23BidirectionalCollectionPsE8distanceSi5IndexQz4from_AE2totFSS14_CharacterViewV_Tgq5
+_T0SSs10CollectionssAAP8endIndex0C0QzvgTW
+_T0SS5IndexVABSi13encodedOffset_tcfC
+_T0SS5IndexVABSi13encodedOffset_tcfCTf4nd_n
+__T010SweetSwiftytWh3_
+__T010SweetSwiftytWh4_
+__T0s10CollectionPsE3mapSayqd__Gqd__7ElementQzKcKlFTf4gn_n
+__T0s15_arrayForceCastSayq_GSayxGr0_lFTf4g_n
+_swift_bridgeObjectRelease
+__T010SweetSwiftytWh6_
+__T010SweetSwiftytWd6_
+__T010SweetSwiftytWc6_
+_swift_rt_swift_deallocObject
+_swift_rt_swift_allocObject
+__T0s15_arrayForceCastSayq_GSayxGr0_lFq_xcfU_TA
+_swift_rt_swift_release
+_swift_rt_swift_retain
+__T0SqWe.2
+/Volumes/Macintosh HD/Users/elland/Documents/bb/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/CollectionType+Sweetness.swift
+_T0s15_arrayForceCastSayq_GSayxGr0_lFq_xcfU_TA
+CollectionType+Sweetness.swift
+_T0s15_arrayForceCastSayq_GSayxGr0_lFq_xcfU_
+objectdestroy
+_T010SweetSwiftytWc6_
+_T010SweetSwiftytWd6_
+_T010SweetSwiftytWh6_
+_arrayForceCast
+_T0s10CollectionPsE3mapSayqd__Gqd__7ElementQzKcKlF
+_T0s10CollectionPsE3mapSayqd__Gqd__7ElementQzKcKlFTf4gn_n
+_T010SweetSwiftytWh4_
+_T010SweetSwiftytWh3_
+enumeratedWithCurrentAndNext
+__T0s17_VariantSetBufferOWy
+__T0s17_VariantSetBufferOWe
+/Volumes/Macintosh HD/Users/elland/Documents/bb/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/Date+Sweet.swift
+components
+/Volumes/Macintosh HD/Users/elland/Documents/bb/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/Integer+Repetition.swift
+Integer+Repetition.swift
+next
+_T0Sis9EquatablessAAP2eeoiSbx_xtFZTW
+_T0s14CountableRangeVyxGs10CollectionssADP9formIndexy0E0Qzz5after_tFTWSi_Tg5
+_T0s10CollectionPsE9formIndexy0C0Qzz5after_tFs14CountableRangeVySiG_Tg5
+_T0s14CountableRangeVyxGs10CollectionssADP5index5IndexQzAH5after_tFTWSi_Tg5
+_T0s14CountableRangeV5indexxx5after_tFSi_Tg5
+_T0Sis10StrideablessAAP8advancedx6StrideQz2by_tFTW
+>
+/Users/elland/Library/Caches/org.carthage.CarthageKit/DerivedData/9.4.1_9F2000/SweetSwift/1.2.1/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/DerivedSources/SweetSwift_vers.c

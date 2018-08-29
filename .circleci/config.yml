@@ -8,7 +8,7 @@ jobs:
             - checkout
             - run:
                 name: Run tests
-                command: set -o pipefail && xcodebuild clean build test -project Daylight.xcodeproj -scheme "Daylight" -destination 'platform=iOS Simulator,name=iPhone 8' | xcpretty --color && exit ${PIPESTATUS[0]}
+                command: set -o pipefail && xcodebuild clean build test -project Daylight.xcodeproj -scheme "Daylight" -destination 'platform=iOS Simulator,OS=11.4,name=iPhone 8' | xcpretty --color && exit ${PIPESTATUS[0]}
 workflows:
   version: 2
   build-and-test:
