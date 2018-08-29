@@ -131,7 +131,7 @@ class MainView: UIView {
         self.addSubview(overlayView)
 
         self.informationButtonTopAnchor?.isActive = false
-        let screenshotInformationTopAnchor = self.informationButton.topAnchor.constraint(equalTo: overlayView.topAnchor, constant: -18)
+        let screenshotInformationTopAnchor = self.informationButton.top(to: overlayView, offset: -18)
         screenshotInformationTopAnchor.isActive = true
 
         self.locationLabelBottomAnchor?.isActive = false
@@ -141,10 +141,10 @@ class MainView: UIView {
         let screenshotLocationCenterYAnchor = self.locationLabel.topAnchor.constraint(equalTo: self.informationButton.centerYAnchor)
         screenshotLocationCenterYAnchor.isActive = true
 
-        let screenshotLocationRightAnchor = self.locationLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -screenShotInsets.right)
+        let screenshotLocationRightAnchor = self.locationLabel.right(to: self, offset: -screenShotInsets.right)
         screenshotLocationRightAnchor.isActive = true
 
-        let screenshotLocationLeftAnchor = self.locationLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: daylightLabelWidth + screenShotInsets.right)
+        let screenshotLocationLeftAnchor = self.locationLabel.left(to: self, offset: daylightLabelWidth + screenShotInsets.right)
         screenshotLocationLeftAnchor.isActive = true
 
         self.locationLabel.textAlignment = .right
