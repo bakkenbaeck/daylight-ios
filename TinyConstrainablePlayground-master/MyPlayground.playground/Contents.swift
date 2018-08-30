@@ -2,6 +2,16 @@ import UIKit
 import PlaygroundSupport
 import TinyConstraints
 
+enum SunPhase: String {
+    case predawn
+    case dawn
+    case sunrise
+    case solarNoon
+    case sunset
+    case dusk
+    case night
+}
+
 struct SunViewLocation {
     let x: CGFloat
     let y: CGFloat
@@ -9,6 +19,22 @@ struct SunViewLocation {
 
 class SunView: UIView {
     static let sunSize = CGFloat(18.0)
+
+    var sunPhase = SunPhase.predawn {
+        didSet {
+            self.moon.isHidden = true
+            self.currentTimeLabel.isHidden = false
+            switch self.sunPhase {
+            case .night, .predawn:
+                self.moon.isHidden = false
+                self.sunViewLocation = SunViewLocation(x: (self.frame.width - SunView.sunSize) / 2.0, y: 0.0)
+            case .dawn:
+                self.currentTimeLabel.isHidden = true
+            default:
+                break
+            }
+        }
+    }
 
     var sunViewLocation = SunViewLocation(x: 0, y: 0) {
         didSet {
@@ -115,6 +141,12 @@ class SunView: UIView {
         self.addSubview(self.currentTimeLabel)
     }
 
+//    func update(for location: Location) {
+//        self.currentTimeLabel.text = self.timeFormatter.string(from: Date())
+//        self.sunriseLabel.text = location.sunTime.sunriseTimeString
+//        self.sunsetLabel.text = location.sunTime.sunsetTimeString
+//    }
+
     func location(for percentageInDay: CGFloat) -> SunViewLocation {
         let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
         let x = 50.0 + cos(position) * 50.0
@@ -125,11 +157,26 @@ class SunView: UIView {
 
         return SunViewLocation(x: absoluteX, y: absoluteY)
     }
+
+    func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, sunPhase: SunPhase) {
+        self.sunriseLabel.textColor = textColor
+        self.sunsetLabel.textColor = textColor
+        self.currentTimeLabel.textColor = textColor
+        self.horizon.backgroundColor = textColor
+        self.sun.tintColor = textColor
+        self.moon.backgroundColor = backgroundColor
+
+        self.sunViewLocation = self.location(for: CGFloat(percentageInDay))
+        self.sunPhase = sunPhase
+    }
 }
 
 let sunView = SunView()
-let view = UIView(frame: CGRect(x: 0, y: 0, width: 600, height: 200))
-view.backgroundColor = .white
+let view = UIView(frame: CGRect(x: 0, y: 0, width: 800, height: 200))
+//view.backgroundColor = .white
 view.addSubview(sunView)
 sunView.edges(to: view, insets: .uniform(10))
+
+sunView.updateInterface(withBackgroundColor: .red, textColor: .white, andPercentageInDay: 0.7, sunPhase: .solarNoon)
+
 PlaygroundPage.current.liveView = view
