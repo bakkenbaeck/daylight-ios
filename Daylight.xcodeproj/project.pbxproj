@@ -52,9 +52,13 @@
 		9FFFCA49200384530060F86F /* MessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14507A7B1E09F9AF0032F0AF /* MessageTests.swift */; };
 		9FFFCA4A200384530060F86F /* Date+HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146EE0451E1BC40200F08A13 /* Date+HelperTests.swift */; };
 		9FFFCA4C2003ABEE0060F86F /* Numbers+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */; };
+		D197B20522218A0A35A6A664 /* DaylightModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B06FF39619D447E22CBA /* DaylightModel.swift */; };
 		D197B2A38145C1C1E03EC48D /* String + Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */; };
+		D197B46B597F265ED1413F86 /* DaylightModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */; };
 		D197B5A6D4413DEF81D6B469 /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
+		D197B82889BF092A03FFCC2D /* DaylightModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */; };
 		D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBC3EDBF4CA099642BCE /* Notifier.swift */; };
+		D197BD063DE672E59BA98D70 /* DaylightModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B06FF39619D447E22CBA /* DaylightModel.swift */; };
 		D197BE076EECA92FE99E8CAB /* SunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B54C8E75BC3669A5BD10 /* SunView.swift */; };
 		E6D9D5071E02D7970007006D /* InformationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D9D5061E02D7970007006D /* InformationButton.swift */; };
 		E6E337AE1E044AD600787E88 /* InformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E337AD1E044AD600787E88 /* InformationController.swift */; };
@@ -115,7 +119,7 @@
 		03C628B01E59AE8F00A69F3D /* TodayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		03C628B21E59B55100A69F3D /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
 		1418DB881E08A8BF0041C201 /* Suntimes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Suntimes.framework; path = Carthage/Build/iOS/Suntimes.framework; sourceTree = "<group>"; };
-		141E1D1B1E3B719C0037B45D /* Oslo.gpx */ = {isa = PBXFileReference; fileEncoding = 1; lastKnownFileType = text.xml; path = Oslo.gpx; sourceTree = "<group>"; };
+		141E1D1B1E3B719C0037B45D /* Oslo.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Oslo.gpx; sourceTree = "<group>"; };
 		1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScreen+Helpers.swift"; sourceTree = "<group>"; };
 		143D3B1F1DE9D3E0003F77B9 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		143D3B241DE9D3F3003F77B9 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +148,8 @@
 		9F47BA2D203323E400FB805B /* SweetSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SweetSwift.framework; path = Carthage/Build/iOS/SweetSwift.framework; sourceTree = "<group>"; };
 		9FFFCA3B200384390060F86F /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numbers+Time.swift"; sourceTree = "<group>"; };
+		D197B06FF39619D447E22CBA /* DaylightModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaylightModel.swift; sourceTree = "<group>"; };
+		D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaylightModelController.swift; sourceTree = "<group>"; };
 		D197B54C8E75BC3669A5BD10 /* SunView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunView.swift; sourceTree = "<group>"; };
 		D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + Helpers.swift"; sourceTree = "<group>"; };
 		D197BBC3EDBF4CA099642BCE /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
@@ -220,6 +226,8 @@
 				1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */,
 				D197BD0F150956F37CAE048A /* FNVHash.swift */,
 				D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */,
+				D197B06FF39619D447E22CBA /* DaylightModel.swift */,
+				D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -528,6 +536,8 @@
 				D197B5A6D4413DEF81D6B469 /* FNVHash.swift in Sources */,
 				D197B2A38145C1C1E03EC48D /* String + Helpers.swift in Sources */,
 				D197BE076EECA92FE99E8CAB /* SunView.swift in Sources */,
+				D197BD063DE672E59BA98D70 /* DaylightModel.swift in Sources */,
+				D197B46B597F265ED1413F86 /* DaylightModelController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +551,8 @@
 				9FFFCA48200384530060F86F /* SunriseSet+HelperTests.swift in Sources */,
 				9FFFCA49200384530060F86F /* MessageTests.swift in Sources */,
 				9FFFCA4A200384530060F86F /* Date+HelperTests.swift in Sources */,
+				D197B20522218A0A35A6A664 /* DaylightModel.swift in Sources */,
+				D197B82889BF092A03FFCC2D /* DaylightModelController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
