@@ -181,17 +181,7 @@ class MainView: UIView {
         self.delegate?.mainView(self, didSelectAboutButton: button)
     }
 
-    func updateInterface(daylightModelController: DaylightModelController?) {
-        guard let controller = daylightModelController else {
-            self.messageLabel.textColor = UIColor.white
-            self.backgroundColor = UIColor.black
-
-            self.shareButton.isHidden = true
-            self.informationButton.isHidden = true
-            self.sunView.isHidden = true
-            self.locationLabel.isHidden = true
-        }
-
+    func updateInterface(controller: DaylightModelController) {
         self.shareButton.isHidden = false
         self.informationButton.isHidden = false
         self.sunView.isHidden = false

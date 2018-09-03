@@ -62,7 +62,9 @@ class MainController: UIViewController {
     }
 
     @objc func updateInterface() {
-        self.rootView.updateInterface()
+        if let location = Location.current {
+            self.rootView.updateInterface(controller: DaylightModelController(location: location))
+        }
     }
 }
 
@@ -103,7 +105,7 @@ extension MainController: LocationTrackerDelegate {
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
         Location.current = Location(placemark: placemark)
 
-        self.rootView.updateInterface(location: Location.current)
+        self.updateInterface()
     }
 }
 
