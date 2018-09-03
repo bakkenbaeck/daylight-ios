@@ -48,6 +48,44 @@ struct Theme {
         return UIFont(name: "GTAmerica-Light", size: size) ?? UIFont.systemFont(ofSize: CGFloat(size), weight: UIFont.Weight.light)
     }
 
+    static func primaryColor(for sunPhase: SunTime.SunPhase) -> UIColor {
+        let color: UIColor
+
+        switch sunPhase {
+        case .sunrise:
+            color = Theme.sunriseBackground
+        case .solarNoon:
+            color = Theme.daylightBackground
+        case .sunset:
+            color = Theme.sunsetBackground
+        case .dusk, .dawn:
+            color = Theme.twilightBackground
+        case .night, .predawn:
+            color = Theme.nightBackground
+        }
+
+        return color
+    }
+
+    static func secondaryColor(for sunPhase: SunTime.SunPhase) -> UIColor {
+        let color: UIColor
+
+        switch sunPhase {
+        case .sunrise:
+            color = Theme.sunriseText
+        case .solarNoon:
+            color = Theme.daylightText
+        case .sunset:
+            color = Theme.sunsetText
+        case .dusk, .dawn:
+            color = Theme.twilightText
+        case .night, .predawn:
+            color = Theme.nightText
+        }
+
+        return color
+    }
+
     static func colors(for sunPhase: SunTime.SunPhase) -> (backgroundColor: UIColor, textColor: UIColor) {
         let backgroundColor: UIColor
         let textColor: UIColor

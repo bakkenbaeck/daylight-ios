@@ -62,7 +62,7 @@ class MainController: UIViewController {
     }
 
     @objc func updateInterface() {
-        self.rootView.updateInterface(location: Location.current)
+        self.rootView.updateInterface()
     }
 }
 

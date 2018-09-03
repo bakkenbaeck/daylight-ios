@@ -177,39 +177,9 @@ class MainView: UIView {
         self.delegate?.mainView(self, didSelectAboutButton: button)
     }
 
-    func updateInterface(location: Location?) {
-        if let location = location {
-            self.locationLabel.text = "\(location.city), \(location.country)"
+    func updateInterface(daylightModelController: DaylightModelController?) {
 
-            self.shareButton.isHidden = false
-            self.informationButton.isHidden = false
-            self.sunView.isHidden = false
-            self.locationLabel.isHidden = false
-
-            let percentageInDay = location.sunTime.daylightLengthProgress
-
-            let sunPhase = location.sunTime.sunPhase
-            let (backgroundColor, textColor) = Theme.colors(for: sunPhase)
-
-            let message = Message(for: Date(), coordinates: location.coordinates)
-            let attributedString = message.attributedString(textColor: textColor.withAlphaComponent(0.6), highlightColor: textColor)
-
-            UIView.animate(withDuration: 0.4) {
-                self.window?.backgroundColor = backgroundColor
-                self.backgroundColor = backgroundColor
-                self.sunView.updateInterface(withBackgroundColor: backgroundColor, textColor: textColor, andPercentageInDay: percentageInDay, sunPhase: sunPhase)
-                self.sunView.update(for: location)
-
-                self.informationButton.updateInterface(withBackgroundColor: backgroundColor, andTextColor: textColor)
-
-                self.shareButton.setTitleColor(textColor, for: .normal)
-                self.locationLabel.textColor = textColor.withAlphaComponent(0.6)
-
-                self.messageLabel.attributedText = attributedString
-                self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
-                self.setNeedsLayout()
-            }
-        } else {
+        guard let controller = daylightModelController else {
             self.messageLabel.textColor = UIColor.white
             self.backgroundColor = UIColor.black
 
@@ -217,6 +187,26 @@ class MainView: UIView {
             self.informationButton.isHidden = true
             self.sunView.isHidden = true
             self.locationLabel.isHidden = true
+        }
+
+        self.shareButton.isHidden = false
+        self.informationButton.isHidden = false
+        self.sunView.isHidden = false
+        self.locationLabel.isHidden = false
+
+        self.locationLabel.text = controller.locationLabel
+
+        UIView.animate(withDuration: 0.4) {
+            self.window?.backgroundColor = controller.primaryColor
+            self.backgroundColor = controller.primaryColor
+
+            self.shareButton.setTitleColor(controller.secondaryColor, for: .normal)
+            self.locationLabel.textColor = controller.secondaryColor.withAlphaComponent(0.6)
+
+            self.messageLabel.attributedText = controller.attributedMessage
+
+            self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
+            self.setNeedsLayout()
         }
     }
 }
