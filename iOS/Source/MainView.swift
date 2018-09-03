@@ -1,4 +1,5 @@
 import UIKit
+import TinyConstraints
 
 protocol MainViewDelegate: class {
     func mainView(_ mainView: MainView, didSelectAboutButton button: UIButton)
@@ -31,6 +32,8 @@ class MainView: UIView {
         label.font = Theme.light(size: 32)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
+        label.minimumScaleFactor = 0.3
+        label.adjustsFontSizeToFitWidth = true
 
         return label
     }()
@@ -78,39 +81,40 @@ class MainView: UIView {
         self.addSubview(self.locationLabel)
         self.addSubview(self.shareButton)
 
-        self.informationButtonTopAnchor = self.informationButton.topAnchor.constraint(equalTo: self.topAnchor)
+        self.informationButtonTopAnchor = self.informationButton.top(to: self)
         self.informationButtonTopAnchor?.isActive = true
 
-        self.informationButton.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        self.informationButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        self.informationButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -self.insets.right).isActive = true
+        self.informationButton.left(to: self)
+        self.informationButton.height(80)
+        self.informationButton.right(to: self, offset: -self.insets.right)
 
-        self.sunView.heightAnchor.constraint(equalToConstant: 133).isActive = true
-        self.sunView.bottomAnchor.constraint(equalTo: self.messageLabel.topAnchor, constant: -10).isActive = true
-        self.sunView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: self.insets.left).isActive = true
-        self.sunView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -self.insets.right).isActive = true
+        self.sunView.height(133)
+        self.sunView.topToBottom(of: self.informationButton, offset: 10, relation: .equalOrGreater)
+        self.sunView.left(to: self, offset: self.insets.left)
+        self.sunView.right(to: self, offset: -self.insets.right)
+        self.sunView.bottomToTop(of: self.messageLabel, offset: -10)
 
-        self.messageLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: (2 * -self.insets.bottom)).isActive = true
-        self.messageLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: self.insets.left).isActive = true
-        self.messageLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -self.insets.right).isActive = true
-        self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
+        self.messageLabel.bottom(to: self, offset: (2 * -self.insets.bottom))
+        self.messageLabel.left(to: self, offset: self.insets.left)
+        self.messageLabel.right(to: self, offset: -self.insets.right)
 
-        let size = CGFloat(50.0)
-        self.shareButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -size / 2).isActive = true
-        self.shareButton.widthAnchor.constraint(equalToConstant: size).isActive = true
-        self.shareButton.heightAnchor.constraint(equalToConstant: size).isActive = true
-        self.shareButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -self.insets.right).isActive = true
+        let shareButtonSize = CGFloat(50.0)
+        self.shareButton.bottom(to: self, offset: -shareButtonSize / 2)
+        self.shareButton.width(shareButtonSize)
+        self.shareButton.height(shareButtonSize)
+        self.shareButton.right(to: self, offset: -self.insets.right)
 
         let rightInset = CGFloat(-10)
-        self.locationLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
 
-        self.locationLabelBottomAnchor = self.locationLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -self.insets.top)
+        self.locationLabel.height(22)
+
+        self.locationLabelBottomAnchor = self.locationLabel.bottom(to: self, offset: -self.insets.top)
         self.locationLabelBottomAnchor?.isActive = true
 
-        self.locationLabelLeftAnchor = self.locationLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: self.insets.left)
+        self.locationLabelLeftAnchor = self.locationLabel.left(to: self, offset: self.insets.left)
         self.locationLabelLeftAnchor?.isActive = true
 
-        self.locationLabelRightAnchor = self.locationLabel.rightAnchor.constraint(equalTo: self.shareButton.leftAnchor, constant: rightInset)
+        self.locationLabelRightAnchor = self.locationLabel.right(to: self.shareButton, offset: rightInset)
         self.locationLabelRightAnchor?.isActive = true
     }
 
@@ -127,7 +131,7 @@ class MainView: UIView {
         self.addSubview(overlayView)
 
         self.informationButtonTopAnchor?.isActive = false
-        let screenshotInformationTopAnchor = self.informationButton.topAnchor.constraint(equalTo: overlayView.topAnchor, constant: -18)
+        let screenshotInformationTopAnchor = self.informationButton.top(to: overlayView, offset: -18)
         screenshotInformationTopAnchor.isActive = true
 
         self.locationLabelBottomAnchor?.isActive = false
@@ -137,10 +141,10 @@ class MainView: UIView {
         let screenshotLocationCenterYAnchor = self.locationLabel.topAnchor.constraint(equalTo: self.informationButton.centerYAnchor)
         screenshotLocationCenterYAnchor.isActive = true
 
-        let screenshotLocationRightAnchor = self.locationLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -screenShotInsets.right)
+        let screenshotLocationRightAnchor = self.locationLabel.right(to: self, offset: -screenShotInsets.right)
         screenshotLocationRightAnchor.isActive = true
 
-        let screenshotLocationLeftAnchor = self.locationLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: daylightLabelWidth + screenShotInsets.right)
+        let screenshotLocationLeftAnchor = self.locationLabel.left(to: self, offset: daylightLabelWidth + screenShotInsets.right)
         screenshotLocationLeftAnchor.isActive = true
 
         self.locationLabel.textAlignment = .right
@@ -178,7 +182,6 @@ class MainView: UIView {
     }
 
     func updateInterface(daylightModelController: DaylightModelController?) {
-
         guard let controller = daylightModelController else {
             self.messageLabel.textColor = UIColor.white
             self.backgroundColor = UIColor.black
