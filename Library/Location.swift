@@ -25,7 +25,8 @@ struct Location {
 
     var sunTime: SunTime
 
-    static var current: Location? {
+    // I'll have to do something with the way the current location was stored in user defaults
+    var current: Location? {
         set {
             if let location = newValue {
                 UserDefaults.standard.set(location.coordinates.latitude, forKey: "latitude")
