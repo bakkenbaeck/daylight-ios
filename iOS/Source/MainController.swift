@@ -2,7 +2,7 @@ import SweetUIKit
 import UIKit
 
 class MainController: UIViewController {
-    private let dayLightModelController: DaylightModelController()
+    private let dayLightModelController: DaylightModelController
 
     lazy var informationController: InformationController = {
         let informationController = InformationController()
@@ -28,6 +28,16 @@ class MainController: UIViewController {
 
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+
+
+    init(withDaylightModelController dayLightModelController: DaylightModelController) {
+        self.dayLightModelController = dayLightModelController
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
@@ -76,12 +86,13 @@ extension MainController: MainViewDelegate {
 extension MainController: InformationControllerDelegate {
 
     func informationController(_ informationController: InformationController, didToggleNotifications isNotificationsEnabled: Bool) {
-        if isNotificationsEnabled {
-            if let location = Location.current {
-                Notifier.scheduleNotifications(for: location)
-            }
-        } else {
-            Notifier.cancelAllNotifications()
-        }
+        //maybe make something else responsible for this
+//        if isNotificationsEnabled {
+//            if let location = dayLightModelController.location {
+//                Notifier.scheduleNotifications(for: location)
+//            }
+//        } else {
+//            Notifier.cancelAllNotifications()
+//        }
     }
 }

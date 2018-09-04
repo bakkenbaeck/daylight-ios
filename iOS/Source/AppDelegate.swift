@@ -11,13 +11,13 @@ extension AppDelegate: UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = self.window else { fatalError("Window not found") }
 
-        
+        let dayLightModelController = DaylightModelController()
 
-        if Location.current == nil {
+        if dayLightModelController.location == nil {
             let controller = OnboardingController(nibName: nil, bundle: nil)
             window.rootViewController = controller
         } else {
-            let mainController = MainController(nibName: nil, bundle: nil)
+            let mainController = MainController(withDaylightModelController: dayLightModelController)
             window.rootViewController = mainController
         }
 

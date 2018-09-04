@@ -6,7 +6,7 @@ protocol DaylightModelControllerObserver: AnyObject {
 }
 
 class DaylightModelController {
-    private var location: Location? {
+    private(set) var location: Location? {
         set {
             // make this a function in location make use of Codable please
             if let location = newValue {

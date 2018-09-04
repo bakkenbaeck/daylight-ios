@@ -93,21 +93,21 @@ class TodayView: UIView {
     }
 
     func updateView() {
-        if let location = Location.current {
-            let tintColor = self.color(for: location.sunTime.sunPhase)
-            sunriseIcon.tintColor = tintColor
-            sunsetIcon.tintColor = tintColor
-            sunriseLabel.textColor = tintColor.darker(by: 20)
-            sunsetLabel.textColor = tintColor.darker(by: 20)
-
-            sunriseLabel.text = location.sunTime.sunriseTimeString
-            sunsetLabel.text = location.sunTime.sunsetTimeString
-
-            let message = Message(for: Date(), coordinates: location.coordinates)
-            let attributedString = message.attributedString(textColor: tintColor.darker(by: 20), highlightColor: tintColor)
-
-            messageLabel.attributedText = attributedString
-        }
+//        if let location = Location.current {
+//            let tintColor = self.color(for: location.sunTime.sunPhase)
+//            sunriseIcon.tintColor = tintColor
+//            sunsetIcon.tintColor = tintColor
+//            sunriseLabel.textColor = tintColor.darker(by: 20)
+//            sunsetLabel.textColor = tintColor.darker(by: 20)
+//
+//            sunriseLabel.text = location.sunTime.sunriseTimeString
+//            sunsetLabel.text = location.sunTime.sunsetTimeString
+//
+//            let message = Message(for: Date(), coordinates: location.coordinates)
+//            let attributedString = message.attributedString(textColor: tintColor.darker(by: 20), highlightColor: tintColor)
+//
+//            messageLabel.attributedText = attributedString
+//        }
     }
 
     private func color(for sunPhase: SunTime.SunPhase) -> UIColor {

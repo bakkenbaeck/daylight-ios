@@ -180,26 +180,28 @@ class OnboardingController: UIViewController {
     }
 
     func requestNotifications() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { granted, _ in
-            if granted == true {
-                Settings.areNotificationsEnabled = true
-                Settings.registerForNotifications()
-                if let location = Location.current {
-                    DispatchQueue.main.async {
-                        Notifier.scheduleNotifications(for: location)
-                    }
-                }
-            }
-            self.presentMainController()
-        }
+        //somewhere else
+//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { granted, _ in
+//            if granted == true {
+//                Settings.areNotificationsEnabled = true
+//                Settings.registerForNotifications()
+//                if let location = Location.current {
+//                    DispatchQueue.main.async {
+//                        Notifier.scheduleNotifications(for: location)
+//                    }
+//                }
+//            }
+//            self.presentMainController()
+//        }
     }
 
     func presentMainController() {
-        DispatchQueue.main.async {
-            let mainController = MainController(nibName: nil, bundle: nil)
-            mainController.modalTransitionStyle = .crossDissolve
-            self.present(mainController, animated: true)
-        }
+        //somewhere else
+//        DispatchQueue.main.async {
+//            let mainController = MainController(nibName: nil, bundle: nil)
+//            mainController.modalTransitionStyle = .crossDissolve
+//            self.present(mainController, animated: true)
+//        }
     }
 }
 
@@ -210,9 +212,10 @@ extension OnboardingController: LocationTrackerDelegate {
     }
 
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
-        if let location = Location(placemark: placemark) {
-            Location.current = location
-            self.onboardingState = .notificationUndetermined
-        }
+        //somewhere else
+//        if let location = Location(placemark: placemark) {
+//            Location.current = location
+//            self.onboardingState = .notificationUndetermined
+//        }
     }
 }

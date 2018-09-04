@@ -42,7 +42,7 @@ extension TodayViewController: LocationTrackerDelegate {
     }
 
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
-        Location.current = Location(placemark: placemark)
+//        Location.current = Location(placemark: placemark)
         (self.view as! TodayView).updateView()
     }
 }
