@@ -1,11 +1,13 @@
 import CoreLocation
 import UIKit
 
-protocol DaylightModelControllerObserver: AnyObject {
+protocol DaylightModelControllerDelegate: class {
     func daylightModelControllerDidUpdate(_ controller: DaylightModelController)
 }
 
 class DaylightModelController {
+    weak var delegate: DaylightModelControllerDelegate?
+
     private(set) var location: Location? {
         set {
             // make this a function in location make use of Codable please
@@ -20,7 +22,7 @@ class DaylightModelController {
                 UserDefaults.standard.removeObject(forKey: "country")
             }
 
-            updateObservers()
+            self.updateDelegate()
         }
 
         get {
@@ -42,7 +44,7 @@ class DaylightModelController {
         let tracker = LocationTracker()
         tracker.delegate = self
 
-        Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.updateObservers), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.updateDelegate), userInfo: nil, repeats: true)
 
         return tracker
     }()
@@ -51,8 +53,8 @@ class DaylightModelController {
         self.locationTracker.locateIfPossible()
     }
 
-    @objc func updateObservers() {
-        
+    @objc func updateDelegate () {
+        delegate?.daylightModelControllerDidUpdate(self)
     }
 }
 
@@ -85,11 +87,6 @@ extension DaylightModelController {
         }
         let message = Message(for: Date(), coordinates: location.coordinates)
         return message.attributedString(textColor: secondaryColor.withAlphaComponent(0.6), highlightColor: secondaryColor)
-    }
-}
-extension DaylightModelController {
-    func addObserver(_ observer: DaylightModelControllerObserver) {
-
     }
 }
 

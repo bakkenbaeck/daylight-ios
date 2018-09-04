@@ -30,10 +30,11 @@ class MainController: UIViewController {
         return true
     }
 
-
     init(withDaylightModelController dayLightModelController: DaylightModelController) {
         self.dayLightModelController = dayLightModelController
         super.init(nibName: nil, bundle: nil)
+
+        self.dayLightModelController.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -94,5 +95,11 @@ extension MainController: InformationControllerDelegate {
 //        } else {
 //            Notifier.cancelAllNotifications()
 //        }
+    }
+}
+
+extension MainController: DaylightModelControllerDelegate {
+    func daylightModelControllerDidUpdate(_ controller: DaylightModelController) {
+        self.rootView.updateInterface(controller: controller)
     }
 }
