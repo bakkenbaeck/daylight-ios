@@ -11,6 +11,8 @@ extension AppDelegate: UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = self.window else { fatalError("Window not found") }
 
+        
+
         if Location.current == nil {
             let controller = OnboardingController(nibName: nil, bundle: nil)
             window.rootViewController = controller
