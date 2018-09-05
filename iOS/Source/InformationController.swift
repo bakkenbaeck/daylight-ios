@@ -1,7 +1,7 @@
 import UIKit
 
 protocol InformationControllerDelegate: class {
-    func informationController(_ informationController: InformationController, didToggleNotifications isNotificationsEnabled: Bool)
+    func didToggleNotifications(_ isNotificationsEnabled: Bool, on informationController: InformationController)
 }
 
 class InformationController: UIViewController {
@@ -187,7 +187,7 @@ class InformationController: UIViewController {
         self.notificationButton.isEnabled = false
         Settings.areNotificationsEnabled = !Settings.areNotificationsEnabled
         Settings.registerForNotifications()
-        self.delegate?.informationController(self, didToggleNotifications: Settings.areNotificationsEnabled)
+        self.delegate?.didToggleNotifications(Settings.areNotificationsEnabled, on: self)
         self.notificationButton.isEnabled = true
         self.updateInterface()
     }
