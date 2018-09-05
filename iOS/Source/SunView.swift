@@ -9,22 +9,6 @@ struct SunViewLocation {
 class SunView: UIView {
     static let sunSize = CGFloat(18.0)
 
-    var sunPhase = SunTime.SunPhase.predawn {
-        didSet {
-            self.moon.isHidden = true
-            self.currentTimeLabel.isHidden = false
-            switch self.sunPhase {
-            case .night, .predawn:
-                self.moon.isHidden = false
-                self.sunViewLocation = SunViewLocation(x: (self.frame.width - SunView.sunSize) / 2.0, y: 0.0)
-            case .dawn:
-                self.currentTimeLabel.isHidden = true
-            default:
-                break
-            }
-        }
-    }
-
     var sunViewLocation = SunViewLocation(x: 0, y: 0) {
         didSet {
             self.setNeedsLayout()
@@ -150,7 +134,11 @@ class SunView: UIView {
         self.moon.backgroundColor = controller.primaryColor
 
         self.sunViewLocation = self.location(for: controller.percentageInDay)
-//        self.sunPhase = controller.location?.sunTime.sunPhase
+        if controller.shouldShowMoon {
+            self.moon.isHidden = false
+            self.sunViewLocation = SunViewLocation(x: (self.frame.width - SunView.sunSize) / 2.0, y: 0.0)
+        }
+        self.currentTimeLabel.isHidden = controller.shouldShowTimeLabel
 
         self.currentTimeLabel.text = self.timeFormatter.string(from: Date())
         self.sunriseLabel.text = controller.sunriseTimeString

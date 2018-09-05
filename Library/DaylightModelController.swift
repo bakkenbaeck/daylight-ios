@@ -123,6 +123,20 @@ extension DaylightModelController {
         }
         return location.sunTime.sunsetTimeString
     }
+
+    var shouldShowMoon: Bool {
+        guard let location = location else {
+            return false
+        }
+         return location.sunTime.sunPhase == .night || location.sunTime.sunPhase == .predawn
+    }
+    
+    var shouldShowTimeLabel: Bool {
+        guard let location = location else {
+            return false
+        }
+        return location.sunTime.sunPhase == .dawn
+    }
 }
 
 extension DaylightModelController: LocationTrackerDelegate {
