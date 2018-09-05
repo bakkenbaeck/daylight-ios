@@ -171,7 +171,6 @@ class MainController: UIViewController {
         screenshotLocationCenterYAnchor.isActive = true
 
         let screenshotLocationRightAnchor = self.locationLabel.right(to: self.view, offset: -screenShotInsets.right)
-
         let screenshotLocationLeftAnchor = self.locationLabel.left(to: self.view, offset: daylightLabelWidth + screenShotInsets.right)
 
         self.locationLabel.textAlignment = .right
@@ -201,7 +200,6 @@ class MainController: UIViewController {
     }
 }
 
-
 extension MainController: InformationControllerDelegate {
 
     func didToggleNotifications(_ isNotificationsEnabled: Bool, on informationController: InformationController) {
@@ -218,12 +216,6 @@ extension MainController: InformationControllerDelegate {
 
 extension MainController: DaylightModelControllerDelegate {
     func daylightModelControllerDidUpdate(_ controller: DaylightModelController) {
-
-        self.shareButton.isHidden = false
-        self.locationLabel.isHidden = false
-
-        self.locationLabel.text = controller.locationLabel
-
         UIView.animate(withDuration: 0.4) {
             self.view.window?.backgroundColor = controller.primaryColor
             self.view.backgroundColor = controller.primaryColor
@@ -231,12 +223,14 @@ extension MainController: DaylightModelControllerDelegate {
             self.shareButton.setTitleColor(controller.secondaryColor, for: .normal)
             self.locationLabel.textColor = controller.secondaryColor.withAlphaComponent(0.6)
 
+            self.locationLabel.text = controller.locationLabel
             self.messageLabel.attributedText = controller.attributedMessage
+
+            self.informationButton.updateInterface(controller: controller)
+            self.sunView.updateInterface(controller: controller)
 
             self.view.setNeedsLayout()
         }
 
-//        self.sunView.updateInterface(controller: controller)
-//        self.sunView.updateInterface(controller: controller)
     }
 }

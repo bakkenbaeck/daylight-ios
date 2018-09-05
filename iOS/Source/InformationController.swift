@@ -65,8 +65,6 @@ class InformationController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.updateInterface()
-
         self.messageLabel.alpha = 0.1
         self.webButton.alpha = 0.1
         self.closeButton.alpha = 0.1
@@ -82,7 +80,7 @@ class InformationController: UIViewController {
 
     func addObservers() {
         self.removeObservers()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateInterface), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.updateInterface), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
     func removeObservers() {
@@ -145,7 +143,7 @@ class InformationController: UIViewController {
         return string
     }
 
-    @objc func updateInterface() {
+    func updateInterface(controller: DaylightModelController) {
 //        let sunPhase = Location.current?.sunTime.sunPhase ?? .night
 //        let (backgroundColor, highlightColor) = Theme.colors(for: sunPhase)
 //
@@ -189,7 +187,7 @@ class InformationController: UIViewController {
         Settings.registerForNotifications()
         self.delegate?.didToggleNotifications(Settings.areNotificationsEnabled, on: self)
         self.notificationButton.isEnabled = true
-        self.updateInterface()
+//        self.updateInterface()
     }
 
     @objc func didSelectClose() {

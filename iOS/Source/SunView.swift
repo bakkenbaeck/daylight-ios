@@ -147,15 +147,15 @@ class SunView: UIView {
         return SunViewLocation(x: absoluteX, y: absoluteY)
     }
 
-    func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, sunPhase: SunTime.SunPhase) {
-        self.sunriseLabel.textColor = textColor
-        self.sunsetLabel.textColor = textColor
-        self.currentTimeLabel.textColor = textColor
-        self.horizon.backgroundColor = textColor
-        self.sun.tintColor = textColor
-        self.moon.backgroundColor = backgroundColor
+    func updateInterface(controller: DaylightModelController) {
+        self.sunriseLabel.textColor = controller.secondaryColor
+        self.sunsetLabel.textColor = controller.secondaryColor
+        self.currentTimeLabel.textColor = controller.secondaryColor
+        self.horizon.backgroundColor = controller.secondaryColor
+        self.sun.tintColor = controller.secondaryColor
+        self.moon.backgroundColor = controller.primaryColor
 
-        self.sunViewLocation = self.location(for: CGFloat(percentageInDay))
-        self.sunPhase = sunPhase
+//        self.sunViewLocation = self.location(for: CGFloat(percentageInDay))
+//        self.sunPhase =
     }
 }

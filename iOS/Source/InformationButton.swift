@@ -47,8 +47,8 @@ class InformationButton: UIButton {
         self.nameLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
     }
 
-    func updateInterface(withBackgroundColor backgroundColor: UIColor, andTextColor textColor: UIColor) {
-        self.sun.tintColor = textColor.withAlphaComponent(0.6)
-        self.nameLabel.textColor = textColor.withAlphaComponent(0.6)
+    func updateInterface(controller: DaylightModelController) {
+        self.sun.tintColor = controller.secondaryColor.withAlphaComponent(0.6)
+        self.nameLabel.textColor = controller.secondaryColor.withAlphaComponent(0.6)
     }
 }
