@@ -5,6 +5,8 @@ protocol InformationControllerDelegate: class {
 }
 
 class InformationController: UIViewController {
+    private let dayLightModelController: DaylightModelController
+
     weak var delegate: InformationControllerDelegate?
 
     var messageLabelHeightAnchor: NSLayoutConstraint?
@@ -52,6 +54,17 @@ class InformationController: UIViewController {
 
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+
+    init(withDaylightModelController dayLightModelController: DaylightModelController) {
+        self.dayLightModelController = dayLightModelController
+        super.init(nibName: nil, bundle: nil)
+
+        self.dayLightModelController.delegate = self
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
@@ -143,40 +156,6 @@ class InformationController: UIViewController {
         return string
     }
 
-    func updateInterface(controller: DaylightModelController) {
-//        let sunPhase = Location.current?.sunTime.sunPhase ?? .night
-//        let (backgroundColor, highlightColor) = Theme.colors(for: sunPhase)
-//
-//        let textColor = highlightColor.withAlphaComponent(0.6)
-//        let messageString = Message.informationMessage.attributedString(textColor: textColor, highlightColor: highlightColor)
-//
-//        let enableNotificationsString = "Enable notifications".attributedMessageString(textColor: textColor, highlightColor: highlightColor, highlightedSubstring: "Enable")
-//        let turnNotificationsOffString = "Turn off notifications".attributedMessageString(textColor: textColor, highlightColor: highlightColor, highlightedSubstring: "off")
-//        let turnNotificationsOnString = "Turn on notifications".attributedMessageString(textColor: textColor, highlightColor: highlightColor, highlightedSubstring: "on")
-//
-//        UIView.animate(withDuration: 0.4) {
-//            self.view.backgroundColor = backgroundColor
-//            self.closeButton.updateInterface(withBackgroundColor: backgroundColor, andTextColor: textColor)
-//
-//            self.notificationButton.removeTarget(nil, action: nil, for: .allEvents)
-//            if Settings.isAllowedToSendNotifications == false {
-//                self.notificationButton.setAttributedTitle(enableNotificationsString, for: .normal)
-//                self.notificationButton.addTarget(self, action: #selector(self.openSettings), for: .touchUpInside)
-//            } else {
-//                self.notificationButton.addTarget(self, action: #selector(self.didSelectNotifications), for: .touchUpInside)
-//                if Settings.areNotificationsEnabled {
-//                    self.notificationButton.setAttributedTitle(turnNotificationsOffString, for: .normal)
-//                } else {
-//                    self.notificationButton.setAttributedTitle(turnNotificationsOnString, for: .normal)
-//                }
-//            }
-//
-//            self.messageLabel.attributedText = messageString
-//            self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
-//            self.view.setNeedsLayout()
-//        }
-    }
-
     @objc func openSettings() {
         UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
     }
@@ -208,5 +187,35 @@ class InformationController: UIViewController {
 
     @objc func didSelectLinkButton() {
         UIApplication.shared.open(URL(string: "https://bakkenbaeck.com")!, options: [:], completionHandler: nil)
+    }
+}
+
+extension InformationController: DaylightModelControllerDelegate {
+    func daylightModelControllerDidUpdate(_ controller: DaylightModelController) {
+        let enableNotificationsString = "Enable notifications".attributedMessageString(textColor: controller.secondaryColor, highlightColor: controller.highlightColor, highlightedSubstring: "Enable")
+        let turnNotificationsOffString = "Turn off notifications".attributedMessageString(textColor: controller.secondaryColor, highlightColor: controller.highlightColor, highlightedSubstring: "off")
+        let turnNotificationsOnString = "Turn on notifications".attributedMessageString(textColor: controller.secondaryColor, highlightColor: controller.highlightColor, highlightedSubstring: "on")
+
+        UIView.animate(withDuration: 0.4) {
+            self.view.backgroundColor = controller.primaryColor
+            self.closeButton.updateInterface(controller: controller)
+
+            self.notificationButton.removeTarget(nil, action: nil, for: .allEvents)
+            if Settings.isAllowedToSendNotifications == false {
+                self.notificationButton.setAttributedTitle(enableNotificationsString, for: .normal)
+                self.notificationButton.addTarget(self, action: #selector(self.openSettings), for: .touchUpInside)
+            } else {
+                self.notificationButton.addTarget(self, action: #selector(self.didSelectNotifications), for: .touchUpInside)
+                if Settings.areNotificationsEnabled {
+                    self.notificationButton.setAttributedTitle(turnNotificationsOffString, for: .normal)
+                } else {
+                    self.notificationButton.setAttributedTitle(turnNotificationsOnString, for: .normal)
+                }
+            }
+
+            self.messageLabel.attributedText = controller.informationMessage
+            self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
+            self.view.setNeedsLayout()
+        }
     }
 }

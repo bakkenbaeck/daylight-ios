@@ -131,7 +131,7 @@ class MainController: UIViewController {
         UIView.animate(withDuration: TransitionDuration, animations: {
             self.view.alpha = 0.1
         }) { _ in
-            let informationController = InformationController()
+            let informationController = InformationController(withDaylightModelController: self.dayLightModelController)
             informationController.modalTransitionStyle = .crossDissolve
             informationController.delegate = self
             self.present(informationController, animated: false) {
@@ -221,7 +221,7 @@ extension MainController: DaylightModelControllerDelegate {
             self.view.backgroundColor = controller.primaryColor
 
             self.shareButton.setTitleColor(controller.secondaryColor, for: .normal)
-            self.locationLabel.textColor = controller.secondaryColor.withAlphaComponent(0.6)
+            self.locationLabel.textColor = controller.highlightColor
 
             self.locationLabel.text = controller.locationLabel
             self.messageLabel.attributedText = controller.attributedMessage

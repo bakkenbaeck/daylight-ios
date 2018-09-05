@@ -6,7 +6,11 @@ protocol DaylightModelControllerDelegate: class {
 }
 
 class DaylightModelController {
-    weak var delegate: DaylightModelControllerDelegate?
+    weak var delegate: DaylightModelControllerDelegate? {
+        didSet {
+            self.updateDelegate()
+        }
+    }
 
     private(set) var location: Location? {
         set {
@@ -74,6 +78,13 @@ extension DaylightModelController {
         return Theme.secondaryColor(for: location.sunTime.sunPhase)
     }
 
+    var highlightColor: UIColor {
+        guard let location = location else {
+            return .white
+        }
+        return Theme.secondaryColor(for: location.sunTime.sunPhase).withAlphaComponent(0.6)
+    }
+
     var locationLabel: String {
         guard let location = location else {
             return ""
@@ -87,6 +98,10 @@ extension DaylightModelController {
         }
         let message = Message(for: Date(), coordinates: location.coordinates)
         return message.attributedString(textColor: secondaryColor.withAlphaComponent(0.6), highlightColor: secondaryColor)
+    }
+
+    var informationMessage: NSAttributedString? {
+        return Message.informationMessage.attributedString(textColor: secondaryColor, highlightColor: highlightColor)
     }
 }
 
