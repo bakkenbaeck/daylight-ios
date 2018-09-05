@@ -73,6 +73,7 @@ class MainController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = .blue
         self.addSubviewsAndConstraints()
 
         //This should be done in the model

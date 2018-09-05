@@ -57,6 +57,7 @@
 		D197B82889BF092A03FFCC2D /* DaylightModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */; };
 		D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBC3EDBF4CA099642BCE /* Notifier.swift */; };
 		D197BE076EECA92FE99E8CAB /* SunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B54C8E75BC3669A5BD10 /* SunView.swift */; };
+		D197BEFA484503CDFB2E2D77 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B19D546DE1806562CAC8 /* SplashViewController.swift */; };
 		E68BF7CE213692BA00E954B4 /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CD213692BA00E954B4 /* TinyConstraints.framework */; };
 		E68BF7D0213692CC00E954B4 /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */; };
 		E68BF7D1213692CC00E954B4 /* TinyConstraints.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -148,6 +149,7 @@
 		9F47BA2D203323E400FB805B /* SweetSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SweetSwift.framework; path = Carthage/Build/iOS/SweetSwift.framework; sourceTree = "<group>"; };
 		9FFFCA3B200384390060F86F /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numbers+Time.swift"; sourceTree = "<group>"; };
+		D197B19D546DE1806562CAC8 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaylightModelController.swift; sourceTree = "<group>"; };
 		D197B54C8E75BC3669A5BD10 /* SunView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunView.swift; sourceTree = "<group>"; };
 		D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + Helpers.swift"; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				E6D9D5061E02D7970007006D /* InformationButton.swift */,
 				E6F6046F1E08106000A6461A /* CloseButton.swift */,
 				D197B54C8E75BC3669A5BD10 /* SunView.swift */,
+				D197B19D546DE1806562CAC8 /* SplashViewController.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				D197B2A38145C1C1E03EC48D /* String + Helpers.swift in Sources */,
 				D197BE076EECA92FE99E8CAB /* SunView.swift in Sources */,
 				D197B46B597F265ED1413F86 /* DaylightModelController.swift in Sources */,
+				D197BEFA484503CDFB2E2D77 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
