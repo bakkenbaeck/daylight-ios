@@ -155,7 +155,7 @@ class SunView: UIView {
         self.sun.tintColor = controller.secondaryColor
         self.moon.backgroundColor = controller.primaryColor
 
-//        self.sunViewLocation = self.location(for: CGFloat(percentageInDay))
-//        self.sunPhase =
+        self.sunViewLocation = self.location(for: controller.percentageInDay)
+//        self.sunPhase = controller.location?.sunTime.sunPhase
     }
 }

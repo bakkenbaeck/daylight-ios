@@ -231,6 +231,5 @@ extension MainController: DaylightModelControllerDelegate {
 
             self.view.setNeedsLayout()
         }
-
     }
 }

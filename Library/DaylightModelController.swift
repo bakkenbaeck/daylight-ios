@@ -103,6 +103,13 @@ extension DaylightModelController {
     var informationMessage: NSAttributedString? {
         return Message.informationMessage.attributedString(textColor: secondaryColor, highlightColor: highlightColor)
     }
+
+    var percentageInDay: CGFloat {
+        guard let location = location else {
+            return 0.0
+        }
+        return CGFloat(location.sunTime.daylightLengthProgress)
+    }
 }
 
 extension DaylightModelController: LocationTrackerDelegate {
