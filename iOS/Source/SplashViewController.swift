@@ -55,7 +55,7 @@ class SplashViewController: UIViewController {
         guard let location = location else {
             let controller = OnboardingController(nibName: nil, bundle: nil)
             self.present(controller, animated: true)
-//            controller.delegate = self
+            controller.delegate = self
             return
         }
 

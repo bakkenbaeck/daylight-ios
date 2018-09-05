@@ -2,7 +2,15 @@ import CoreLocation
 import UIKit
 import UserNotifications
 
+protocol OnboardingControllerDelegate: class {
+    func didFinishOnboarding(withLocation location: Location, notificationGranted: Bool)
+}
+
 class OnboardingController: UIViewController {
+
+    weak var delegate: OnboardingControllerDelegate?
+
+    var location: Location?
 
     enum OnboardingState: Int {
         case locationUndetermined
@@ -180,8 +188,11 @@ class OnboardingController: UIViewController {
     }
 
     func requestNotifications() {
+
         //somewhere else
-//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { granted, _ in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { granted, _ in
+
+            self.delegate?.didFinishOnboarding(withLocation: location, notificationGranted: granted)
 //            if granted == true {
 //                Settings.areNotificationsEnabled = true
 //                Settings.registerForNotifications()
@@ -191,17 +202,7 @@ class OnboardingController: UIViewController {
 //                    }
 //                }
 //            }
-//            self.presentMainController()
-//        }
-    }
-
-    func presentMainController() {
-        //somewhere else
-//        DispatchQueue.main.async {
-//            let mainController = MainController(nibName: nil, bundle: nil)
-//            mainController.modalTransitionStyle = .crossDissolve
-//            self.present(mainController, animated: true)
-//        }
+        }
     }
 }
 
@@ -212,10 +213,9 @@ extension OnboardingController: LocationTrackerDelegate {
     }
 
     func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
-        //somewhere else
-//        if let location = Location(placemark: placemark) {
-//            Location.current = location
-//            self.onboardingState = .notificationUndetermined
-//        }
+        if let location = Location(placemark: placemark) {
+            self.location = location
+            self.onboardingState = .notificationUndetermined
+        }
     }
 }
