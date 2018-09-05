@@ -110,6 +110,19 @@ extension DaylightModelController {
         }
         return CGFloat(location.sunTime.daylightLengthProgress)
     }
+
+    var sunriseTimeString: String {
+        guard let location = location else {
+            return ""
+        }
+        return location.sunTime.sunriseTimeString
+    }
+    var sunsetTimeString: String {
+        guard let location = location else {
+            return ""
+        }
+        return location.sunTime.sunsetTimeString
+    }
 }
 
 extension DaylightModelController: LocationTrackerDelegate {

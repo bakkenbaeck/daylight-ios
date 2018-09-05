@@ -129,13 +129,7 @@ class SunView: UIView {
         self.sunMask.addSubview(self.moon)
         self.addSubview(self.currentTimeLabel)
     }
-
-    func update(for location: Location) {
-        self.currentTimeLabel.text = self.timeFormatter.string(from: Date())
-        self.sunriseLabel.text = location.sunTime.sunriseTimeString
-        self.sunsetLabel.text = location.sunTime.sunsetTimeString
-    }
-
+    
     func location(for percentageInDay: CGFloat) -> SunViewLocation {
         let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
         let x = 50.0 + cos(position) * 50.0
@@ -157,5 +151,9 @@ class SunView: UIView {
 
         self.sunViewLocation = self.location(for: controller.percentageInDay)
 //        self.sunPhase = controller.location?.sunTime.sunPhase
+
+        self.currentTimeLabel.text = self.timeFormatter.string(from: Date())
+        self.sunriseLabel.text = controller.sunriseTimeString
+        self.sunsetLabel.text = controller.sunsetTimeString
     }
 }
