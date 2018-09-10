@@ -43,32 +43,58 @@ class SplashViewController: UIViewController {
         }
     }
 
+    lazy var onboardingView: OnboardingView = {
+        let view = OnboardingView(withAuthorizationStatus: locationTracker.authorizationStatus)
+        view.delegate = self
+
+        return view
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = Theme.nightBackground
+        self.addObservers()
+
+        self.addSubViewsAndConstraints()
+    }
+
+    private func addSubViewsAndConstraints() {
+        self.view.addSubview(onboardingView)
+        onboardingView.edges(to: self.view)
+
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        guard let location = location else {
-            let controller = OnboardingController(nibName: nil, bundle: nil)
-            self.present(controller, animated: true)
-            controller.delegate = self
-            return
-        }
+//
+//        let daylightModelController = DaylightModelController(location: location)
+//        let mainController = MainController(withDaylightModelController: daylightModelController)
+//
+//        self.present(mainController, animated: true)
+    }
 
-        let daylightModelController = DaylightModelController(location: location)
-        let mainController = MainController(withDaylightModelController: daylightModelController)
+    func addObservers() {
+        self.removeObservers()
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.updateOnboardingStatus), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
 
-        self.present(mainController, animated: true)
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+}
+
+extension SplashViewController: OnboardingViewDelegate {
+    func didRequestToLocateIfPossible(on controller: OnboardingView) {
+        self.locationTracker.locateIfPossible()
     }
 }
 
 extension SplashViewController: LocationTrackerDelegate {
 
-    func locationTracker(_ locationTracker: LocationTracker, didFailWith error: Error) {
+    func didFailWithError(_ error: Error, on locationTracker: LocationTracker) {
         guard self.location == nil else { return }
 
         let isUnexpectedError = (error as NSError).code != 0
@@ -79,7 +105,11 @@ extension SplashViewController: LocationTrackerDelegate {
         }
     }
 
-    func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
+    func didFindLocation(_ placemark: CLPlacemark, on locationTracker: LocationTracker) {
         self.location = Location(placemark: placemark)
+    }
+
+    func didUpdateAuthorizationStatus(_ authorizationStatus: CLAuthorizationStatus, on locationTracker: LocationTracker) {
+        self.onboardingView.authorizationStatus = authorizationStatus
     }
 }

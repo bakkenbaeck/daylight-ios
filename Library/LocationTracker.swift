@@ -1,20 +1,15 @@
 import CoreLocation
 
 protocol LocationTrackerDelegate: class {
-    func locationTracker(_ locationTracker: LocationTracker, didFailWith error: Error)
-    func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark)
+    func didFailWithError(_ error: Error, on locationTracker: LocationTracker)
+    func didFindLocation(_ placemark: CLPlacemark, on locationTracker: LocationTracker)
+    func didUpdateAuthorizationStatus(_ authorizationStatus: CLAuthorizationStatus, on locationTracker: LocationTracker)
 }
 
 class LocationTracker: NSObject {
     weak var delegate: LocationTrackerDelegate?
 
     private var placemark: CLPlacemark?
-
-    static let shared: LocationTracker = {
-        let instance = LocationTracker()
-
-        return instance
-    }()
 
     lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -46,9 +41,11 @@ extension LocationTracker: CLLocationManagerDelegate {
         case .authorizedWhenInUse, .authorizedAlways:
             self.locationManager.startUpdatingLocation()
         case .denied, .restricted:
-            self.delegate?.locationTracker(self, didFailWith: NSError(domain: "no.bakkenbaeck.sol", code: 9999, userInfo: [NSLocalizedDescriptionKey: "Unauthorized to get location access"]))
+            self.delegate?.didFailWithError(NSError(domain: "no.bakkenbaeck.sol", code: 9999, userInfo: [NSLocalizedDescriptionKey: "Unauthorized to get location access"]), on: self)
         default: break
         }
+
+        self.delegate?.didUpdateAuthorizationStatus(authorizationStatus, on: self)
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -59,17 +56,17 @@ extension LocationTracker: CLLocationManagerDelegate {
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(locations.first!) { placemarks, error in
             if let error = error {
-                self.delegate?.locationTracker(self, didFailWith: error)
+                self.delegate?.didFailWithError(error, on: self)
             } else if let placemarks = placemarks, let placemark = placemarks.first {
                 if self.placemark?.country != placemark.country || self.placemark?.locality != placemark.locality {
                     self.placemark = placemark
-                    self.delegate?.locationTracker(self, didFindLocation: placemark)
+                    self.delegate?.didFindLocation(placemark, on: self)
                 }
             }
         }
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        self.delegate?.locationTracker(self, didFailWith: error)
+        self.delegate?.didFailWithError(error, on: self)
     }
 }

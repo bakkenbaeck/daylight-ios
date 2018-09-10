@@ -37,12 +37,17 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
 extension TodayViewController: LocationTrackerDelegate {
 
-    func locationTracker(_ locationTracker: LocationTracker, didFailWith error: Error) {
+    func didFailWithError(_ error: Error, on locationTracker: LocationTracker) {
         // ignore errors in the widget
     }
 
-    func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
+    func didFindLocation(_ placemark: CLPlacemark, on locationTracker: LocationTracker) {
 //        Location.current = Location(placemark: placemark)
         (self.view as! TodayView).updateView()
+    }
+
+
+    func didUpdateAuthorizationStatus(_ authorizationStatus: CLAuthorizationStatus, on locationTracker: LocationTracker) {
+        
     }
 }

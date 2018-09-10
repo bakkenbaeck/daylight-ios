@@ -4,6 +4,8 @@ import UIKit
 let TransitionDuration: TimeInterval = 0.25
 
 struct Theme {
+    static let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
+
     static var sunriseBackground: UIColor {
         return UIColor(hex: "#FDEDA8")
     }
