@@ -90,31 +90,30 @@ class OnboardingView: UIView {
     }
 
     func setLocationUndetermined() {
-        self.backgroundColor = Theme.daylightBackground
-
         let text = NSLocalizedString("Hi! Daylight uses your location to give you accurate daylight information.", comment: "")
 
         UIView.animate(withDuration: 0.2) {
+            self.backgroundColor = Theme.daylightBackground
             self.titleLabel.attributedText = text.attributedMessageString(textColor: Theme.daylightText.withAlphaComponent(0.6), highlightColor: Theme.daylightText, highlightedSubstring: "your location")
             self.button.setTitle("Tap to enable access", for: .normal)
         }
     }
 
     func setLocationDisabled() {
-        self.backgroundColor = Theme.nightBackground
-
         let text = NSLocalizedString("Unfortunately, Daylight doesn't work without your location data. If you change your mind, you can enable it by going to settings.", comment: "")
 
         UIView.animate(withDuration: 0.2) {
+            self.backgroundColor = Theme.nightBackground
             self.titleLabel.attributedText = text.attributedMessageString(textColor: Theme.nightText.withAlphaComponent(0.6), highlightColor: Theme.nightText, highlightedSubstring: "going to settings")
+            self.button.setTitle("", for: .normal)
         }
     }
 
     func setNotificationUndetermined() {
-        self.backgroundColor = Theme.daylightBackground
-
         let text = NSLocalizedString("Enable notifications to receive daylight changes on your phone in the morning.", comment: "")
+
         UIView.animate(withDuration: 0.2) {
+            self.backgroundColor = Theme.daylightBackground
             self.titleLabel.attributedText = text.attributedMessageString(textColor: Theme.daylightText.withAlphaComponent(0.6), highlightColor: Theme.daylightText, highlightedSubstring: "Enable notifications")
             self.button.setTitle("Skip for now", for: .normal)
         }

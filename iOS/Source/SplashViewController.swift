@@ -70,24 +70,26 @@ class SplashViewController: UIViewController {
     func presentMainController(withLocation location: Location) {
         let daylightModelController = DaylightModelController(location: location)
         let mainController = MainController(withDaylightModelController: daylightModelController)
+        mainController.modalTransitionStyle = .crossDissolve
         self.present(mainController, animated: true)
     }
 
     func addObservers() {
         self.removeObservers()
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.updateOnboardingStatus), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateOnboardingStatus), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
     func removeObservers() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
-    func updateOnboardingStatus() {
+    @objc func updateOnboardingStatus() {
         switch locationTracker.authorizationStatus {
         case .notDetermined:
             self.onboardingView.onboardingState = .location
         case .denied:
             self.onboardingView.onboardingState = .denied
+            self.dismiss(animated: true)
         case .authorizedWhenInUse, .authorizedAlways:
             Settings.notificationAuthorizationStatus { status in
                 if status == .notDetermined {
