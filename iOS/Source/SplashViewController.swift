@@ -44,11 +44,31 @@ class SplashViewController: UIViewController {
     }
 
     lazy var onboardingView: OnboardingView = {
-        let view = OnboardingView(withAuthorizationStatus: locationTracker.authorizationStatus)
+        let view = OnboardingView()
         view.delegate = self
 
         return view
     }()
+
+    var authorizationStatus: CLAuthorizationStatus = .notDetermined {
+        didSet {
+            switch authorizationStatus {
+            case .notDetermined:
+                self.onboardingView.onboardingState = .location
+            case .denied:
+                self.onboardingView.onboardingState = .denied
+            case .authorizedWhenInUse, .authorizedAlways:
+                Settings.notificationAuthorizationStatus { status in
+                    if status == .notDetermined {
+                        self.onboardingView.onboardingState =  .notification
+                    } else {
+                        self.presentMainController()
+                    }
+                 }
+            default: break
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +76,7 @@ class SplashViewController: UIViewController {
         self.view.backgroundColor = Theme.nightBackground
         self.addObservers()
 
+        self.authorizationStatus = locationTracker.authorizationStatus
         self.addSubViewsAndConstraints()
     }
 
@@ -66,16 +87,12 @@ class SplashViewController: UIViewController {
 
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-//
-//        let daylightModelController = DaylightModelController(location: location)
-//        let mainController = MainController(withDaylightModelController: daylightModelController)
-//
-//        self.present(mainController, animated: true)
+    func presentMainController() {
+        guard let location = location else { return }
+        let daylightModelController = DaylightModelController(location: location)
+        let mainController = MainController(withDaylightModelController: daylightModelController)
+        self.present(mainController, animated: true)
     }
-
     func addObservers() {
         self.removeObservers()
 //        NotificationCenter.default.addObserver(self, selector: #selector(self.updateOnboardingStatus), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
@@ -89,6 +106,10 @@ class SplashViewController: UIViewController {
 extension SplashViewController: OnboardingViewDelegate {
     func didRequestToLocateIfPossible(on controller: OnboardingView) {
         self.locationTracker.locateIfPossible()
+    }
+
+    func didRequestToSkipNotifications(on controller: OnboardingView) {
+        self.presentMainController()
     }
 }
 
@@ -110,6 +131,6 @@ extension SplashViewController: LocationTrackerDelegate {
     }
 
     func didUpdateAuthorizationStatus(_ authorizationStatus: CLAuthorizationStatus, on locationTracker: LocationTracker) {
-        self.onboardingView.authorizationStatus = authorizationStatus
+        self.authorizationStatus = authorizationStatus
     }
 }

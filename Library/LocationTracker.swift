@@ -41,6 +41,7 @@ extension LocationTracker: CLLocationManagerDelegate {
         case .authorizedWhenInUse, .authorizedAlways:
             self.locationManager.startUpdatingLocation()
         case .denied, .restricted:
+            // TODO: Make this a Location error type
             self.delegate?.didFailWithError(NSError(domain: "no.bakkenbaeck.sol", code: 9999, userInfo: [NSLocalizedDescriptionKey: "Unauthorized to get location access"]), on: self)
         default: break
         }

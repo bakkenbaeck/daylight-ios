@@ -4,32 +4,32 @@ import UserNotifications
 
 protocol OnboardingViewDelegate: class {
     func didRequestToLocateIfPossible(on controller: OnboardingView)
+    func didRequestToSkipNotifications(on controller: OnboardingView)
 }
 
 class OnboardingView: UIView {
 
-    weak var delegate: OnboardingViewDelegate?
-
-    var authorizationStatus: CLAuthorizationStatus
-
-    enum OnboardingState: Int {
-        case locationUndetermined
-        case locationDisabled
-        case notificationUndetermined
+    enum OnboardingState {
+        case location
+        case notification
+        case denied
     }
 
-    var onboardingState = OnboardingState.locationUndetermined {
+    weak var delegate: OnboardingViewDelegate?
+
+    var onboardingState: OnboardingState = .denied {
         didSet {
-            switch self.onboardingState {
-            case .locationUndetermined:
+            switch onboardingState {
+            case .location:
                 self.setLocationUndetermined()
-            case .locationDisabled:
-                self.setLocationDisabled()
-            case .notificationUndetermined:
+            case .notification:
                 self.setNotificationUndetermined()
+            case .denied:
+                self.setLocationDisabled()
             }
         }
     }
+
 
     lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -60,29 +60,15 @@ class OnboardingView: UIView {
         return recognizer
     }()
 
-    init(withAuthorizationStatus authorizationStatus: CLAuthorizationStatus) {
-        self.authorizationStatus = authorizationStatus
-        super.init(frame: CGRect.zero)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
 
         self.addSubviewsAndConstraints()
 
-        self.updateOnboardingStatus()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    @objc func updateOnboardingStatus() {
-        switch authorizationStatus {
-        case .notDetermined:
-            self.onboardingState = .locationUndetermined
-        case .denied:
-            self.onboardingState = .locationDisabled
-        case .authorizedWhenInUse, .authorizedAlways:
-            self.onboardingState = .notificationUndetermined
-        default: break
-        }
     }
 
     private func addSubviewsAndConstraints() {
@@ -143,25 +129,24 @@ class OnboardingView: UIView {
 
     @objc func didTapScreen() {
         switch self.onboardingState {
-        case .locationUndetermined:
+        case .location:
               self.delegate?.didRequestToLocateIfPossible(on: self)
-//            LocationTracker.shared.locateIfPossible()
-        case .locationDisabled:
+        case .denied:
             UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
-        case .notificationUndetermined:
+        case .notification:
             self.requestNotifications()
         }
     }
 
     @objc func didSelectButton() {
-//        switch self.onboardingState {
-//        case .locationUndetermined:
-//            LocationTracker.shared.locateIfPossible()
-//        case .locationDisabled:
-//            UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
-//        case .notificationUndetermined:
-//            self.presentMainController()
-//        }
+        switch self.onboardingState {
+        case .location:
+            self.delegate?.didRequestToLocateIfPossible(on: self)
+        case .denied:
+            UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+        case .notification:
+            self.delegate?.didRequestToSkipNotifications(on: self)
+        }
     }
 
     func checkForNotifications() {

@@ -17,6 +17,14 @@ struct Settings {
         }
     }
 
+    static func notificationAuthorizationStatus(completionHandler: @escaping (UNAuthorizationStatus) -> Void) {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            DispatchQueue.main.async {
+                completionHandler(settings.authorizationStatus)
+            }
+        }
+    }
+
     static var isAllowedToSendNotifications: Bool {
         var authorized = false
 
