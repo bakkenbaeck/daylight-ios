@@ -1,10 +1,10 @@
 import CoreLocation
 import UIKit
-import UserNotifications
 
 protocol OnboardingViewDelegate: class {
     func didRequestToLocateIfPossible(on controller: OnboardingView)
     func didRequestToSkipNotifications(on controller: OnboardingView)
+    func didRequestToRegisterForNotifications(on controller: OnboardingView)
 }
 
 class OnboardingView: UIView {
@@ -99,8 +99,6 @@ class OnboardingView: UIView {
             self.titleLabel.attributedText = text.attributedMessageString(textColor: Theme.daylightText.withAlphaComponent(0.6), highlightColor: Theme.daylightText, highlightedSubstring: "your location")
             self.button.setTitle("Tap to enable access", for: .normal)
         }
-
-        self.button.isHidden = false
     }
 
     func setLocationDisabled() {
@@ -121,10 +119,6 @@ class OnboardingView: UIView {
             self.titleLabel.attributedText = text.attributedMessageString(textColor: Theme.daylightText.withAlphaComponent(0.6), highlightColor: Theme.daylightText, highlightedSubstring: "Enable notifications")
             self.button.setTitle("Skip for now", for: .normal)
         }
-
-        self.button.isEnabled = true
-        self.button.isHidden = false
-        self.checkForNotifications()
     }
 
     @objc func didTapScreen() {
@@ -134,7 +128,7 @@ class OnboardingView: UIView {
         case .denied:
             UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
         case .notification:
-            self.requestNotifications()
+            self.delegate?.didRequestToRegisterForNotifications(on: self)
         }
     }
 
@@ -146,30 +140,6 @@ class OnboardingView: UIView {
             UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
         case .notification:
             self.delegate?.didRequestToSkipNotifications(on: self)
-        }
-    }
-
-    func checkForNotifications() {
-        if UIApplication.shared.isRegisteredForRemoteNotifications {
-//            self.presentMainController()
-        }
-    }
-
-    func requestNotifications() {
-
-        //somewhere else
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { granted, _ in
-
-//            self.delegate?.didFinishOnboarding(withLocation: location, notificationGranted: granted)
-//            if granted == true {
-//                Settings.areNotificationsEnabled = true
-//                Settings.registerForNotifications()
-//                if let location = Location.current {
-//                    DispatchQueue.main.async {
-//                        Notifier.scheduleNotifications(for: location)
-//                    }
-//                }
-//            }
         }
     }
 }

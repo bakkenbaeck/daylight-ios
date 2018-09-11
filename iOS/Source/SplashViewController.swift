@@ -1,5 +1,6 @@
 import UIKit
 import CoreLocation
+import UserNotifications
 
 class SplashViewController: UIViewController {
 
@@ -62,7 +63,8 @@ class SplashViewController: UIViewController {
                     if status == .notDetermined {
                         self.onboardingView.onboardingState =  .notification
                     } else {
-                        self.presentMainController()
+                        guard let location = self.location else { return }
+                        self.presentMainController(withLocation: location)
                     }
                  }
             default: break
@@ -82,17 +84,16 @@ class SplashViewController: UIViewController {
 
     private func addSubViewsAndConstraints() {
         self.view.addSubview(onboardingView)
+
         onboardingView.edges(to: self.view)
-
-
     }
 
-    func presentMainController() {
-        guard let location = location else { return }
+    func presentMainController(withLocation location: Location) {
         let daylightModelController = DaylightModelController(location: location)
         let mainController = MainController(withDaylightModelController: daylightModelController)
         self.present(mainController, animated: true)
     }
+
     func addObservers() {
         self.removeObservers()
 //        NotificationCenter.default.addObserver(self, selector: #selector(self.updateOnboardingStatus), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
@@ -109,7 +110,23 @@ extension SplashViewController: OnboardingViewDelegate {
     }
 
     func didRequestToSkipNotifications(on controller: OnboardingView) {
-        self.presentMainController()
+        guard let location = self.location else { return }
+        self.presentMainController(withLocation: location)
+    }
+
+    func didRequestToRegisterForNotifications(on controller: OnboardingView) {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { granted, _ in
+            if granted == true {
+                Settings.areNotificationsEnabled = true
+                Settings.registerForNotifications()
+                if let location = self.location {
+                    DispatchQueue.main.async {
+                        Notifier.scheduleNotifications(for: location)
+                        self.presentMainController(withLocation: location)
+                    }
+                }
+            }
+        }
     }
 }
 
