@@ -51,35 +51,14 @@ class SplashViewController: UIViewController {
         return view
     }()
 
-    var authorizationStatus: CLAuthorizationStatus = .notDetermined {
-        didSet {
-            switch authorizationStatus {
-            case .notDetermined:
-                self.onboardingView.onboardingState = .location
-            case .denied:
-                self.onboardingView.onboardingState = .denied
-            case .authorizedWhenInUse, .authorizedAlways:
-                Settings.notificationAuthorizationStatus { status in
-                    if status == .notDetermined {
-                        self.onboardingView.onboardingState =  .notification
-                    } else {
-                        guard let location = self.location else { return }
-                        self.presentMainController(withLocation: location)
-                    }
-                 }
-            default: break
-            }
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = Theme.nightBackground
         self.addObservers()
 
-        self.authorizationStatus = locationTracker.authorizationStatus
         self.addSubViewsAndConstraints()
+        self.updateOnboardingStatus()
     }
 
     private func addSubViewsAndConstraints() {
@@ -101,6 +80,25 @@ class SplashViewController: UIViewController {
 
     func removeObservers() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+
+    func updateOnboardingStatus() {
+        switch locationTracker.authorizationStatus {
+        case .notDetermined:
+            self.onboardingView.onboardingState = .location
+        case .denied:
+            self.onboardingView.onboardingState = .denied
+        case .authorizedWhenInUse, .authorizedAlways:
+            Settings.notificationAuthorizationStatus { status in
+                if status == .notDetermined {
+                    self.onboardingView.onboardingState = .notification
+                } else {
+                    guard let location = self.location else { return }
+                    self.presentMainController(withLocation: location)
+                }
+            }
+        default: break
+        }
     }
 }
 
@@ -148,6 +146,6 @@ extension SplashViewController: LocationTrackerDelegate {
     }
 
     func didUpdateAuthorizationStatus(_ authorizationStatus: CLAuthorizationStatus, on locationTracker: LocationTracker) {
-        self.authorizationStatus = authorizationStatus
+        self.updateOnboardingStatus()
     }
 }
