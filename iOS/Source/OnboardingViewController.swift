@@ -2,7 +2,7 @@ import UIKit
 import CoreLocation
 import UserNotifications
 
-class SplashViewController: UIViewController {
+class OnboardingViewController: UIViewController {
 
     enum OnboardingState {
         case location
@@ -218,7 +218,7 @@ class SplashViewController: UIViewController {
     }
 }
 
-extension SplashViewController: LocationTrackerDelegate {
+extension OnboardingViewController: LocationTrackerDelegate {
 
     func didFailWithError(_ error: Error, on locationTracker: LocationTracker) {
         guard self.location == nil else { return }

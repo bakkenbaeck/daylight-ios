@@ -11,7 +11,7 @@ extension AppDelegate: UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = self.window else { fatalError("Window not found") }
 
-        window.rootViewController = SplashViewController()
+        window.rootViewController = OnboardingViewController()
 
         window.makeKeyAndVisible()
 
