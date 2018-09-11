@@ -30,7 +30,6 @@ class OnboardingView: UIView {
         }
     }
 
-
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0

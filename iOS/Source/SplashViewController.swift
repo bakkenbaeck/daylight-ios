@@ -133,12 +133,16 @@ extension SplashViewController: LocationTrackerDelegate {
     func didFailWithError(_ error: Error, on locationTracker: LocationTracker) {
         guard self.location == nil else { return }
 
-        let isUnexpectedError = (error as NSError).code != 0
-        if isUnexpectedError {
-            let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+        if let locationError = error as? LocationTracker.Error {
+          switch locationError {
+              case .authorizationError:
+                  return
+          }
         }
+
+        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
 
     func didFindLocation(_ placemark: CLPlacemark, on locationTracker: LocationTracker) {

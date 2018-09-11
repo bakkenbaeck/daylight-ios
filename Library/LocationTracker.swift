@@ -7,6 +7,10 @@ protocol LocationTrackerDelegate: class {
 }
 
 class LocationTracker: NSObject {
+    enum Error: Swift.Error {
+        case authorizationError
+    }
+
     weak var delegate: LocationTrackerDelegate?
 
     private var placemark: CLPlacemark?
@@ -41,8 +45,7 @@ extension LocationTracker: CLLocationManagerDelegate {
         case .authorizedWhenInUse, .authorizedAlways:
             self.locationManager.startUpdatingLocation()
         case .denied, .restricted:
-            // TODO: Make this a Location error type
-            self.delegate?.didFailWithError(NSError(domain: "no.bakkenbaeck.sol", code: 9999, userInfo: [NSLocalizedDescriptionKey: "Unauthorized to get location access"]), on: self)
+            self.delegate?.didFailWithError(Error.authorizationError, on: self)
         default: break
         }
 
