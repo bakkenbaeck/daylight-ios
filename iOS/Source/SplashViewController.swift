@@ -4,15 +4,31 @@ import UserNotifications
 
 class SplashViewController: UIViewController {
 
+    enum OnboardingState {
+        case location
+        case notification
+        case denied
+    }
+
     lazy var locationTracker: LocationTracker = {
         let tracker = LocationTracker()
         tracker.delegate = self
 
-        // should this happen here? I don't think soooo
-//        Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.updateDelegate), userInfo: nil, repeats: true)
-
         return tracker
     }()
+
+    var onboardingState: OnboardingState = .denied {
+        didSet {
+            switch onboardingState {
+            case .location:
+                self.setLocationUndetermined()
+            case .notification:
+                self.setNotificationUndetermined()
+            case .denied:
+                self.setLocationDisabled()
+            }
+        }
+    }
 
     private(set) var location: Location? {
         set {
@@ -44,11 +60,33 @@ class SplashViewController: UIViewController {
         }
     }
 
-    lazy var onboardingView: OnboardingView = {
-        let view = OnboardingView()
-        view.delegate = self
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = Theme.light(size: 32)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.isUserInteractionEnabled = true
 
-        return view
+        return label
+    }()
+
+    lazy var button: UIButton = {
+        let button = UIButton()
+
+        button.titleLabel?.font = Theme.light(size: 16)
+        button.setTitleColor(Theme.daylightText.withAlphaComponent(0.6), for: .normal)
+        button.contentHorizontalAlignment = .left
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(didSelectButton), for: .touchUpInside)
+
+        return button
+    }()
+
+    lazy var tapGestureRecognizer: UITapGestureRecognizer = {
+        let recognizer = UITapGestureRecognizer()
+        recognizer.addTarget(self, action: #selector(self.didTapScreen))
+
+        return recognizer
     }()
 
     override func viewDidLoad() {
@@ -58,13 +96,25 @@ class SplashViewController: UIViewController {
         self.addObservers()
 
         self.addSubViewsAndConstraints()
-        self.updateOnboardingStatus()
+        self.updateOnboarding()
     }
 
     private func addSubViewsAndConstraints() {
-        self.view.addSubview(onboardingView)
+        self.view.addSubview(self.titleLabel)
+        self.view.addSubview(self.button)
 
-        onboardingView.edges(to: self.view)
+        self.titleLabel.bottom(to: self.view, offset: (2 * -Theme.insets.bottom))
+        self.titleLabel.left(to: self.view, offset: Theme.insets.left)
+        self.titleLabel.right(to: self.view, offset: -Theme.insets.right)
+
+        self.titleLabel.addGestureRecognizer(self.tapGestureRecognizer)
+
+        let rightInset = CGFloat(-10)
+        self.button.heightAnchor.constraint(equalToConstant: 20).isActive = true
+
+        self.button.bottom(to: self.view, offset: -Theme.insets.top)
+        self.button.left(to: self.view, offset: Theme.insets.left)
+        self.button.right(to: self.view, offset: rightInset)
     }
 
     func presentMainController(withLocation location: Location) {
@@ -76,24 +126,24 @@ class SplashViewController: UIViewController {
 
     func addObservers() {
         self.removeObservers()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateOnboardingStatus), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateOnboarding), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
     func removeObservers() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
-    @objc func updateOnboardingStatus() {
+    @objc func updateOnboarding() {
         switch locationTracker.authorizationStatus {
         case .notDetermined:
-            self.onboardingView.onboardingState = .location
+            self.onboardingState = .location
         case .denied:
-            self.onboardingView.onboardingState = .denied
+            self.onboardingState = .denied
             self.dismiss(animated: true)
         case .authorizedWhenInUse, .authorizedAlways:
             Settings.notificationAuthorizationStatus { status in
                 if status == .notDetermined {
-                    self.onboardingView.onboardingState = .notification
+                    self.onboardingState = .notification
                 } else {
                     guard let location = self.location else { return }
                     self.presentMainController(withLocation: location)
@@ -102,30 +152,68 @@ class SplashViewController: UIViewController {
         default: break
         }
     }
-}
 
-extension SplashViewController: OnboardingViewDelegate {
-    func didRequestToLocateIfPossible(on controller: OnboardingView) {
-        self.locationTracker.locateIfPossible()
+    func setLocationUndetermined() {
+        let text = NSLocalizedString("Hi! Daylight uses your location to give you accurate daylight information.", comment: "")
+
+        UIView.animate(withDuration: 0.2) {
+            self.view.backgroundColor = Theme.daylightBackground
+            self.titleLabel.attributedText = text.attributedMessageString(textColor: Theme.daylightText.withAlphaComponent(0.6), highlightColor: Theme.daylightText, highlightedSubstring: "your location")
+            self.button.setTitle("Tap to enable access", for: .normal)
+        }
     }
 
-    func didRequestToSkipNotifications(on controller: OnboardingView) {
-        guard let location = self.location else { return }
-        self.presentMainController(withLocation: location)
+    func setLocationDisabled() {
+        let text = NSLocalizedString("Unfortunately, Daylight doesn't work without your location data. If you change your mind, you can enable it by going to settings.", comment: "")
+
+        UIView.animate(withDuration: 0.2) {
+            self.view.backgroundColor = Theme.nightBackground
+            self.titleLabel.attributedText = text.attributedMessageString(textColor: Theme.nightText.withAlphaComponent(0.6), highlightColor: Theme.nightText, highlightedSubstring: "going to settings")
+            self.button.setTitle("", for: .normal)
+        }
     }
 
-    func didRequestToRegisterForNotifications(on controller: OnboardingView) {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { granted, _ in
-            if granted == true {
-                Settings.areNotificationsEnabled = true
-                Settings.registerForNotifications()
-                if let location = self.location {
-                    DispatchQueue.main.async {
-                        Notifier.scheduleNotifications(for: location)
-                        self.presentMainController(withLocation: location)
+    func setNotificationUndetermined() {
+        let text = NSLocalizedString("Enable notifications to receive daylight changes on your phone in the morning.", comment: "")
+
+        UIView.animate(withDuration: 0.2) {
+            self.view.backgroundColor = Theme.daylightBackground
+            self.titleLabel.attributedText = text.attributedMessageString(textColor: Theme.daylightText.withAlphaComponent(0.6), highlightColor: Theme.daylightText, highlightedSubstring: "Enable notifications")
+            self.button.setTitle("Skip for now", for: .normal)
+        }
+    }
+
+    @objc func didTapScreen() {
+        switch self.onboardingState {
+        case .location:
+            self.locationTracker.locateIfPossible()
+        case .denied:
+            UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+        case .notification:
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { granted, _ in
+                if granted == true {
+                    Settings.areNotificationsEnabled = true
+                    Settings.registerForNotifications()
+                    if let location = self.location {
+                        DispatchQueue.main.async {
+                            Notifier.scheduleNotifications(for: location)
+                            self.presentMainController(withLocation: location)
+                        }
                     }
                 }
             }
+        }
+    }
+
+    @objc func didSelectButton() {
+        switch self.onboardingState {
+        case .location:
+            self.locationTracker.locateIfPossible()
+        case .denied:
+            UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+        case .notification:
+            guard let location = self.location else { return }
+            self.presentMainController(withLocation: location)
         }
     }
 }
@@ -152,6 +240,6 @@ extension SplashViewController: LocationTrackerDelegate {
     }
 
     func didUpdateAuthorizationStatus(_ authorizationStatus: CLAuthorizationStatus, on locationTracker: LocationTracker) {
-        self.updateOnboardingStatus()
+        self.updateOnboarding()
     }
 }

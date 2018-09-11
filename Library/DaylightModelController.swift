@@ -5,20 +5,18 @@ protocol DaylightModelControllerDelegate: class {
 }
 
 class DaylightModelController {
-    weak var delegate: DaylightModelControllerDelegate? {
-        didSet {
-            self.updateDelegate()
-        }
-    }
+    weak var delegate: DaylightModelControllerDelegate?
 
     private var location: Location
 
     init(location: Location) {
         self.location = location
+
+        Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.updateDelegate), userInfo: nil, repeats: true)
     }
 
     @objc func updateDelegate () {
-        delegate?.daylightModelControllerDidUpdate(self)
+        self.delegate?.daylightModelControllerDidUpdate(self)
     }
 }
 

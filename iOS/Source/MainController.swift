@@ -76,6 +76,7 @@ class MainController: UIViewController {
         self.view.backgroundColor = .blue
         self.addSubviewsAndConstraints()
 
+        self.dayLightModelController.updateDelegate()
         //This should be done in the model
 //        Notifier.cancelAllNotifications()
 //        if Settings.areNotificationsEnabled {
