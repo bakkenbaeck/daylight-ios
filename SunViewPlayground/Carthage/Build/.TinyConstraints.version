@@ -1,0 +1,9 @@
+{
+  "commitish" : "3.2.1",
+  "iOS" : [
+    {
+      "hash" : "83465a77c098b8fadca0847566e5f4edd8fd58543f69ca515b549d61e82a45d5",
+      "name" : "TinyConstraints"
+    }
+  ]
+}

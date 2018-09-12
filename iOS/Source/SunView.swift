@@ -158,6 +158,7 @@ class SunView: UIView {
         self.moon.backgroundColor = controller.primaryColor
 
         self.sunViewLocation = self.location(for: controller.percentageInDay)
+        self.sunViewLocation = self.location(for: 0.0)
 //        if controller.shouldShowMoon {
 //            self.moon.isHidden = false
 //            self.sunViewLocation = SunViewLocation(x: (self.frame.width - SunView.sunSize) / 2.0, y: 0.0)
