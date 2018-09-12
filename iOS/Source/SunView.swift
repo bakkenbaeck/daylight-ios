@@ -80,8 +80,13 @@ class SunView: UIView {
         return shortTimeFormatter
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    private var controller: DaylightModelController
+
+    init(withController controller: DaylightModelController) {
+        self.controller = controller
+        super.init(frame: CGRect.zero)
+
+        self.controller.delegate = self
 
         self.addSubviewsAndConstraints()
     }
@@ -102,6 +107,7 @@ class SunView: UIView {
         self.horizon.frame = CGRect(x: 0, y: 108, width: self.bounds.width, height: 1)
         self.currentTimeLabel.frame = CGRect(x: self.sunViewLocation.x - 10, y: self.sunViewLocation.y - 24, width: labelWidth, height: 16)
         self.moon.frame = CGRect(x: self.sunViewLocation.x + (SunView.sunSize / 2), y: self.sunViewLocation.y, width: SunView.sunSize / 2, height: SunView.sunSize)
+
     }
 
     func addSubviewsAndConstraints() {
@@ -112,15 +118,25 @@ class SunView: UIView {
         self.sunMask.addSubview(self.sun)
         self.sunMask.addSubview(self.moon)
         self.addSubview(self.currentTimeLabel)
+
     }
-    
+
+    override open var bounds: CGRect  {
+        didSet {
+            self.updateInterface(controller: self.controller)
+        }
+    }
+
     func location(for percentageInDay: CGFloat) -> SunViewLocation {
+        print(bounds)
         let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
         let x = 50.0 + cos(position) * 50.0
         let y = abs(sin(position) * 100.0)
-
         let absoluteX = ((self.bounds.width - SunView.sunSize) / 100) * x
-        let absoluteY = self.sunMask.frame.height - (self.sunMask.frame.height / 100.0) * y
+        let absoluteY = 108 - (108 / 100.0) * y
+
+        print("x \(absoluteX)")
+        print("y \(absoluteY)")
 
         return SunViewLocation(x: absoluteX, y: absoluteY)
     }
@@ -143,5 +159,11 @@ class SunView: UIView {
         self.currentTimeLabel.text = self.timeFormatter.string(from: Date())
         self.sunriseLabel.text = controller.sunriseTimeString
         self.sunsetLabel.text = controller.sunsetTimeString
+    }
+}
+
+extension SunView: DaylightModelControllerDelegate {
+    func daylightModelControllerDidUpdate(_ controller: DaylightModelController) {
+        self.updateInterface(controller: controller)
     }
 }

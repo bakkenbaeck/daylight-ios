@@ -22,7 +22,7 @@ class MainController: UIViewController {
         return button
     }()
 
-    private lazy var sunView: SunView = { SunView() }()
+    private lazy var sunView: SunView = { SunView(withController: self.dayLightModelController) }()
 
     private lazy var messageLabel: UILabel = {
         let label = UILabel()
@@ -76,7 +76,7 @@ class MainController: UIViewController {
         self.view.backgroundColor = .blue
         self.addSubviewsAndConstraints()
 
-        self.dayLightModelController.updateDelegate()
+        self.update(withController: self.dayLightModelController)
         //This should be done in the model
 //        Notifier.cancelAllNotifications()
 //        if Settings.areNotificationsEnabled {
@@ -150,6 +150,23 @@ class MainController: UIViewController {
         self.present(activityController, animated: true, completion: nil)
     }
 
+    func update(withController controller: DaylightModelController) {
+            UIView.animate(withDuration: 0.4) {
+                self.view.window?.backgroundColor = controller.primaryColor
+                self.view.backgroundColor = controller.primaryColor
+
+                self.shareButton.setTitleColor(controller.secondaryColor, for: .normal)
+                self.locationLabel.textColor = controller.highlightColor
+
+                self.locationLabel.text = controller.locationLabel
+                self.messageLabel.attributedText = controller.attributedMessage
+
+                self.informationButton.updateInterface(controller: controller)
+
+                self.view.setNeedsLayout()
+            }
+    }
+
     func screenshot() -> UIImage {
         let margin: CGFloat = 20
         let height: CGFloat = 450
@@ -218,20 +235,6 @@ extension MainController: InformationControllerDelegate {
 
 extension MainController: DaylightModelControllerDelegate {
     func daylightModelControllerDidUpdate(_ controller: DaylightModelController) {
-        UIView.animate(withDuration: 0.4) {
-            self.view.window?.backgroundColor = controller.primaryColor
-            self.view.backgroundColor = controller.primaryColor
-
-            self.shareButton.setTitleColor(controller.secondaryColor, for: .normal)
-            self.locationLabel.textColor = controller.highlightColor
-
-            self.locationLabel.text = controller.locationLabel
-            self.messageLabel.attributedText = controller.attributedMessage
-
-            self.informationButton.updateInterface(controller: controller)
-            self.sunView.updateInterface(controller: controller)
-
-            self.view.setNeedsLayout()
-        }
+        self.update(withController: controller)
     }
 }
