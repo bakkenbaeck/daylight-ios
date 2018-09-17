@@ -17,14 +17,14 @@ public struct SunTime {
         case night
     }
 
-    let dawnTime = SunTime.dateFormatter.date(from: "2018-09-17 04:44:47 +0000")!
-    let duskTime = SunTime.dateFormatter.date(from: "2018-09-17 18:28:03 +0000")!
-    let nightTimeStart = SunTime.dateFormatter.date(from: "2018-09-17 19:52:18 +0000")!
-    let solarNoonTime = SunTime.dateFormatter.date(from: "2018-09-17 11:36:25 +0000")!
-    let sunriseTimeStart = SunTime.dateFormatter.date(from: "2018-09-17 05:19:01 +0000")!
-    let sunsetTimeEnd = SunTime.dateFormatter.date(from: "2018-09-17 17:53:49 +0000")!
+    let dawnTime = SunTime.dateFormatter.date(from: "2018-09-17 04:44:47+0000")!
+    let duskTime = SunTime.dateFormatter.date(from: "2018-09-17 18:28:03+0000")!
+    let nightTimeStart = SunTime.dateFormatter.date(from: "2018-09-17 19:52:18+0000")!
+    let solarNoonTime = SunTime.dateFormatter.date(from: "2018-09-17 11:36:25+0000")!
+    let sunriseTimeStart = SunTime.dateFormatter.date(from: "2018-09-17 05:19:01+0000")!
+    let sunsetTimeEnd = SunTime.dateFormatter.date(from: "2018-09-17 17:53:49+0000")!
 
-    private(set) var date: Date
+    let date: Date
 
     public var sunPhase: SunPhase {
         var calendar = Calendar.autoupdatingCurrent
@@ -58,7 +58,7 @@ public struct SunTime {
     }
 
     private let timeFormatter = DateFormatter(dateFormat: "HH:mm")
-    static let dateFormatter = DateFormatter(dateFormat: "yyyy-MM-dd hh:mm:ssZZZ")
+    public static let dateFormatter = DateFormatter(dateFormat: "yyyy-MM-dd HH:mm:ssZZZ")
 
     /// Current percentage of the day (based on sunlight).
     // We use this to place the sun.
@@ -83,6 +83,7 @@ public struct SunTime {
     }
 
     public init(date: Date) {
+        print("lalala")
         self.date = date
     }
 

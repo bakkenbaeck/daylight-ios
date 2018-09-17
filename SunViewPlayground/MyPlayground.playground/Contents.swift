@@ -232,5 +232,6 @@ let sunView = SunView()
 sunView.frame = CGRect(x: 0, y: 0, width: 295, height: 157)
 PlaygroundPage.current.liveView = sunView
 
-let sunTime = SunTime(date: Date())
+let date = SunTime.dateFormatter.date(from: "2018-09-17 04:44:47+0000")!
+let sunTime = SunTime(date: date)
 sunView.updateInterface(controller: DaylightModelController(sunTime: sunTime))
