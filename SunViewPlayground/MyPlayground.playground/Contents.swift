@@ -140,6 +140,7 @@ class SunView: UIView {
     }
 
     func updateInterface(controller: DaylightModelController) {
+        self.superview?.backgroundColor = controller.primaryColor
         self.backgroundColor = controller.primaryColor
         self.sunriseLabel.textColor = controller.secondaryColor
         self.sunsetLabel.textColor = controller.secondaryColor
@@ -240,14 +241,34 @@ struct DaylightModelController {
     }
 }
 
+class Responder : NSObject {
+   @objc func action() {
+        print("Button pressed!")
+    }
+}
+
+let responder = Responder()
+
 let outerView = UIView(frame: CGRect(x: 0, y: 0, width: 495, height: 257))
 outerView.backgroundColor = .white
+
 let sunView = SunView()
 
 outerView.addSubview(sunView)
 sunView.edgesToSuperview(insets: .top(50) + .left(50) + .right(50) + .bottom(50))
+
+let slider = UISlider()
+slider.addTarget(responder, action: #selector(Responder.action), for: .touchDragInside)
+slider.minimumValue = 10
+slider.maximumValue = 100
+
+outerView.addSubview(slider)
+slider.topToBottom(of: sunView)
+slider.edges(to: outerView, excluding: .top)
+
+
 PlaygroundPage.current.liveView = outerView
 
-let date = SunTime.dateFormatter.date(from: "2018-09-17 08:45:47+0000")!
+let date = SunTime.dateFormatter.date(from: "2018-09-17 04:30:47+0000")!
 let sunTime = SunTime(date: date)
 sunView.updateInterface(controller: DaylightModelController(sunTime: sunTime))
