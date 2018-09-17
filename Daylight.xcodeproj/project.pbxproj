@@ -52,9 +52,12 @@
 		9FFFCA4C2003ABEE0060F86F /* Numbers+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */; };
 		D197B2A38145C1C1E03EC48D /* String + Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */; };
 		D197B46B597F265ED1413F86 /* DaylightModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */; };
+		D197B46D7347610F78A77888 /* SunCalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7CA2B823834F1266457 /* SunCalcEngine.swift */; };
 		D197B5A6D4413DEF81D6B469 /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
+		D197B77BA2E4064E5704FAEB /* SunCalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7CA2B823834F1266457 /* SunCalcEngine.swift */; };
 		D197B82889BF092A03FFCC2D /* DaylightModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */; };
 		D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBC3EDBF4CA099642BCE /* Notifier.swift */; };
+		D197BA0396516E3BDBAC7D05 /* SunCalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7CA2B823834F1266457 /* SunCalcEngine.swift */; };
 		D197BE076EECA92FE99E8CAB /* SunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B54C8E75BC3669A5BD10 /* SunView.swift */; };
 		D197BEFA484503CDFB2E2D77 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B19D546DE1806562CAC8 /* OnboardingViewController.swift */; };
 		E68BF7CE213692BA00E954B4 /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CD213692BA00E954B4 /* TinyConstraints.framework */; };
@@ -158,6 +161,7 @@
 		D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaylightModelController.swift; sourceTree = "<group>"; };
 		D197B38FEA10BE35FEB40299 /* TinyConstrainablePlayground.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TinyConstrainablePlayground.xcodeproj; path = SunViewPlayground/TinyConstrainablePlayground.xcodeproj; sourceTree = "<group>"; };
 		D197B54C8E75BC3669A5BD10 /* SunView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunView.swift; sourceTree = "<group>"; };
+		D197B7CA2B823834F1266457 /* SunCalcEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunCalcEngine.swift; sourceTree = "<group>"; };
 		D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + Helpers.swift"; sourceTree = "<group>"; };
 		D197BBC3EDBF4CA099642BCE /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		D197BD0F150956F37CAE048A /* FNVHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FNVHash.swift; sourceTree = "<group>"; };
@@ -239,6 +243,7 @@
 				D197BD0F150956F37CAE048A /* FNVHash.swift */,
 				D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */,
 				D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */,
+				D197B7CA2B823834F1266457 /* SunCalcEngine.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -548,6 +553,7 @@
 				03C628A81E58FAD800A69F3D /* Theme.swift in Sources */,
 				9F09E4E4203C6556000A0A0F /* LocationTracker.swift in Sources */,
 				9F09E4E5203C6598000A0A0F /* SunTime.swift in Sources */,
+				D197B77BA2E4064E5704FAEB /* SunCalcEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,6 +581,7 @@
 				D197BE076EECA92FE99E8CAB /* SunView.swift in Sources */,
 				D197B46B597F265ED1413F86 /* DaylightModelController.swift in Sources */,
 				D197BEFA484503CDFB2E2D77 /* OnboardingViewController.swift in Sources */,
+				D197B46D7347610F78A77888 /* SunCalcEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,6 +596,7 @@
 				9FFFCA49200384530060F86F /* MessageTests.swift in Sources */,
 				9FFFCA4A200384530060F86F /* Date+HelperTests.swift in Sources */,
 				D197B82889BF092A03FFCC2D /* DaylightModelController.swift in Sources */,
+				D197BA0396516E3BDBAC7D05 /* SunCalcEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
