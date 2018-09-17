@@ -167,33 +167,64 @@ class SunView: UIView {
 }
 
 struct DaylightModelController {
+    let sunTime = SunTime(Date())
 
     var primaryColor: UIColor {
         return Theme.primaryColor(for: sunTime.sunPhase)
     }
 
     var secondaryColor: UIColor {
-        return Theme.secondaryColor(for: sunTime.sunPhase)
+        return secondaryColor(for: sunTime.sunPhase)
     }
 
     var highlightColor: UIColor {
-        return Theme.secondaryColor(for: sunTime.sunPhase).withAlphaComponent(0.6)
+        return secondaryColor(for: sunTime.sunPhase).withAlphaComponent(0.6)
     }
 
+    var percentageInDay: CGFloat {
+        return CGFloat(sunTime.daylightLengthProgress)
+    }
+
+    func primaryColor(for sunPhase: SunPhase) -> UIColor {
+        let color: UIColor
+
+        switch sunPhase {
+        case .sunrise:
+            color = Theme.sunriseBackground
+        case .solarNoon:
+            color = Theme.daylightBackground
+        case .sunset:
+            color = Theme.sunsetBackground
+        case .dusk, .dawn:
+            color = Theme.twilightBackground
+        case .night, .predawn:
+            color = Theme.nightBackground
+        }
+
+        return color
+    }
+
+    func secondaryColor(for sunPhase: SunPhase) -> UIColor {
+        let color: UIColor
+
+        switch sunPhase {
+        case .sunrise:
+            color = Theme.sunriseText
+        case .solarNoon:
+            color = Theme.daylightText
+        case .sunset:
+            color = Theme.sunsetText
+        case .dusk, .dawn:
+            color = Theme.twilightText
+        case .night, .predawn:
+            color = Theme.nightText
+        }
+
+        return color
+    }
 }
 
 let sunView = SunView()
 sunView.frame = CGRect(x: 0, y: 0, width: 295, height: 157)
 PlaygroundPage.current.liveView = sunView
-
-sunView.updateInterface(: 0.0)
-sunView.updateInterface(percentage: 0.1)
-sunView.updateInterface(percentage: 0.2)
-sunView.updateInterface(percentage: 0.3)
-sunView.updateInterface(percentage: 0.4)
-sunView.updateInterface(percentage: 0.5)
-sunView.updateInterface(percentage: 0.6)
-sunView.updateInterface(percentage: 0.7)
-sunView.updateInterface(percentage: 0.8)
-sunView.updateInterface(percentage: 0.9)
-sunView.updateInterface(percentage: 1.0)
+sunView.updateInterface(controller: DaylightModelController())
