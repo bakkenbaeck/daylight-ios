@@ -139,9 +139,25 @@ class SunView: UIView {
         return SunViewLocation(x: absoluteX, y: absoluteY)
     }
 
-    func updateInterface(percentage: CGFloat) {
+    func updateInterface(controller: DaylightModelController) {
+        self.sunriseLabel.textColor = controller.secondaryColor
+        self.sunsetLabel.textColor = controller.secondaryColor
+        self.currentTimeLabel.textColor = controller.secondaryColor
+        self.horizon.backgroundColor = controller.secondaryColor
+        self.sun.tintColor = controller.secondaryColor
+        self.moon.backgroundColor = controller.primaryColor
 
-        self.sunViewLocation = self.location(for: percentage)
+        self.sunViewLocation = self.location(for: controller.percentageInDay)
+        self.sunViewLocation = self.location(for: 0.0)
+        //        if controller.shouldShowMoon {
+        //            self.moon.isHidden = false
+        //            self.sunViewLocation = SunViewLocation(x: (self.frame.width - SunView.sunSize) / 2.0, y: 0.0)
+        //        }
+        self.currentTimeLabel.isHidden = controller.shouldShowTimeLabel
+
+        self.currentTimeLabel.text = self.timeFormatter.string(from: Date())
+        self.sunriseLabel.text = controller.sunriseTimeString
+        self.sunsetLabel.text = controller.sunsetTimeString
 
         self.sunViewLeftAnchor?.constant = self.sunViewLocation.x
         self.sunViewBottomAnchor?.constant = self.sunViewLocation.y
@@ -150,11 +166,27 @@ class SunView: UIView {
     }
 }
 
+struct DaylightModelController {
+
+    var primaryColor: UIColor {
+        return Theme.primaryColor(for: sunTime.sunPhase)
+    }
+
+    var secondaryColor: UIColor {
+        return Theme.secondaryColor(for: sunTime.sunPhase)
+    }
+
+    var highlightColor: UIColor {
+        return Theme.secondaryColor(for: sunTime.sunPhase).withAlphaComponent(0.6)
+    }
+
+}
+
 let sunView = SunView()
 sunView.frame = CGRect(x: 0, y: 0, width: 295, height: 157)
 PlaygroundPage.current.liveView = sunView
 
-sunView.updateInterface(percentage: 0.0)
+sunView.updateInterface(: 0.0)
 sunView.updateInterface(percentage: 0.1)
 sunView.updateInterface(percentage: 0.2)
 sunView.updateInterface(percentage: 0.3)
