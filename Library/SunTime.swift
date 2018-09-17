@@ -29,40 +29,17 @@ struct SunTime {
         enum Keys: String {
             case dawnTime = "dawn"
             case duskTime = "dusk"
-            case goldenHourStart = "goldenHour"
-            case goldenHourEnd
-            case nadirTime = "nadir"
-            case nauticalDawnTime = "nauticalDawn"
-            case nauticalDuskTime = "nauticalDusk"
             case nightTimeStart = "night"
-            case nightTimeEnd = "nightEnd"
             case solarNoonTime = "solarNoon"
             case sunriseTimeStart = "sunrise"
-            case sunriseTimeEnd = "sunriseEnd"
-            case sunsetTimeStart = "sunsetStart"
             case sunsetTimeEnd = "sunset"
         }
 
         let dawnTime: Date
         let duskTime: Date
-
-        let goldenHourStart: Date
-        let goldenHourEnd: Date
-
-        let nadirTime: Date
-
-        let nauticalDawnTime: Date
-        let nauticalDuskTime: Date
-
         let nightTimeStart: Date
-        let nightTimeEnd: Date
-
         let solarNoonTime: Date
-
         let sunriseTimeStart: Date
-        let sunriseTimeEnd: Date
-
-        let sunsetTimeStart: Date
         let sunsetTimeEnd: Date
     }
 
@@ -154,17 +131,9 @@ struct SunTime {
 
         return SunPhaseTimes(dawnTime: times[SunPhaseTimes.Keys.dawnTime.rawValue]!,
                              duskTime: times[SunPhaseTimes.Keys.duskTime.rawValue]!,
-                             goldenHourStart: times[SunPhaseTimes.Keys.goldenHourStart.rawValue]!,
-                             goldenHourEnd: times[SunPhaseTimes.Keys.goldenHourEnd.rawValue]!,
-                             nadirTime: times[SunPhaseTimes.Keys.nadirTime.rawValue]!,
-                             nauticalDawnTime: times[SunPhaseTimes.Keys.nauticalDawnTime.rawValue]!,
-                             nauticalDuskTime: times[SunPhaseTimes.Keys.nauticalDuskTime.rawValue]!,
                              nightTimeStart: times[SunPhaseTimes.Keys.nightTimeStart.rawValue]!,
-                             nightTimeEnd: times[SunPhaseTimes.Keys.nightTimeEnd.rawValue]!,
                              solarNoonTime: times[SunPhaseTimes.Keys.solarNoonTime.rawValue]!,
                              sunriseTimeStart: times[SunPhaseTimes.Keys.sunriseTimeStart.rawValue]!,
-                             sunriseTimeEnd: times[SunPhaseTimes.Keys.sunriseTimeEnd.rawValue]!,
-                             sunsetTimeStart: times[SunPhaseTimes.Keys.sunsetTimeStart.rawValue]!,
                              sunsetTimeEnd: times[SunPhaseTimes.Keys.sunsetTimeEnd.rawValue]!)
     }
 
