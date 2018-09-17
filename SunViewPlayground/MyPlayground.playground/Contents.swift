@@ -242,7 +242,7 @@ struct DaylightModelController {
 }
 
 class View : UIView {
-    let date = SunTime.dateFormatter.date(from: "2018-09-17 04:30:47+0000")!
+    let date = SunTime.dateFormatter.date(from: "2018-09-17 00:00:47+0000")!
 
     let sunView = SunView()
     let slider = UISlider()
@@ -251,11 +251,11 @@ class View : UIView {
         super.init(frame: frame)
 
         self.addSubview(sunView)
-        sunView.edgesToSuperview(insets: .top(50) + .left(50) + .right(50) + .bottom(50))
+        sunView.edgesToSuperview(insets: .top(50) + .left(50) + .right(50) + .bottom(150))
 
         slider.addTarget(self, action: #selector(slide), for: .touchDragInside)
-        slider.minimumValue = 10
-        slider.maximumValue = 100
+        slider.minimumValue = 0
+        slider.maximumValue = 24
 
         self.addSubview(slider)
         slider.topToBottom(of: sunView)
@@ -267,12 +267,13 @@ class View : UIView {
     }
 
     @objc func slide() {
-        let sunTime = SunTime(date: date)
+        let newDate = date.addingTimeInterval(Double(slider.value * 3600))
+        let sunTime = SunTime(date: newDate)
         sunView.updateInterface(controller: DaylightModelController(sunTime: sunTime))
     }
 }
 
-let outerView = View(frame: CGRect(x: 0, y: 0, width: 495, height: 257))
+let outerView = View(frame: CGRect(x: 0, y: 0, width: 495, height: 357))
 outerView.backgroundColor = .white
 
 PlaygroundPage.current.liveView = outerView
