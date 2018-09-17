@@ -134,7 +134,7 @@ class SunView: UIView {
         let x = 50.0 + cos(position) * 50.0
         let y = abs(sin(position) * 100.0)
         let absoluteX = ((self.bounds.width - SunView.sunSize) / 100) * x
-        let absoluteY = -(108 / 100.0) * y
+        let absoluteY = -(108 / 100.0) * y + SunView.sunSize
 
         return SunViewLocation(x: absoluteX, y: absoluteY)
     }
