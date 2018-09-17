@@ -1,15 +1,16 @@
 import Foundation
 
+public enum SunPhase: String {
+    case predawn
+    case dawn
+    case sunrise
+    case solarNoon
+    case sunset
+    case dusk
+    case night
+}
+
 public struct SunTime {
-    public enum SunPhase: String {
-        case predawn
-        case dawn
-        case sunrise
-        case solarNoon
-        case sunset
-        case dusk
-        case night
-    }
 
     public enum DayOrNight {
         case day
@@ -25,7 +26,7 @@ public struct SunTime {
 
     private(set) var date: Date
 
-    var sunPhase: SunPhase {
+    public var sunPhase: SunPhase {
         var calendar = Calendar.autoupdatingCurrent
         calendar.timeZone = .autoupdatingCurrent
 
@@ -61,7 +62,7 @@ public struct SunTime {
 
     /// Current percentage of the day (based on sunlight).
     // We use this to place the sun.
-    var daylightLengthProgress: Double {
+    public var daylightLengthProgress: Double {
         let timeSinceSunrise = self.date.timeIntervalSince(self.sunriseTimeStart)
         if self.date.isBetween(self.sunriseTimeStart, and: self.sunsetTimeEnd) {
             let totalDaylightDuration = self.sunsetTimeEnd.timeIntervalSince(self.sunriseTimeStart)
@@ -81,7 +82,7 @@ public struct SunTime {
         return self.timeFormatter.string(from: self.sunsetTimeEnd)
     }
 
-    init(date: Date) {
+    public init(date: Date) {
         self.date = date
     }
 

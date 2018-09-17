@@ -85,13 +85,6 @@
 			remoteGlobalIDString = 146E27881BCD51C800959BBA;
 			remoteInfo = Daylight;
 		};
-		D197B9CC24CB10FFF8DD8507 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D197B38FEA10BE35FEB40299 /* TinyConstrainablePlayground.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E60BCA0E213811EB00A98088;
-			remoteInfo = TinyConstrainablePlayground;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -159,7 +152,6 @@
 		9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numbers+Time.swift"; sourceTree = "<group>"; };
 		D197B19D546DE1806562CAC8 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaylightModelController.swift; sourceTree = "<group>"; };
-		D197B38FEA10BE35FEB40299 /* TinyConstrainablePlayground.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TinyConstrainablePlayground.xcodeproj; path = SunViewPlayground/TinyConstrainablePlayground.xcodeproj; sourceTree = "<group>"; };
 		D197B54C8E75BC3669A5BD10 /* SunView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunView.swift; sourceTree = "<group>"; };
 		D197B7CA2B823834F1266457 /* SunCalcEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunCalcEngine.swift; sourceTree = "<group>"; };
 		D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + Helpers.swift"; sourceTree = "<group>"; };
@@ -295,7 +287,6 @@
 				147A13A51B92B9E300E52F9C /* Products */,
 				1418DB8A1E08A8C70041C201 /* Test Frameworks */,
 				14F3560F1DE9C21B0016AA17 /* Frameworks */,
-				D197B38FEA10BE35FEB40299 /* TinyConstrainablePlayground.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -333,14 +324,6 @@
 				0387E4D01E58F2E10029E7CF /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D197B75BA3FCA8BBC6A4A532 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D197B55D23C8B56000400D2D /* TinyConstrainablePlayground.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -444,12 +427,6 @@
 			mainGroup = 147A139B1B92B9E300E52F9C;
 			productRefGroup = 147A13A51B92B9E300E52F9C /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = D197B75BA3FCA8BBC6A4A532 /* Products */;
-					ProjectRef = D197B38FEA10BE35FEB40299 /* TinyConstrainablePlayground.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				146E27881BCD51C800959BBA /* Daylight */,
@@ -458,16 +435,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		D197B55D23C8B56000400D2D /* TinyConstrainablePlayground.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = TinyConstrainablePlayground.app;
-			remoteRef = D197B9CC24CB10FFF8DD8507 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0387E4CD1E58F2E10029E7CF /* Resources */ = {

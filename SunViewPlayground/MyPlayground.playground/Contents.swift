@@ -153,11 +153,11 @@ class SunView: UIView {
         //            self.moon.isHidden = false
         //            self.sunViewLocation = SunViewLocation(x: (self.frame.width - SunView.sunSize) / 2.0, y: 0.0)
         //        }
-        self.currentTimeLabel.isHidden = controller.shouldShowTimeLabel
+//        self.currentTimeLabel.isHidden = controller.shouldShowTimeLabel
 
         self.currentTimeLabel.text = self.timeFormatter.string(from: Date())
-        self.sunriseLabel.text = controller.sunriseTimeString
-        self.sunsetLabel.text = controller.sunsetTimeString
+//        self.sunriseLabel.text = controller.sunriseTimeString
+//        self.sunsetLabel.text = controller.sunsetTimeString
 
         self.sunViewLeftAnchor?.constant = self.sunViewLocation.x
         self.sunViewBottomAnchor?.constant = self.sunViewLocation.y
@@ -167,10 +167,10 @@ class SunView: UIView {
 }
 
 struct DaylightModelController {
-    let sunTime = SunTime(Date())
+    let sunTime: SunTime
 
     var primaryColor: UIColor {
-        return Theme.primaryColor(for: sunTime.sunPhase)
+        return primaryColor(for: sunTime.sunPhase)
     }
 
     var secondaryColor: UIColor {
@@ -183,6 +183,10 @@ struct DaylightModelController {
 
     var percentageInDay: CGFloat {
         return CGFloat(sunTime.daylightLengthProgress)
+    }
+
+    init(sunTime: SunTime) {
+        self.sunTime = sunTime
     }
 
     func primaryColor(for sunPhase: SunPhase) -> UIColor {
@@ -227,4 +231,6 @@ struct DaylightModelController {
 let sunView = SunView()
 sunView.frame = CGRect(x: 0, y: 0, width: 295, height: 157)
 PlaygroundPage.current.liveView = sunView
-sunView.updateInterface(controller: DaylightModelController())
+
+let sunTime = SunTime(date: Date())
+sunView.updateInterface(controller: DaylightModelController(sunTime: sunTime))
