@@ -241,34 +241,39 @@ struct DaylightModelController {
     }
 }
 
-class Responder : NSObject {
-   @objc func action() {
-        print("Button pressed!")
+class View : UIView {
+    let date = SunTime.dateFormatter.date(from: "2018-09-17 04:30:47+0000")!
+
+    let sunView = SunView()
+    let slider = UISlider()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        self.addSubview(sunView)
+        sunView.edgesToSuperview(insets: .top(50) + .left(50) + .right(50) + .bottom(50))
+
+        slider.addTarget(self, action: #selector(slide), for: .touchDragInside)
+        slider.minimumValue = 10
+        slider.maximumValue = 100
+
+        self.addSubview(slider)
+        slider.topToBottom(of: sunView)
+        slider.edges(to: self, excluding: .top)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc func slide() {
+        let sunTime = SunTime(date: date)
+        sunView.updateInterface(controller: DaylightModelController(sunTime: sunTime))
     }
 }
 
-let responder = Responder()
-
-let outerView = UIView(frame: CGRect(x: 0, y: 0, width: 495, height: 257))
+let outerView = View(frame: CGRect(x: 0, y: 0, width: 495, height: 257))
 outerView.backgroundColor = .white
-
-let sunView = SunView()
-
-outerView.addSubview(sunView)
-sunView.edgesToSuperview(insets: .top(50) + .left(50) + .right(50) + .bottom(50))
-
-let slider = UISlider()
-slider.addTarget(responder, action: #selector(Responder.action), for: .touchDragInside)
-slider.minimumValue = 10
-slider.maximumValue = 100
-
-outerView.addSubview(slider)
-slider.topToBottom(of: sunView)
-slider.edges(to: outerView, excluding: .top)
-
 
 PlaygroundPage.current.liveView = outerView
 
-let date = SunTime.dateFormatter.date(from: "2018-09-17 04:30:47+0000")!
-let sunTime = SunTime(date: date)
-sunView.updateInterface(controller: DaylightModelController(sunTime: sunTime))
