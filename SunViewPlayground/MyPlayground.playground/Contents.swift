@@ -140,6 +140,7 @@ class SunView: UIView {
     }
 
     func updateInterface(controller: DaylightModelController) {
+        self.backgroundColor = controller.primaryColor
         self.sunriseLabel.textColor = controller.secondaryColor
         self.sunsetLabel.textColor = controller.secondaryColor
         self.currentTimeLabel.textColor = controller.secondaryColor
@@ -148,16 +149,15 @@ class SunView: UIView {
         self.moon.backgroundColor = controller.primaryColor
 
         self.sunViewLocation = self.location(for: controller.percentageInDay)
-        self.sunViewLocation = self.location(for: 0.0)
         //        if controller.shouldShowMoon {
         //            self.moon.isHidden = false
         //            self.sunViewLocation = SunViewLocation(x: (self.frame.width - SunView.sunSize) / 2.0, y: 0.0)
         //        }
-//        self.currentTimeLabel.isHidden = controller.shouldShowTimeLabel
+        self.currentTimeLabel.isHidden = false
 
-        self.currentTimeLabel.text = self.timeFormatter.string(from: Date())
-//        self.sunriseLabel.text = controller.sunriseTimeString
-//        self.sunsetLabel.text = controller.sunsetTimeString
+        self.currentTimeLabel.text = controller.currentTimeString
+        self.sunriseLabel.text = controller.sunriseTimeString
+        self.sunsetLabel.text = controller.sunsetTimeString
 
         self.sunViewLeftAnchor?.constant = self.sunViewLocation.x
         self.sunViewBottomAnchor?.constant = self.sunViewLocation.y
@@ -183,6 +183,18 @@ struct DaylightModelController {
 
     var percentageInDay: CGFloat {
         return CGFloat(sunTime.daylightLengthProgress)
+    }
+
+    var sunriseTimeString: String {
+        return sunTime.sunriseTimeString
+    }
+
+    var sunsetTimeString: String {
+        return sunTime.sunsetTimeString
+    }
+
+    var currentTimeString: String {
+        return sunTime.currentTimeString
     }
 
     init(sunTime: SunTime) {
@@ -228,10 +240,14 @@ struct DaylightModelController {
     }
 }
 
+let outerView = UIView(frame: CGRect(x: 0, y: 0, width: 495, height: 257))
+outerView.backgroundColor = .white
 let sunView = SunView()
-sunView.frame = CGRect(x: 0, y: 0, width: 295, height: 157)
-PlaygroundPage.current.liveView = sunView
 
-let date = SunTime.dateFormatter.date(from: "2018-09-17 04:44:47+0000")!
+outerView.addSubview(sunView)
+sunView.edgesToSuperview(insets: .top(50) + .left(50) + .right(50) + .bottom(50))
+PlaygroundPage.current.liveView = outerView
+
+let date = SunTime.dateFormatter.date(from: "2018-09-17 08:45:47+0000")!
 let sunTime = SunTime(date: date)
 sunView.updateInterface(controller: DaylightModelController(sunTime: sunTime))

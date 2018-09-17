@@ -54,6 +54,7 @@ extension DaylightModelController {
     var sunriseTimeString: String {
         return location.sunTime.sunriseTimeString
     }
+
     var sunsetTimeString: String {
         return location.sunTime.sunsetTimeString
     }

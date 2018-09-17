@@ -74,16 +74,19 @@ public struct SunTime {
         }
     }
 
-    var sunriseTimeString: String {
+    public var sunriseTimeString: String {
         return self.timeFormatter.string(from: self.sunriseTimeStart)
     }
 
-    var sunsetTimeString: String {
+    public var sunsetTimeString: String {
         return self.timeFormatter.string(from: self.sunsetTimeEnd)
     }
 
+    public var currentTimeString: String {
+        return self.timeFormatter.string(from: self.date)
+    }
+
     public init(date: Date) {
-        print("lalala")
         self.date = date
     }
 
