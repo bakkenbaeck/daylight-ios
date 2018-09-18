@@ -96,14 +96,17 @@ class SunView: UIView {
 //    }
 
     func addSubviewsAndConstraints() {
-        self.addSubview(self.horizon)
+        let aboveHorizonLayoutView = UIView()
+        aboveHorizonLayoutView.clipsToBounds = true
+
+        self.addSubview(aboveHorizonLayoutView)
+        aboveHorizonLayoutView.addSubview(self.horizon)
+        aboveHorizonLayoutView.addSubview(self.sun)
         self.addSubview(self.sunriseLabel)
         self.addSubview(self.sunsetLabel)
-        self.addSubview(self.sun)
         self.addSubview(self.currentTimeLabel)
 
-        self.addSubview(self.sunMask)
-        self.sunMask.addSubview(self.moon)
+        aboveHorizonLayoutView.edgesToSuperview(insets: .bottom(24))
 
         let labelWidth = CGFloat(35.0)
 
@@ -116,11 +119,11 @@ class SunView: UIView {
         self.sunsetLabel.size(CGSize(width: labelWidth, height: 16))
 
         sunViewLeftAnchor = self.sun.left(to: self)
-        sunViewBottomAnchor = self.sun.bottom(to: horizon)
+        sunViewBottomAnchor = self.sun.bottom(to: aboveHorizonLayoutView)
         sun.size(CGSize(width: SunView.sunSize, height: SunView.sunSize))
 
         self.horizon.left(to: self)
-        self.horizon.bottom(to: self, offset: -24)
+        self.horizon.bottom(to: aboveHorizonLayoutView)
         self.horizon.right(to: self)
         self.horizon.height(1)
 
@@ -241,7 +244,7 @@ struct DaylightModelController {
     }
 }
 
-class View : UIView {
+class SunSliderView : UIView {
     let date = SunTime.dateFormatter.date(from: "2018-09-17 00:00:47+0000")!
 
     let sunView = SunView()
@@ -273,8 +276,8 @@ class View : UIView {
     }
 }
 
-let outerView = View(frame: CGRect(x: 0, y: 0, width: 495, height: 357))
-outerView.backgroundColor = .white
+let sunSliderView = SunSliderView(frame: CGRect(x: 0, y: 0, width: 495, height: 357))
+sunSliderView.backgroundColor = .white
 
-PlaygroundPage.current.liveView = outerView
+PlaygroundPage.current.liveView = sunSliderView
 
