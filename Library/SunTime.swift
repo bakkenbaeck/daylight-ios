@@ -129,6 +129,7 @@ struct SunTime {
     static func sunPhaseTimes(for date: Date, latitude: CLLocationDegrees, longitude: CLLocationDegrees) -> SunPhaseTimes {
         let times = SunCalcEngine.sharedInstance.calculateTimes(withArguments: [date, latitude, longitude]) as! [String: Date]
 
+        print(times)
         return SunPhaseTimes(dawnTime: times[SunPhaseTimes.Keys.dawnTime.rawValue]!,
                              duskTime: times[SunPhaseTimes.Keys.duskTime.rawValue]!,
                              nightTimeStart: times[SunPhaseTimes.Keys.nightTimeStart.rawValue]!,

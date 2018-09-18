@@ -49,10 +49,13 @@ class SunView: UIView {
     }()
 
     lazy var moon: UIView = {
-        let view = UIView()
-        view.isHidden = true
+        let image = UIImage(named: "moon")!
+        let tintImage = image.withRenderingMode(.alwaysTemplate)
+        let imageView = UIImageView(image: tintImage)
+        imageView.contentMode = .center
+        imageView.isHidden = true
 
-        return view
+        return imageView
     }()
 
     lazy var sunMask: UIView = {
@@ -86,15 +89,6 @@ class SunView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//
-//        let labelWidth = CGFloat(35.0)
-//
-//        //        self.sunMask.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: 108)
-//        self.moon.frame = CGRect(x: self.sunViewLocation.x + (SunView.sunSize / 2), y: self.sunViewLocation.y, width: SunView.sunSize / 2, height: SunView.sunSize)
-//    }
-
     func addSubviewsAndConstraints() {
         let aboveHorizonLayoutView = UIView()
         aboveHorizonLayoutView.clipsToBounds = true
@@ -102,6 +96,7 @@ class SunView: UIView {
         self.addSubview(aboveHorizonLayoutView)
         aboveHorizonLayoutView.addSubview(self.horizon)
         aboveHorizonLayoutView.addSubview(self.sun)
+        aboveHorizonLayoutView.addSubview(self.moon)
         self.addSubview(self.sunriseLabel)
         self.addSubview(self.sunsetLabel)
         self.addSubview(self.currentTimeLabel)
@@ -121,6 +116,10 @@ class SunView: UIView {
         sunViewLeftAnchor = self.sun.left(to: self)
         sunViewBottomAnchor = self.sun.bottom(to: aboveHorizonLayoutView)
         sun.size(CGSize(width: SunView.sunSize, height: SunView.sunSize))
+
+        self.moon.size(CGSize(width: SunView.sunSize * 0.5, height: SunView.sunSize))
+        self.moon.top(to: self, offset: 24)
+        self.moon.centerX(to: self)
 
         self.horizon.left(to: self)
         self.horizon.bottom(to: aboveHorizonLayoutView)
@@ -150,14 +149,12 @@ class SunView: UIView {
         self.currentTimeLabel.textColor = controller.secondaryColor
         self.horizon.backgroundColor = controller.secondaryColor
         self.sun.tintColor = controller.secondaryColor
-        self.moon.backgroundColor = controller.primaryColor
+        self.moon.tintColor = controller.secondaryColor
 
         self.sunViewLocation = self.location(for: controller.percentageInDay)
-        //        if controller.shouldShowMoon {
-        //            self.moon.isHidden = false
-        //            self.sunViewLocation = SunViewLocation(x: (self.frame.width - SunView.sunSize) / 2.0, y: 0.0)
-        //        }
-        self.currentTimeLabel.isHidden = false
+        self.moon.isHidden = !controller.shouldShowMoon
+        self.sun.isHidden = controller.shouldShowMoon
+        self.currentTimeLabel.isHidden = controller.shouldShowTimeLabel
 
         self.currentTimeLabel.text = controller.currentTimeString
         self.sunriseLabel.text = controller.sunriseTimeString
@@ -170,82 +167,8 @@ class SunView: UIView {
     }
 }
 
-struct DaylightModelController {
-    let sunTime: SunTime
-
-    var primaryColor: UIColor {
-        return primaryColor(for: sunTime.sunPhase)
-    }
-
-    var secondaryColor: UIColor {
-        return secondaryColor(for: sunTime.sunPhase)
-    }
-
-    var highlightColor: UIColor {
-        return secondaryColor(for: sunTime.sunPhase).withAlphaComponent(0.6)
-    }
-
-    var percentageInDay: CGFloat {
-        return CGFloat(sunTime.daylightLengthProgress)
-    }
-
-    var sunriseTimeString: String {
-        return sunTime.sunriseTimeString
-    }
-
-    var sunsetTimeString: String {
-        return sunTime.sunsetTimeString
-    }
-
-    var currentTimeString: String {
-        return sunTime.currentTimeString
-    }
-
-    init(sunTime: SunTime) {
-        self.sunTime = sunTime
-    }
-
-    func primaryColor(for sunPhase: SunPhase) -> UIColor {
-        let color: UIColor
-
-        switch sunPhase {
-        case .sunrise:
-            color = Theme.sunriseBackground
-        case .solarNoon:
-            color = Theme.daylightBackground
-        case .sunset:
-            color = Theme.sunsetBackground
-        case .dusk, .dawn:
-            color = Theme.twilightBackground
-        case .night, .predawn:
-            color = Theme.nightBackground
-        }
-
-        return color
-    }
-
-    func secondaryColor(for sunPhase: SunPhase) -> UIColor {
-        let color: UIColor
-
-        switch sunPhase {
-        case .sunrise:
-            color = Theme.sunriseText
-        case .solarNoon:
-            color = Theme.daylightText
-        case .sunset:
-            color = Theme.sunsetText
-        case .dusk, .dawn:
-            color = Theme.twilightText
-        case .night, .predawn:
-            color = Theme.nightText
-        }
-
-        return color
-    }
-}
-
 class SunSliderView : UIView {
-    let date = SunTime.dateFormatter.date(from: "2018-09-17 00:00:47+0000")!
+    let date = SunTime.dateFormatter.date(from: "2018-09-18 00:00:47+0000")!
 
     let sunView = SunView()
     let slider = UISlider()

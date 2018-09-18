@@ -17,12 +17,13 @@ public struct SunTime {
         case night
     }
 
-    let dawnTime = SunTime.dateFormatter.date(from: "2018-09-17 04:44:47+0000")!
-    let duskTime = SunTime.dateFormatter.date(from: "2018-09-17 18:28:03+0000")!
-    let nightTimeStart = SunTime.dateFormatter.date(from: "2018-09-17 19:52:18+0000")!
-    let solarNoonTime = SunTime.dateFormatter.date(from: "2018-09-17 11:36:25+0000")!
-    let sunriseTimeStart = SunTime.dateFormatter.date(from: "2018-09-17 05:19:01+0000")!
-    let sunsetTimeEnd = SunTime.dateFormatter.date(from: "2018-09-17 17:53:49+0000")!
+    let dawnTime = SunTime.dateFormatter.date(from: "2018-09-18 04:46:29+0000")!
+    let sunriseTimeStart = SunTime.dateFormatter.date(from: "2018-09-18 05:20:40+0000")!
+    let solarNoonTime = SunTime.dateFormatter.date(from: "2018-09-18 11:36:25+0000")!
+    let sunsetTimeStart = SunTime.dateFormatter.date(from: "2018-09-18 17:00:56+0000")!
+    let sunsetTimeEnd = SunTime.dateFormatter.date(from: "2018-09-18 17:51:26+0000")!
+    let duskTime = SunTime.dateFormatter.date(from: "2018-09-18 18:25:37+0000")!
+    let nightTimeStart = SunTime.dateFormatter.date(from: "2018-09-18 19:49:29+0000")!
 
     let date: Date
 
@@ -38,9 +39,9 @@ public struct SunTime {
             return .dawn
         } else if self.date.isBetween(self.sunriseTimeStart, and: self.solarNoonTime) {
             return .sunrise
-        } else if self.date.isBetween(self.solarNoonTime, and: self.sunsetTimeEnd) {
+        } else if self.date.isBetween(self.solarNoonTime, and: self.sunsetTimeStart) {
             return .solarNoon
-        } else if self.date.isBetween(self.sunsetTimeEnd, and: self.duskTime) {
+        } else if self.date.isBetween(self.sunsetTimeStart, and: self.duskTime) {
             return .sunset
         } else if self.date.isBetween(self.duskTime, and: self.nightTimeStart) {
             return .dusk
