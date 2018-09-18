@@ -59,11 +59,15 @@ extension DaylightModelController {
         return location.sunTime.sunsetTimeString
     }
 
-    var shouldShowMoon: Bool {
-         return location.sunTime.sunPhase == .night || location.sunTime.sunPhase == .predawn
+    public var currentTimeString: String {
+        return location.sunTime.currentTimeString
     }
-    
-    var shouldShowTimeLabel: Bool {
-        return location.sunTime.sunPhase == .dawn
+
+    public var shouldShowMoon: Bool {
+        return location.sunTime.sunPhase == .night || location.sunTime.sunPhase == .predawn
+    }
+
+    public var shouldShowTimeLabel: Bool {
+        return location.sunTime.sunPhase == .sunrise || location.sunTime.sunPhase == .solarNoon || location.sunTime.sunPhase == .sunset
     }
 }

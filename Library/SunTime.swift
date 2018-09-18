@@ -105,6 +105,10 @@ struct SunTime {
         return self.timeFormatter.string(from: self.sunTimes.sunsetTimeEnd)
     }
 
+    var currentTimeString: String {
+        return self.timeFormatter.string(from: Date())
+    }
+
     var dayLengthDifference: Double {
         let dayBefore = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: self.date)!
 
