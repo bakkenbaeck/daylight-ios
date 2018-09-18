@@ -40,7 +40,7 @@ public struct DaylightModelController {
     }
 
     public var shouldShowTimeLabel: Bool {
-        return sunTime.sunPhase == .dawn || sunTime.sunPhase == .dusk
+        return sunTime.sunPhase == .sunrise || sunTime.sunPhase == .solarNoon || sunTime.sunPhase == .sunset
     }
 
     func primaryColor(for sunPhase: SunPhase) -> UIColor {

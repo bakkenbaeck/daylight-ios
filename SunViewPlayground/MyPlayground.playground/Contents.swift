@@ -30,7 +30,7 @@ class SunView: UIView {
         return label
     }()
 
-    lazy var currentTimeLabel: UILabel = {
+    lazy var dayTimeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
 
@@ -58,12 +58,13 @@ class SunView: UIView {
         return imageView
     }()
 
-    lazy var sunMask: UIView = {
-        let view = UIView()
+    lazy var nightTimeLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.isHidden = true
+        label.font = UIFont.systemFont(ofSize: 12)
 
-        view.clipsToBounds = true
-
-        return view
+        return label
     }()
 
     lazy var horizon: UIView = {
@@ -99,7 +100,8 @@ class SunView: UIView {
         aboveHorizonLayoutView.addSubview(self.moon)
         self.addSubview(self.sunriseLabel)
         self.addSubview(self.sunsetLabel)
-        self.addSubview(self.currentTimeLabel)
+        self.addSubview(self.dayTimeLabel)
+        self.addSubview(self.nightTimeLabel)
 
         aboveHorizonLayoutView.edgesToSuperview(insets: .bottom(24))
 
@@ -126,9 +128,13 @@ class SunView: UIView {
         self.horizon.right(to: self)
         self.horizon.height(1)
 
-        self.currentTimeLabel.bottomToTop(of: self.sun, offset: -8)
-        self.currentTimeLabel.centerX(to: self.sun)
-        self.currentTimeLabel.size(CGSize(width: labelWidth, height: 16))
+        self.dayTimeLabel.bottomToTop(of: self.sun, offset: -8)
+        self.dayTimeLabel.centerX(to: self.sun)
+        self.dayTimeLabel.size(CGSize(width: labelWidth, height: 16))
+
+        self.nightTimeLabel.bottomToTop(of: self.moon, offset: -8)
+        self.nightTimeLabel.centerX(to: self.moon)
+        self.nightTimeLabel.size(CGSize(width: labelWidth, height: 16))
     }
 
     func location(for percentageInDay: CGFloat) -> SunViewLocation {
@@ -146,17 +152,20 @@ class SunView: UIView {
         self.backgroundColor = controller.primaryColor
         self.sunriseLabel.textColor = controller.secondaryColor
         self.sunsetLabel.textColor = controller.secondaryColor
-        self.currentTimeLabel.textColor = controller.secondaryColor
+        self.dayTimeLabel.textColor = controller.secondaryColor
+        self.nightTimeLabel.textColor = controller.secondaryColor
         self.horizon.backgroundColor = controller.secondaryColor
         self.sun.tintColor = controller.secondaryColor
         self.moon.tintColor = controller.secondaryColor
 
         self.sunViewLocation = self.location(for: controller.percentageInDay)
         self.moon.isHidden = !controller.shouldShowMoon
+        self.nightTimeLabel.isHidden = !controller.shouldShowMoon
         self.sun.isHidden = controller.shouldShowMoon
-        self.currentTimeLabel.isHidden = controller.shouldShowTimeLabel
+        self.dayTimeLabel.isHidden = !controller.shouldShowTimeLabel
 
-        self.currentTimeLabel.text = controller.currentTimeString
+        self.dayTimeLabel.text = controller.currentTimeString
+        self.nightTimeLabel.text = controller.currentTimeString
         self.sunriseLabel.text = controller.sunriseTimeString
         self.sunsetLabel.text = controller.sunsetTimeString
 
