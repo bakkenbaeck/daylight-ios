@@ -121,14 +121,14 @@ class SunView: UIView {
 
         sunViewLeftAnchor = self.sun.left(to: self)
         sunViewBottomAnchor = self.sun.bottom(to: aboveHorizonLayoutView)
-        sun.size(CGSize(width: SunView.sunSize, height: SunView.sunSize))
+        self.sun.size(CGSize(width: SunView.sunSize, height: SunView.sunSize))
 
         self.moon.size(CGSize(width: SunView.sunSize * 0.5, height: SunView.sunSize))
         self.moon.top(to: self, offset: 24)
         self.moon.centerX(to: self)
 
         self.horizon.left(to: self)
-        self.horizon.bottom(to: aboveHorizonLayoutView)
+        self.horizon.bottom(to: self.aboveHorizonLayoutView)
         self.horizon.right(to: self)
         self.horizon.height(1)
 

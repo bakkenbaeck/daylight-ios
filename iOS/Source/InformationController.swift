@@ -89,6 +89,8 @@ class InformationController: UIViewController {
             self.closeButton.alpha = 1.0
             self.notificationButton.alpha = 1.0
         })
+
+        self.updateInterface(withController: self.dayLightModelController, animated: false)
     }
 
     func addObservers() {
@@ -127,6 +129,36 @@ class InformationController: UIViewController {
         self.webButton.leftAnchor.constraint(equalTo: self.messageLabel.leftAnchor).isActive = true
         self.webButton.rightAnchor.constraint(equalTo: self.messageLabel.rightAnchor).isActive = true
         self.webButton.heightAnchor.constraint(equalToConstant: 44)
+    }
+
+    func updateInterface(withController controller: DaylightModelController, animated: Bool = true) {
+        let enableNotificationsString = "Enable notifications".attributedMessageString(textColor: controller.secondaryColor, highlightColor: controller.highlightColor, highlightedSubstring: "Enable")
+        let turnNotificationsOffString = "Turn off notifications".attributedMessageString(textColor: controller.secondaryColor, highlightColor: controller.highlightColor, highlightedSubstring: "off")
+        let turnNotificationsOnString = "Turn on notifications".attributedMessageString(textColor: controller.secondaryColor, highlightColor: controller.highlightColor, highlightedSubstring: "on")
+
+
+        let duration = animated ? 0.4 : 0.0
+        UIView.animate(withDuration: duration) {
+            self.view.backgroundColor = controller.primaryColor
+            self.closeButton.updateInterface(controller: controller)
+
+            self.notificationButton.removeTarget(nil, action: nil, for: .allEvents)
+            if Settings.isAllowedToSendNotifications == false {
+                self.notificationButton.setAttributedTitle(enableNotificationsString, for: .normal)
+                self.notificationButton.addTarget(self, action: #selector(self.openSettings), for: .touchUpInside)
+            } else {
+                self.notificationButton.addTarget(self, action: #selector(self.didSelectNotifications), for: .touchUpInside)
+                if Settings.areNotificationsEnabled {
+                    self.notificationButton.setAttributedTitle(turnNotificationsOffString, for: .normal)
+                } else {
+                    self.notificationButton.setAttributedTitle(turnNotificationsOnString, for: .normal)
+                }
+            }
+
+            self.messageLabel.attributedText = controller.informationMessage
+            self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
+            self.view.setNeedsLayout()
+        }
     }
 
     private func enableNotificationsString(textColor: UIColor) -> NSAttributedString {
@@ -192,30 +224,6 @@ class InformationController: UIViewController {
 
 extension InformationController: DaylightModelControllerDelegate {
     func daylightModelControllerDidUpdate(_ controller: DaylightModelController) {
-        let enableNotificationsString = "Enable notifications".attributedMessageString(textColor: controller.secondaryColor, highlightColor: controller.highlightColor, highlightedSubstring: "Enable")
-        let turnNotificationsOffString = "Turn off notifications".attributedMessageString(textColor: controller.secondaryColor, highlightColor: controller.highlightColor, highlightedSubstring: "off")
-        let turnNotificationsOnString = "Turn on notifications".attributedMessageString(textColor: controller.secondaryColor, highlightColor: controller.highlightColor, highlightedSubstring: "on")
-
-        UIView.animate(withDuration: 0.4) {
-            self.view.backgroundColor = controller.primaryColor
-            self.closeButton.updateInterface(controller: controller)
-
-            self.notificationButton.removeTarget(nil, action: nil, for: .allEvents)
-            if Settings.isAllowedToSendNotifications == false {
-                self.notificationButton.setAttributedTitle(enableNotificationsString, for: .normal)
-                self.notificationButton.addTarget(self, action: #selector(self.openSettings), for: .touchUpInside)
-            } else {
-                self.notificationButton.addTarget(self, action: #selector(self.didSelectNotifications), for: .touchUpInside)
-                if Settings.areNotificationsEnabled {
-                    self.notificationButton.setAttributedTitle(turnNotificationsOffString, for: .normal)
-                } else {
-                    self.notificationButton.setAttributedTitle(turnNotificationsOnString, for: .normal)
-                }
-            }
-
-            self.messageLabel.attributedText = controller.informationMessage
-            self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
-            self.view.setNeedsLayout()
-        }
+        updateInterface(withController: controller)
     }
 }

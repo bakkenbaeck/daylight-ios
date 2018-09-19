@@ -48,7 +48,7 @@ class InformationButton: UIButton {
     }
 
     func updateInterface(controller: DaylightModelController) {
-        self.sun.tintColor = controller.secondaryColor.withAlphaComponent(0.6)
-        self.nameLabel.textColor = controller.secondaryColor.withAlphaComponent(0.6)
+        self.sun.tintColor = controller.highlightColor
+        self.nameLabel.textColor = controller.highlightColor
     }
 }

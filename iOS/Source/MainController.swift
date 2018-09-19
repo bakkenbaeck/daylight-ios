@@ -169,6 +169,7 @@ class MainController: UIViewController {
                 self.informationButton.updateInterface(controller: controller)
 
                 self.sunView.updateInterface(controller: controller)
+                self.informationButton.updateInterface(controller: controller)
 
                 self.view.setNeedsLayout()
             }
