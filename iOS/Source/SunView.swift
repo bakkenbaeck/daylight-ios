@@ -1,5 +1,6 @@
 import CoreLocation
 import UIKit
+import TinyConstraints
 
 struct SunViewLocation {
     let x: CGFloat
@@ -36,6 +37,13 @@ class SunView: UIView {
         label.font = UIFont.systemFont(ofSize: 12)
 
         return label
+    }()
+    
+    lazy var aboveHorizonLayoutView: UIView = {
+        let view = UIView()
+        view.clipsToBounds = true
+
+        return view
     }()
 
     lazy var sun: UIImageView = {
@@ -79,13 +87,8 @@ class SunView: UIView {
         return shortTimeFormatter
     }()
 
-    private var controller: DaylightModelController
-
-    init(withController controller: DaylightModelController) {
-        self.controller = controller
+    init() {
         super.init(frame: CGRect.zero)
-
-        self.controller.delegate = self
 
         self.addSubviewsAndConstraints()
     }
@@ -95,19 +98,16 @@ class SunView: UIView {
     }
 
     func addSubviewsAndConstraints() {
-        let aboveHorizonLayoutView = UIView()
-        aboveHorizonLayoutView.clipsToBounds = true
-
-        self.addSubview(aboveHorizonLayoutView)
-        aboveHorizonLayoutView.addSubview(self.horizon)
-        aboveHorizonLayoutView.addSubview(self.sun)
-        aboveHorizonLayoutView.addSubview(self.moon)
+        self.addSubview(self.aboveHorizonLayoutView)
+        self.aboveHorizonLayoutView.addSubview(self.horizon)
+        self.aboveHorizonLayoutView.addSubview(self.sun)
+        self.aboveHorizonLayoutView.addSubview(self.moon)
         self.addSubview(self.sunriseLabel)
         self.addSubview(self.sunsetLabel)
         self.addSubview(self.dayTimeLabel)
         self.addSubview(self.nightTimeLabel)
 
-        aboveHorizonLayoutView.edgesToSuperview(insets: .bottom(24))
+        self.aboveHorizonLayoutView.edgesToSuperview(insets: .top(24) + .bottom(24))
 
         let labelWidth = CGFloat(35.0)
 
@@ -141,18 +141,12 @@ class SunView: UIView {
         self.nightTimeLabel.size(CGSize(width: labelWidth, height: 16))
     }
 
-    override open var bounds: CGRect  {
-        didSet {
-            self.updateInterface(controller: self.controller)
-        }
-    }
-
     func location(for percentageInDay: CGFloat) -> SunViewLocation {
         let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
         let x = 50.0 + cos(position) * 50.0
         let y = abs(sin(position) * 100.0)
         let absoluteX = ((self.bounds.width - SunView.sunSize) / 100) * x
-        let absoluteY = -(108 / 100.0) * y
+        let absoluteY = -(self.aboveHorizonLayoutView.frame.height / 100.0) * y + SunView.sunSize
 
         return SunViewLocation(x: absoluteX, y: absoluteY)
     }

@@ -98,8 +98,6 @@ class SunView: UIView {
     }
 
     func addSubviewsAndConstraints() {
-
-
         self.addSubview(self.aboveHorizonLayoutView)
         self.aboveHorizonLayoutView.addSubview(self.horizon)
         self.aboveHorizonLayoutView.addSubview(self.sun)

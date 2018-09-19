@@ -22,7 +22,7 @@ class MainController: UIViewController {
         return button
     }()
 
-    private lazy var sunView: SunView = { SunView(withController: self.dayLightModelController) }()
+    private lazy var sunView: SunView = { SunView() }()
 
     private lazy var messageLabel: UILabel = {
         let label = UILabel()
@@ -95,6 +95,11 @@ class MainController: UIViewController {
         })
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.update(withController: self.dayLightModelController)
+    }
+
     private func addSubviewsAndConstraints() {
         self.view.addSubview(self.informationButton)
         self.view.addSubview(self.sunView)
@@ -162,6 +167,8 @@ class MainController: UIViewController {
                 self.messageLabel.attributedText = controller.attributedMessage
 
                 self.informationButton.updateInterface(controller: controller)
+
+                self.sunView.updateInterface(controller: controller)
 
                 self.view.setNeedsLayout()
             }
