@@ -39,6 +39,13 @@ class SunView: UIView {
         return label
     }()
 
+    lazy var aboveHorizonLayoutView: UIView = {
+        let view = UIView()
+        view.clipsToBounds = true
+
+        return view
+    }()
+
     lazy var sun: UIImageView = {
         let image = UIImage(named: "sun")!
         let tintImage = image.withRenderingMode(.alwaysTemplate)
@@ -91,19 +98,19 @@ class SunView: UIView {
     }
 
     func addSubviewsAndConstraints() {
-        let aboveHorizonLayoutView = UIView()
-        aboveHorizonLayoutView.clipsToBounds = true
 
-        self.addSubview(aboveHorizonLayoutView)
-        aboveHorizonLayoutView.addSubview(self.horizon)
-        aboveHorizonLayoutView.addSubview(self.sun)
-        aboveHorizonLayoutView.addSubview(self.moon)
+
+        self.addSubview(self.aboveHorizonLayoutView)
+        self.aboveHorizonLayoutView.addSubview(self.horizon)
+        self.aboveHorizonLayoutView.addSubview(self.sun)
+        self.aboveHorizonLayoutView.addSubview(self.moon)
         self.addSubview(self.sunriseLabel)
         self.addSubview(self.sunsetLabel)
         self.addSubview(self.dayTimeLabel)
         self.addSubview(self.nightTimeLabel)
 
-        aboveHorizonLayoutView.edgesToSuperview(insets: .bottom(24))
+        self.aboveHorizonLayoutView.backgroundColor = .white
+        self.aboveHorizonLayoutView.edgesToSuperview(insets: .bottom(24) + .top(24))
 
         let labelWidth = CGFloat(35.0)
 
@@ -142,7 +149,7 @@ class SunView: UIView {
         let x = 50.0 + cos(position) * 50.0
         let y = abs(sin(position) * 100.0)
         let absoluteX = ((self.bounds.width - SunView.sunSize) / 100) * x
-        let absoluteY = -(108 / 100.0) * y + SunView.sunSize
+        let absoluteY = -(self.aboveHorizonLayoutView.frame.height / 100.0) * y + SunView.sunSize
 
         return SunViewLocation(x: absoluteX, y: absoluteY)
     }
@@ -186,7 +193,8 @@ class SunSliderView : UIView {
         super.init(frame: frame)
 
         self.addSubview(sunView)
-        sunView.edgesToSuperview(insets: .top(50) + .left(50) + .right(50) + .bottom(150))
+        sunView.height(133)
+        sunView.edgesToSuperview(excluding: .bottom, insets: .top(50) + .left(50) + .right(50) + .bottom(150))
 
         slider.addTarget(self, action: #selector(slide), for: .touchDragInside)
         slider.minimumValue = 0
