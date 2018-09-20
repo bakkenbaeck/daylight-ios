@@ -28,9 +28,9 @@ class CloseButton: InformationButton {
         self.maskForHalfMoonView.rightAnchor.constraint(equalTo: self.sun.rightAnchor).isActive = true
     }
 
-    override func updateInterface(controller: DaylightModelController) {
-        super.updateInterface(controller: controller)
+    override func updateInterface(with daylightController: DaylightModelController) {
+        super.updateInterface(with: daylightController)
 
-        self.maskForHalfMoonView.backgroundColor = controller.primaryColor
+        self.maskForHalfMoonView.backgroundColor = daylightController.primaryColor
     }
 }

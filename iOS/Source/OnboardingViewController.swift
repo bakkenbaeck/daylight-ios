@@ -84,7 +84,7 @@ class OnboardingViewController: UIViewController {
 
     lazy var tapGestureRecognizer: UITapGestureRecognizer = {
         let recognizer = UITapGestureRecognizer()
-        recognizer.addTarget(self, action: #selector(self.didTapScreen))
+        recognizer.addTarget(self, action: #selector(didTapScreen))
 
         return recognizer
     }()
@@ -118,17 +118,17 @@ class OnboardingViewController: UIViewController {
     }
 
     func presentMainController(withLocation location: Location) {
-        guard self.presentedViewController as? MainController == nil else { return } // main controller is already presented
+        guard self.presentedViewController as? MainViewController == nil else { return } // main view controller is already presented
         
-        let daylightModelController = DaylightModelController(location: location)
-        let mainController = MainController(withDaylightModelController: daylightModelController)
+        let daylightController = DaylightModelController(location: location)
+        let mainController = MainViewController(with: daylightController)
         mainController.modalTransitionStyle = .crossDissolve
         self.present(mainController, animated: true)
     }
 
     func addObservers() {
         self.removeObservers()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateOnboarding), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateOnboarding), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
     func removeObservers() {
@@ -136,7 +136,7 @@ class OnboardingViewController: UIViewController {
     }
 
     @objc func updateOnboarding() {
-        switch locationTracker.authorizationStatus {
+        switch locationTracker.authorizationStatus {                                                                                                 
         case .notDetermined:
             self.onboardingState = .location
         case .denied:
