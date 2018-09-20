@@ -118,10 +118,10 @@ class OnboardingViewController: UIViewController {
     }
 
     func presentMainController(withLocation location: Location) {
-        guard self.presentedViewController as? MainController == nil else { return } // main controller is already presented
+        guard self.presentedViewController as? MainViewController == nil else { return } // main view controller is already presented
         
         let daylightModelController = DaylightModelController(location: location)
-        let mainController = MainController(withDaylightModelController: daylightModelController)
+        let mainController = MainViewController(withDaylightModelController: daylightModelController)
         mainController.modalTransitionStyle = .crossDissolve
         self.present(mainController, animated: true)
     }

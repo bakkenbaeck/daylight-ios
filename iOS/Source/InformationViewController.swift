@@ -1,13 +1,13 @@
 import UIKit
 
-protocol InformationControllerDelegate: class {
-    func didToggleNotifications(_ isNotificationsEnabled: Bool, on informationController: InformationController)
+protocol InformationViewControllerDelegate: class {
+    func didToggleNotifications(_ isNotificationsEnabled: Bool, on informationViewController: InformationViewController)
 }
 
-class InformationController: UIViewController {
+class InformationViewController: UIViewController {
     private var dayLightModelController: DaylightModelController
 
-    weak var delegate: InformationControllerDelegate?
+    weak var delegate: InformationViewControllerDelegate?
 
     var messageLabelHeightAnchor: NSLayoutConstraint?
 
@@ -88,7 +88,7 @@ class InformationController: UIViewController {
             self.notificationButton.alpha = 1.0
         })
 
-        self.updateInterface(withController: self.dayLightModelController, animated: false)
+        self.updateInterface(withDaylightModelController: self.dayLightModelController, animated: false)
     }
 
     func addSubviewsAndConstraints() {
@@ -120,16 +120,16 @@ class InformationController: UIViewController {
         self.webButton.heightAnchor.constraint(equalToConstant: 44)
     }
 
-    func updateInterface(withController controller: DaylightModelController, animated: Bool = true) {
-        let enableNotificationsString = "Enable notifications".attributedMessageString(textColor: controller.secondaryColor, highlightColor: controller.highlightColor, highlightedSubstring: "Enable")
-        let turnNotificationsOffString = "Turn off notifications".attributedMessageString(textColor: controller.secondaryColor, highlightColor: controller.highlightColor, highlightedSubstring: "off")
-        let turnNotificationsOnString = "Turn on notifications".attributedMessageString(textColor: controller.secondaryColor, highlightColor: controller.highlightColor, highlightedSubstring: "on")
+    func updateInterface(withDaylightModelController daylightModelController: DaylightModelController, animated: Bool = true) {
+        let enableNotificationsString = "Enable notifications".attributedMessageString(textColor: daylightModelController.secondaryColor, highlightColor: daylightModelController.highlightColor, highlightedSubstring: "Enable")
+        let turnNotificationsOffString = "Turn off notifications".attributedMessageString(textColor: daylightModelController.secondaryColor, highlightColor: daylightModelController.highlightColor, highlightedSubstring: "off")
+        let turnNotificationsOnString = "Turn on notifications".attributedMessageString(textColor: daylightModelController.secondaryColor, highlightColor: daylightModelController.highlightColor, highlightedSubstring: "on")
 
 
         let duration = animated ? 0.4 : 0.0
         UIView.animate(withDuration: duration) {
-            self.view.backgroundColor = controller.primaryColor
-            self.closeButton.updateInterface(controller: controller)
+            self.view.backgroundColor = daylightModelController.primaryColor
+            self.closeButton.updateInterface(withDaylightModelController: daylightModelController)
 
             self.notificationButton.removeTarget(nil, action: nil, for: .allEvents)
             if Settings.isAllowedToSendNotifications == false {
@@ -144,7 +144,7 @@ class InformationController: UIViewController {
                 }
             }
 
-            self.messageLabel.attributedText = controller.informationMessage
+            self.messageLabel.attributedText = daylightModelController.informationMessage
             self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
             self.view.setNeedsLayout()
         }
@@ -187,7 +187,7 @@ class InformationController: UIViewController {
         Settings.registerForNotifications()
         self.delegate?.didToggleNotifications(Settings.areNotificationsEnabled, on: self)
         self.notificationButton.isEnabled = true
-        self.updateInterface(withController: self.dayLightModelController)
+        self.updateInterface(withDaylightModelController: self.dayLightModelController)
     }
 
     @objc func didSelectClose() {
@@ -211,9 +211,9 @@ class InformationController: UIViewController {
     }
 }
 
-extension InformationController: DaylightModelControllerDelegate {
-    func daylightModelControllerDidUpdate(_ controller: DaylightModelController) {
-        self.dayLightModelController = controller
-        updateInterface(withController: controller)
+extension InformationViewController: DaylightModelControllerDelegate {
+    func daylightModelControllerDidUpdate(_ daylightModelController: DaylightModelController) {
+        self.dayLightModelController = daylightModelController
+        updateInterface(withDaylightModelController: daylightModelController)
     }
 }

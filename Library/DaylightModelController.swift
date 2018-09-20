@@ -1,7 +1,7 @@
 import UIKit
 
 protocol DaylightModelControllerDelegate: class {
-    func daylightModelControllerDidUpdate(_ controller: DaylightModelController)
+    func daylightModelControllerDidUpdate(_ daylightModelController: DaylightModelController)
 }
 
 class DaylightModelController {
