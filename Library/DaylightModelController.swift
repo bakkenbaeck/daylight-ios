@@ -8,15 +8,17 @@ class DaylightModelController {
     weak var delegate: DaylightModelControllerDelegate?
 
     private var location: Location
+    private var sunTime: SunTime
 
     init(location: Location) {
         self.location = location
+        self.sunTime = SunTime(date: Date(), coordinate: location.coordinates)
 
         Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
     }
 
     @objc func update () {
-        self.location.sunTime.date = Date()
+        self.sunTime.date = Date()
         self.delegate?.daylightModelControllerDidUpdate(self)
     }
 }
@@ -24,15 +26,15 @@ class DaylightModelController {
 extension DaylightModelController {
     
     var primaryColor: UIColor {
-        return Theme.primaryColor(for: location.sunTime.sunPhase)
+        return Theme.primaryColor(for: sunTime.sunPhase)
     }
 
     var secondaryColor: UIColor {
-        return Theme.secondaryColor(for: location.sunTime.sunPhase)
+        return Theme.secondaryColor(for: sunTime.sunPhase)
     }
 
     var highlightColor: UIColor {
-        return Theme.secondaryColor(for: location.sunTime.sunPhase).withAlphaComponent(0.6)
+        return Theme.secondaryColor(for: sunTime.sunPhase).withAlphaComponent(0.6)
     }
 
     var locationLabel: String {
@@ -49,26 +51,26 @@ extension DaylightModelController {
     }
 
     var percentageInDay: CGFloat {
-        return CGFloat(location.sunTime.daylightLengthProgress)
+        return CGFloat(sunTime.daylightLengthProgress)
     }
 
     var sunriseTimeString: String {
-        return location.sunTime.sunriseTimeString
+        return sunTime.sunriseTimeString
     }
 
     var sunsetTimeString: String {
-        return location.sunTime.sunsetTimeString
+        return sunTime.sunsetTimeString
     }
 
     public var currentTimeString: String {
-        return location.sunTime.currentTimeString
+        return sunTime.currentTimeString
     }
 
     public var shouldShowMoon: Bool {
-        return location.sunTime.sunPhase == .night || location.sunTime.sunPhase == .predawn
+        return sunTime.sunPhase == .night || sunTime.sunPhase == .predawn
     }
 
     public var shouldShowTimeLabel: Bool {
-        return location.sunTime.sunPhase == .sunrise || location.sunTime.sunPhase == .solarNoon || location.sunTime.sunPhase == .sunset
+        return sunTime.sunPhase == .sunrise || sunTime.sunPhase == .solarNoon || sunTime.sunPhase == .sunset
     }
 }

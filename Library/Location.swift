@@ -23,8 +23,6 @@ struct Location {
 
     let hemisphere: Hemisphere
 
-    var sunTime: SunTime
-
     init?(placemark: CLPlacemark) {
         guard let coordinate = placemark.location?.coordinate else { return nil }
         guard let city = placemark.locality else { return nil }
@@ -38,7 +36,5 @@ struct Location {
         self.city = city
         self.country = country
         self.hemisphere = Hemisphere(latitude: coordinate.latitude)
-
-        self.sunTime = SunTime(date: Date(), coordinate: coordinate)
     }
 }
