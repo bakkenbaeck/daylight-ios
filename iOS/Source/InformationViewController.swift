@@ -120,16 +120,16 @@ class InformationViewController: UIViewController {
         self.webButton.heightAnchor.constraint(equalToConstant: 44)
     }
 
-    func updateInterface(withDaylightModelController daylightModelController: DaylightModelController, animated: Bool = true) {
-        let enableNotificationsString = "Enable notifications".attributedMessageString(textColor: daylightModelController.secondaryColor, highlightColor: daylightModelController.highlightColor, highlightedSubstring: "Enable")
-        let turnNotificationsOffString = "Turn off notifications".attributedMessageString(textColor: daylightModelController.secondaryColor, highlightColor: daylightModelController.highlightColor, highlightedSubstring: "off")
-        let turnNotificationsOnString = "Turn on notifications".attributedMessageString(textColor: daylightModelController.secondaryColor, highlightColor: daylightModelController.highlightColor, highlightedSubstring: "on")
+    func updateInterface(withDaylightModelController daylightController: DaylightModelController, animated: Bool = true) {
+        let enableNotificationsString = "Enable notifications".attributedMessageString(textColor: daylightController.secondaryColor, highlightColor: daylightController.highlightColor, highlightedSubstring: "Enable")
+        let turnNotificationsOffString = "Turn off notifications".attributedMessageString(textColor: daylightController.secondaryColor, highlightColor: daylightController.highlightColor, highlightedSubstring: "off")
+        let turnNotificationsOnString = "Turn on notifications".attributedMessageString(textColor: daylightController.secondaryColor, highlightColor: daylightController.highlightColor, highlightedSubstring: "on")
 
 
         let duration = animated ? 0.4 : 0.0
         UIView.animate(withDuration: duration) {
-            self.view.backgroundColor = daylightModelController.primaryColor
-            self.closeButton.updateInterface(withDaylightModelController: daylightModelController)
+            self.view.backgroundColor = daylightController.primaryColor
+            self.closeButton.updateInterface(with: daylightController)
 
             self.notificationButton.removeTarget(nil, action: nil, for: .allEvents)
             if Settings.isAllowedToSendNotifications == false {
@@ -144,7 +144,7 @@ class InformationViewController: UIViewController {
                 }
             }
 
-            self.messageLabel.attributedText = daylightModelController.informationMessage
+            self.messageLabel.attributedText = daylightController.informationMessage
             self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
             self.view.setNeedsLayout()
         }
@@ -212,8 +212,8 @@ class InformationViewController: UIViewController {
 }
 
 extension InformationViewController: DaylightModelControllerDelegate {
-    func daylightModelControllerDidUpdate(_ daylightModelController: DaylightModelController) {
-        self.dayLightModelController = daylightModelController
-        updateInterface(withDaylightModelController: daylightModelController)
+    func daylightModelControllerDidUpdate(with daylightController: DaylightModelController) {
+        self.dayLightModelController = daylightController
+        updateInterface(withDaylightModelController: daylightController)
     }
 }

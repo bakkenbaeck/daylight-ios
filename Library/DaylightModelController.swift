@@ -1,7 +1,7 @@
 import UIKit
 
 protocol DaylightModelControllerDelegate: class {
-    func daylightModelControllerDidUpdate(_ daylightModelController: DaylightModelController)
+    func daylightModelControllerDidUpdate(with daylightController: DaylightModelController)
 }
 
 class DaylightModelController {
@@ -30,7 +30,7 @@ class DaylightModelController {
 
     @objc func update () {
         self.sunTime.date = Date()
-        self.delegate?.daylightModelControllerDidUpdate(self)
+        self.delegate?.daylightModelControllerDidUpdate(with: self)
     }
 }
 

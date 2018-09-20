@@ -5,9 +5,9 @@ import TinyConstraints
 class MainViewController: UIViewController {
     let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
 
-    private var dayLightModelController: DaylightModelController {
+    private var daylightController: DaylightModelController {
         didSet {
-            self.update(withDaylightModelController: self.dayLightModelController)
+            self.update(with: self.daylightController)
         }
     }
 
@@ -63,11 +63,11 @@ class MainViewController: UIViewController {
     private var locationLabelLeftAnchor: NSLayoutConstraint?
     private var locationLabelRightAnchor: NSLayoutConstraint?
 
-    init(withDaylightModelController dayLightModelController: DaylightModelController) {
-        self.dayLightModelController = dayLightModelController
+    init(with dayLightModelController: DaylightModelController) {
+        self.daylightController = dayLightModelController
         super.init(nibName: nil, bundle: nil)
 
-        self.dayLightModelController.delegate = self
+        self.daylightController.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -80,7 +80,7 @@ class MainViewController: UIViewController {
         self.view.backgroundColor = .blue
         self.addSubviewsAndConstraints()
 
-        self.update(withDaylightModelController: self.dayLightModelController)
+        self.update(with: self.daylightController)
         //This should be done in the model
 //        Notifier.cancelAllNotifications()
 //        if Settings.areNotificationsEnabled {
@@ -101,7 +101,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.update(withDaylightModelController: self.dayLightModelController)
+        self.update(with: self.daylightController)
     }
 
     private func addSubviewsAndConstraints() {
@@ -142,7 +142,7 @@ class MainViewController: UIViewController {
         UIView.animate(withDuration: TransitionDuration, animations: {
             self.view.alpha = 0.1
         }) { _ in
-            let informationController = InformationViewController(withDaylightModelController: self.dayLightModelController)
+            let informationController = InformationViewController(withDaylightModelController: self.daylightController)
             informationController.modalTransitionStyle = .crossDissolve
             informationController.delegate = self
             self.present(informationController, animated: false) {
@@ -159,21 +159,21 @@ class MainViewController: UIViewController {
         self.present(activityController, animated: true, completion: nil)
     }
 
-    func update(withDaylightModelController daylightModelController: DaylightModelController) {
+    func update(with daylightController: DaylightModelController) {
         UIView.animate(withDuration: 0.4) {
-            self.view.window?.backgroundColor = daylightModelController.primaryColor
-            self.view.backgroundColor = daylightModelController.primaryColor
+            self.view.window?.backgroundColor = daylightController.primaryColor
+            self.view.backgroundColor = daylightController.primaryColor
 
-            self.shareButton.setTitleColor(daylightModelController.secondaryColor, for: .normal)
-            self.locationLabel.textColor = daylightModelController.highlightColor
+            self.shareButton.setTitleColor(daylightController.secondaryColor, for: .normal)
+            self.locationLabel.textColor = daylightController.highlightColor
 
-            self.locationLabel.text = daylightModelController.locationLabel
-            self.messageLabel.attributedText = daylightModelController.attributedMessage
+            self.locationLabel.text = daylightController.locationLabel
+            self.messageLabel.attributedText = daylightController.attributedMessage
 
-            self.informationButton.updateInterface(withDaylightModelController: daylightModelController)
+            self.informationButton.updateInterface(with: daylightController)
 
-            self.sunView.updateInterface(withDaylightModelController: daylightModelController)
-            self.informationButton.updateInterface(withDaylightModelController: daylightModelController)
+            self.sunView.updateInterface(with: daylightController)
+            self.informationButton.updateInterface(with: daylightController)
 
             self.view.setNeedsLayout()
         }
@@ -246,7 +246,7 @@ extension MainViewController: InformationViewControllerDelegate {
 }
 
 extension MainViewController: DaylightModelControllerDelegate {
-    func daylightModelControllerDidUpdate(_ daylightModelController: DaylightModelController) {
-        self.dayLightModelController = daylightModelController
+    func daylightModelControllerDidUpdate(with daylightController: DaylightModelController) {
+        self.daylightController = daylightController
     }
 }

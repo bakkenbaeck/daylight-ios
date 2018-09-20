@@ -120,8 +120,8 @@ class OnboardingViewController: UIViewController {
     func presentMainController(withLocation location: Location) {
         guard self.presentedViewController as? MainViewController == nil else { return } // main view controller is already presented
         
-        let daylightModelController = DaylightModelController(location: location)
-        let mainController = MainViewController(withDaylightModelController: daylightModelController)
+        let daylightController = DaylightModelController(location: location)
+        let mainController = MainViewController(with: daylightController)
         mainController.modalTransitionStyle = .crossDissolve
         self.present(mainController, animated: true)
     }
@@ -136,7 +136,7 @@ class OnboardingViewController: UIViewController {
     }
 
     @objc func updateOnboarding() {
-        switch locationTracker.authorizationStatus {
+        switch locationTracker.authorizationStatus {                                                                                                 
         case .notDetermined:
             self.onboardingState = .location
         case .denied:
