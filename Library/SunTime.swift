@@ -46,7 +46,7 @@ struct SunTime {
     private let latitude: CLLocationDegrees
     private let longitude: CLLocationDegrees
 
-    private(set) var date: Date
+    var date: Date
 
     let sunTimes: SunPhaseTimes
 

@@ -12,10 +12,11 @@ class DaylightModelController {
     init(location: Location) {
         self.location = location
 
-        Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.updateDelegate), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
     }
 
-    @objc func updateDelegate () {
+    @objc func update () {
+        self.location.sunTime.date = Date()
         self.delegate?.daylightModelControllerDidUpdate(self)
     }
 }
