@@ -5,7 +5,7 @@ protocol InformationControllerDelegate: class {
 }
 
 class InformationController: UIViewController {
-    private let dayLightModelController: DaylightModelController
+    private var dayLightModelController: DaylightModelController
 
     weak var delegate: InformationControllerDelegate?
 
@@ -198,7 +198,7 @@ class InformationController: UIViewController {
         Settings.registerForNotifications()
         self.delegate?.didToggleNotifications(Settings.areNotificationsEnabled, on: self)
         self.notificationButton.isEnabled = true
-//        self.updateInterface()
+        self.updateInterface(withController: self.dayLightModelController)
     }
 
     @objc func didSelectClose() {
@@ -224,6 +224,7 @@ class InformationController: UIViewController {
 
 extension InformationController: DaylightModelControllerDelegate {
     func daylightModelControllerDidUpdate(_ controller: DaylightModelController) {
+        self.dayLightModelController = controller
         updateInterface(withController: controller)
     }
 }

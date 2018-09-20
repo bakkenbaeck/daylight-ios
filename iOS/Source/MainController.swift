@@ -5,7 +5,7 @@ import TinyConstraints
 class MainController: UIViewController {
     let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
 
-    private let dayLightModelController: DaylightModelController
+    private var dayLightModelController: DaylightModelController
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
@@ -243,6 +243,7 @@ extension MainController: InformationControllerDelegate {
 
 extension MainController: DaylightModelControllerDelegate {
     func daylightModelControllerDidUpdate(_ controller: DaylightModelController) {
+        self.dayLightModelController = controller
         self.update(withController: controller)
     }
 }
