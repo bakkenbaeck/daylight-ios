@@ -15,7 +15,18 @@ class DaylightModelController {
         self.sunTime = SunTime(date: Date(), coordinate: location.coordinates)
 
         Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
+        self.addObservers()
     }
+
+    func addObservers() {
+        self.removeObservers()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.update), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+
 
     @objc func update () {
         self.sunTime.date = Date()

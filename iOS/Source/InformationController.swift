@@ -71,8 +71,6 @@ class InformationController: UIViewController {
         super.viewDidLoad()
 
         self.addSubviewsAndConstraints()
-
-        self.addObservers()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -91,15 +89,6 @@ class InformationController: UIViewController {
         })
 
         self.updateInterface(withController: self.dayLightModelController, animated: false)
-    }
-
-    func addObservers() {
-        self.removeObservers()
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.updateInterface), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
-    }
-
-    func removeObservers() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
     func addSubviewsAndConstraints() {
