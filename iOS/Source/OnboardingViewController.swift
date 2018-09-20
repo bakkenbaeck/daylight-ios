@@ -84,7 +84,7 @@ class OnboardingViewController: UIViewController {
 
     lazy var tapGestureRecognizer: UITapGestureRecognizer = {
         let recognizer = UITapGestureRecognizer()
-        recognizer.addTarget(self, action: #selector(self.didTapScreen))
+        recognizer.addTarget(self, action: #selector(didTapScreen))
 
         return recognizer
     }()
@@ -128,7 +128,7 @@ class OnboardingViewController: UIViewController {
 
     func addObservers() {
         self.removeObservers()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateOnboarding), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateOnboarding), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
     func removeObservers() {

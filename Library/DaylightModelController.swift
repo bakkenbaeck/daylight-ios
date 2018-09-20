@@ -14,13 +14,13 @@ class DaylightModelController {
         self.location = location
         self.sunTime = SunTime(date: Date(), coordinate: location.coordinates)
 
-        Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         self.addObservers()
     }
 
     func addObservers() {
         self.removeObservers()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.update), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
     func removeObservers() {
