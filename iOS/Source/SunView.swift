@@ -151,27 +151,27 @@ class SunView: UIView {
         return SunViewLocation(x: absoluteX, y: absoluteY)
     }
 
-    func updateInterface(controller: DaylightModelController) {
-        self.superview?.backgroundColor = controller.primaryColor
-        self.backgroundColor = controller.primaryColor
-        self.sunriseLabel.textColor = controller.secondaryColor
-        self.sunsetLabel.textColor = controller.secondaryColor
-        self.dayTimeLabel.textColor = controller.secondaryColor
-        self.nightTimeLabel.textColor = controller.secondaryColor
-        self.horizon.backgroundColor = controller.secondaryColor
-        self.sun.tintColor = controller.secondaryColor
-        self.moon.tintColor = controller.secondaryColor
+    func updateInterface(with daylightController: DaylightModelController) {
+        self.superview?.backgroundColor = daylightController.primaryColor
+        self.backgroundColor = daylightController.primaryColor
+        self.sunriseLabel.textColor = daylightController.secondaryColor
+        self.sunsetLabel.textColor = daylightController.secondaryColor
+        self.dayTimeLabel.textColor = daylightController.secondaryColor
+        self.nightTimeLabel.textColor = daylightController.secondaryColor
+        self.horizon.backgroundColor = daylightController.secondaryColor
+        self.sun.tintColor = daylightController.secondaryColor
+        self.moon.tintColor = daylightController.secondaryColor
 
-        self.sunViewLocation = self.location(for: controller.percentageInDay)
-        self.moon.isHidden = !controller.shouldShowMoon
-        self.nightTimeLabel.isHidden = !controller.shouldShowMoon
-        self.sun.isHidden = controller.shouldShowMoon
-        self.dayTimeLabel.isHidden = !controller.shouldShowTimeLabel
+        self.sunViewLocation = self.location(for: daylightController.percentageInDay)
+        self.moon.isHidden = !daylightController.shouldShowMoon
+        self.nightTimeLabel.isHidden = !daylightController.shouldShowMoon
+        self.sun.isHidden = daylightController.shouldShowMoon
+        self.dayTimeLabel.isHidden = !daylightController.shouldShowTimeLabel
 
-        self.dayTimeLabel.text = controller.currentTimeString
-        self.nightTimeLabel.text = controller.currentTimeString
-        self.sunriseLabel.text = controller.sunriseTimeString
-        self.sunsetLabel.text = controller.sunsetTimeString
+        self.dayTimeLabel.text = daylightController.currentTimeString
+        self.nightTimeLabel.text = daylightController.currentTimeString
+        self.sunriseLabel.text = daylightController.sunriseTimeString
+        self.sunsetLabel.text = daylightController.sunsetTimeString
 
         self.sunViewLeftAnchor?.constant = self.sunViewLocation.x
         self.sunViewBottomAnchor?.constant = self.sunViewLocation.y
