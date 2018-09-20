@@ -179,9 +179,3 @@ class SunView: UIView {
         self.setNeedsLayout()
     }
 }
-
-extension SunView: DaylightModelControllerDelegate {
-    func daylightModelControllerDidUpdate(_ controller: DaylightModelController) {
-        self.updateInterface(controller: controller)
-    }
-}
