@@ -1,5 +1,13 @@
 import Foundation
 
+extension DateFormatter {
+    convenience init(dateFormat: String) {
+        self.init()
+
+        self.dateFormat = dateFormat
+    }
+}
+
 extension Date {
     var dayAfter: Date {
         return Calendar.autoupdatingCurrent.date(byAdding: .day, value: 1, to: self)!

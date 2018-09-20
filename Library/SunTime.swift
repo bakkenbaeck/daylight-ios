@@ -1,14 +1,6 @@
 import CoreLocation
 import Foundation
 
-extension DateFormatter {
-    convenience init(dateFormat: String) {
-        self.init()
-
-        self.dateFormat = dateFormat
-    }
-}
-
 struct SunTime {
     enum SunPhase: String {
         case predawn
