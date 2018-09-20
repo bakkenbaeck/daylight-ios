@@ -156,23 +156,23 @@ class MainController: UIViewController {
     }
 
     func update(withController controller: DaylightModelController) {
-            UIView.animate(withDuration: 0.4) {
-                self.view.window?.backgroundColor = controller.primaryColor
-                self.view.backgroundColor = controller.primaryColor
+        UIView.animate(withDuration: 0.4) {
+            self.view.window?.backgroundColor = controller.primaryColor
+            self.view.backgroundColor = controller.primaryColor
 
-                self.shareButton.setTitleColor(controller.secondaryColor, for: .normal)
-                self.locationLabel.textColor = controller.highlightColor
+            self.shareButton.setTitleColor(controller.secondaryColor, for: .normal)
+            self.locationLabel.textColor = controller.highlightColor
 
-                self.locationLabel.text = controller.locationLabel
-                self.messageLabel.attributedText = controller.attributedMessage
+            self.locationLabel.text = controller.locationLabel
+            self.messageLabel.attributedText = controller.attributedMessage
 
-                self.informationButton.updateInterface(controller: controller)
+            self.informationButton.updateInterface(controller: controller)
 
-                self.sunView.updateInterface(controller: controller)
-                self.informationButton.updateInterface(controller: controller)
+            self.sunView.updateInterface(controller: controller)
+            self.informationButton.updateInterface(controller: controller)
 
-                self.view.setNeedsLayout()
-            }
+            self.view.setNeedsLayout()
+        }
     }
 
     func screenshot() -> UIImage {
