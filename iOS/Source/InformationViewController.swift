@@ -131,18 +131,18 @@ class InformationViewController: UIViewController {
             self.view.backgroundColor = daylightController.primaryColor
             self.closeButton.updateInterface(with: daylightController)
 
-            self.notificationButton.removeTarget(nil, action: nil, for: .allEvents)
-            if Settings.isAllowedToSendNotifications == false {
-                self.notificationButton.setAttributedTitle(enableNotificationsString, for: .normal)
-                self.notificationButton.addTarget(self, action: #selector(self.openSettings), for: .touchUpInside)
-            } else {
-                self.notificationButton.addTarget(self, action: #selector(self.didSelectNotifications), for: .touchUpInside)
-                if Settings.areNotificationsEnabled {
-                    self.notificationButton.setAttributedTitle(turnNotificationsOffString, for: .normal)
-                } else {
-                    self.notificationButton.setAttributedTitle(turnNotificationsOnString, for: .normal)
-                }
-            }
+//            self.notificationButton.removeTarget(nil, action: nil, for: .allEvents)
+//            if Settings.isAllowedToSendNotifications == false {
+//                self.notificationButton.setAttributedTitle(enableNotificationsString, for: .normal)
+//                self.notificationButton.addTarget(self, action: #selector(self.openSettings), for: .touchUpInside)
+//            } else {
+//                self.notificationButton.addTarget(self, action: #selector(self.didSelectNotifications), for: .touchUpInside)
+//                if Settings.areNotificationsEnabled {
+//                    self.notificationButton.setAttributedTitle(turnNotificationsOffString, for: .normal)
+//                } else {
+//                    self.notificationButton.setAttributedTitle(turnNotificationsOnString, for: .normal)
+//                }
+//            }
 
             self.messageLabel.attributedText = daylightController.informationMessage
             self.messageLabelHeightAnchor = self.messageLabel.heightAnchor.constraint(equalToConstant: self.messageLabel.height())
@@ -185,7 +185,7 @@ class InformationViewController: UIViewController {
         self.notificationButton.isEnabled = false
         Settings.areNotificationsEnabled = !Settings.areNotificationsEnabled
         Settings.registerForNotifications()
-        self.delegate?.didToggleNotifications(Settings.areNotificationsEnabled, on: self)
+        self.delegate?.didToggleNotifications(on: self)
         self.notificationButton.isEnabled = true
         self.updateInterface(with: self.dayLightController)
     }

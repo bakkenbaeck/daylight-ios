@@ -231,20 +231,6 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: InformationViewControllerDelegate {
-
-    func didToggleNotifications(_ isNotificationsEnabled: Bool, on informationController: InformationViewController) {
-        //maybe make something else responsible for this
-//        if isNotificationsEnabled {
-//            if let location = dayLightModelController.location {
-//                Notifier.scheduleNotifications(for: location)
-//            }
-//        } else {
-//            Notifier.cancelAllNotifications()
-//        }
-    }
-}
-
 extension MainViewController: DaylightModelControllerDelegate {
     func daylightModelControllerDidUpdate(with daylightController: DaylightModelController) {
         self.daylightController = daylightController

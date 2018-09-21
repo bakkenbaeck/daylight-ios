@@ -9,6 +9,7 @@ class DaylightModelController {
 
     private var location: Location
     private var sunTime: SunTime
+    private var notifier = Notifier()
 
     init(location: Location) {
         self.location = location
@@ -27,15 +28,18 @@ class DaylightModelController {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
-
     @objc func update () {
         self.sunTime.date = Date()
         self.delegate?.daylightModelControllerDidUpdate(with: self)
     }
-}
 
-extension DaylightModelController {
-    
+    func scheduleNotifications(for location: Location) {
+        let dateWithNext30 = Date().andNext30Days()
+        for date in dateWithNext30 {
+            self.notifier.scheduleNotification(for: location, at: date)
+        }
+    }
+
     var primaryColor: UIColor {
         return Theme.primaryColor(for: sunTime.sunPhase)
     }

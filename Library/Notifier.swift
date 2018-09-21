@@ -4,35 +4,69 @@ import UIKit
 import UserNotifications
 
 struct Notifier {
-    static func scheduleNotifications(for location: Location) {
-        let dateWithNext30 = Date().andNext30Days()
-        for date in dateWithNext30 {
-            self.scheduleNotification(for: location, at: date)
+    private static func scheduleNotification(for sunTime: SunTime, at date: Date, withMessage message: String) {
+        let notificationID = String(DateHasher.hashValue(for: date))
+        let sunriseDate = sunTime.sunriseStartTime(for: date)
+
+        let components = sunriseDate.components([.calendar, .year, .month, .day, .hour, .minute, .second, .timeZone])
+
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+        let content = UNMutableNotificationContent()
+        content.body = message
+        let request = UNNotificationRequest(identifier: notificationID, content: content, trigger: trigger)
+
+        UNUserNotificationCenter.current().add(request)
+    }
+
+    func cancelAllNotifications() {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    }
+
+    var areNotificationsEnabled: Bool {
+        set {
+            UserDefaults.standard.set(newValue, forKey: "isNotificationsEnabled")
+        }
+
+        get {
+            let userRequestedNotification = UserDefaults.standard.bool(forKey: "isNotificationsEnabled")
+            if userRequestedNotification == false {
+                return false
+            } else {
+                return self.isAllowedToSendNotifications
+            }
         }
     }
 
-    private static func scheduleNotification(for location: Location, at date: Date) {
-//        guard let location = Location.current else { return }
-//
-//        let notificationID = String(DateHasher.hashValue(for: date))
-//        let sunriseDate = location.sunTime.sunriseStartTime(for: date)
-//
-//        let formattedMessage = self.formattedMessage(location: location, date: date)
-//        let components = sunriseDate.components([.calendar, .year, .month, .day, .hour, .minute, .second, .timeZone])
-//
-//        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
-//        let content = UNMutableNotificationContent()
-//        content.body = formattedMessage
-//        let request = UNNotificationRequest(identifier: notificationID, content: content, trigger: trigger)
-//
-//        UNUserNotificationCenter.current().add(request)
+    func registerForNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge]) { _, error in
+            print(error ?? "Registered for notifications.")
+        }
     }
 
-    static func formattedMessage(location: Location, date: Date) -> String {
-        return Message.notificationMessage(for: date, coordinates: location.coordinates)
+    var isAllowedToSendNotifications: Bool {
+        return self.notificationAuthorizationStatus() == .authorized
     }
 
-    static func cancelAllNotifications() {
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    func notificationAuthorizationStatus() -> UNAuthorizationStatus {
+        var status = UNAuthorizationStatus.notDetermined
+
+        // Make call synchronous.
+        let semaphore = DispatchSemaphore(value: 0)
+
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            status = settings.authorizationStatus
+            semaphore.signal()
+        }
+        _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+
+        return status
+    }
+
+    func didToggleNotifications( on informationController: InformationViewController) {
+        if areNotificationsEnabled {
+            scheduleNotifications(for: location)
+        } else {
+            cancelAllNotifications()
+        }
     }
 }
