@@ -1,6 +1,5 @@
 import UIKit
 import CoreLocation
-import UserNotifications
 
 class OnboardingViewController: UIViewController {
 
