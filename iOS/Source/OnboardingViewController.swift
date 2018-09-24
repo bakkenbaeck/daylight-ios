@@ -32,24 +32,24 @@ class OnboardingViewController: UIViewController {
 
     private(set) var location: Location? {
         set {
-            // make this a function in location make use of Codable please
             if let location = newValue {
-                UserDefaults.standard.set(location.coordinates.latitude, forKey: "latitude")
-                UserDefaults.standard.set(location.coordinates.longitude, forKey: "longitude")
-                UserDefaults.standard.set(location.city, forKey: "city")
-                UserDefaults.standard.set(location.country, forKey: "country")
+                UserDefaults.standard.set(location.coordinates.latitude, forKey: Location.latitudeKey)
+                UserDefaults.standard.set(location.coordinates.longitude, forKey: Location.longitudeKey)
+                UserDefaults.standard.set(location.city, forKey: Location.cityKey)
+                UserDefaults.standard.set(location.country, forKey: Location.countryKey)
             } else {
-                UserDefaults.standard.removeObject(forKey: "latitude")
-                UserDefaults.standard.removeObject(forKey: "city")
-                UserDefaults.standard.removeObject(forKey: "country")
+                UserDefaults.standard.removeObject(forKey: Location.latitudeKey)
+                UserDefaults.standard.removeObject(forKey: Location.longitudeKey)
+                UserDefaults.standard.removeObject(forKey: Location.cityKey)
+                UserDefaults.standard.removeObject(forKey: Location.countryKey)
             }
         }
 
         get {
-            let latitude = UserDefaults.standard.object(forKey: "latitude") as? Double
-            let longitude = UserDefaults.standard.object(forKey: "longitude") as? Double
-            let city = UserDefaults.standard.object(forKey: "city") as? String
-            let country = UserDefaults.standard.object(forKey: "country") as? String
+            let latitude = UserDefaults.standard.object(forKey: Location.latitudeKey) as? Double
+            let longitude = UserDefaults.standard.object(forKey: Location.longitudeKey) as? Double
+            let city = UserDefaults.standard.object(forKey: Location.cityKey) as? String
+            let country = UserDefaults.standard.object(forKey: Location.countryKey) as? String
 
             if let latitude = latitude, let longitude = longitude, let city = city, let country = country {
                 let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
