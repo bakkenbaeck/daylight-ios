@@ -32,7 +32,6 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = Theme.light(size: 32)
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
         label.minimumScaleFactor = 0.3
         label.adjustsFontSizeToFitWidth = true
@@ -43,8 +42,6 @@ class MainViewController: UIViewController {
     private lazy var locationLabel: UILabel = {
         let label = UILabel()
         label.font = Theme.light(size: 16)
-        label.translatesAutoresizingMaskIntoConstraints = false
-
         return label
     }()
 
@@ -52,7 +49,6 @@ class MainViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.setTitle("Share", for: .normal)
         button.titleLabel?.font = Theme.light(size: 16)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didSelectShareButton(button:)), for: .touchUpInside)
 
         return button

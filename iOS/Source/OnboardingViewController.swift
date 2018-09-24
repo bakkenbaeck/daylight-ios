@@ -64,7 +64,6 @@ class OnboardingViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = Theme.light(size: 32)
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.isUserInteractionEnabled = true
 
         return label
@@ -76,7 +75,6 @@ class OnboardingViewController: UIViewController {
         button.titleLabel?.font = Theme.light(size: 16)
         button.setTitleColor(Theme.daylightText.withAlphaComponent(0.6), for: .normal)
         button.contentHorizontalAlignment = .left
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didSelectButton), for: .touchUpInside)
 
         return button

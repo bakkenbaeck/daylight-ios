@@ -2,6 +2,11 @@ import CoreLocation
 import Foundation
 
 struct Location {
+    static let latitudeKey = "latitude"
+    static let longitudeKey = "longitude"
+    static let cityKey = "city"
+    static let countryKey = "country"
+
     enum Hemisphere {
         case northern
         case southern
