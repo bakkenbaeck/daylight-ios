@@ -53,6 +53,7 @@
 		D197B2A38145C1C1E03EC48D /* String + Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */; };
 		D197B46B597F265ED1413F86 /* DaylightModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */; };
 		D197B46D7347610F78A77888 /* SunCalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7CA2B823834F1266457 /* SunCalcEngine.swift */; };
+		D197B4F7F56140F1BE0CCC13 /* DaylightModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */; };
 		D197B5A6D4413DEF81D6B469 /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
 		D197B77BA2E4064E5704FAEB /* SunCalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7CA2B823834F1266457 /* SunCalcEngine.swift */; };
 		D197B82889BF092A03FFCC2D /* DaylightModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */; };
@@ -521,6 +522,7 @@
 				9F09E4E4203C6556000A0A0F /* LocationTracker.swift in Sources */,
 				9F09E4E5203C6598000A0A0F /* SunTime.swift in Sources */,
 				D197B77BA2E4064E5704FAEB /* SunCalcEngine.swift in Sources */,
+				D197B4F7F56140F1BE0CCC13 /* DaylightModelController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
