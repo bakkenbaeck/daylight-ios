@@ -15,7 +15,6 @@
 		03C628AF1E59A60200A69F3D /* suncalc.js in Resources */ = {isa = PBXBuildFile; fileRef = 14A10F571E0D336E00A2D098 /* suncalc.js */; };
 		03C628B11E59AE8F00A69F3D /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C628B01E59AE8F00A69F3D /* TodayView.swift */; };
 		03C628B31E59B55100A69F3D /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C628B21E59B55100A69F3D /* UIColor+Helpers.swift */; };
-		03C628B81E59BAD200A69F3D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E6EE8BB81E2F7170001AF195 /* Localizable.stringsdict */; };
 		141E1D1C1E3B719C0037B45D /* Oslo.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 141E1D1B1E3B719C0037B45D /* Oslo.gpx */; };
 		1432419B1E1BF4D9000E6950 /* UIScreen+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */; };
 		143D3B221DE9D3E0003F77B9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1F1DE9D3E0003F77B9 /* Theme.swift */; };
@@ -61,13 +60,13 @@
 		D197BA0396516E3BDBAC7D05 /* SunCalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7CA2B823834F1266457 /* SunCalcEngine.swift */; };
 		D197BE076EECA92FE99E8CAB /* SunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B54C8E75BC3669A5BD10 /* SunView.swift */; };
 		D197BEFA484503CDFB2E2D77 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B19D546DE1806562CAC8 /* OnboardingViewController.swift */; };
+		E657B30B21593091000E1C6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E657B30E21593091000E1C6F /* Localizable.stringsdict */; };
+		E657B30C21593091000E1C6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E657B30E21593091000E1C6F /* Localizable.stringsdict */; };
 		E68BF7CE213692BA00E954B4 /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CD213692BA00E954B4 /* TinyConstraints.framework */; };
 		E68BF7D0213692CC00E954B4 /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */; };
 		E68BF7D1213692CC00E954B4 /* TinyConstraints.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E6D9D5071E02D7970007006D /* InformationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D9D5061E02D7970007006D /* InformationButton.swift */; };
 		E6E337AE1E044AD600787E88 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E337AD1E044AD600787E88 /* InformationViewController.swift */; };
-		E6EE8BB91E2F7170001AF195 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E6EE8BB81E2F7170001AF195 /* Localizable.stringsdict */; };
-		E6EE8BBC1E2F7BFB001AF195 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E6EE8BBB1E2F7BFB001AF195 /* Localizable.strings */; };
 		E6F604701E08106000A6461A /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F6046F1E08106000A6461A /* CloseButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -158,13 +157,12 @@
 		D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + Helpers.swift"; sourceTree = "<group>"; };
 		D197BBC3EDBF4CA099642BCE /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		D197BD0F150956F37CAE048A /* FNVHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FNVHash.swift; sourceTree = "<group>"; };
+		E657B30D21593091000E1C6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		E68BF7CB213692AE00E954B4 /* TinyConstraints.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = TinyConstraints.framework.dSYM; path = Carthage/Build/iOS/TinyConstraints.framework.dSYM; sourceTree = "<group>"; };
 		E68BF7CD213692BA00E954B4 /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = Carthage/Build/iOS/TinyConstraints.framework; sourceTree = "<group>"; };
 		E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = Carthage/Build/iOS/TinyConstraints.framework; sourceTree = "<group>"; };
 		E6D9D5061E02D7970007006D /* InformationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationButton.swift; sourceTree = "<group>"; };
 		E6E337AD1E044AD600787E88 /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
-		E6EE8BB81E2F7170001AF195 /* Localizable.stringsdict */ = {isa = PBXFileReference; fileEncoding = 1; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
-		E6EE8BBB1E2F7BFB001AF195 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		E6F6046F1E08106000A6461A /* CloseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -254,11 +252,10 @@
 			isa = PBXGroup;
 			children = (
 				141E1D1B1E3B719C0037B45D /* Oslo.gpx */,
-				E6EE8BBB1E2F7BFB001AF195 /* Localizable.strings */,
 				146E279F1BCD51F200959BBA /* LaunchScreen.xib */,
 				146E27A11BCD51F200959BBA /* Images.xcassets */,
 				146E27A21BCD51F200959BBA /* Info.plist */,
-				E6EE8BB81E2F7170001AF195 /* Localizable.stringsdict */,
+				E657B30E21593091000E1C6F /* Localizable.stringsdict */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -444,7 +441,7 @@
 			files = (
 				03C628AF1E59A60200A69F3D /* suncalc.js in Resources */,
 				03C6289E1E58F71F00A69F3D /* Images.xcassets in Resources */,
-				03C628B81E59BAD200A69F3D /* Localizable.stringsdict in Resources */,
+				E657B30C21593091000E1C6F /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,10 +451,9 @@
 			files = (
 				141E1D1C1E3B719C0037B45D /* Oslo.gpx in Resources */,
 				146E27AA1BCD51F200959BBA /* Images.xcassets in Resources */,
-				E6EE8BBC1E2F7BFB001AF195 /* Localizable.strings in Resources */,
 				146E27A91BCD51F200959BBA /* LaunchScreen.xib in Resources */,
 				14A10F581E0D336E00A2D098 /* suncalc.js in Resources */,
-				E6EE8BB91E2F7170001AF195 /* Localizable.stringsdict in Resources */,
+				E657B30B21593091000E1C6F /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +589,14 @@
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
+		E657B30E21593091000E1C6F /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E657B30D21593091000E1C6F /* en */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -614,7 +618,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -634,7 +638,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bakkenbaeck.daylight.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -654,7 +658,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bakkenbaeck.daylight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/../SunViewPlayground\"/**";
 			};
 			name = Debug;
@@ -674,7 +678,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bakkenbaeck.daylight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/../SunViewPlayground\"/**";
 			};
 			name = Release;
@@ -802,7 +806,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = no.bakkenbaeck.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Daylight.app/Daylight";
 			};
@@ -826,7 +830,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = no.bakkenbaeck.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Daylight.app/Daylight";
 			};
