@@ -71,6 +71,7 @@
 		E657B3162159395D000E1C6F /* Numbers+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */; };
 		E657B31721593969000E1C6F /* String + Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */; };
 		E657B318215939EE000E1C6F /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
+		E657B31921593BB0000E1C6F /* SweetSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F47BA2D203323E400FB805B /* SweetSwift.framework */; };
 		E68BF7CE213692BA00E954B4 /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CD213692BA00E954B4 /* TinyConstraints.framework */; };
 		E68BF7D0213692CC00E954B4 /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */; };
 		E68BF7D1213692CC00E954B4 /* TinyConstraints.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -200,6 +201,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E657B31921593BB0000E1C6F /* SweetSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,7 +507,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -817,6 +819,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 29X3GG489T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
@@ -842,6 +848,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 29X3GG489T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
