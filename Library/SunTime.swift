@@ -38,6 +38,10 @@ struct SunTime {
     private let latitude: CLLocationDegrees
     private let longitude: CLLocationDegrees
 
+    var coordinates: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
+    }
+
     var date: Date
 
     let sunTimes: SunPhaseTimes
