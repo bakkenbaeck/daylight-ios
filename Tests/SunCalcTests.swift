@@ -39,15 +39,6 @@ class SunCalcTests: XCTestCase {
 
         let sunPhaseTimes = SunTime(date: date, coordinate: coordinate).sunTimes
 
-        // DAY 4
-        dateComponents.day = 4
-
-        dateComponents.hour = 22
-        dateComponents.minute = 10
-        dateComponents.second = 57
-        let expectedNadir = calendar.date(from: dateComponents)!
-        XCTAssertEqual(sunPhaseTimes.nadirTime.timeIntervalSince1970, expectedNadir.timeIntervalSince1970, accuracy: 0.99)
-
         // DAY 5
         dateComponents.day = 5
 
@@ -55,14 +46,6 @@ class SunCalcTests: XCTestCase {
         dateComponents.minute = 46
         dateComponents.second = 17
         let expectedNightEnd = calendar.date(from: dateComponents)!
-
-        XCTAssertEqual(sunPhaseTimes.nightTimeEnd.timeIntervalSince1970, expectedNightEnd.timeIntervalSince1970, accuracy: 0.99)
-
-        dateComponents.hour = 3
-        dateComponents.minute = 24
-        dateComponents.second = 31
-        let expectedNauticalDawn = calendar.date(from: dateComponents)!
-        XCTAssertEqual(sunPhaseTimes.nauticalDawnTime.timeIntervalSince1970, expectedNauticalDawn.timeIntervalSince1970, accuracy: 0.99)
 
         dateComponents.hour = 4
         dateComponents.minute = 2
@@ -76,41 +59,17 @@ class SunCalcTests: XCTestCase {
         let expectedSunrise = calendar.date(from: dateComponents)!
         XCTAssertEqual(sunPhaseTimes.sunriseTimeStart.timeIntervalSince1970, expectedSunrise.timeIntervalSince1970, accuracy: 0.99)
 
-        dateComponents.hour = 4
-        dateComponents.minute = 38
-        dateComponents.second = 19
-        let expectedSunriseEnd = calendar.date(from: dateComponents)!
-        XCTAssertEqual(sunPhaseTimes.sunriseTimeEnd.timeIntervalSince1970, expectedSunriseEnd.timeIntervalSince1970, accuracy: 0.99)
-
-        dateComponents.hour = 5
-        dateComponents.minute = 19
-        dateComponents.second = 1
-        let expectedGoldenHourEnd = calendar.date(from: dateComponents)!
-        XCTAssertEqual(sunPhaseTimes.goldenHourEnd.timeIntervalSince1970, expectedGoldenHourEnd.timeIntervalSince1970, accuracy: 0.99)
-
         dateComponents.hour = 10
         dateComponents.minute = 10
         dateComponents.second = 57
         let expectedSolarNoon = calendar.date(from: dateComponents)!
         XCTAssertEqual(sunPhaseTimes.solarNoonTime.timeIntervalSince1970, expectedSolarNoon.timeIntervalSince1970, accuracy: 0.99)
 
-        dateComponents.hour = 15
-        dateComponents.minute = 2
-        dateComponents.second = 52
-        let expectedGoldenHour = calendar.date(from: dateComponents)!
-        XCTAssertEqual(sunPhaseTimes.goldenHourStart.timeIntervalSince1970, expectedGoldenHour.timeIntervalSince1970, accuracy: 0.99)
-
         dateComponents.hour = 17
         dateComponents.minute = 35
         dateComponents.second = 36
         let expectedNight = calendar.date(from: dateComponents)!
         XCTAssertEqual(sunPhaseTimes.nightTimeStart.timeIntervalSince1970, expectedNight.timeIntervalSince1970, accuracy: 0.99)
-
-        dateComponents.hour = 15
-        dateComponents.minute = 43
-        dateComponents.second = 34
-        let expectedSunsetStart = calendar.date(from: dateComponents)!
-        XCTAssertEqual(sunPhaseTimes.sunsetTimeStart.timeIntervalSince1970, expectedSunsetStart.timeIntervalSince1970, accuracy: 0.99)
 
         dateComponents.hour = 15
         dateComponents.minute = 46
@@ -123,11 +82,5 @@ class SunCalcTests: XCTestCase {
         dateComponents.second = 36
         let expectedDusk = calendar.date(from: dateComponents)!
         XCTAssertEqual(sunPhaseTimes.duskTime.timeIntervalSince1970, expectedDusk.timeIntervalSince1970, accuracy: 0.99)
-
-        dateComponents.hour = 16
-        dateComponents.minute = 57
-        dateComponents.second = 22
-        let expectedNauticalDusk = calendar.date(from: dateComponents)!
-        XCTAssertEqual(sunPhaseTimes.nauticalDuskTime.timeIntervalSince1970, expectedNauticalDusk.timeIntervalSince1970, accuracy: 0.99)
     }
 }
