@@ -25,7 +25,7 @@ public extension Jiggly {
         transform = leftWobble
         layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
-        let options = UIViewAnimationOptions(arrayLiteral: .allowUserInteraction, .repeat, .autoreverse)
+        let options = UIView.AnimationOptions(arrayLiteral: .allowUserInteraction, .repeat, .autoreverse)
         UIView.animate(withDuration: 0.15, delay: 0.0, options: options, animations: {
             self.transform = rightWobble
         }, completion: { _ in

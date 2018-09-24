@@ -1,0 +1,64 @@
+BCSymbolMap Version: 2.0
+_$S10Foundation4DateV10SweetSwiftE10components_8calendarAA0B10ComponentsVShyAA8CalendarV9ComponentOG_AJtFfA0_
+_$SxSgSYRzSz8RawValueRpzlWOh
+__swift_FORCE_LOAD_$_swiftFoundation_$_SweetSwift
+__swift_FORCE_LOAD_$_swiftDarwin_$_SweetSwift
+__swift_FORCE_LOAD_$_swiftObjectiveC_$_SweetSwift
+__swift_FORCE_LOAD_$_swiftCoreFoundation_$_SweetSwift
+__swift_FORCE_LOAD_$_swiftDispatch_$_SweetSwift
+__swift_FORCE_LOAD_$_swiftCoreGraphics_$_SweetSwift
+___swift_reflection_version
+Apple LLVM version 10.0.0 (clang-1000.10.44)
+-emit-bc /Users/marijnschilling/Projects/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/RawRepresentable+Sweetness.swift /Users/marijnschilling/Projects/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/String+Sweetness.swift /Users/marijnschilling/Projects/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/CollectionType+Sweetness.swift /Users/marijnschilling/Projects/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/Date+Sweet.swift /Users/marijnschilling/Projects/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/Integer+Repetition.swift -supplementary-output-file-map <temporary-file> -target arm64-apple-ios9.0 -Xllvm -aarch64-use-tbi -enable-objc-interop -sdk /Applications/Xcode-beta.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk -I /Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/BuildProductsPath/Release-iphoneos -F /Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/BuildProductsPath/Release-iphoneos -application-extension -g -import-underlying-module -module-cache-path /Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/ModuleCache.noindex -swift-version 4.2 -O -serialize-debugging-options -Xcc -working-directory -Xcc /Users/marijnschilling/Projects/daylight-ios/Carthage/Checkouts/SweetSwift -Xcc -I/Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/swift-overrides.hmap -Xcc -iquote -Xcc /Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/SweetSwift-generated-files.hmap -Xcc -I/Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/SweetSwift-own-target-headers.hmap -Xcc -I/Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/SweetSwift-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/all-product-headers.yaml -Xcc -iquote -Xcc /Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/SweetSwift-project-headers.hmap -Xcc -I/Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/BuildProductsPath/Release-iphoneos/include -Xcc -I/Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/DerivedSources/arm64 -Xcc -I/Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/DerivedSources -Xcc -ivfsoverlay -Xcc /Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/unextended-module-overlay.yaml -module-name SweetSwift -num-threads 4 -o /Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/Objects-normal/arm64/RawRepresentable+Sweetness.bc -o /Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/Objects-normal/arm64/String+Sweetness.bc -o /Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/Objects-normal/arm64/CollectionType+Sweetness.bc -o /Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/Objects-normal/arm64/Date+Sweet.bc -o /Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/Objects-normal/arm64/Integer+Repetition.bc -resource-dir /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift
+<swift-imported-modules>
+/Users/marijnschilling/Projects/daylight-ios/Carthage/Checkouts/SweetSwift
+Apple Swift version 4.2 (swiftlang-1000.0.36 clang-1000.10.44)
+/Users/marijnschilling/Projects/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/RawRepresentable+Sweetness.swift
+$SxSgSYRzSz8RawValueRpzlWOh
+<compiler-generated>
+$S10Foundation4DateV10SweetSwiftE10components_8calendarAA0B10ComponentsVShyAA8CalendarV9ComponentOG_AJtFfA0_
+Date+Sweet.swift
+/Users/marijnschilling/Projects/daylight-ios/Carthage/Checkouts/SweetSwift/Sources
+count.get
+RawRepresentable+Sweetness.swift
+advanced
+init
+$Ss5Int64VSzsSz18truncatingIfNeededxqd___tcSzRd__lufCTW
+$Ss17FixedWidthIntegerPsE18truncatingIfNeededxqd___tcs06BinaryC0Rd__lufCqd__s5Int64VXMTA2FRszsADRd__r__lIetMiyd_Tpq5
+$Ss5Int64VSLsSL1loiySbx_xtFZTW
+$Ss5Int64Vs17FixedWidthIntegerssACP3maxxvgZTW
+$Ss5Int64VSQsSQ2eeoiySbx_xtFZTW
+/Users/marijnschilling/Projects/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/String+Sweetness.swift
+length.get
+String+Sweetness.swift
+_$SSi6offset_7ElementSTQz7elementtSgSlRzSi5IndexRtzlWOh
+_$Ss18EnumeratedIteratorVy0B0STQzGSlRzSi5IndexRtzlWOh
+_swift_bridgeObjectRelease
+_$S7ElementSTQzSgSlRzSi5IndexRtzlWOh
+_$S7ElementSTQzSgSlRzSi5IndexRtzlWOd
+_$S7ElementSTQzSgSlRzSi5IndexRtzlWOc
+_$S7ElementSTQz_ABtSlRzSi5IndexRtzlWOh
+_$Ss18EnumeratedSequenceVyxGSlRzSi5IndexRtzlWOh
+/Users/marijnschilling/Projects/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/CollectionType+Sweetness.swift
+$S7ElementSTQz_ABtSlRzSi5IndexRtzlWOh
+$S7ElementSTQzSgSlRzSi5IndexRtzlWOc
+$S7ElementSTQzSgSlRzSi5IndexRtzlWOd
+$S7ElementSTQzSgSlRzSi5IndexRtzlWOh
+$Ss18EnumeratedIteratorVy0B0STQzGSlRzSi5IndexRtzlWOh
+$SSi6offset_7ElementSTQz7elementtSgSlRzSi5IndexRtzlWOh
+enumeratedWithCurrentAndNext
+CollectionType+Sweetness.swift
+/Users/marijnschilling/Projects/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/Date+Sweet.swift
+components
+/Users/marijnschilling/Projects/daylight-ios/Carthage/Checkouts/SweetSwift/Sources/Integer+Repetition.swift
+Integer+Repetition.swift
+next
+$SSiSQsSQ2eeoiySbx_xtFZTW
+$SSnyxGs10Collectionss10StrideableRzs13SignedInteger6StrideRpzrlSl9formIndex5aftery0G0Qzz_tFTWSi_Tg5
+$SSlsE9formIndex5aftery0B0Qzz_tFSnySiG_Tg5
+$SSnyxGs10Collectionss10StrideableRzs13SignedInteger6StrideRpzrlSl5index5after5IndexQzAJ_tFTWSi_Tg5
+$SSnss10StrideableRzs13SignedInteger6StrideRpzrlE5index5afterxx_tFSi_Tg5
+$SSiSxsSx8advanced2byx6StrideQz_tFTW
+>
+Apple LLVM version 10.0.0 (clang-1000.10.43.1)
+/Users/marijnschilling/Library/Caches/org.carthage.CarthageKit/DerivedData/10.0_10L232m/SweetSwift/1.13.0/Build/Intermediates.noindex/ArchiveIntermediates/SweetSwift/IntermediateBuildFilesPath/Demo.build/Release-iphoneos/SweetSwift.build/DerivedSources/SweetSwift_vers.c
