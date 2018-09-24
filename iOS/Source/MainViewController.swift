@@ -81,13 +81,11 @@ class MainViewController: UIViewController {
         self.addSubviewsAndConstraints()
 
         self.update(with: self.daylightController)
-        //This should be done in the model
-//        Notifier.cancelAllNotifications()
-//        if Settings.areNotificationsEnabled {
-//            if let location = Location.current {
-//                Notifier.scheduleNotifications(for: location)
-//            }
-//        }
+
+        Notifier.cancelAllNotifications()
+        if Settings.areNotificationsEnabled {
+            Notifier.scheduleNotifications(for: daylightController.sunTime)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -234,14 +232,11 @@ class MainViewController: UIViewController {
 extension MainViewController: InformationViewControllerDelegate {
 
     func didToggleNotifications(_ isNotificationsEnabled: Bool, on informationController: InformationViewController) {
-        //maybe make something else responsible for this
-//        if isNotificationsEnabled {
-//            if let location = dayLightModelController.location {
-//                Notifier.scheduleNotifications(for: location)
-//            }
-//        } else {
-//            Notifier.cancelAllNotifications()
-//        }
+        if isNotificationsEnabled {
+            Notifier.scheduleNotifications(for: self.daylightController.sunTime)
+        } else {
+            Notifier.cancelAllNotifications()
+        }
     }
 }
 
