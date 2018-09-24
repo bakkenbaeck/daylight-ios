@@ -13,6 +13,13 @@ import UIKit
 
 class TodayViewController: UIViewController, NCWidgetProviding {
 
+    private var daylightController: DaylightModelController? {
+        didSet {
+            guard let daylightController = self.daylightController else { return }
+            (self.view as! TodayView).updateView(with: daylightController)
+        }
+    }
+
     private lazy var locationTracker: LocationTracker = {
         let tracker = LocationTracker()
         tracker.delegate = self
@@ -30,19 +37,25 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
 
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        (self.view as! TodayView).updateView()
+        guard let daylightController = self.daylightController else { return }
+
+        (self.view as! TodayView).updateView(with: daylightController)
         completionHandler(NCUpdateResult.newData)
     }
 }
 
 extension TodayViewController: LocationTrackerDelegate {
 
-    func locationTracker(_ locationTracker: LocationTracker, didFailWith error: Error) {
+    func didFailWithError(_ error: Error, on locationTracker: LocationTracker) {
         // ignore errors in the widget
     }
 
-    func locationTracker(_ locationTracker: LocationTracker, didFindLocation placemark: CLPlacemark) {
-        Location.current = Location(placemark: placemark)
-        (self.view as! TodayView).updateView()
+    func didFindLocation(_ placemark: CLPlacemark, on locationTracker: LocationTracker) {
+        guard let location = Location(placemark: placemark) else { return }
+        self.daylightController = DaylightModelController(location: location)
+    }
+
+    func didUpdateAuthorizationStatus(_ authorizationStatus: CLAuthorizationStatus, on locationTracker: LocationTracker) {
+
     }
 }

@@ -1,5 +1,6 @@
 import CoreLocation
 import UIKit
+import TinyConstraints
 
 struct SunViewLocation {
     let x: CGFloat
@@ -9,31 +10,10 @@ struct SunViewLocation {
 class SunView: UIView {
     static let sunSize = CGFloat(18.0)
 
-    var sunPhase = SunTime.SunPhase.predawn {
-        didSet {
-            self.moon.isHidden = true
-            self.currentTimeLabel.isHidden = false
-            switch self.sunPhase {
-            case .night, .predawn:
-                self.moon.isHidden = false
-                self.sunViewLocation = SunViewLocation(x: (self.frame.width - SunView.sunSize) / 2.0, y: 0.0)
-            case .dawn:
-                self.currentTimeLabel.isHidden = true
-            default:
-                break
-            }
-        }
-    }
+    var sunViewLocation = SunViewLocation(x: 0, y: 0)
 
-    var sunViewLocation = SunViewLocation(x: 0, y: 0) {
-        didSet {
-            self.setNeedsLayout()
-        }
-    }
-
-    var sunLeftAnchor: NSLayoutConstraint?
-    var sunTopAnchor: NSLayoutConstraint?
-    var currentTimeBottomAnchor: NSLayoutConstraint?
+    var sunViewLeftAnchor: NSLayoutConstraint?
+    var sunViewBottomAnchor: NSLayoutConstraint?
 
     lazy var sunriseLabel: UILabel = {
         let label = UILabel()
@@ -50,13 +30,20 @@ class SunView: UIView {
         return label
     }()
 
-    lazy var currentTimeLabel: UILabel = {
+    lazy var dayTimeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
 
-        label.font = Theme.light(size: 12)
+        label.font = UIFont.systemFont(ofSize: 12)
 
         return label
+    }()
+    
+    lazy var aboveHorizonLayoutView: UIView = {
+        let view = UIView()
+        view.clipsToBounds = true
+
+        return view
     }()
 
     lazy var sun: UIImageView = {
@@ -69,18 +56,22 @@ class SunView: UIView {
     }()
 
     lazy var moon: UIView = {
-        let view = UIView()
-        view.isHidden = true
+        let image = UIImage(named: "moon")!
+        let tintImage = image.withRenderingMode(.alwaysTemplate)
+        let imageView = UIImageView(image: tintImage)
+        imageView.contentMode = .center
+        imageView.isHidden = true
 
-        return view
+        return imageView
     }()
 
-    lazy var sunMask: UIView = {
-        let view = UIView()
+    lazy var nightTimeLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.isHidden = true
+        label.font = UIFont.systemFont(ofSize: 12)
 
-        view.clipsToBounds = true
-
-        return view
+        return label
     }()
 
     lazy var horizon: UIView = {
@@ -96,8 +87,8 @@ class SunView: UIView {
         return shortTimeFormatter
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init() {
+        super.init(frame: CGRect.zero)
 
         self.addSubviewsAndConstraints()
     }
@@ -106,56 +97,85 @@ class SunView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    func addSubviewsAndConstraints() {
+        self.addSubview(self.aboveHorizonLayoutView)
+        self.aboveHorizonLayoutView.addSubview(self.horizon)
+        self.aboveHorizonLayoutView.addSubview(self.sun)
+        self.aboveHorizonLayoutView.addSubview(self.moon)
+        self.addSubview(self.sunriseLabel)
+        self.addSubview(self.sunsetLabel)
+        self.addSubview(self.dayTimeLabel)
+        self.addSubview(self.nightTimeLabel)
+
+        self.aboveHorizonLayoutView.edgesToSuperview(insets: .top(24) + .bottom(24))
 
         let labelWidth = CGFloat(35.0)
 
-        self.sunriseLabel.frame = CGRect(x: 0, y: 116, width: labelWidth, height: 16)
-        self.sunsetLabel.frame = CGRect(x: self.bounds.width - labelWidth, y: 116, width: labelWidth, height: 16)
-        self.sun.frame = CGRect(x: self.sunViewLocation.x, y: self.sunViewLocation.y, width: SunView.sunSize, height: SunView.sunSize)
-        self.sunMask.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: 108)
-        self.horizon.frame = CGRect(x: 0, y: 108, width: self.bounds.width, height: 1)
-        self.currentTimeLabel.frame = CGRect(x: self.sunViewLocation.x - 10, y: self.sunViewLocation.y - 24, width: labelWidth, height: 16)
-        self.moon.frame = CGRect(x: self.sunViewLocation.x + (SunView.sunSize / 2), y: self.sunViewLocation.y, width: SunView.sunSize / 2, height: SunView.sunSize)
-    }
+        self.sunriseLabel.bottom(to: self)
+        self.sunriseLabel.left(to: self)
+        self.sunriseLabel.size(CGSize(width: labelWidth, height: 16))
 
-    func addSubviewsAndConstraints() {
-        self.addSubview(self.horizon)
-        self.addSubview(self.sunriseLabel)
-        self.addSubview(self.sunsetLabel)
-        self.addSubview(self.sunMask)
-        self.sunMask.addSubview(self.sun)
-        self.sunMask.addSubview(self.moon)
-        self.addSubview(self.currentTimeLabel)
-    }
+        self.sunsetLabel.bottom(to: self)
+        self.sunsetLabel.right(to: self)
+        self.sunsetLabel.size(CGSize(width: labelWidth, height: 16))
 
-    func update(for location: Location) {
-        self.currentTimeLabel.text = self.timeFormatter.string(from: Date())
-        self.sunriseLabel.text = location.sunTime.sunriseTimeString
-        self.sunsetLabel.text = location.sunTime.sunsetTimeString
+        sunViewLeftAnchor = self.sun.left(to: self)
+        sunViewBottomAnchor = self.sun.bottom(to: aboveHorizonLayoutView)
+        self.sun.size(CGSize(width: SunView.sunSize, height: SunView.sunSize))
+
+        self.moon.size(CGSize(width: SunView.sunSize * 0.5, height: SunView.sunSize))
+        self.moon.top(to: self, offset: 24)
+        self.moon.centerX(to: self)
+
+        self.horizon.left(to: self)
+        self.horizon.bottom(to: self.aboveHorizonLayoutView)
+        self.horizon.right(to: self)
+        self.horizon.height(1)
+
+        self.dayTimeLabel.bottomToTop(of: self.sun, offset: -8)
+        self.dayTimeLabel.centerX(to: self.sun)
+        self.dayTimeLabel.size(CGSize(width: labelWidth, height: 16))
+
+        self.nightTimeLabel.bottomToTop(of: self.moon, offset: -8)
+        self.nightTimeLabel.centerX(to: self.moon)
+        self.nightTimeLabel.size(CGSize(width: labelWidth, height: 16))
     }
 
     func location(for percentageInDay: CGFloat) -> SunViewLocation {
         let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
         let x = 50.0 + cos(position) * 50.0
         let y = abs(sin(position) * 100.0)
-
         let absoluteX = ((self.bounds.width - SunView.sunSize) / 100) * x
-        let absoluteY = self.sunMask.frame.height - (self.sunMask.frame.height / 100.0) * y
+        let absoluteY = -(self.aboveHorizonLayoutView.frame.height / 100.0) * y + SunView.sunSize
 
         return SunViewLocation(x: absoluteX, y: absoluteY)
     }
 
-    func updateInterface(withBackgroundColor backgroundColor: UIColor, textColor: UIColor, andPercentageInDay percentageInDay: Double, sunPhase: SunTime.SunPhase) {
-        self.sunriseLabel.textColor = textColor
-        self.sunsetLabel.textColor = textColor
-        self.currentTimeLabel.textColor = textColor
-        self.horizon.backgroundColor = textColor
-        self.sun.tintColor = textColor
-        self.moon.backgroundColor = backgroundColor
+    func updateInterface(with daylightController: DaylightModelController) {
+        self.superview?.backgroundColor = daylightController.primaryColor
+        self.backgroundColor = daylightController.primaryColor
+        self.sunriseLabel.textColor = daylightController.secondaryColor
+        self.sunsetLabel.textColor = daylightController.secondaryColor
+        self.dayTimeLabel.textColor = daylightController.secondaryColor
+        self.nightTimeLabel.textColor = daylightController.secondaryColor
+        self.horizon.backgroundColor = daylightController.secondaryColor
+        self.sun.tintColor = daylightController.secondaryColor
+        self.moon.tintColor = daylightController.secondaryColor
 
-        self.sunViewLocation = self.location(for: CGFloat(percentageInDay))
-        self.sunPhase = sunPhase
+        self.sunViewLocation = self.location(for: daylightController.percentageInDay)
+        self.moon.isHidden = !daylightController.shouldShowMoon
+        self.nightTimeLabel.isHidden = !daylightController.shouldShowMoon
+        self.sun.isHidden = daylightController.shouldShowMoon
+        self.dayTimeLabel.isHidden = !daylightController.shouldShowTimeLabel
+
+        self.dayTimeLabel.text = daylightController.currentTimeString
+        self.nightTimeLabel.text = daylightController.currentTimeString
+        self.sunriseLabel.text = daylightController.sunriseTimeString
+        self.sunsetLabel.text = daylightController.sunsetTimeString
+
+        self.sunViewLeftAnchor?.constant = self.sunViewLocation.x
+        self.sunViewBottomAnchor?.constant = self.sunViewLocation.y
+
+        self.setNeedsLayout()
     }
 }

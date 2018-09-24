@@ -2,17 +2,27 @@ import UIKit
 import UserNotifications
 
 struct Settings {
+    static let isNotificationsEnabledKey = "isNotificationsEnabled"
+
     static var areNotificationsEnabled: Bool {
         set {
-            UserDefaults.standard.set(newValue, forKey: "isNotificationsEnabled")
+            UserDefaults.standard.set(newValue, forKey: Settings.isNotificationsEnabledKey)
         }
 
         get {
-            let userRequestedNotification = UserDefaults.standard.bool(forKey: "isNotificationsEnabled")
+            let userRequestedNotification = UserDefaults.standard.bool(forKey: Settings.isNotificationsEnabledKey)
             if userRequestedNotification == false {
                 return false
             } else {
                 return Settings.isAllowedToSendNotifications
+            }
+        }
+    }
+
+    static func notificationAuthorizationStatus(completionHandler: @escaping (UNAuthorizationStatus) -> Void) {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            DispatchQueue.main.async {
+                completionHandler(settings.authorizationStatus)
             }
         }
     }
@@ -35,15 +45,6 @@ struct Settings {
     static func registerForNotifications() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge]) { _, error in
             print(error ?? "Registered for notifications.")
-        }
-    }
-
-    static var shouldPresentOnboarding: Bool {
-        set {
-            UserDefaults.standard.set(newValue, forKey: "shouldPresentOnboarding")
-        }
-        get {
-            return UserDefaults.standard.value(forKey: "shouldPresentOnboarding") as? Bool ?? true
         }
     }
 }

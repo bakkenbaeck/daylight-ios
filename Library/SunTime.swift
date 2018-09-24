@@ -1,43 +1,5 @@
 import CoreLocation
 import Foundation
-import JavaScriptCore
-
-extension DateFormatter {
-    convenience init(dateFormat: String) {
-        self.init()
-
-        self.dateFormat = dateFormat
-    }
-}
-
-struct SunCalcEngine {
-    static var sharedInstance: SunCalcEngine = {
-        let instance = SunCalcEngine()
-
-        return instance
-    }()
-
-    var bundle: Bundle = Bundle.main
-
-    private lazy var context: JSContext = {
-        // Finding a good sun calculation library in Swift or Objective-C wasn't easy. I tried almost 5 different
-        // libraries, none of them gave me the results we wanted. That's why I went for using the library used in
-        // http://suncalc.net, this library is also used by the web version of Daylight. In our app, I'm embedding
-        // a portion of the library as a JavaScript file that I'll use to calculate the times for an specific date
-        // and coordinates.
-        let sunCalcLibraryPath = self.bundle.path(forResource: "suncalc", ofType: "js")!
-        let sunCalcLibrary = try! String(contentsOfFile: sunCalcLibraryPath)
-        let context = JSContext()!
-        context.evaluateScript(sunCalcLibrary)
-
-        return context
-    }()
-
-    mutating func calculateTimes(withArguments arguments: [Any]) -> [String: Any] {
-        let getTimesJavaScriptMethod = self.context.objectForKeyedSubscript("getTimes")!
-        return getTimesJavaScriptMethod.call(withArguments: arguments)!.toObjectOf(NSDictionary.self)! as! [String: Any]
-    }
-}
 
 struct SunTime {
     enum SunPhase: String {
@@ -59,47 +21,28 @@ struct SunTime {
         enum Keys: String {
             case dawnTime = "dawn"
             case duskTime = "dusk"
-            case goldenHourStart = "goldenHour"
-            case goldenHourEnd
-            case nadirTime = "nadir"
-            case nauticalDawnTime = "nauticalDawn"
-            case nauticalDuskTime = "nauticalDusk"
             case nightTimeStart = "night"
-            case nightTimeEnd = "nightEnd"
             case solarNoonTime = "solarNoon"
             case sunriseTimeStart = "sunrise"
-            case sunriseTimeEnd = "sunriseEnd"
-            case sunsetTimeStart = "sunsetStart"
             case sunsetTimeEnd = "sunset"
         }
 
         let dawnTime: Date
         let duskTime: Date
-
-        let goldenHourStart: Date
-        let goldenHourEnd: Date
-
-        let nadirTime: Date
-
-        let nauticalDawnTime: Date
-        let nauticalDuskTime: Date
-
         let nightTimeStart: Date
-        let nightTimeEnd: Date
-
         let solarNoonTime: Date
-
         let sunriseTimeStart: Date
-        let sunriseTimeEnd: Date
-
-        let sunsetTimeStart: Date
         let sunsetTimeEnd: Date
     }
 
     private let latitude: CLLocationDegrees
     private let longitude: CLLocationDegrees
 
-    private(set) var date: Date
+    var coordinates: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
+    }
+
+    var date: Date
 
     let sunTimes: SunPhaseTimes
 
@@ -158,6 +101,10 @@ struct SunTime {
         return self.timeFormatter.string(from: self.sunTimes.sunsetTimeEnd)
     }
 
+    var currentTimeString: String {
+        return self.timeFormatter.string(from: Date())
+    }
+
     var dayLengthDifference: Double {
         let dayBefore = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: self.date)!
 
@@ -184,17 +131,9 @@ struct SunTime {
 
         return SunPhaseTimes(dawnTime: times[SunPhaseTimes.Keys.dawnTime.rawValue]!,
                              duskTime: times[SunPhaseTimes.Keys.duskTime.rawValue]!,
-                             goldenHourStart: times[SunPhaseTimes.Keys.goldenHourStart.rawValue]!,
-                             goldenHourEnd: times[SunPhaseTimes.Keys.goldenHourEnd.rawValue]!,
-                             nadirTime: times[SunPhaseTimes.Keys.nadirTime.rawValue]!,
-                             nauticalDawnTime: times[SunPhaseTimes.Keys.nauticalDawnTime.rawValue]!,
-                             nauticalDuskTime: times[SunPhaseTimes.Keys.nauticalDuskTime.rawValue]!,
                              nightTimeStart: times[SunPhaseTimes.Keys.nightTimeStart.rawValue]!,
-                             nightTimeEnd: times[SunPhaseTimes.Keys.nightTimeEnd.rawValue]!,
                              solarNoonTime: times[SunPhaseTimes.Keys.solarNoonTime.rawValue]!,
                              sunriseTimeStart: times[SunPhaseTimes.Keys.sunriseTimeStart.rawValue]!,
-                             sunriseTimeEnd: times[SunPhaseTimes.Keys.sunriseTimeEnd.rawValue]!,
-                             sunsetTimeStart: times[SunPhaseTimes.Keys.sunsetTimeStart.rawValue]!,
                              sunsetTimeEnd: times[SunPhaseTimes.Keys.sunsetTimeEnd.rawValue]!)
     }
 

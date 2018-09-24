@@ -84,30 +84,26 @@ class TodayView: UIView {
             messageLabel.heightAnchor.constraint(equalTo: self.heightAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
-
-        self.updateView()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func updateView() {
-        if let location = Location.current {
-            let tintColor = self.color(for: location.sunTime.sunPhase)
+    func updateView(with daylightController: DaylightModelController) {
+            let tintColor = self.color(for: daylightController.sunTime.sunPhase)
             sunriseIcon.tintColor = tintColor
             sunsetIcon.tintColor = tintColor
             sunriseLabel.textColor = tintColor.darker(by: 20)
             sunsetLabel.textColor = tintColor.darker(by: 20)
 
-            sunriseLabel.text = location.sunTime.sunriseTimeString
-            sunsetLabel.text = location.sunTime.sunsetTimeString
+            sunriseLabel.text = daylightController.sunTime.sunriseTimeString
+            sunsetLabel.text = daylightController.sunTime.sunsetTimeString
 
-            let message = Message(for: Date(), coordinates: location.coordinates)
+            let message = Message(for: Date(), coordinates: daylightController.sunTime.coordinates)
             let attributedString = message.attributedString(textColor: tintColor.darker(by: 20), highlightColor: tintColor)
 
             messageLabel.attributedText = attributedString
-        }
     }
 
     private func color(for sunPhase: SunTime.SunPhase) -> UIColor {

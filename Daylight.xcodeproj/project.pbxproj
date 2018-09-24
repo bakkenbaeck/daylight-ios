@@ -20,7 +20,7 @@
 		1432419B1E1BF4D9000E6950 /* UIScreen+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */; };
 		143D3B221DE9D3E0003F77B9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1F1DE9D3E0003F77B9 /* Theme.swift */; };
 		143D3B261DE9D3F3003F77B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B241DE9D3F3003F77B9 /* AppDelegate.swift */; };
-		143D3B271DE9D3F3003F77B9 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B251DE9D3F3003F77B9 /* MainController.swift */; };
+		143D3B271DE9D3F3003F77B9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B251DE9D3F3003F77B9 /* MainViewController.swift */; };
 		143D3B291DE9D434003F77B9 /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B281DE9D434003F77B9 /* LocationTracker.swift */; };
 		14507A781E09F8C60032F0AF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14507A771E09F8C60032F0AF /* Message.swift */; };
 		146AE9AD1E08B050003EE788 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146AE9AC1E08B050003EE788 /* Date+Helpers.swift */; };
@@ -31,8 +31,6 @@
 		14A10F581E0D336E00A2D098 /* suncalc.js in Resources */ = {isa = PBXBuildFile; fileRef = 14A10F571E0D336E00A2D098 /* suncalc.js */; };
 		14A10F5B1E0D339D00A2D098 /* SunTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A10F5A1E0D339D00A2D098 /* SunTime.swift */; };
 		14A3E1781E09E6BF002F0D6C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A3E1771E09E6BF002F0D6C /* Settings.swift */; };
-		14C5918D1E24082F0035AB81 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C5918C1E24082F0035AB81 /* MainView.swift */; };
-		14C5918F1E2414ED0035AB81 /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C5918E1E2414ED0035AB81 /* OnboardingController.swift */; };
 		44227E8F1E067A1E002B911B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
 		9F09E4E4203C6556000A0A0F /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B281DE9D434003F77B9 /* LocationTracker.swift */; };
 		9F09E4E5203C6598000A0A0F /* SunTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A10F5A1E0D339D00A2D098 /* SunTime.swift */; };
@@ -53,14 +51,21 @@
 		9FFFCA4A200384530060F86F /* Date+HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146EE0451E1BC40200F08A13 /* Date+HelperTests.swift */; };
 		9FFFCA4C2003ABEE0060F86F /* Numbers+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */; };
 		D197B2A38145C1C1E03EC48D /* String + Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */; };
+		D197B46B597F265ED1413F86 /* DaylightModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */; };
+		D197B46D7347610F78A77888 /* SunCalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7CA2B823834F1266457 /* SunCalcEngine.swift */; };
+		D197B4F7F56140F1BE0CCC13 /* DaylightModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */; };
 		D197B5A6D4413DEF81D6B469 /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
+		D197B77BA2E4064E5704FAEB /* SunCalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7CA2B823834F1266457 /* SunCalcEngine.swift */; };
+		D197B82889BF092A03FFCC2D /* DaylightModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */; };
 		D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBC3EDBF4CA099642BCE /* Notifier.swift */; };
+		D197BA0396516E3BDBAC7D05 /* SunCalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7CA2B823834F1266457 /* SunCalcEngine.swift */; };
 		D197BE076EECA92FE99E8CAB /* SunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B54C8E75BC3669A5BD10 /* SunView.swift */; };
+		D197BEFA484503CDFB2E2D77 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B19D546DE1806562CAC8 /* OnboardingViewController.swift */; };
 		E68BF7CE213692BA00E954B4 /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CD213692BA00E954B4 /* TinyConstraints.framework */; };
 		E68BF7D0213692CC00E954B4 /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */; };
 		E68BF7D1213692CC00E954B4 /* TinyConstraints.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E6D9D5071E02D7970007006D /* InformationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D9D5061E02D7970007006D /* InformationButton.swift */; };
-		E6E337AE1E044AD600787E88 /* InformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E337AD1E044AD600787E88 /* InformationController.swift */; };
+		E6E337AE1E044AD600787E88 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E337AD1E044AD600787E88 /* InformationViewController.swift */; };
 		E6EE8BB91E2F7170001AF195 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E6EE8BB81E2F7170001AF195 /* Localizable.stringsdict */; };
 		E6EE8BBC1E2F7BFB001AF195 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E6EE8BBB1E2F7BFB001AF195 /* Localizable.strings */; };
 		E6F604701E08106000A6461A /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F6046F1E08106000A6461A /* CloseButton.swift */; };
@@ -123,7 +128,7 @@
 		1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScreen+Helpers.swift"; sourceTree = "<group>"; };
 		143D3B1F1DE9D3E0003F77B9 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		143D3B241DE9D3F3003F77B9 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		143D3B251DE9D3F3003F77B9 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		143D3B251DE9D3F3003F77B9 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		143D3B281DE9D434003F77B9 /* LocationTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
 		144D8CEA1E089D6C0036FD4B /* SunriseSet+HelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SunriseSet+HelperTests.swift"; sourceTree = "<group>"; };
 		14507A771E09F8C60032F0AF /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -140,15 +145,16 @@
 		14A10F571E0D336E00A2D098 /* suncalc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = suncalc.js; sourceTree = "<group>"; };
 		14A10F5A1E0D339D00A2D098 /* SunTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunTime.swift; sourceTree = "<group>"; };
 		14A3E1771E09E6BF002F0D6C /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		14C5918C1E24082F0035AB81 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		14C5918E1E2414ED0035AB81 /* OnboardingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 		14E6F3C91E08735200F9C3F6 /* SunPhaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunPhaseTests.swift; sourceTree = "<group>"; };
 		14F37F921E0D554700005101 /* SunCalcTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunCalcTests.swift; sourceTree = "<group>"; };
 		44227E8E1E067A1E002B911B /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		9F47BA2D203323E400FB805B /* SweetSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SweetSwift.framework; path = Carthage/Build/iOS/SweetSwift.framework; sourceTree = "<group>"; };
 		9FFFCA3B200384390060F86F /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numbers+Time.swift"; sourceTree = "<group>"; };
+		D197B19D546DE1806562CAC8 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaylightModelController.swift; sourceTree = "<group>"; };
 		D197B54C8E75BC3669A5BD10 /* SunView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunView.swift; sourceTree = "<group>"; };
+		D197B7CA2B823834F1266457 /* SunCalcEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunCalcEngine.swift; sourceTree = "<group>"; };
 		D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + Helpers.swift"; sourceTree = "<group>"; };
 		D197BBC3EDBF4CA099642BCE /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		D197BD0F150956F37CAE048A /* FNVHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FNVHash.swift; sourceTree = "<group>"; };
@@ -156,7 +162,7 @@
 		E68BF7CD213692BA00E954B4 /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = Carthage/Build/iOS/TinyConstraints.framework; sourceTree = "<group>"; };
 		E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = Carthage/Build/iOS/TinyConstraints.framework; sourceTree = "<group>"; };
 		E6D9D5061E02D7970007006D /* InformationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationButton.swift; sourceTree = "<group>"; };
-		E6E337AD1E044AD600787E88 /* InformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationController.swift; sourceTree = "<group>"; };
+		E6E337AD1E044AD600787E88 /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		E6EE8BB81E2F7170001AF195 /* Localizable.stringsdict */ = {isa = PBXFileReference; fileEncoding = 1; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		E6EE8BBB1E2F7BFB001AF195 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		E6F6046F1E08106000A6461A /* CloseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
@@ -229,6 +235,8 @@
 				1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */,
 				D197BD0F150956F37CAE048A /* FNVHash.swift */,
 				D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */,
+				D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */,
+				D197B7CA2B823834F1266457 /* SunCalcEngine.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -259,13 +267,12 @@
 			isa = PBXGroup;
 			children = (
 				143D3B241DE9D3F3003F77B9 /* AppDelegate.swift */,
-				14C5918E1E2414ED0035AB81 /* OnboardingController.swift */,
-				143D3B251DE9D3F3003F77B9 /* MainController.swift */,
-				14C5918C1E24082F0035AB81 /* MainView.swift */,
-				E6E337AD1E044AD600787E88 /* InformationController.swift */,
+				143D3B251DE9D3F3003F77B9 /* MainViewController.swift */,
+				E6E337AD1E044AD600787E88 /* InformationViewController.swift */,
 				E6D9D5061E02D7970007006D /* InformationButton.swift */,
 				E6F6046F1E08106000A6461A /* CloseButton.swift */,
 				D197B54C8E75BC3669A5BD10 /* SunView.swift */,
+				D197B19D546DE1806562CAC8 /* OnboardingViewController.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -514,6 +521,8 @@
 				03C628A81E58FAD800A69F3D /* Theme.swift in Sources */,
 				9F09E4E4203C6556000A0A0F /* LocationTracker.swift in Sources */,
 				9F09E4E5203C6598000A0A0F /* SunTime.swift in Sources */,
+				D197B77BA2E4064E5704FAEB /* SunCalcEngine.swift in Sources */,
+				D197B4F7F56140F1BE0CCC13 /* DaylightModelController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,15 +531,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				143D3B261DE9D3F3003F77B9 /* AppDelegate.swift in Sources */,
-				14C5918D1E24082F0035AB81 /* MainView.swift in Sources */,
-				143D3B271DE9D3F3003F77B9 /* MainController.swift in Sources */,
+				143D3B271DE9D3F3003F77B9 /* MainViewController.swift in Sources */,
 				44227E8F1E067A1E002B911B /* Location.swift in Sources */,
 				146AE9AD1E08B050003EE788 /* Date+Helpers.swift in Sources */,
 				143D3B221DE9D3E0003F77B9 /* Theme.swift in Sources */,
-				E6E337AE1E044AD600787E88 /* InformationController.swift in Sources */,
+				E6E337AE1E044AD600787E88 /* InformationViewController.swift in Sources */,
 				E6F604701E08106000A6461A /* CloseButton.swift in Sources */,
 				14A3E1781E09E6BF002F0D6C /* Settings.swift in Sources */,
-				14C5918F1E2414ED0035AB81 /* OnboardingController.swift in Sources */,
 				E6D9D5071E02D7970007006D /* InformationButton.swift in Sources */,
 				14A10F5B1E0D339D00A2D098 /* SunTime.swift in Sources */,
 				143D3B291DE9D434003F77B9 /* LocationTracker.swift in Sources */,
@@ -541,6 +548,9 @@
 				D197B5A6D4413DEF81D6B469 /* FNVHash.swift in Sources */,
 				D197B2A38145C1C1E03EC48D /* String + Helpers.swift in Sources */,
 				D197BE076EECA92FE99E8CAB /* SunView.swift in Sources */,
+				D197B46B597F265ED1413F86 /* DaylightModelController.swift in Sources */,
+				D197BEFA484503CDFB2E2D77 /* OnboardingViewController.swift in Sources */,
+				D197B46D7347610F78A77888 /* SunCalcEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +564,8 @@
 				9FFFCA48200384530060F86F /* SunriseSet+HelperTests.swift in Sources */,
 				9FFFCA49200384530060F86F /* MessageTests.swift in Sources */,
 				9FFFCA4A200384530060F86F /* Date+HelperTests.swift in Sources */,
+				D197B82889BF092A03FFCC2D /* DaylightModelController.swift in Sources */,
+				D197BA0396516E3BDBAC7D05 /* SunCalcEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,6 +655,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bakkenbaeck.daylight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/../SunViewPlayground\"/**";
 			};
 			name = Debug;
 		};
@@ -662,6 +675,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bakkenbaeck.daylight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/../SunViewPlayground\"/**";
 			};
 			name = Release;
 		};
