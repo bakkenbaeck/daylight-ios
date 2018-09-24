@@ -55,7 +55,7 @@ public extension UIAlertController {
      */
     public static func progressAlert(_ title: String) -> UIAlertController {
         let controller = UIAlertController(title: title + "\n\n", message: nil, preferredStyle: .alert)
-        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        let indicator = UIActivityIndicatorView(style: .white)
         indicator.color = UIColor.gray
         indicator.center = CGPoint(x: 135, y: 65.5)
         indicator.startAnimating()

@@ -149,7 +149,7 @@ class MainViewController: UIViewController {
         let screenshot = self.screenshot()
 
         let activityController = UIActivityViewController(activityItems: [screenshot, "Made with #daylightapp."], applicationActivities: nil)
-        activityController.excludedActivityTypes = [UIActivityType.airDrop]
+        activityController.excludedActivityTypes = [UIActivity.ActivityType.airDrop]
         self.present(activityController, animated: true, completion: nil)
     }
 

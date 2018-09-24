@@ -130,11 +130,11 @@ class OnboardingViewController: UIViewController {
 
     func addObservers() {
         self.removeObservers()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateOnboarding), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateOnboarding), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 
     func removeObservers() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 
     @objc func updateOnboarding() {
@@ -192,7 +192,7 @@ class OnboardingViewController: UIViewController {
         case .location:
             self.locationTracker.locateIfPossible()
         case .denied:
-            UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
         case .notification:
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { granted, _ in
                 if granted == true {
@@ -215,7 +215,7 @@ class OnboardingViewController: UIViewController {
         case .location:
             self.locationTracker.locateIfPossible()
         case .denied:
-            UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
         case .notification:
             guard let location = self.location else { return }
             self.presentMainController(withLocation: location)

@@ -72,8 +72,8 @@ public extension UIView {
     /// - Parameter options: The nib options. Same as when using UINib(nibName:bundle).instantiate(withOwner:options:).
     ///
     /// - Returns: Returns an instance of the nib as a UIView.
-    public class func instanceFromNib<T: UIView>(nibName: String? = nil, bundle: Bundle = .main, owner: Any? = nil, options: [AnyHashable: Any]? = nil) -> T? {
+    public class func instanceFromNib<T: UIView>(nibName: String? = nil, bundle: Bundle = .main, owner: Any? = nil, options: [UINib.OptionsKey: Any]? = nil) -> T? {
         let name = nibName ?? String(describing: T.self)
-        return UINib(nibName: name, bundle: bundle).instantiate(withOwner: owner, options: options)[0] as? T
+        return UINib(nibName: name, bundle: bundle).instantiate(withOwner: owner, options: options).first as? T
     }
 }

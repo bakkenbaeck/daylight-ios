@@ -1,5 +1,4 @@
 import CoreLocation
-@testable import Daylight
 import UIKit
 import XCTest
 

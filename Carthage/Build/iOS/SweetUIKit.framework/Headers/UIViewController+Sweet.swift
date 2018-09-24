@@ -15,22 +15,22 @@ public extension UIViewController {
     ///   - controller: The controller to be added
     ///   - frame: The frame for the added controller, if the frame is not provided or is `nil` then the parent controller's frame will be used
     public func addChild(_ controller: UIViewController, frame: CGRect? = nil) {
-        addChildViewController(controller)
+        addChild(controller)
 
         if let frame = frame {
             controller.view.frame = frame
         }
 
         view.addSubview(controller.view)
-        controller.didMove(toParentViewController: self)
+        controller.didMove(toParent: self)
     }
 
     /// Removes the controller from the view hierarchy safely.
     ///
     /// - Parameter controller: The controller to be removed
     public func removeChild(_ controller: UIViewController) {
-        controller.willMove(toParentViewController: nil)
+        controller.willMove(toParent: nil)
         controller.view.removeFromSuperview()
-        controller.removeFromParentViewController()
+        controller.removeFromParent()
     }
 }

@@ -5,7 +5,7 @@ open class SweetTableController: UIViewController {
 
     public var clearsSelectionOnViewWillAppear = true
 
-    public init(style: UITableViewStyle = .plain) {
+    public init(style: UITableView.Style = .plain) {
         let view = UITableView(frame: .zero, style: style)
         view.translatesAutoresizingMaskIntoConstraints = false
         tableView = view

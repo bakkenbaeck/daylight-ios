@@ -41,7 +41,7 @@ class InformationViewController: UIViewController {
         let button = UIButton()
         button.titleLabel?.font = Theme.light(size: 16)
         button.contentHorizontalAlignment = .left
-        button.contentEdgeInsets = UIEdgeInsetsMake(28, 0, 0, 0)
+        button.contentEdgeInsets = UIEdgeInsets(top: 28, left: 0, bottom: 0, right: 0)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setAttributedTitle(NSAttributedString(string: ""), for: .disabled)
 
@@ -178,7 +178,7 @@ class InformationViewController: UIViewController {
     }
 
     @objc func openSettings() {
-        UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
     }
 
     @objc func didSelectNotifications() {
