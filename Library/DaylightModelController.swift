@@ -8,7 +8,7 @@ class DaylightModelController {
     weak var delegate: DaylightModelControllerDelegate?
 
     private var location: Location
-    private var sunTime: SunTime
+    var sunTime: SunTime
 
     init(location: Location) {
         self.location = location

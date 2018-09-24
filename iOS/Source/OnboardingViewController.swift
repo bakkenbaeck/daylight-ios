@@ -118,9 +118,13 @@ class OnboardingViewController: UIViewController {
     }
 
     func presentMainController(withLocation location: Location) {
-        guard self.presentedViewController as? MainViewController == nil else { return } // main view controller is already presented
-        
         let daylightController = DaylightModelController(location: location)
+        self.presentMainController(withDayLightController: daylightController)
+    }
+
+    func presentMainController(withDayLightController daylightController: DaylightModelController) {
+        guard self.presentedViewController as? MainViewController == nil else { return } // main view controller is already presented
+
         let mainController = MainViewController(with: daylightController)
         mainController.modalTransitionStyle = .crossDissolve
         self.present(mainController, animated: true)
@@ -198,8 +202,9 @@ class OnboardingViewController: UIViewController {
                     Settings.registerForNotifications()
                     if let location = self.location {
                         DispatchQueue.main.async {
-                            Notifier.scheduleNotifications(for: location)
-                            self.presentMainController(withLocation: location)
+                            let daylightController = DaylightModelController(location: location)
+                            Notifier.scheduleNotifications(for: daylightController.sunTime)
+                            self.presentMainController(withDayLightController: daylightController)
                         }
                     }
                 }
