@@ -19,17 +19,14 @@ class MessageGenerationTests: XCTestCase {
         return Calendar.autoupdatingCurrent.date(byAdding: .day, value: -15, to: date)!
     }
 
-    private var location: Location!
-    private var locationSouth: Location!
+    private var sunTime: SunTime!
+    private var sunTimeSouth: SunTime!
 
     override func setUp() {
         super.setUp()
 
-        let coordinate = Location.testLocation
-        self.location = Location(coordinate: coordinate, city: "Bonn", country: "Germany")
-
-        let coordinateSouth = CLLocationCoordinate2D(latitude: -27.4698, longitude: 153.0251)
-        self.locationSouth = Location(coordinate: coordinateSouth, city: "Brisbane", country: "Australia")
+        self.sunTime = SunTime(date: Date(), coordinate: CLLocationCoordinate2D(latitude: Location.testLocation.latitude, longitude: Location.testLocation.longitude))
+        self.sunTimeSouth = SunTime(date: Date(), coordinate: CLLocationCoordinate2D(latitude: -27.4698, longitude: 153.0251))
     }
 
     func testMessageDeterminismFromWinterSolstice() {
@@ -76,7 +73,7 @@ class MessageGenerationTests: XCTestCase {
          var actual = [String]()
 
         for (index, date) in futureDates.enumerated() {
-            let message = Notifier.formattedMessage(location: self.location, date: date)
+            let message = Notifier.formattedMessage(for: self.sunTime, date: date)
             actual.append(message)
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
@@ -130,7 +127,7 @@ class MessageGenerationTests: XCTestCase {
          var actual = [String]()
 
         for (index, date) in futureDates.enumerated() {
-            let message = Notifier.formattedMessage(location: self.location, date: date)
+            let message = Notifier.formattedMessage(for: self.sunTime, date: date)
             actual.append(message)
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
@@ -185,7 +182,7 @@ class MessageGenerationTests: XCTestCase {
          var actual = [String]()
 
         for (index, date) in futureDates.enumerated() {
-            let message = Notifier.formattedMessage(location: self.location, date: date)
+            let message = Notifier.formattedMessage(for: self.sunTime, date: date)
              actual.append(message)
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
@@ -240,7 +237,7 @@ class MessageGenerationTests: XCTestCase {
          var actual = [String]()
 
         for (index, date) in futureDates.enumerated() {
-            let message = Notifier.formattedMessage(location: self.location, date: date)
+            let message = Notifier.formattedMessage(for: self.sunTime, date: date)
              actual.append(message)
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
@@ -296,7 +293,7 @@ class MessageGenerationTests: XCTestCase {
          var actual = [String]()
 
         for (index, date) in futureDates.enumerated() {
-            let message = Notifier.formattedMessage(location: self.location, date: date)
+            let message = Notifier.formattedMessage(for: self.sunTime, date: date)
              actual.append(message)
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
@@ -351,7 +348,7 @@ class MessageGenerationTests: XCTestCase {
          var actual = [String]()
 
         for (index, date) in futureDates.enumerated() {
-            let message = Message(for: date, coordinates: self.location.coordinates).preformattedMessage
+            let message = Message(for: date, coordinates: self.sunTime.coordinates).preformattedMessage
             actual.append(message)
             XCTAssertEqual(message, expected[index], "Index: \(index).")
         }
@@ -362,8 +359,8 @@ class MessageGenerationTests: XCTestCase {
     func testWeeklyMessages() {
         // 12th of November 2018 12:00 GMT
         let sunday = Date(timeIntervalSince1970: 1518350400)
-        let messageNorth = Message(for: sunday, coordinates: self.location.coordinates, weeklySummary: true).formattedMessage
-        let messageSouth = Message(for: sunday, coordinates: self.locationSouth.coordinates, weeklySummary: true).formattedMessage
+        let messageNorth = Message(for: sunday, coordinates: self.sunTime.coordinates, weeklySummary: true).formattedMessage
+        let messageSouth = Message(for: sunday, coordinates: self.sunTimeSouth.coordinates, weeklySummary: true).formattedMessage
 
         XCTAssertEqual(messageNorth, "Daylight time increased by 25 minutes the past few days. It’s allowed to start daydreaming about the long and toasty days of summer!")
 
