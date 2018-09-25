@@ -77,7 +77,7 @@ class SunCalcTests: XCTestCase {
         let expectedSunset = calendar.date(from: dateComponents)!
         XCTAssertEqual(sunPhaseTimes.sunsetTimeEnd.timeIntervalSince1970, expectedSunset.timeIntervalSince1970, accuracy: 0.99)
 
-        dateComponents.hour = 16
+        dateComponents.hour = 4
         dateComponents.minute = 19
         dateComponents.second = 36
         let expectedDusk = calendar.date(from: dateComponents)!
