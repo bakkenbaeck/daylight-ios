@@ -40,12 +40,6 @@ class SunCalcTests: XCTestCase {
         let sunPhaseTimes = SunTime(date: date, coordinate: coordinate).sunTimes
 
         // DAY 5
-        dateComponents.day = 5
-
-        dateComponents.hour = 2
-        dateComponents.minute = 46
-        dateComponents.second = 17
-        let expectedNightEnd = calendar.date(from: dateComponents)!
 
         dateComponents.hour = 4
         dateComponents.minute = 2
