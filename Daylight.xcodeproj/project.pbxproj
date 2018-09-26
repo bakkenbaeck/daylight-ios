@@ -55,24 +55,13 @@
 		D197B4F7F56140F1BE0CCC13 /* DaylightModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */; };
 		D197B5A6D4413DEF81D6B469 /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
 		D197B77BA2E4064E5704FAEB /* SunCalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7CA2B823834F1266457 /* SunCalcEngine.swift */; };
-		D197B82889BF092A03FFCC2D /* DaylightModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */; };
 		D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBC3EDBF4CA099642BCE /* Notifier.swift */; };
-		D197BA0396516E3BDBAC7D05 /* SunCalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7CA2B823834F1266457 /* SunCalcEngine.swift */; };
 		D197BE076EECA92FE99E8CAB /* SunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B54C8E75BC3669A5BD10 /* SunView.swift */; };
 		D197BEFA484503CDFB2E2D77 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B19D546DE1806562CAC8 /* OnboardingViewController.swift */; };
 		E657B30B21593091000E1C6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E657B30E21593091000E1C6F /* Localizable.stringsdict */; };
 		E657B30C21593091000E1C6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E657B30E21593091000E1C6F /* Localizable.stringsdict */; };
-		E657B30F2159370A000E1C6F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
-		E657B31021593735000E1C6F /* SunTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A10F5A1E0D339D00A2D098 /* SunTime.swift */; };
-		E657B31121593740000E1C6F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1F1DE9D3E0003F77B9 /* Theme.swift */; };
-		E657B31221593747000E1C6F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14507A771E09F8C60032F0AF /* Message.swift */; };
-		E657B31321593767000E1C6F /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146AE9AC1E08B050003EE788 /* Date+Helpers.swift */; };
-		E657B315215938C2000E1C6F /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBC3EDBF4CA099642BCE /* Notifier.swift */; };
 		E657B3162159395D000E1C6F /* Numbers+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */; };
-		E657B31721593969000E1C6F /* String + Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */; };
-		E657B318215939EE000E1C6F /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
 		E657B31921593BB0000E1C6F /* SweetSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F47BA2D203323E400FB805B /* SweetSwift.framework */; };
-		E68BF7CE213692BA00E954B4 /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CD213692BA00E954B4 /* TinyConstraints.framework */; };
 		E68BF7D0213692CC00E954B4 /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */; };
 		E68BF7D1213692CC00E954B4 /* TinyConstraints.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E6D9D5071E02D7970007006D /* InformationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D9D5061E02D7970007006D /* InformationButton.swift */; };
@@ -193,7 +182,6 @@
 				148FBB6A1E07EDBE009ED9F3 /* SweetUIKit.framework in Frameworks */,
 				E68BF7D0213692CC00E954B4 /* TinyConstraints.framework in Frameworks */,
 				9F47BA2E203323E400FB805B /* SweetSwift.framework in Frameworks */,
-				E68BF7CE213692BA00E954B4 /* TinyConstraints.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,7 +391,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					0387E4CE1E58F2E10029E7CF = {
@@ -570,18 +558,8 @@
 				9FFFCA46200384530060F86F /* SunCalcTests.swift in Sources */,
 				9FFFCA47200384530060F86F /* SunPhaseTests.swift in Sources */,
 				9FFFCA48200384530060F86F /* SunriseSet+HelperTests.swift in Sources */,
-				E657B31121593740000E1C6F /* Theme.swift in Sources */,
-				E657B31721593969000E1C6F /* String + Helpers.swift in Sources */,
-				E657B30F2159370A000E1C6F /* Location.swift in Sources */,
-				E657B318215939EE000E1C6F /* FNVHash.swift in Sources */,
-				E657B31321593767000E1C6F /* Date+Helpers.swift in Sources */,
 				9FFFCA49200384530060F86F /* MessageTests.swift in Sources */,
 				9FFFCA4A200384530060F86F /* Date+HelperTests.swift in Sources */,
-				D197B82889BF092A03FFCC2D /* DaylightModelController.swift in Sources */,
-				E657B31221593747000E1C6F /* Message.swift in Sources */,
-				E657B315215938C2000E1C6F /* Notifier.swift in Sources */,
-				D197BA0396516E3BDBAC7D05 /* SunCalcEngine.swift in Sources */,
-				E657B31021593735000E1C6F /* SunTime.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

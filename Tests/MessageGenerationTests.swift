@@ -1,6 +1,7 @@
 import CoreLocation
 import UIKit
 import XCTest
+@testable import Daylight
 
 class MessageGenerationTests: XCTestCase {
     // 21st of December 2017 12:00 GMT
