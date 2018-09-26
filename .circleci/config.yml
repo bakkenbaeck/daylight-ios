@@ -1,0 +1,18 @@
+version: 2
+
+jobs:
+    build-and-test:
+        macos:
+            xcode: "10.0.0"
+        # Use custom shell per https://circleci.com/docs/2.0/testing-ios/#using-custom-versions-of-cocoapods-and-other-ruby-gems
+        shell: /bin/bash --login -o pipefail
+        steps:
+            - checkout
+            - run:
+                name: Run Tests
+                command: set -o pipefail && xcodebuild clean build test -project Daylight.xcodeproj -scheme "Tests" -destination 'platform=iOS Simulator,name=iPhone 7' | xcpretty --color && exit ${PIPESTATUS[0]}
+workflows:
+  version: 2
+  build-and-test:
+      jobs:
+          - build-and-test
