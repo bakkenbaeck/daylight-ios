@@ -60,7 +60,6 @@
 		D197BEFA484503CDFB2E2D77 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B19D546DE1806562CAC8 /* OnboardingViewController.swift */; };
 		E657B30B21593091000E1C6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E657B30E21593091000E1C6F /* Localizable.stringsdict */; };
 		E657B30C21593091000E1C6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E657B30E21593091000E1C6F /* Localizable.stringsdict */; };
-		E657B3162159395D000E1C6F /* Numbers+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */; };
 		E657B31921593BB0000E1C6F /* SweetSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F47BA2D203323E400FB805B /* SweetSwift.framework */; };
 		E68BF7D0213692CC00E954B4 /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */; };
 		E68BF7D1213692CC00E954B4 /* TinyConstraints.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -554,7 +553,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FFFCA45200384530060F86F /* MessageGenerationTests.swift in Sources */,
-				E657B3162159395D000E1C6F /* Numbers+Time.swift in Sources */,
 				9FFFCA46200384530060F86F /* SunCalcTests.swift in Sources */,
 				9FFFCA47200384530060F86F /* SunPhaseTests.swift in Sources */,
 				9FFFCA48200384530060F86F /* SunriseSet+HelperTests.swift in Sources */,
