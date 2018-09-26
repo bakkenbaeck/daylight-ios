@@ -60,6 +60,10 @@ class OnboardingViewController: UIViewController {
         }
     }
 
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
