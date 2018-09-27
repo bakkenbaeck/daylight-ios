@@ -58,6 +58,7 @@
 		D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBC3EDBF4CA099642BCE /* Notifier.swift */; };
 		D197BE076EECA92FE99E8CAB /* SunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B54C8E75BC3669A5BD10 /* SunView.swift */; };
 		D197BEFA484503CDFB2E2D77 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B19D546DE1806562CAC8 /* OnboardingViewController.swift */; };
+		E6266327215D6B2600ED14A2 /* PULL_REQUEST_TEMPLATE.md in Resources */ = {isa = PBXBuildFile; fileRef = E6266326215D6B2600ED14A2 /* PULL_REQUEST_TEMPLATE.md */; };
 		E657B30B21593091000E1C6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E657B30E21593091000E1C6F /* Localizable.stringsdict */; };
 		E657B30C21593091000E1C6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E657B30E21593091000E1C6F /* Localizable.stringsdict */; };
 		E657B31921593BB0000E1C6F /* SweetSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F47BA2D203323E400FB805B /* SweetSwift.framework */; };
@@ -155,6 +156,7 @@
 		D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + Helpers.swift"; sourceTree = "<group>"; };
 		D197BBC3EDBF4CA099642BCE /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		D197BD0F150956F37CAE048A /* FNVHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FNVHash.swift; sourceTree = "<group>"; };
+		E6266326215D6B2600ED14A2 /* PULL_REQUEST_TEMPLATE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = PULL_REQUEST_TEMPLATE.md; path = .github/PULL_REQUEST_TEMPLATE.md; sourceTree = SOURCE_ROOT; };
 		E657B30D21593091000E1C6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		E68BF7CB213692AE00E954B4 /* TinyConstraints.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = TinyConstraints.framework.dSYM; path = Carthage/Build/iOS/TinyConstraints.framework.dSYM; sourceTree = "<group>"; };
 		E68BF7CD213692BA00E954B4 /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = Carthage/Build/iOS/TinyConstraints.framework; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 		141A6FD31BDE2DAB00CB6E82 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				E6266326215D6B2600ED14A2 /* PULL_REQUEST_TEMPLATE.md */,
 				14A10F571E0D336E00A2D098 /* suncalc.js */,
 				143D3B1F1DE9D3E0003F77B9 /* Theme.swift */,
 				9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */,
@@ -450,6 +453,7 @@
 				141E1D1C1E3B719C0037B45D /* Oslo.gpx in Resources */,
 				146E27AA1BCD51F200959BBA /* Images.xcassets in Resources */,
 				146E27A91BCD51F200959BBA /* LaunchScreen.xib in Resources */,
+				E6266327215D6B2600ED14A2 /* PULL_REQUEST_TEMPLATE.md in Resources */,
 				14A10F581E0D336E00A2D098 /* suncalc.js in Resources */,
 				E657B30B21593091000E1C6F /* Localizable.stringsdict in Resources */,
 			);
