@@ -18,7 +18,7 @@ Add screenshots or describe the tests that you ran to verify your changes.
 
 ## Checklist:
 
-- [ ] I reviewe it myself
+- [ ] I reviewed it myself
 - [ ] I have added tests or screenshots
 - [ ] My code follows the style guidelines of this project
 - [ ] I haven't introduced any new warnings
