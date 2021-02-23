@@ -1,9 +1,0 @@
-{
-  "commitish" : "1.13.0",
-  "iOS" : [
-    {
-      "name" : "SweetSwift",
-      "hash" : "29a03b15aa72c2a91206a0c28f6bbaec484e51edb7679ddaae5932404df98ecb"
-    }
-  ]
-}
