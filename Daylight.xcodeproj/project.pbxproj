@@ -3,15 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0387E4D11E58F2E10029E7CF /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0387E4D01E58F2E10029E7CF /* NotificationCenter.framework */; };
 		0387E4D41E58F2E10029E7CF /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0387E4D31E58F2E10029E7CF /* TodayViewController.swift */; };
-		0387E4DB1E58F2E10029E7CF /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0387E4CF1E58F2E10029E7CF /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		03C6289E1E58F71F00A69F3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03C6289D1E58F71F00A69F3D /* Images.xcassets */; };
-		03C628A81E58FAD800A69F3D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1F1DE9D3E0003F77B9 /* Theme.swift */; };
 		03C628AF1E59A60200A69F3D /* suncalc.js in Resources */ = {isa = PBXBuildFile; fileRef = 14A10F571E0D336E00A2D098 /* suncalc.js */; };
 		03C628B11E59AE8F00A69F3D /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C628B01E59AE8F00A69F3D /* TodayView.swift */; };
 		03C628B31E59B55100A69F3D /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C628B21E59B55100A69F3D /* UIColor+Helpers.swift */; };
@@ -25,12 +23,11 @@
 		146AE9AD1E08B050003EE788 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146AE9AC1E08B050003EE788 /* Date+Helpers.swift */; };
 		146E27A91BCD51F200959BBA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146E279F1BCD51F200959BBA /* LaunchScreen.xib */; };
 		146E27AA1BCD51F200959BBA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 146E27A11BCD51F200959BBA /* Images.xcassets */; };
-		148FBB6A1E07EDBE009ED9F3 /* SweetUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148FBB691E07EDBE009ED9F3 /* SweetUIKit.framework */; };
-		148FBB6B1E07EDBE009ED9F3 /* SweetUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 148FBB691E07EDBE009ED9F3 /* SweetUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14A10F581E0D336E00A2D098 /* suncalc.js in Resources */ = {isa = PBXBuildFile; fileRef = 14A10F571E0D336E00A2D098 /* suncalc.js */; };
 		14A10F5B1E0D339D00A2D098 /* SunTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A10F5A1E0D339D00A2D098 /* SunTime.swift */; };
 		14A3E1781E09E6BF002F0D6C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A3E1771E09E6BF002F0D6C /* Settings.swift */; };
 		44227E8F1E067A1E002B911B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
+		9F0935BD25E51F9500EB0510 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0387E4CF1E58F2E10029E7CF /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F09E4E4203C6556000A0A0F /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B281DE9D434003F77B9 /* LocationTracker.swift */; };
 		9F09E4E5203C6598000A0A0F /* SunTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A10F5A1E0D339D00A2D098 /* SunTime.swift */; };
 		9F09E4E6203C66DF000A0A0F /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146AE9AC1E08B050003EE788 /* Date+Helpers.swift */; };
@@ -39,9 +36,12 @@
 		9F09E4E9203C6D5E000A0A0F /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
 		9F09E4EA203C6D77000A0A0F /* Numbers+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */; };
 		9F09E4EB203C6DA3000A0A0F /* String + Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */; };
-		9F47BA2E203323E400FB805B /* SweetSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F47BA2D203323E400FB805B /* SweetSwift.framework */; };
-		9F47BA2F203323E400FB805B /* SweetSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F47BA2D203323E400FB805B /* SweetSwift.framework */; };
-		9F47BA302033241500FB805B /* SweetSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9F47BA2D203323E400FB805B /* SweetSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9F6F1B5325E5231300F9390B /* SweetUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9F6F1B5225E5231300F9390B /* SweetUIKit */; };
+		9F6F1B5E25E524F500F9390B /* SweetUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9F6F1B5D25E524F500F9390B /* SweetUIKit */; };
+		9FDFFFD825E5203D0042595F /* SweetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FDFFFD725E5203D0042595F /* SweetSwift */; };
+		9FDFFFDA25E5203D0042595F /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 9FDFFFD925E5203D0042595F /* TinyConstraints */; };
+		9FDFFFF025E520E10042595F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1F1DE9D3E0003F77B9 /* Theme.swift */; };
+		9FDFFFFA25E521050042595F /* SweetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FDFFFF925E521050042595F /* SweetSwift */; };
 		9FFFCA45200384530060F86F /* MessageGenerationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1483128D1B92C11500266943 /* MessageGenerationTests.swift */; };
 		9FFFCA46200384530060F86F /* SunCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F37F921E0D554700005101 /* SunCalcTests.swift */; };
 		9FFFCA47200384530060F86F /* SunPhaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6F3C91E08735200F9C3F6 /* SunPhaseTests.swift */; };
@@ -62,15 +62,13 @@
 		E657B30B21593091000E1C6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E657B30E21593091000E1C6F /* Localizable.stringsdict */; };
 		E657B30C21593091000E1C6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E657B30E21593091000E1C6F /* Localizable.stringsdict */; };
 		E657B31921593BB0000E1C6F /* SweetSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F47BA2D203323E400FB805B /* SweetSwift.framework */; };
-		E68BF7D0213692CC00E954B4 /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */; };
-		E68BF7D1213692CC00E954B4 /* TinyConstraints.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E6D9D5071E02D7970007006D /* InformationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D9D5061E02D7970007006D /* InformationButton.swift */; };
 		E6E337AE1E044AD600787E88 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E337AD1E044AD600787E88 /* InformationViewController.swift */; };
 		E6F604701E08106000A6461A /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F6046F1E08106000A6461A /* CloseButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0387E4D91E58F2E10029E7CF /* PBXContainerItemProxy */ = {
+		9F0935BE25E51F9500EB0510 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 147A139C1B92B9E300E52F9C /* Project object */;
 			proxyType = 1;
@@ -87,28 +85,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		0387E4DF1E58F2E10029E7CF /* Embed App Extensions */ = {
+		9F0935C025E51F9500EB0510 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				0387E4DB1E58F2E10029E7CF /* Today.appex in Embed App Extensions */,
+				9F0935BD25E51F9500EB0510 /* Today.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		14F3560E1DE9C2020016AA17 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				E68BF7D1213692CC00E954B4 /* TinyConstraints.framework in Embed Frameworks */,
-				9F47BA302033241500FB805B /* SweetSwift.framework in Embed Frameworks */,
-				148FBB6B1E07EDBE009ED9F3 /* SweetUIKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -121,7 +106,6 @@
 		03C6289D1E58F71F00A69F3D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		03C628B01E59AE8F00A69F3D /* TodayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		03C628B21E59B55100A69F3D /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
-		1418DB881E08A8BF0041C201 /* Suntimes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Suntimes.framework; path = Carthage/Build/iOS/Suntimes.framework; sourceTree = "<group>"; };
 		141E1D1B1E3B719C0037B45D /* Oslo.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Oslo.gpx; sourceTree = "<group>"; };
 		1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScreen+Helpers.swift"; sourceTree = "<group>"; };
 		143D3B1F1DE9D3E0003F77B9 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -160,7 +144,6 @@
 		E657B30D21593091000E1C6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		E68BF7CB213692AE00E954B4 /* TinyConstraints.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = TinyConstraints.framework.dSYM; path = Carthage/Build/iOS/TinyConstraints.framework.dSYM; sourceTree = "<group>"; };
 		E68BF7CD213692BA00E954B4 /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = Carthage/Build/iOS/TinyConstraints.framework; sourceTree = "<group>"; };
-		E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = Carthage/Build/iOS/TinyConstraints.framework; sourceTree = "<group>"; };
 		E6D9D5061E02D7970007006D /* InformationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationButton.swift; sourceTree = "<group>"; };
 		E6E337AD1E044AD600787E88 /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		E6F6046F1E08106000A6461A /* CloseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
@@ -171,8 +154,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FDFFFFA25E521050042595F /* SweetSwift in Frameworks */,
+				9F6F1B5E25E524F500F9390B /* SweetUIKit in Frameworks */,
 				0387E4D11E58F2E10029E7CF /* NotificationCenter.framework in Frameworks */,
-				9F47BA2F203323E400FB805B /* SweetSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,9 +164,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				148FBB6A1E07EDBE009ED9F3 /* SweetUIKit.framework in Frameworks */,
-				E68BF7D0213692CC00E954B4 /* TinyConstraints.framework in Frameworks */,
-				9F47BA2E203323E400FB805B /* SweetSwift.framework in Frameworks */,
+				9FDFFFD825E5203D0042595F /* SweetSwift in Frameworks */,
+				9F6F1B5325E5231300F9390B /* SweetUIKit in Frameworks */,
+				9FDFFFDA25E5203D0042595F /* TinyConstraints in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,7 +196,6 @@
 		1418DB8A1E08A8C70041C201 /* Test Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1418DB881E08A8BF0041C201 /* Suntimes.framework */,
 			);
 			name = "Test Frameworks";
 			sourceTree = "<group>";
@@ -278,7 +261,6 @@
 		147A139B1B92B9E300E52F9C = {
 			isa = PBXGroup;
 			children = (
-				E68BF7CF213692CC00E954B4 /* TinyConstraints.framework */,
 				141A6FD31BDE2DAB00CB6E82 /* Library */,
 				146E278A1BCD51C800959BBA /* iOS */,
 				1483128A1B92C11500266943 /* Tests */,
@@ -341,6 +323,10 @@
 			dependencies = (
 			);
 			name = Today;
+			packageProductDependencies = (
+				9FDFFFF925E521050042595F /* SweetSwift */,
+				9F6F1B5D25E524F500F9390B /* SweetUIKit */,
+			);
 			productName = Today;
 			productReference = 0387E4CF1E58F2E10029E7CF /* Today.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -353,16 +339,19 @@
 				146E27861BCD51C800959BBA /* Frameworks */,
 				146E27871BCD51C800959BBA /* Resources */,
 				14425E4A1C96FED200F0FAD1 /* Highlight TODOs, FIXMEs and WARNINGs */,
-				14F3560E1DE9C2020016AA17 /* Embed Frameworks */,
-				14C9C6951E05641300A8DACB /* Carthage */,
-				0387E4DF1E58F2E10029E7CF /* Embed App Extensions */,
+				9F0935C025E51F9500EB0510 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				0387E4DA1E58F2E10029E7CF /* PBXTargetDependency */,
+				9F0935BF25E51F9500EB0510 /* PBXTargetDependency */,
 			);
 			name = Daylight;
+			packageProductDependencies = (
+				9FDFFFD725E5203D0042595F /* SweetSwift */,
+				9FDFFFD925E5203D0042595F /* TinyConstraints */,
+				9F6F1B5225E5231300F9390B /* SweetUIKit */,
+			);
 			productName = iOS;
 			productReference = 146E27891BCD51C800959BBA /* Daylight.app */;
 			productType = "com.apple.product-type.application";
@@ -393,7 +382,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					0387E4CE1E58F2E10029E7CF = {
@@ -417,13 +406,18 @@
 			};
 			buildConfigurationList = 147A139F1B92B9E300E52F9C /* Build configuration list for PBXProject "Daylight" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
 			mainGroup = 147A139B1B92B9E300E52F9C;
+			packageReferences = (
+				9F09782125E51CFA00D42BA3 /* XCRemoteSwiftPackageReference "SweetSwift" */,
+				9F09782625E51D2900D42BA3 /* XCRemoteSwiftPackageReference "TinyConstraints" */,
+				9F6F1B5125E5231300F9390B /* XCRemoteSwiftPackageReference "SweetUIKit" */,
+			);
 			productRefGroup = 147A13A51B92B9E300E52F9C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -483,23 +477,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\nTAGS=\"\\/\\/ TODO:|\\/\\/ FIXME:|\\/\\/ WARNING:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"\nfi\n";
 		};
-		14C9C6951E05641300A8DACB /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/SweetUIKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SweetSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/TinyConstraints.framework",
-			);
-			name = Carthage;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -516,11 +493,11 @@
 				9F09E4EB203C6DA3000A0A0F /* String + Helpers.swift in Sources */,
 				9F09E4E6203C66DF000A0A0F /* Date+Helpers.swift in Sources */,
 				03C628B11E59AE8F00A69F3D /* TodayView.swift in Sources */,
-				03C628A81E58FAD800A69F3D /* Theme.swift in Sources */,
 				9F09E4E4203C6556000A0A0F /* LocationTracker.swift in Sources */,
 				9F09E4E5203C6598000A0A0F /* SunTime.swift in Sources */,
 				D197B77BA2E4064E5704FAEB /* SunCalcEngine.swift in Sources */,
 				D197B4F7F56140F1BE0CCC13 /* DaylightModelController.swift in Sources */,
+				9FDFFFF025E520E10042595F /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,10 +545,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0387E4DA1E58F2E10029E7CF /* PBXTargetDependency */ = {
+		9F0935BF25E51F9500EB0510 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0387E4CE1E58F2E10029E7CF /* Today */;
-			targetProxy = 0387E4D91E58F2E10029E7CF /* PBXContainerItemProxy */;
+			targetProxy = 9F0935BE25E51F9500EB0510 /* PBXContainerItemProxy */;
 		};
 		9FFFCA41200384390060F86F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -607,18 +584,18 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 29X3GG489T;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Today/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bakkenbaeck.daylight.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -628,37 +605,35 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = 29X3GG489T;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Today/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bakkenbaeck.daylight.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 		146E27971BCD51C800959BBA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 29X3GG489T;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = iOS/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bakkenbaeck.daylight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/../SunViewPlayground\"/**";
 			};
 			name = Debug;
@@ -666,19 +641,17 @@
 		146E27981BCD51C800959BBA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 29X3GG489T;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = iOS/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bakkenbaeck.daylight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/../SunViewPlayground\"/**";
 			};
 			name = Release;
@@ -705,6 +678,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -730,11 +704,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -760,6 +735,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -778,10 +754,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -799,18 +777,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 29X3GG489T;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = no.bakkenbaeck.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Daylight.app/Daylight";
 			};
@@ -828,17 +806,17 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 29X3GG489T;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = no.bakkenbaeck.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Daylight.app/Daylight";
 			};
@@ -884,6 +862,61 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9F09782125E51CFA00D42BA3 /* XCRemoteSwiftPackageReference "SweetSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Elland/SweetSwift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		9F09782625E51D2900D42BA3 /* XCRemoteSwiftPackageReference "TinyConstraints" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/roberthein/TinyConstraints";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		9F6F1B5125E5231300F9390B /* XCRemoteSwiftPackageReference "SweetUIKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Elland/SweetUIKit";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9F6F1B5225E5231300F9390B /* SweetUIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F6F1B5125E5231300F9390B /* XCRemoteSwiftPackageReference "SweetUIKit" */;
+			productName = SweetUIKit;
+		};
+		9F6F1B5D25E524F500F9390B /* SweetUIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F6F1B5125E5231300F9390B /* XCRemoteSwiftPackageReference "SweetUIKit" */;
+			productName = SweetUIKit;
+		};
+		9FDFFFD725E5203D0042595F /* SweetSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F09782125E51CFA00D42BA3 /* XCRemoteSwiftPackageReference "SweetSwift" */;
+			productName = SweetSwift;
+		};
+		9FDFFFD925E5203D0042595F /* TinyConstraints */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F09782625E51D2900D42BA3 /* XCRemoteSwiftPackageReference "TinyConstraints" */;
+			productName = TinyConstraints;
+		};
+		9FDFFFF925E521050042595F /* SweetSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F09782125E51CFA00D42BA3 /* XCRemoteSwiftPackageReference "SweetSwift" */;
+			productName = SweetSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 147A139C1B92B9E300E52F9C /* Project object */;
 }
