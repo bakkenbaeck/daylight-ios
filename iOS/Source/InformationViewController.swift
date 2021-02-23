@@ -1,4 +1,5 @@
 import UIKit
+import SweetUIKit
 
 protocol InformationViewControllerDelegate: class {
     func didToggleNotifications(_ isNotificationsEnabled: Bool, on informationViewController: InformationViewController)
