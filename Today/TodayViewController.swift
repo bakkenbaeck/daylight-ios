@@ -12,7 +12,6 @@ import UIKit
 @objc(TodayViewController)
 
 class TodayViewController: UIViewController, NCWidgetProviding {
-
     private var daylightController: DaylightModelController? {
         didSet {
             guard let daylightController = self.daylightController else { return }

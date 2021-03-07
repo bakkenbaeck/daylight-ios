@@ -5,11 +5,10 @@
 //  Created by Dylan Marriott on 19/02/17.
 //
 
-import Foundation
 import UIKit
 
 class TodayView: UIView {
-
+    
     private lazy var sunriseIcon: UIImageView = {
         let sunriseIcon = UIImageView(image: #imageLiteral(resourceName: "sunrise").withRenderingMode(.alwaysTemplate))
         sunriseIcon.translatesAutoresizingMaskIntoConstraints = false
@@ -106,7 +105,7 @@ class TodayView: UIView {
             messageLabel.attributedText = attributedString
     }
 
-    private func color(for sunPhase: SunTime.SunPhase) -> UIColor {
+    public func color(for sunPhase: SunTime.SunPhase) -> UIColor {
         if sunPhase == .night || sunPhase == .predawn {
             // Theme.nightText is a bit too bright on the light background of the widget
             // Let's just use twiligtText color here, it fits well for the night too :)

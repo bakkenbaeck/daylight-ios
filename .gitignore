@@ -34,6 +34,7 @@ Pods
 # Carthage
 Checkouts
 Carthage/Build/Mac
+Carthage/Build/iOS
 Carthage/Build/tvOS
 Carthage/Build/watchOS
 

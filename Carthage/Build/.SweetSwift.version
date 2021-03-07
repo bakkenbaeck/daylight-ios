@@ -1,9 +1,20 @@
 {
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
   "commitish" : "1.13.0",
   "iOS" : [
     {
+      "hash" : "0e825f385ad218b671b251019ad6a04383ab397083b89a648645730ece31c9e6",
       "name" : "SweetSwift",
-      "hash" : "29a03b15aa72c2a91206a0c28f6bbaec484e51edb7679ddaae5932404df98ecb"
+      "linking" : "dynamic",
+      "swiftToolchainVersion" : "5.3 (swiftlang-1200.0.29.2 clang-1200.0.30.1)"
     }
   ]
 }
