@@ -9,6 +9,34 @@ import WidgetKit
 import SwiftUI
 import CoreLocation
 
+extension View {
+    
+    /// Hide or show the view based on a boolean value.
+    ///
+    /// Example for visibility:
+    ///
+    ///     Text("Label")
+    ///         .isHidden(true)
+    ///
+    /// Example for complete removal:
+    ///
+    ///     Text("Label")
+    ///         .isHidden(true, remove: true)
+    ///
+    /// - Parameters:
+    ///   - hidden: Set to `false` to show the view. Set to `true` to hide the view.
+    ///   - remove: Boolean value indicating whether or not to remove the view.
+    @ViewBuilder func isHidden(_ hidden: Bool, remove: Bool = false) -> some View {
+        if hidden {
+            if !remove {
+                self.hidden()
+            }
+        } else {
+            self
+        }
+    }
+}
+
 class WidgetLocationManager: NSObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager? {
         didSet {
@@ -100,49 +128,43 @@ private func color(for sunPhase: SunTime.SunPhase) -> UIColor {
 
 struct WidgetSunView: View {
     var entry: Provider.Entry
-//
-//    func location(for percentageInDay: CGFloat) -> SunViewLocation {
-//        let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
-//        let x = 50.0 + cos(position) * 50.0
-//        let y = abs(sin(position) * 100.0)
-//        let absoluteX = ((self.bounds.width - SunView.sunSize) / 100) * x
-//        let absoluteY = -(self.aboveHorizonLayoutView.frame.height / 100.0) * y + SunView.sunSize
-//
-//        return SunViewLocation(x: absoluteX, y: absoluteY)
-//    }
-//    
     let sunSize = CGFloat(12.0)
-//    var sunViewLocation = location(for: daylightController.percentageInDay)
     
+    func location(for percentageInDay: CGFloat, width: CGFloat, height: CGFloat) -> SunViewLocation {
+        let position = CGFloat.pi + (percentageInDay * CGFloat.pi)
+        let x = 50.0 + cos(position) * 50.0
+        let y = abs(sin(position) * 100.0)
+        let absoluteX = ((width - sunSize) / 100) * x
+        let absoluteY = -(height / 100.0) * y + sunSize
+
+        print("printing absolute")
+        print("percentageInDay", percentageInDay)
+        print("position", position)
+        print(absoluteX)
+        print(absoluteY)
+        
+        return SunViewLocation(x: absoluteX, y: absoluteY)
+    }
+        
     var sunViewLeftAnchor: NSLayoutConstraint?
     var sunViewBottomAnchor: NSLayoutConstraint?
     
     
     var body: some View {
-        let sun = Image(uiImage: UIImage(named: "sun")!.withRenderingMode(.alwaysTemplate)).resizable().frame(width: sunSize, height: sunSize, alignment: .center)
-        
-        let moon = Image(uiImage: UIImage(named: "moon")!.withRenderingMode(.alwaysTemplate)).resizable().frame(width: sunSize * 0.5, height: sunSize, alignment: .leading)
-        
-//        Text("hello")
-        VStack(alignment: .center, spacing: 12, content: {
-            sun
-            moon
-        })
-    }
-}
-
-// View for showing weather message and country
-struct WidgetTextView: View {
-    var entry: Provider.Entry
-    
-    var body: some View {
         ZStack {
             Color(entry.daylightController.primaryColor).ignoresSafeArea()
             
-            VStack(alignment: .center, spacing: 12, content: {
-                Text(entry.daylightController.stringMessage!).multilineTextAlignment(.center).font(Font(Theme.light(size: 15)))
-                Text(entry.daylightController.locationLabel).font(Font(Theme.light(size: 12)))
-            }).padding(.horizontal).foregroundColor(Color(entry.daylightController.secondaryColor))
+            GeometryReader { geo in
+                let sun = Image(uiImage: UIImage(named: "sun")!.withRenderingMode(.alwaysTemplate)).resizable().frame(width: sunSize, height: sunSize, alignment: .center)
+                
+                let moon = Image(uiImage: UIImage(named: "moon")!.withRenderingMode(.alwaysTemplate)).resizable().frame(width: sunSize * 0.5, height: sunSize, alignment: .leading)
+                
+                let sunLocation = location(for: entry.daylightController.percentageInDay, width: geo.size.width, height: geo.size.height)
+                
+                sun.position(x: sunLocation.x, y: sunLocation.y).foregroundColor(Color(entry.daylightController.secondaryColor)).isHidden(entry.daylightController.shouldShowMoon)
+                
+                moon.position(x: sunLocation.x, y: sunLocation.y).foregroundColor(Color(entry.daylightController.secondaryColor)).isHidden(!entry.daylightController.shouldShowMoon)
+            }
         }
     }
 }
@@ -176,7 +198,8 @@ struct DaylightWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             DaylightWidgetEntryView(entry: entry)
         }
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        .supportedFamilies([.systemSmall, .systemMedium])
+//        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
         .configurationDisplayName("Daylight")
         .description("The perfect assistant for the long and dark winters of the north.")
     }
