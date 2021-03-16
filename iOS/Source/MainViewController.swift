@@ -53,6 +53,7 @@ class MainViewController: UIViewController {
         button.titleLabel?.font = Theme.light(size: 16)
         button.addTarget(self, action: #selector(didSelectShareButton(button:)), for: .touchUpInside)
 
+        
         return button
     }()
 
@@ -132,8 +133,6 @@ class MainViewController: UIViewController {
         self.locationLabelBottomAnchor = self.locationLabel.bottom(to: self.view, offset: -self.insets.top)
         self.locationLabelLeftAnchor = self.locationLabel.left(to: self.view, offset: self.insets.left)
         self.locationLabelRightAnchor = self.locationLabel.right(to: self.shareButton, offset: -10)
-        
-//        self.locationLabel.backgroundColor = UIColor.blue
     }
 
     @objc func didTapAboutButton(button: UIButton) {
@@ -150,8 +149,10 @@ class MainViewController: UIViewController {
     }
 
     @objc func didSelectShareButton(button: UIButton) {
-        let screenshot = self.screenshot()
-
+        print("clicked on share button")
+//        let screenshot = self.screenshot()
+        let screenshot = takeScreenshot(of: self.view)
+        
         let activityController = UIActivityViewController(activityItems: [screenshot, "Made with #daylightapp."], applicationActivities: nil)
         activityController.excludedActivityTypes = [UIActivity.ActivityType.airDrop]
         self.present(activityController, animated: true, completion: nil)
@@ -177,6 +178,20 @@ class MainViewController: UIViewController {
         }
     }
 
+    func takeScreenshot(of view: UIView) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(
+            CGSize(width: view.bounds.width, height: view.bounds.height),
+            false,
+            2
+        )
+
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let screenshot = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return screenshot
+    }
+    
     func screenshot() -> UIImage {
         let margin: CGFloat = 20
         let height: CGFloat = 450
