@@ -148,8 +148,7 @@ class MainViewController: UIViewController {
         }
     }
 
-    @objc func didSelectShareButton(button: UIButton) {
-        print("clicked on share button")
+    @objc func didSelectShareButton(button: UIButton) {    
 //        let screenshot = self.screenshot()
         let screenshot = takeScreenshot(of: self.view)
         
