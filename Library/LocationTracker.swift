@@ -24,11 +24,11 @@ class LocationTracker: NSObject {
     }()
 
     var authorizationStatus: CLAuthorizationStatus {
-        return CLLocationManager.authorizationStatus()
+        return locationManager.authorizationStatus
     }
 
     func locateIfPossible() {
-        switch CLLocationManager.authorizationStatus() {
+        switch locationManager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
             self.locationManager.startUpdatingLocation()
         case .notDetermined:
