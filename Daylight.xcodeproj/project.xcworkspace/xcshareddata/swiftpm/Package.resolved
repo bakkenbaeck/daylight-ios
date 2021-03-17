@@ -3,19 +3,19 @@
     "pins": [
       {
         "package": "SweetSwift",
-        "repositoryURL": "https://github.com/Elland/SweetSwift",
+        "repositoryURL": "https://github.com/bakkenbaeck/SweetSwift.git",
         "state": {
           "branch": "master",
-          "revision": "827f3473f2dc50b44e2e2494c7a611ba039710d9",
+          "revision": "af2c73ab07bfdf763a86c3d5241ff94cd2b0b2ca",
           "version": null
         }
       },
       {
         "package": "SweetUIKit",
-        "repositoryURL": "https://github.com/Elland/SweetUIKit",
+        "repositoryURL": "https://github.com/bakkenbaeck/SweetUIKit.git",
         "state": {
           "branch": "master",
-          "revision": "3a6367e989dce4d52dfdf21d6aa87d3659623d61",
+          "revision": "ccb04da8f63b9a09949e835ec6b5c8a48c711eaa",
           "version": null
         }
       },

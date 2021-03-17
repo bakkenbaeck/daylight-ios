@@ -27,6 +27,10 @@
 		14A10F5B1E0D339D00A2D098 /* SunTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A10F5A1E0D339D00A2D098 /* SunTime.swift */; };
 		14A3E1781E09E6BF002F0D6C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A3E1771E09E6BF002F0D6C /* Settings.swift */; };
 		44227E8F1E067A1E002B911B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
+		6E46663B2602493900CF7E99 /* SweetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6E46663A2602493900CF7E99 /* SweetSwift */; };
+		6E4666442602496200CF7E99 /* SweetUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6E4666432602496200CF7E99 /* SweetUIKit */; };
+		6E46665226024A5D00CF7E99 /* SweetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6E46665126024A5D00CF7E99 /* SweetSwift */; };
+		6E46665A26024A8200CF7E99 /* SweetUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6E46665926024A8200CF7E99 /* SweetUIKit */; };
 		9F0935BD25E51F9500EB0510 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0387E4CF1E58F2E10029E7CF /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F09E4E4203C6556000A0A0F /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B281DE9D434003F77B9 /* LocationTracker.swift */; };
 		9F09E4E5203C6598000A0A0F /* SunTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A10F5A1E0D339D00A2D098 /* SunTime.swift */; };
@@ -36,12 +40,8 @@
 		9F09E4E9203C6D5E000A0A0F /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
 		9F09E4EA203C6D77000A0A0F /* Numbers+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */; };
 		9F09E4EB203C6DA3000A0A0F /* String + Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */; };
-		9F6F1B5325E5231300F9390B /* SweetUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9F6F1B5225E5231300F9390B /* SweetUIKit */; };
-		9F6F1B5E25E524F500F9390B /* SweetUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9F6F1B5D25E524F500F9390B /* SweetUIKit */; };
-		9FDFFFD825E5203D0042595F /* SweetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FDFFFD725E5203D0042595F /* SweetSwift */; };
 		9FDFFFDA25E5203D0042595F /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 9FDFFFD925E5203D0042595F /* TinyConstraints */; };
 		9FDFFFF025E520E10042595F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1F1DE9D3E0003F77B9 /* Theme.swift */; };
-		9FDFFFFA25E521050042595F /* SweetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FDFFFF925E521050042595F /* SweetSwift */; };
 		9FFFCA45200384530060F86F /* MessageGenerationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1483128D1B92C11500266943 /* MessageGenerationTests.swift */; };
 		9FFFCA46200384530060F86F /* SunCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F37F921E0D554700005101 /* SunCalcTests.swift */; };
 		9FFFCA47200384530060F86F /* SunPhaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6F3C91E08735200F9C3F6 /* SunPhaseTests.swift */; };
@@ -154,9 +154,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FDFFFFA25E521050042595F /* SweetSwift in Frameworks */,
-				9F6F1B5E25E524F500F9390B /* SweetUIKit in Frameworks */,
 				0387E4D11E58F2E10029E7CF /* NotificationCenter.framework in Frameworks */,
+				6E46665A26024A8200CF7E99 /* SweetUIKit in Frameworks */,
+				6E46665226024A5D00CF7E99 /* SweetSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,8 +164,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FDFFFD825E5203D0042595F /* SweetSwift in Frameworks */,
-				9F6F1B5325E5231300F9390B /* SweetUIKit in Frameworks */,
+				6E46663B2602493900CF7E99 /* SweetSwift in Frameworks */,
+				6E4666442602496200CF7E99 /* SweetUIKit in Frameworks */,
 				9FDFFFDA25E5203D0042595F /* TinyConstraints in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,8 +324,8 @@
 			);
 			name = Today;
 			packageProductDependencies = (
-				9FDFFFF925E521050042595F /* SweetSwift */,
-				9F6F1B5D25E524F500F9390B /* SweetUIKit */,
+				6E46665126024A5D00CF7E99 /* SweetSwift */,
+				6E46665926024A8200CF7E99 /* SweetUIKit */,
 			);
 			productName = Today;
 			productReference = 0387E4CF1E58F2E10029E7CF /* Today.appex */;
@@ -348,9 +348,9 @@
 			);
 			name = Daylight;
 			packageProductDependencies = (
-				9FDFFFD725E5203D0042595F /* SweetSwift */,
 				9FDFFFD925E5203D0042595F /* TinyConstraints */,
-				9F6F1B5225E5231300F9390B /* SweetUIKit */,
+				6E46663A2602493900CF7E99 /* SweetSwift */,
+				6E4666432602496200CF7E99 /* SweetUIKit */,
 			);
 			productName = iOS;
 			productReference = 146E27891BCD51C800959BBA /* Daylight.app */;
@@ -414,9 +414,9 @@
 			);
 			mainGroup = 147A139B1B92B9E300E52F9C;
 			packageReferences = (
-				9F09782125E51CFA00D42BA3 /* XCRemoteSwiftPackageReference "SweetSwift" */,
 				9F09782625E51D2900D42BA3 /* XCRemoteSwiftPackageReference "TinyConstraints" */,
-				9F6F1B5125E5231300F9390B /* XCRemoteSwiftPackageReference "SweetUIKit" */,
+				6E4666392602493900CF7E99 /* XCRemoteSwiftPackageReference "SweetSwift" */,
+				6E4666422602496200CF7E99 /* XCRemoteSwiftPackageReference "SweetUIKit" */,
 			);
 			productRefGroup = 147A13A51B92B9E300E52F9C /* Products */;
 			projectDirPath = "";
@@ -864,9 +864,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9F09782125E51CFA00D42BA3 /* XCRemoteSwiftPackageReference "SweetSwift" */ = {
+		6E4666392602493900CF7E99 /* XCRemoteSwiftPackageReference "SweetSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Elland/SweetSwift";
+			repositoryURL = "https://github.com/bakkenbaeck/SweetSwift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		6E4666422602496200CF7E99 /* XCRemoteSwiftPackageReference "SweetUIKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bakkenbaeck/SweetUIKit.git";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -880,41 +888,33 @@
 				kind = branch;
 			};
 		};
-		9F6F1B5125E5231300F9390B /* XCRemoteSwiftPackageReference "SweetUIKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Elland/SweetUIKit";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9F6F1B5225E5231300F9390B /* SweetUIKit */ = {
+		6E46663A2602493900CF7E99 /* SweetSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F6F1B5125E5231300F9390B /* XCRemoteSwiftPackageReference "SweetUIKit" */;
-			productName = SweetUIKit;
-		};
-		9F6F1B5D25E524F500F9390B /* SweetUIKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F6F1B5125E5231300F9390B /* XCRemoteSwiftPackageReference "SweetUIKit" */;
-			productName = SweetUIKit;
-		};
-		9FDFFFD725E5203D0042595F /* SweetSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F09782125E51CFA00D42BA3 /* XCRemoteSwiftPackageReference "SweetSwift" */;
+			package = 6E4666392602493900CF7E99 /* XCRemoteSwiftPackageReference "SweetSwift" */;
 			productName = SweetSwift;
+		};
+		6E4666432602496200CF7E99 /* SweetUIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E4666422602496200CF7E99 /* XCRemoteSwiftPackageReference "SweetUIKit" */;
+			productName = SweetUIKit;
+		};
+		6E46665126024A5D00CF7E99 /* SweetSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E4666392602493900CF7E99 /* XCRemoteSwiftPackageReference "SweetSwift" */;
+			productName = SweetSwift;
+		};
+		6E46665926024A8200CF7E99 /* SweetUIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E4666422602496200CF7E99 /* XCRemoteSwiftPackageReference "SweetUIKit" */;
+			productName = SweetUIKit;
 		};
 		9FDFFFD925E5203D0042595F /* TinyConstraints */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9F09782625E51D2900D42BA3 /* XCRemoteSwiftPackageReference "TinyConstraints" */;
 			productName = TinyConstraints;
-		};
-		9FDFFFF925E521050042595F /* SweetSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F09782125E51CFA00D42BA3 /* XCRemoteSwiftPackageReference "SweetSwift" */;
-			productName = SweetSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
