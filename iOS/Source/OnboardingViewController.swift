@@ -129,6 +129,7 @@ class OnboardingViewController: UIViewController {
 
         let mainController = MainViewController(with: daylightController)
         mainController.modalTransitionStyle = .crossDissolve
+        mainController.modalPresentationStyle = .fullScreen
         self.present(mainController, animated: true)
     }
 
