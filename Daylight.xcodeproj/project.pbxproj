@@ -7,13 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0387E4D41E58F2E10029E7CF /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0387E4D31E58F2E10029E7CF /* TodayViewController.swift */; };
-		0387E4DB1E58F2E10029E7CF /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0387E4CF1E58F2E10029E7CF /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		03C6289E1E58F71F00A69F3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03C6289D1E58F71F00A69F3D /* Images.xcassets */; };
-		03C628A81E58FAD800A69F3D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1F1DE9D3E0003F77B9 /* Theme.swift */; };
-		03C628AF1E59A60200A69F3D /* suncalc.js in Resources */ = {isa = PBXBuildFile; fileRef = 14A10F571E0D336E00A2D098 /* suncalc.js */; };
-		03C628B11E59AE8F00A69F3D /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C628B01E59AE8F00A69F3D /* TodayView.swift */; };
-		03C628B31E59B55100A69F3D /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C628B21E59B55100A69F3D /* UIColor+Helpers.swift */; };
 		141E1D1C1E3B719C0037B45D /* Oslo.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 141E1D1B1E3B719C0037B45D /* Oslo.gpx */; };
 		1432419B1E1BF4D9000E6950 /* UIScreen+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */; };
 		143D3B221DE9D3E0003F77B9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B1F1DE9D3E0003F77B9 /* Theme.swift */; };
@@ -28,20 +21,10 @@
 		14A10F5B1E0D339D00A2D098 /* SunTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A10F5A1E0D339D00A2D098 /* SunTime.swift */; };
 		14A3E1781E09E6BF002F0D6C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A3E1771E09E6BF002F0D6C /* Settings.swift */; };
 		44227E8F1E067A1E002B911B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
-		9F09E4E4203C6556000A0A0F /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B281DE9D434003F77B9 /* LocationTracker.swift */; };
-		9F09E4E5203C6598000A0A0F /* SunTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A10F5A1E0D339D00A2D098 /* SunTime.swift */; };
-		9F09E4E6203C66DF000A0A0F /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146AE9AC1E08B050003EE788 /* Date+Helpers.swift */; };
-		9F09E4E7203C66F8000A0A0F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
-		9F09E4E8203C689A000A0A0F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14507A771E09F8C60032F0AF /* Message.swift */; };
-		9F09E4E9203C6D5E000A0A0F /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
-		9F09E4EA203C6D77000A0A0F /* Numbers+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */; };
-		9F09E4EB203C6DA3000A0A0F /* String + Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */; };
 		9F21822D2561B33700E4CAA7 /* suncalc.js in Resources */ = {isa = PBXBuildFile; fileRef = 14A10F571E0D336E00A2D098 /* suncalc.js */; };
-		9F34125525F536F900381BA8 /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C628B21E59B55100A69F3D /* UIColor+Helpers.swift */; };
 		9F34126725F561F200381BA8 /* SunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B54C8E75BC3669A5BD10 /* SunView.swift */; };
 		9F34127225F5687300381BA8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 146E27A11BCD51F200959BBA /* Images.xcassets */; };
 		9F3C5C7D2561D5D90032EBB1 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E657B30E21593091000E1C6F /* Localizable.stringsdict */; };
-		9F40BFF325532247007B0C87 /* DaylightWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F40BFF225532247007B0C87 /* DaylightWidget.swift */; };
 		9F40BFF525532247007B0C87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F40BFF425532247007B0C87 /* Assets.xcassets */; };
 		9F40BFF925532247007B0C87 /* DaylightWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F40BFEC25532247007B0C87 /* DaylightWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F40C00A25533AA0007B0C87 /* SunTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A10F5A1E0D339D00A2D098 /* SunTime.swift */; };
@@ -52,21 +35,20 @@
 		9F40C00F25533AA0007B0C87 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44227E8E1E067A1E002B911B /* Location.swift */; };
 		9F40C01025533AA0007B0C87 /* DaylightModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */; };
 		9F40C01125533AA0007B0C87 /* SunCalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7CA2B823834F1266457 /* SunCalcEngine.swift */; };
-		9F40C01225533AA0007B0C87 /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D3B281DE9D434003F77B9 /* LocationTracker.swift */; };
 		9F40C01325533AA0007B0C87 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14507A771E09F8C60032F0AF /* Message.swift */; };
 		9F40C01425533AA0007B0C87 /* UIScreen+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */; };
 		9F40C01525533AA0007B0C87 /* Numbers+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */; };
 		9F40C01625533AA0007B0C87 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A3E1771E09E6BF002F0D6C /* Settings.swift */; };
 		9F40C01725533AA0007B0C87 /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
+		9F8273EC2606004C007A4472 /* WidgetLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8273EB2606004C007A4472 /* WidgetLocationManager.swift */; };
 		9FA5B68E25F58FB2001F6770 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA5B68D25F58FB2001F6770 /* TinyConstraints */; };
 		9FA5B69025F58FB9001F6770 /* SweetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA5B68F25F58FB9001F6770 /* SweetSwift */; };
 		9FA5B69225F58FC0001F6770 /* SweetUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA5B69125F58FC0001F6770 /* SweetUIKit */; };
-		9FA5B69425F58FDC001F6770 /* SweetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA5B69325F58FDC001F6770 /* SweetSwift */; };
 		9FA5B69625F58FF0001F6770 /* SweetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA5B69525F58FF0001F6770 /* SweetSwift */; };
 		9FA5B69825F58FF5001F6770 /* SweetUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA5B69725F58FF5001F6770 /* SweetUIKit */; };
-		9FA5B6AA25F59225001F6770 /* SweetUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA5B6A925F59225001F6770 /* SweetUIKit */; };
 		9FA5B6B825F5930E001F6770 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA5B6B725F5930E001F6770 /* TinyConstraints */; };
 		9FA5B6D225F59E1C001F6770 /* WidgetTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA5B6D125F59E1C001F6770 /* WidgetTextView.swift */; };
+		9FB172F92602A8960005C05B /* DaylightWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F40BFF225532247007B0C87 /* DaylightWidget.swift */; };
 		9FFFCA45200384530060F86F /* MessageGenerationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1483128D1B92C11500266943 /* MessageGenerationTests.swift */; };
 		9FFFCA46200384530060F86F /* SunCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F37F921E0D554700005101 /* SunCalcTests.swift */; };
 		9FFFCA47200384530060F86F /* SunPhaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6F3C91E08735200F9C3F6 /* SunPhaseTests.swift */; };
@@ -77,28 +59,18 @@
 		D197B2A38145C1C1E03EC48D /* String + Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BB965AB7D0E7EC42A89D /* String + Helpers.swift */; };
 		D197B46B597F265ED1413F86 /* DaylightModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */; };
 		D197B46D7347610F78A77888 /* SunCalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7CA2B823834F1266457 /* SunCalcEngine.swift */; };
-		D197B4F7F56140F1BE0CCC13 /* DaylightModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */; };
 		D197B5A6D4413DEF81D6B469 /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
-		D197B77BA2E4064E5704FAEB /* SunCalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7CA2B823834F1266457 /* SunCalcEngine.swift */; };
 		D197B9F3E7C85A89377CBAAA /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BBC3EDBF4CA099642BCE /* Notifier.swift */; };
 		D197BE076EECA92FE99E8CAB /* SunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B54C8E75BC3669A5BD10 /* SunView.swift */; };
 		D197BEFA484503CDFB2E2D77 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B19D546DE1806562CAC8 /* OnboardingViewController.swift */; };
 		E6266327215D6B2600ED14A2 /* PULL_REQUEST_TEMPLATE.md in Resources */ = {isa = PBXBuildFile; fileRef = E6266326215D6B2600ED14A2 /* PULL_REQUEST_TEMPLATE.md */; };
 		E657B30B21593091000E1C6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E657B30E21593091000E1C6F /* Localizable.stringsdict */; };
-		E657B30C21593091000E1C6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E657B30E21593091000E1C6F /* Localizable.stringsdict */; };
 		E6D9D5071E02D7970007006D /* InformationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D9D5061E02D7970007006D /* InformationButton.swift */; };
 		E6E337AE1E044AD600787E88 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E337AD1E044AD600787E88 /* InformationViewController.swift */; };
 		E6F604701E08106000A6461A /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F6046F1E08106000A6461A /* CloseButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0387E4D91E58F2E10029E7CF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 147A139C1B92B9E300E52F9C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0387E4CE1E58F2E10029E7CF;
-			remoteInfo = Today;
-		};
 		9F40BFF725532247007B0C87 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 147A139C1B92B9E300E52F9C /* Project object */;
@@ -123,7 +95,6 @@
 			dstSubfolderSpec = 13;
 			files = (
 				9F40BFF925532247007B0C87 /* DaylightWidgetExtension.appex in Embed App Extensions */,
-				0387E4DB1E58F2E10029E7CF /* Today.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,12 +102,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0387E4CF1E58F2E10029E7CF /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		0387E4D31E58F2E10029E7CF /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		0387E4D81E58F2E10029E7CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03C6289D1E58F71F00A69F3D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		03C628B01E59AE8F00A69F3D /* TodayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
-		03C628B21E59B55100A69F3D /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
 		1418DB881E08A8BF0041C201 /* Suntimes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Suntimes.framework; path = Carthage/Build/iOS/Suntimes.framework; sourceTree = "<group>"; };
 		141E1D1B1E3B719C0037B45D /* Oslo.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Oslo.gpx; sourceTree = "<group>"; };
 		1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScreen+Helpers.swift"; sourceTree = "<group>"; };
@@ -165,6 +130,7 @@
 		9F40BFF225532247007B0C87 /* DaylightWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaylightWidget.swift; sourceTree = "<group>"; };
 		9F40BFF425532247007B0C87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F40BFF625532247007B0C87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F8273EB2606004C007A4472 /* WidgetLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetLocationManager.swift; sourceTree = "<group>"; };
 		9FA5B6D125F59E1C001F6770 /* WidgetTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTextView.swift; sourceTree = "<group>"; };
 		9FFFCA3B200384390060F86F /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numbers+Time.swift"; sourceTree = "<group>"; };
@@ -183,15 +149,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0387E4CC1E58F2E10029E7CF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9FA5B6AA25F59225001F6770 /* SweetUIKit in Frameworks */,
-				9FA5B69425F58FDC001F6770 /* SweetSwift in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		146E27861BCD51C800959BBA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -222,18 +179,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0387E4D21E58F2E10029E7CF /* Today */ = {
-			isa = PBXGroup;
-			children = (
-				03C6289D1E58F71F00A69F3D /* Images.xcassets */,
-				03C628B01E59AE8F00A69F3D /* TodayView.swift */,
-				0387E4D31E58F2E10029E7CF /* TodayViewController.swift */,
-				03C628B21E59B55100A69F3D /* UIColor+Helpers.swift */,
-				0387E4D81E58F2E10029E7CF /* Info.plist */,
-			);
-			path = Today;
-			sourceTree = "<group>";
-		};
 		1418DB8A1E08A8C70041C201 /* Test Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,7 +251,6 @@
 				141A6FD31BDE2DAB00CB6E82 /* Library */,
 				146E278A1BCD51C800959BBA /* iOS */,
 				1483128A1B92C11500266943 /* Tests */,
-				0387E4D21E58F2E10029E7CF /* Today */,
 				9F40BFF125532247007B0C87 /* DaylightWidget */,
 				147A13A51B92B9E300E52F9C /* Products */,
 				1418DB8A1E08A8C70041C201 /* Test Frameworks */,
@@ -318,7 +262,6 @@
 			isa = PBXGroup;
 			children = (
 				146E27891BCD51C800959BBA /* Daylight.app */,
-				0387E4CF1E58F2E10029E7CF /* Today.appex */,
 				9FFFCA3B200384390060F86F /* Tests.xctest */,
 				9F40BFEC25532247007B0C87 /* DaylightWidgetExtension.appex */,
 			);
@@ -346,6 +289,7 @@
 				9F40BFF425532247007B0C87 /* Assets.xcassets */,
 				9F40BFF625532247007B0C87 /* Info.plist */,
 				9FA5B6D125F59E1C001F6770 /* WidgetTextView.swift */,
+				9F8273EB2606004C007A4472 /* WidgetLocationManager.swift */,
 			);
 			path = DaylightWidget;
 			sourceTree = "<group>";
@@ -360,27 +304,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0387E4CE1E58F2E10029E7CF /* Today */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0387E4DE1E58F2E10029E7CF /* Build configuration list for PBXNativeTarget "Today" */;
-			buildPhases = (
-				0387E4CB1E58F2E10029E7CF /* Sources */,
-				0387E4CC1E58F2E10029E7CF /* Frameworks */,
-				0387E4CD1E58F2E10029E7CF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Today;
-			packageProductDependencies = (
-				9FA5B69325F58FDC001F6770 /* SweetSwift */,
-				9FA5B6A925F59225001F6770 /* SweetUIKit */,
-			);
-			productName = Today;
-			productReference = 0387E4CF1E58F2E10029E7CF /* Today.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		146E27881BCD51C800959BBA /* Daylight */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 146E27961BCD51C800959BBA /* Build configuration list for PBXNativeTarget "Daylight" */;
@@ -394,7 +317,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				0387E4DA1E58F2E10029E7CF /* PBXTargetDependency */,
 				9F40BFF825532247007B0C87 /* PBXTargetDependency */,
 			);
 			name = Daylight;
@@ -459,15 +381,9 @@
 				LastUpgradeCheck = 1210;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
-					0387E4CE1E58F2E10029E7CF = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 29X3GG489T;
-						LastSwiftMigration = 0910;
-						ProvisioningStyle = Automatic;
-					};
 					146E27881BCD51C800959BBA = {
 						CreatedOnToolsVersion = 7.0.1;
-						LastSwiftMigration = 0910;
+						LastSwiftMigration = 1210;
 					};
 					9F40BFEB25532247007B0C87 = {
 						CreatedOnToolsVersion = 12.1;
@@ -501,7 +417,6 @@
 			projectRoot = "";
 			targets = (
 				146E27881BCD51C800959BBA /* Daylight */,
-				0387E4CE1E58F2E10029E7CF /* Today */,
 				9FFFCA3A200384390060F86F /* Tests */,
 				9F40BFEB25532247007B0C87 /* DaylightWidgetExtension */,
 			);
@@ -509,16 +424,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0387E4CD1E58F2E10029E7CF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				03C628AF1E59A60200A69F3D /* suncalc.js in Resources */,
-				03C6289E1E58F71F00A69F3D /* Images.xcassets in Resources */,
-				E657B30C21593091000E1C6F /* Localizable.stringsdict in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		146E27871BCD51C800959BBA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -570,27 +475,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0387E4CB1E58F2E10029E7CF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0387E4D41E58F2E10029E7CF /* TodayViewController.swift in Sources */,
-				03C628B31E59B55100A69F3D /* UIColor+Helpers.swift in Sources */,
-				9F09E4E9203C6D5E000A0A0F /* FNVHash.swift in Sources */,
-				9F09E4E7203C66F8000A0A0F /* Location.swift in Sources */,
-				9F09E4EA203C6D77000A0A0F /* Numbers+Time.swift in Sources */,
-				9F09E4E8203C689A000A0A0F /* Message.swift in Sources */,
-				9F09E4EB203C6DA3000A0A0F /* String + Helpers.swift in Sources */,
-				9F09E4E6203C66DF000A0A0F /* Date+Helpers.swift in Sources */,
-				03C628B11E59AE8F00A69F3D /* TodayView.swift in Sources */,
-				03C628A81E58FAD800A69F3D /* Theme.swift in Sources */,
-				9F09E4E4203C6556000A0A0F /* LocationTracker.swift in Sources */,
-				9F09E4E5203C6598000A0A0F /* SunTime.swift in Sources */,
-				D197B77BA2E4064E5704FAEB /* SunCalcEngine.swift in Sources */,
-				D197B4F7F56140F1BE0CCC13 /* DaylightModelController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		146E27851BCD51C800959BBA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -623,11 +507,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F40BFF325532247007B0C87 /* DaylightWidget.swift in Sources */,
 				9F40C01525533AA0007B0C87 /* Numbers+Time.swift in Sources */,
 				9F40C01725533AA0007B0C87 /* FNVHash.swift in Sources */,
 				9F40C01425533AA0007B0C87 /* UIScreen+Helpers.swift in Sources */,
 				9F40C00E25533AA0007B0C87 /* Notifier.swift in Sources */,
+				9F8273EC2606004C007A4472 /* WidgetLocationManager.swift in Sources */,
+				9FB172F92602A8960005C05B /* DaylightWidget.swift in Sources */,
 				9F40C01625533AA0007B0C87 /* Settings.swift in Sources */,
 				9F40C00B25533AA0007B0C87 /* Date+Helpers.swift in Sources */,
 				9F40C01125533AA0007B0C87 /* SunCalcEngine.swift in Sources */,
@@ -635,11 +520,9 @@
 				9FA5B6D225F59E1C001F6770 /* WidgetTextView.swift in Sources */,
 				9F40C00D25533AA0007B0C87 /* Theme.swift in Sources */,
 				9F40C01325533AA0007B0C87 /* Message.swift in Sources */,
-				9F34125525F536F900381BA8 /* UIColor+Helpers.swift in Sources */,
 				9F40C00C25533AA0007B0C87 /* String + Helpers.swift in Sources */,
 				9F40C00A25533AA0007B0C87 /* SunTime.swift in Sources */,
 				9F40C00F25533AA0007B0C87 /* Location.swift in Sources */,
-				9F40C01225533AA0007B0C87 /* LocationTracker.swift in Sources */,
 				9F34126725F561F200381BA8 /* SunView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -660,11 +543,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0387E4DA1E58F2E10029E7CF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0387E4CE1E58F2E10029E7CF /* Today */;
-			targetProxy = 0387E4D91E58F2E10029E7CF /* PBXContainerItemProxy */;
-		};
 		9F40BFF825532247007B0C87 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9F40BFEB25532247007B0C87 /* DaylightWidgetExtension */;
@@ -697,48 +575,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		0387E4DC1E58F2E10029E7CF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 29X3GG489T;
-				INFOPLIST_FILE = Today/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bakkenbaeck.daylight.Today;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.2;
-			};
-			name = Debug;
-		};
-		0387E4DD1E58F2E10029E7CF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				DEVELOPMENT_TEAM = 29X3GG489T;
-				INFOPLIST_FILE = Today/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bakkenbaeck.daylight.Today;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
-			};
-			name = Release;
-		};
 		146E27971BCD51C800959BBA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -746,6 +582,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 57;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 29X3GG489T;
 				INFOPLIST_FILE = iOS/Resources/Info.plist;
@@ -754,10 +591,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bakkenbaeck.daylight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/../SunViewPlayground\"/**";
 			};
 			name = Debug;
@@ -769,6 +607,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 57;
 				DEVELOPMENT_TEAM = 29X3GG489T;
 				INFOPLIST_FILE = iOS/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -776,10 +615,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bakkenbaeck.daylight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/../SunViewPlayground\"/**";
 			};
 			name = Release;
@@ -905,6 +745,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 57;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 29X3GG489T;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -915,9 +756,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bakkenbaeck.daylight.DaylightWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bakkenbaeck.daylight.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -939,6 +781,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 57;
 				DEVELOPMENT_TEAM = 29X3GG489T;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DaylightWidget/Info.plist;
@@ -948,8 +791,9 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.9.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bakkenbaeck.daylight.DaylightWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bakkenbaeck.daylight.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1018,15 +862,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0387E4DE1E58F2E10029E7CF /* Build configuration list for PBXNativeTarget "Today" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0387E4DC1E58F2E10029E7CF /* Debug */,
-				0387E4DD1E58F2E10029E7CF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		146E27961BCD51C800959BBA /* Build configuration list for PBXNativeTarget "Daylight" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1108,22 +943,12 @@
 			package = 9FA5B68925F58F98001F6770 /* XCRemoteSwiftPackageReference "SweetUIKit" */;
 			productName = SweetUIKit;
 		};
-		9FA5B69325F58FDC001F6770 /* SweetSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9FA5B68125F58F55001F6770 /* XCRemoteSwiftPackageReference "SweetSwift" */;
-			productName = SweetSwift;
-		};
 		9FA5B69525F58FF0001F6770 /* SweetSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9FA5B68125F58F55001F6770 /* XCRemoteSwiftPackageReference "SweetSwift" */;
 			productName = SweetSwift;
 		};
 		9FA5B69725F58FF5001F6770 /* SweetUIKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9FA5B68925F58F98001F6770 /* XCRemoteSwiftPackageReference "SweetUIKit" */;
-			productName = SweetUIKit;
-		};
-		9FA5B6A925F59225001F6770 /* SweetUIKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9FA5B68925F58F98001F6770 /* XCRemoteSwiftPackageReference "SweetUIKit" */;
 			productName = SweetUIKit;
