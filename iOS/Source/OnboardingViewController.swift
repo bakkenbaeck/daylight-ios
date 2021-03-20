@@ -142,7 +142,7 @@ class OnboardingViewController: UIViewController {
     }
 
     @objc func updateOnboarding() {
-        switch locationTracker.authorizationStatus {                                                                                                 
+        switch locationTracker.locationAuthorizationStatus() {
         case .notDetermined:
             self.onboardingState = .location
         case .denied:
