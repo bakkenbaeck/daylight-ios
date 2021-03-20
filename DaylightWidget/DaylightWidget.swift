@@ -74,7 +74,7 @@ struct DaylightWidgetEntryView : View {
             WidgetTextView(entry: entry)
         case .systemMedium:
             WidgetTextView(entry: entry)
-        case .systemLarge:
+//        case .systemLarge:
 //            WidgetSunView(entry: entry)
         default:
             WidgetTextView(entry: entry)
