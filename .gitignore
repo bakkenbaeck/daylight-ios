@@ -27,6 +27,7 @@ DerivedData
 *.xcscmblueprint
 *.gcno
 *.gcda
+.build
 
 # CocoaPods
 Pods
