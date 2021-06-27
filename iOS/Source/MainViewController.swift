@@ -4,7 +4,6 @@ import TinyConstraints
 
 class MainViewController: UIViewController {
     let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
-    let screenSize = UIScreen.main.bounds.size
 
     
     private var daylightController: DaylightModelController {

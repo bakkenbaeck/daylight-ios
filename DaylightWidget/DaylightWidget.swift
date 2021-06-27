@@ -9,19 +9,21 @@ import WidgetKit
 import SwiftUI
 import CoreLocation
 
+var placeholderLocation = Location(coordinate: CLLocationCoordinate2D(latitude: 59.8937806, longitude: 10.6450379), city: "Oslo", country: "Norway")
+
 struct Provider: TimelineProvider {
     var widgetLocationManager = WidgetLocationManager()
 
     
     func placeholder(in context: Context) -> SimpleEntry {
-        let location = Location(coordinate: CLLocationCoordinate2D(latitude: 59.8937806, longitude: 10.6450379), city: "Oslo", country: "Norway")
+        let location = placeholderLocation
         let controller = DaylightModelController(location: location)
         
         return SimpleEntry(date: Date(), daylightController: controller)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let location = Location(coordinate: CLLocationCoordinate2D(latitude: 59.8937806, longitude: 10.6450379), city: "Oslo", country: "Norway")
+        let location = placeholderLocation
         let controller = DaylightModelController(location: location)
         let entry = SimpleEntry(date: Date(), daylightController: controller)
         completion(entry)
@@ -74,8 +76,6 @@ struct DaylightWidgetEntryView : View {
             WidgetTextView(entry: entry)
         case .systemMedium:
             WidgetTextView(entry: entry)
-//        case .systemLarge:
-//            WidgetSunView(entry: entry)
         default:
             WidgetTextView(entry: entry)
         }
@@ -91,7 +91,6 @@ struct DaylightWidget: Widget {
             DaylightWidgetEntryView(entry: entry)
         }
         .supportedFamilies([.systemSmall, .systemMedium])
-//        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
         .configurationDisplayName("Daylight")
         .description("The perfect assistant for the long and dark winters of the north.")
     }
@@ -99,14 +98,13 @@ struct DaylightWidget: Widget {
 
 struct DaylightWidget_Previews: PreviewProvider {
     static var previews: some View {
-        let location = Location(coordinate: CLLocationCoordinate2D(latitude: 59.8937806, longitude: 10.6450379), city: "Oslo", country: "Norway")
+        let location = placeholderLocation
         let controller = DaylightModelController(location: location)
         let daylightEntry = SimpleEntry(date: Date(), daylightController: controller)
         
         Group{
             DaylightWidgetEntryView(entry: daylightEntry).previewContext(WidgetPreviewContext(family: .systemSmall))
             DaylightWidgetEntryView(entry: daylightEntry).previewContext(WidgetPreviewContext(family: .systemMedium))
-//            DaylightWidgetEntryView(entry: daylightEntry).previewContext(WidgetPreviewContext(family: .systemLarge))
         }
     }
 }

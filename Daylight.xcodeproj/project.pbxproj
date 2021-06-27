@@ -36,12 +36,11 @@
 		9F40C01025533AA0007B0C87 /* DaylightModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B1F36B473A0B1BAD021D /* DaylightModelController.swift */; };
 		9F40C01125533AA0007B0C87 /* SunCalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B7CA2B823834F1266457 /* SunCalcEngine.swift */; };
 		9F40C01325533AA0007B0C87 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14507A771E09F8C60032F0AF /* Message.swift */; };
-		9F40C01425533AA0007B0C87 /* UIScreen+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1432419A1E1BF4D9000E6950 /* UIScreen+Helpers.swift */; };
 		9F40C01525533AA0007B0C87 /* Numbers+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFFCA4B2003ABEE0060F86F /* Numbers+Time.swift */; };
 		9F40C01625533AA0007B0C87 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A3E1771E09E6BF002F0D6C /* Settings.swift */; };
 		9F40C01725533AA0007B0C87 /* FNVHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD0F150956F37CAE048A /* FNVHash.swift */; };
 		9F8273EC2606004C007A4472 /* WidgetLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8273EB2606004C007A4472 /* WidgetLocationManager.swift */; };
-		9FA5B68E25F58FB2001F6770 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA5B68D25F58FB2001F6770 /* TinyConstraints */; };
+		9F89DBB9267E498C00765278 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 9F89DBB8267E498C00765278 /* TinyConstraints */; };
 		9FA5B69025F58FB9001F6770 /* SweetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA5B68F25F58FB9001F6770 /* SweetSwift */; };
 		9FA5B69225F58FC0001F6770 /* SweetUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA5B69125F58FC0001F6770 /* SweetUIKit */; };
 		9FA5B69625F58FF0001F6770 /* SweetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA5B69525F58FF0001F6770 /* SweetSwift */; };
@@ -155,7 +154,7 @@
 			files = (
 				9FA5B69025F58FB9001F6770 /* SweetSwift in Frameworks */,
 				9FA5B69225F58FC0001F6770 /* SweetUIKit in Frameworks */,
-				9FA5B68E25F58FB2001F6770 /* TinyConstraints in Frameworks */,
+				9F89DBB9267E498C00765278 /* TinyConstraints in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,9 +320,9 @@
 			);
 			name = Daylight;
 			packageProductDependencies = (
-				9FA5B68D25F58FB2001F6770 /* TinyConstraints */,
 				9FA5B68F25F58FB9001F6770 /* SweetSwift */,
 				9FA5B69125F58FC0001F6770 /* SweetUIKit */,
+				9F89DBB8267E498C00765278 /* TinyConstraints */,
 			);
 			productName = iOS;
 			productReference = 146E27891BCD51C800959BBA /* Daylight.app */;
@@ -510,7 +509,6 @@
 			files = (
 				9F40C01525533AA0007B0C87 /* Numbers+Time.swift in Sources */,
 				9F40C01725533AA0007B0C87 /* FNVHash.swift in Sources */,
-				9F40C01425533AA0007B0C87 /* UIScreen+Helpers.swift in Sources */,
 				9F40C00E25533AA0007B0C87 /* Notifier.swift in Sources */,
 				9F8273EC2606004C007A4472 /* WidgetLocationManager.swift in Sources */,
 				9FB172F92602A8960005C05B /* DaylightWidget.swift in Sources */,
@@ -629,6 +627,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -686,6 +685,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -736,7 +736,7 @@
 		9F40BFFB25532247007B0C87 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -772,7 +772,7 @@
 		9F40BFFC25532247007B0C87 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -929,7 +929,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9FA5B68D25F58FB2001F6770 /* TinyConstraints */ = {
+		9F89DBB8267E498C00765278 /* TinyConstraints */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9FA5B68525F58F6C001F6770 /* XCRemoteSwiftPackageReference "TinyConstraints" */;
 			productName = TinyConstraints;

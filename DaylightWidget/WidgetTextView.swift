@@ -16,8 +16,12 @@ struct WidgetTextView: View {
             Color(entry.daylightController.primaryColor).ignoresSafeArea()
             
             VStack(alignment: .center, spacing: 12, content: {
-                Text(entry.daylightController.stringMessage!).multilineTextAlignment(.center).font(Font(Theme.light(size: 15)))
-                Text(entry.daylightController.locationLabel).font(Font(Theme.light(size: 12)))
+                Text(entry.daylightController.stringMessage ?? "")
+                    .multilineTextAlignment(.center)
+                    .font(Font(Theme.light(size: 15)))
+                
+                Text(entry.daylightController.locationLabel)
+                    .font(Font(Theme.light(size: 12)))
             }).padding(.horizontal).foregroundColor(Color(entry.daylightController.secondaryColor))
         }
     }

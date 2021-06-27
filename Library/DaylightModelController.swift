@@ -1,6 +1,6 @@
 import UIKit
 
-protocol DaylightModelControllerDelegate: class {
+protocol DaylightModelControllerDelegate: AnyObject {
     func daylightModelControllerDidUpdate(with daylightController: DaylightModelController)
 }
 

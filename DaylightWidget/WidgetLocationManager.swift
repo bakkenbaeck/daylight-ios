@@ -9,7 +9,9 @@ import CoreLocation
 class WidgetLocationManager: NSObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager? {
         didSet {
-            self.locationManager!.delegate = self
+            if self.locationManager != nil {
+                self.locationManager?.delegate = self
+            }
         }
     }
     private var handler: ((CLLocation) -> Void)?
@@ -30,6 +32,6 @@ class WidgetLocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        debugPrint(error)
     }
 }
