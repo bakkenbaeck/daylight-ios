@@ -12,9 +12,9 @@ class LocationTracker: NSObject {
     }
 
     weak var delegate: LocationTrackerDelegate?
-
+    
     private var placemark: CLPlacemark?
-
+    
     lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
@@ -22,13 +22,20 @@ class LocationTracker: NSObject {
 
         return manager
     }()
-
-    var authorizationStatus: CLAuthorizationStatus {
-        return CLLocationManager.authorizationStatus()
+    
+    func locationAuthorizationStatus() -> CLAuthorizationStatus {
+        var locationAuthorizationStatus : CLAuthorizationStatus
+        if #available(iOS 14.0, *) {
+            locationAuthorizationStatus =  locationManager.authorizationStatus
+        } else {
+            // Fallback on earlier versions
+            locationAuthorizationStatus = CLLocationManager.authorizationStatus()
+        }
+        return locationAuthorizationStatus
     }
-
+    
     func locateIfPossible() {
-        switch CLLocationManager.authorizationStatus() {
+        switch self.locationAuthorizationStatus() {
         case .authorizedWhenInUse, .authorizedAlways:
             self.locationManager.startUpdatingLocation()
         case .notDetermined:
@@ -40,7 +47,9 @@ class LocationTracker: NSObject {
 
 extension LocationTracker: CLLocationManagerDelegate {
 
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        let status = manager.authorizationStatus
+        
         switch status {
         case .authorizedWhenInUse, .authorizedAlways:
             self.locationManager.startUpdatingLocation()
@@ -48,8 +57,8 @@ extension LocationTracker: CLLocationManagerDelegate {
             self.delegate?.didFailWithError(Error.authorizationError, on: self)
         default: break
         }
-
-        self.delegate?.didUpdateAuthorizationStatus(authorizationStatus, on: self)
+    
+        self.delegate?.didUpdateAuthorizationStatus(status, on: self)
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -70,7 +79,7 @@ extension LocationTracker: CLLocationManagerDelegate {
         }
     }
 
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    private func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         self.delegate?.didFailWithError(error, on: self)
     }
 }

@@ -129,6 +129,7 @@ class OnboardingViewController: UIViewController {
 
         let mainController = MainViewController(with: daylightController)
         mainController.modalTransitionStyle = .crossDissolve
+        mainController.modalPresentationStyle = .fullScreen
         self.present(mainController, animated: true)
     }
 
@@ -142,7 +143,7 @@ class OnboardingViewController: UIViewController {
     }
 
     @objc func updateOnboarding() {
-        switch locationTracker.authorizationStatus {                                                                                                 
+        switch locationTracker.locationAuthorizationStatus() {
         case .notDetermined:
             self.onboardingState = .location
         case .denied:

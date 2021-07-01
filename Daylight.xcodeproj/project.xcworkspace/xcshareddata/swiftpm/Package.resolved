@@ -1,0 +1,34 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SweetSwift",
+        "repositoryURL": "https://github.com/bakkenbaeck/SweetSwift",
+        "state": {
+          "branch": "master",
+          "revision": "af2c73ab07bfdf763a86c3d5241ff94cd2b0b2ca",
+          "version": null
+        }
+      },
+      {
+        "package": "SweetUIKit",
+        "repositoryURL": "https://github.com/bakkenbaeck/SweetUIKit",
+        "state": {
+          "branch": "master",
+          "revision": "ccb04da8f63b9a09949e835ec6b5c8a48c711eaa",
+          "version": null
+        }
+      },
+      {
+        "package": "TinyConstraints",
+        "repositoryURL": "https://github.com/roberthein/TinyConstraints",
+        "state": {
+          "branch": "master",
+          "revision": "d7bd59531c1e5155cb64167235dc75bf5a37ebe6",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

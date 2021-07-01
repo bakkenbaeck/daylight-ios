@@ -1,10 +1,11 @@
-import SweetUIKit
+//import SweetUIKit
 import UIKit
 import TinyConstraints
 
 class MainViewController: UIViewController {
     let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
 
+    
     private var daylightController: DaylightModelController {
         didSet {
             self.update(with: self.daylightController)
@@ -51,6 +52,7 @@ class MainViewController: UIViewController {
         button.titleLabel?.font = Theme.light(size: 16)
         button.addTarget(self, action: #selector(didSelectShareButton(button:)), for: .touchUpInside)
 
+        
         return button
     }()
 
@@ -110,17 +112,17 @@ class MainViewController: UIViewController {
         self.informationButton.left(to: self.view)
         self.informationButton.height(80)
         self.informationButton.right(to: self.view, offset: -self.insets.right)
-
-        self.sunView.height(133)
+        
+        sunView.height(133)
         self.sunView.topToBottom(of: self.informationButton, offset: 10, relation: .equalOrGreater)
         self.sunView.left(to: self.view, offset: self.insets.left)
         self.sunView.right(to: self.view, offset: -self.insets.right)
         self.sunView.bottomToTop(of: self.messageLabel, offset: -10)
-
+        
         let shareButtonSize: CGFloat = 50.0
-
-        self.messageLabel.edges(to: self.view, excluding: .top, insets: TinyEdgeInsets(top: 0, left: self.insets.left, bottom: (2 * -self.insets.bottom), right: -self.insets.right))
-
+    
+        self.messageLabel.edges(to: self.view, excluding: .top, insets: TinyEdgeInsets(top: 0, left: self.insets.left, bottom: (2 * self.insets.bottom) + 20, right: self.insets.right))
+        
         self.shareButton.bottom(to: self.view, offset: -shareButtonSize / 2)
         self.shareButton.size(CGSize(width: shareButtonSize, height: shareButtonSize))
         self.shareButton.right(to: self.view, offset: -self.insets.right)
@@ -145,9 +147,10 @@ class MainViewController: UIViewController {
         }
     }
 
-    @objc func didSelectShareButton(button: UIButton) {
-        let screenshot = self.screenshot()
-
+    @objc func didSelectShareButton(button: UIButton) {    
+//        let screenshot = self.screenshot()
+        let screenshot = takeScreenshot(of: self.view)
+        
         let activityController = UIActivityViewController(activityItems: [screenshot, "Made with #daylightapp."], applicationActivities: nil)
         activityController.excludedActivityTypes = [UIActivity.ActivityType.airDrop]
         self.present(activityController, animated: true, completion: nil)
@@ -173,6 +176,20 @@ class MainViewController: UIViewController {
         }
     }
 
+    func takeScreenshot(of view: UIView) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(
+            CGSize(width: view.bounds.width, height: view.bounds.height),
+            false,
+            2
+        )
+
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let screenshot = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return screenshot
+    }
+    
     func screenshot() -> UIImage {
         let margin: CGFloat = 20
         let height: CGFloat = 450

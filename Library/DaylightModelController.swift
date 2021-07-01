@@ -1,6 +1,6 @@
 import UIKit
 
-protocol DaylightModelControllerDelegate: class {
+protocol DaylightModelControllerDelegate: AnyObject {
     func daylightModelControllerDidUpdate(with daylightController: DaylightModelController)
 }
 
@@ -13,7 +13,7 @@ class DaylightModelController {
     init(location: Location) {
         self.location = location
         self.sunTime = SunTime(date: Date(), coordinate: location.coordinates)
-
+        
         Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         self.addObservers()
     }
@@ -55,6 +55,11 @@ extension DaylightModelController {
     var attributedMessage: NSAttributedString? {
         let message = Message(for: Date(), coordinates: location.coordinates)
         return message.attributedString(textColor: secondaryColor.withAlphaComponent(0.6), highlightColor: secondaryColor)
+    }
+    
+    var stringMessage: String? {
+        let message = Message(for: Date(), coordinates: location.coordinates)
+        return message.formattedMessage
     }
 
     var informationMessage: NSAttributedString? {
